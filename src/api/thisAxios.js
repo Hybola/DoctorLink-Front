@@ -2,7 +2,6 @@ import axios from "axios";
 import { BACKEND_URL } from "../config/env";
 import { getToken } from "../utils/localStorage";
 
-
 axios.defaults.baseURL = BACKEND_URL;
 
 //แนบ token ไปด้วยทุกครั้งที่ส่ง request
