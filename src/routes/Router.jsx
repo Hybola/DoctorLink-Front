@@ -21,6 +21,22 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <ProfilePage />,
       },
+      {
+        path: "/addpost",
+        element: <AddPostPage />,
+      },
+      {
+        path: "/login",
+        element: <LogInPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "/history",
+        element: <HistoryPage />,
+      },
     ],
   },
 ]);
