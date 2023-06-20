@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 
 export default function Container() {
-  return (
-    <div className="flex">
-      {/* <NavBar /> รอเขียน component นี้*/}  
-      <Outlet />
-    </div>
-  );
+    return (
+        <div className="flex">
+            {/* <NavBar /> รอเขียน component นี้*/}
+            <Outlet />
+        </div>
+    )
 }
