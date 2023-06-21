@@ -4,6 +4,7 @@ import ProtectedRoute from "../features/auth/auth-components/ProtectedRoute";
 import Container from "../layouts/Container";
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
+import HistoryPage from "../pages/HistoryPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,18 +22,18 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <ProfilePage />,
       },
-      {
-        path: "/addpost",
-        element: <AddPostPage />,
-      },
-      {
-        path: "/login",
-        element: <LogInPage />,
-      },
-      {
-        path: "/register",
-        element: <RegisterPage />,
-      },
+      // {
+      //   path: "/addpost",
+      //   element: <AddPostPage />,
+      // },
+      // {
+      //   path: "/login",
+      //   element: <LogInPage />,
+      // },
+      // {
+      //   path: "/register",
+      //   element: <RegisterPage />,
+      // },
       {
         path: "/history",
         element: <HistoryPage />,
