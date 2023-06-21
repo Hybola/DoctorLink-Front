@@ -30,17 +30,15 @@ export default function RegisterProviderForm() {
             e.preventDefault()
             ////validation
             const result = validateRegister(input)
-            //console.dir(result);// มี result ก็คือมี error
             if (result) {
                 return setError(result)
             }
             setError({})
             await dispatch(provRegister(input)).unwrap()
-            console.log('RegisterFormProvider---->', input)
             toast.success('register successfully')
             onSucess()
         } catch (err) {
-            toast.error(err.response.data.message)
+            toast.error(err)
         }
     }
 

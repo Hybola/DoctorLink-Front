@@ -18,7 +18,7 @@ export const docRegister = createAsyncThunk(
             const res = await authService.doctorRegister(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
-            return resFetchMe.data.user ////// Check again
+            return resFetchMe.data.user
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -61,8 +61,7 @@ export const provRegister = createAsyncThunk(
             const res = await authService.providerRegister(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.providerFetchMe()
-            console.log('RegisterFormAuth-Slice---->', resFetchMe.data.user)
-            return resFetchMe.data.user ////// Check again
+            return resFetchMe.data.user
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -85,7 +84,7 @@ export const provLogin = createAsyncThunk(
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState, //บรรทัดนี้เขียนย่อเป็นคำเดียวได้นะ
+    initialState,
     extraReducers: (builder) =>
         builder
             .addCase(logout.fulfilled, (state) => {
