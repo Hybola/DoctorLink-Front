@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
-import { registerAsync } from '../slice/auth-slice'
+import { docRegister } from '../slice/auth-slice'
+import validateRegister from '../validators/validateDoctor-register'
 
 const initialInput = {
     email: '',
@@ -33,7 +34,7 @@ export default function RegisterDoctorForm() {
                 return setError(result)
             }
             setError({})
-            await dispatch(registerAsync(input)).unwrap()
+            await dispatch(docRegister(input)).unwrap()
             toast.success('register successfully')
             onSucess()
         } catch (err) {
@@ -41,7 +42,7 @@ export default function RegisterDoctorForm() {
         }
     }
     return (
-        <form>
+        <form onSubmit={handleSubmitForm}>
             <div className="flex flex-col gap-4 border shadow-lg rounded-lg p-10">
                 <p className="text-center text-2xl font-semibold pb-4 text-accent">
                     Doctor Register

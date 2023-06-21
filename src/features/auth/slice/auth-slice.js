@@ -39,17 +39,14 @@ export const docLogin = createAsyncThunk(
     }
 )
 
-export const docFetchMe = createAsyncThunk(
-    'auth/doctor/fetchMe',
-    async (_, thunkApi) => {
-        try {
-            const res = await authService.doctorFetchMe()
-            return res.data.user
-        } catch (err) {
-            return thunkApi.rejectWithValue(err.response.data.message)
-        }
+export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, thunkApi) => {
+    try {
+        const res = await authService.fetchMe()
+        return res.data.user
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.response.data.message)
     }
-)
+})
 
 // Logout
 export const logout = createAsyncThunk('auth/logout', async () => {
@@ -85,18 +82,6 @@ export const provLogin = createAsyncThunk(
     }
 )
 
-export const provFetchMe = createAsyncThunk(
-    'auth/provider/fetchMe',
-    async (_, thunkApi) => {
-        try {
-            const res = await authService.providerFetchMe()
-            return res.data.user
-        } catch (err) {
-            return thunkApi.rejectWithValue(err.response.data.message)
-        }
-    }
-)
-
 const authSlice = createSlice({
     name: 'auth',
     initialState, //บรรทัดนี้เขียนย่อเป็นคำเดียวได้นะ
@@ -125,16 +110,16 @@ const authSlice = createSlice({
                 state.user = action.payload
             })
 
-            .addCase(docFetchMe.fulfilled, (state, action) => {
+            .addCase(fetchMe.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
                 state.initialLoading = false
             })
-            .addCase(docFetchMe.rejected, (state, action) => {
+            .addCase(fetchMe.rejected, (state, action) => {
                 state.error = action.payload
                 state.initialLoading = false
             })
-            .addCase(docFetchMe.pending, (state) => {
+            .addCase(fetchMe.pending, (state) => {
                 state.initialLoading = true
             })
 
@@ -154,19 +139,6 @@ const authSlice = createSlice({
             .addCase(provLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
-            })
-
-            .addCase(provFetchMe.fulfilled, (state, action) => {
-                state.isAuthenticated = true
-                state.user = action.payload
-                state.initialLoading = false
-            })
-            .addCase(provFetchMe.rejected, (state, action) => {
-                state.error = action.payload
-                state.initialLoading = false
-            })
-            .addCase(provFetchMe.pending, (state) => {
-                state.initialLoading = true
             }),
 })
 export default authSlice.reducer

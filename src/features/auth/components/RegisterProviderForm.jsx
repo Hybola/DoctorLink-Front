@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
-import { registerAsync } from "../slice/auth-slice";
+import { provRegister } from "../slice/auth-slice";
+import validateRegister from "../validators/validateProvider-register"
 
 
 const initialInput = {
@@ -34,7 +35,7 @@ export default function RegisterProviderForm() {
                 return setError(result)
             }
             setError({})
-            await dispatch(registerAsync(input)).unwrap()
+            await dispatch(provRegister(input)).unwrap()
             toast.success('register successfully')
             onSucess()
         } catch (err) {
