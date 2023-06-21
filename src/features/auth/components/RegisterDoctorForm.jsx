@@ -30,11 +30,14 @@ export default function RegisterDoctorForm() {
             ////validation
             const result = validateRegister(input)
             //console.dir(result);// มี result ก็คือมี error
+            console.log('register from doc--->', result)
             if (result) {
                 return setError(result)
             }
             setError({})
+            console.log('----before dispatch--->')
             await dispatch(docRegister(input)).unwrap()
+            console.log('RegisterForm------->',input)
             toast.success('register successfully')
             onSucess()
         } catch (err) {

@@ -23,8 +23,8 @@ const registerSchema = Joi.object({
     mobile: Joi.string()
         .pattern(/^[0-9]{10}$/)
         .trim()
+        .required()
         .messages({
-            'string.empty': 'Password is required.',
             'string.pattern.base': 'Mobile number is required.',
         }),
 })

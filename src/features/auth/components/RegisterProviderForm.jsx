@@ -36,6 +36,7 @@ export default function RegisterProviderForm() {
             }
             setError({})
             await dispatch(provRegister(input)).unwrap()
+            console.log('RegisterFormProvider---->', input)
             toast.success('register successfully')
             onSucess()
         } catch (err) {

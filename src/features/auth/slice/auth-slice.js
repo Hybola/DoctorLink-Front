@@ -61,6 +61,7 @@ export const provRegister = createAsyncThunk(
             const res = await authService.providerRegister(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.providerFetchMe()
+            console.log('RegisterFormAuth-Slice---->', resFetchMe.data.user)
             return resFetchMe.data.user ////// Check again
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
