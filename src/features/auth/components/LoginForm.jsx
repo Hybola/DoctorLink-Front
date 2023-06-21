@@ -1,8 +1,11 @@
 import LoginInput from './LoginInput'
 import InputErrorMessage from '../components/InputErrorMessage'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export default function LoginForm() {
+    // const location = useLocation()
+    // console.log(location)
     return (
         <form>
             <div className="flex flex-col gap-4 border shadow-lg rounded-lg p-10">
