@@ -1,7 +1,8 @@
-import ProviderBodyEdit from './ProviderBodyEdit'
+import DoctorBodyEdit from './DoctorBodyEdit'
 
-export default function ProviderBody({ profile, user }) {
-    const handleEdit = () => window.ProviderBodyEdit.showModal()
+export default function DoctorBody({ profile, user }) {
+    const handleBodyEdit = () => window.DoctorBodyEdit.showModal()
+
 
     return (
         <div className="flex flex-col p-[20px] mx-[16px] border-solid border-2 rounded-lg gap-4">
@@ -13,30 +14,17 @@ export default function ProviderBody({ profile, user }) {
                     <div className=" mr-[20px]">
                         <button
                             className="btn btn-info max-h-[20px]  min-h-[14px] font-normal text-white px-2 py-0"
-                            onClick={handleEdit}
+                            onClick={handleBodyEdit}
                         >
                             Edit
                         </button>
-                        <ProviderBodyEdit />
+                        <DoctorBodyEdit />
                     </div>
                 ) : null}
             </div>
             <div className="w-full h-[30px]  text-xl">
                 {profile?.description}
             </div>
-            <div className="w-full    text-lg flex gap-2">
-                <div>Location: </div>
-                <div className="flex flex-col">
-                    <div>{profile?.location?.address}</div>
-                    <div>
-                        {profile?.location?.isBKK ? 'เขต' : 'อำเภอ'}{' '}
-                        {profile?.location?.district}{' '}
-                        {profile?.location?.province}
-                    </div>
-                    <a href={profile?.googleMap}> [ Google Map ]</a>
-                </div>
-            </div>
-
             <div className="w-full text-lg flex flex-col">
                 <div className="flex gap-1">
                     <span>Phone:</span>

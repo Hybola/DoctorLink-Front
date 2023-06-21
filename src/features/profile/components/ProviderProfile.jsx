@@ -1,13 +1,14 @@
-import Header from './ProviderHeader'
-import Body from './ProviderBody'
+import ProviderHeader from './ProviderHeader'
+import ProviderBody from './ProviderBody'
 
 export default function ProviderProfile() {
+    const jobpost = [{ Title: 'Test1' }, { Title: 'Test2' }, { Title: 'Test3' }]
     const profile = {
         userId: '1245',
         profileImagePath:
             'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1687202073/Screen_Shot_2566-06-20_at_02.13.58_tncfxz.png',
         coverImagePath:
-            'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1687201361/Screen_Shot_2566-06-20_at_02.00.32_wlys25.png',
+            'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1687201835/Screen_Shot_2566-06-20_at_02.10.09_ak5jzo.png',
         follower: '14',
         name: 'ศูนย์บริการสาธารณสุข 64 คลองสามวา',
         description: 'สถานพยาบาลขนาดเล็กในเครือ กทม.',
@@ -23,10 +24,22 @@ export default function ProviderProfile() {
     }
     const user = { userId: '1245' }
 
+    const joblist = jobpost.map((job) => (
+        <div className="w-full h-[600px] overflow-auto bg-info"></div>
+    ))
+
     return (
-        <div className=" max-w-[740px]  min-w-[540px] w-[80%] bg-base-100 rounded-lg  my-4 shadow-sm">
-            <Header profile={profile} user={user} />
-            <Body profile={profile} user={user} />
+        <div>
+            <div className=" max-w-[800px]  min-w-[540px]  bg-base-100 rounded-lg  my-4 shadow-sm h-fit pb-[14px]">
+                <ProviderHeader profile={profile} user={user} />
+                <ProviderBody profile={profile} user={user} />
+            </div>
+            <div className=" max-w-[800px]  min-w-[540px] bg-base rounded-lg  my-4 shadow-sm gap-4 flex flex-col">
+                <div className="w-full h-[40px] bg-base-100  flex justify-center items-center">
+                    <div>Job Post</div>
+                </div>
+                {joblist}
+            </div>
         </div>
     )
 }

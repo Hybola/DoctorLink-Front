@@ -2,7 +2,7 @@ import InputBar from './InputBar'
 
 export default function ProviderEdit() {
     return (
-        <dialog id="my_modal_1" className="modal">
+        <dialog id="ProviderBodyEdit" className="modal">
             <form method="dialog" className="modal-box bg-base-300">
                 <div className="flex justify-center mb-2">
                     <h3 className="font-bold text-lg">Edit Provider Profile</h3>
