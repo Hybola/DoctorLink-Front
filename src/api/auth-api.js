@@ -1,5 +1,5 @@
-import axios from './axios';
+import thisAxios from './axios';
 
-export const register = (input) => axios.post('/auth/register', input);
-export const login = (input) => axios.post('/auth/login', input);
-export const fetchMe = () => axios.get('/auth/me');
+export const register = (input) => thisAxios.post('/auth/register', input);
+export const login = (input) => thisAxios.post('/auth/login', input);
+export const fetchMe = () => thisAxios.get('/auth/me');
