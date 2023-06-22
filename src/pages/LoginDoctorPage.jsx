@@ -1,7 +1,6 @@
-import React from 'react'
-import LoginForm from '../features/auth/components/LoginForm'
 import DocPic from '../asset/pictureForLogin.jpg'
 import { Link } from 'react-router-dom'
+import LoginDoctorForm from '../features/auth/components/LoginDoctorForm'
 
 export default function LoginDoctorPage() {
     return (
@@ -11,10 +10,10 @@ export default function LoginDoctorPage() {
             </div>
             <div className="flex flex-1 justify-center">
                 <div className="w-[450px] ">
-                    <LoginForm />
+                    <LoginDoctorForm />
                     <div className="text-center pt-8">
                         <span>
-                            New to doctorLink? 
+                            New to doctorLink?
                             <Link to="/doctor/register"> Join now</Link>
                         </span>
                     </div>

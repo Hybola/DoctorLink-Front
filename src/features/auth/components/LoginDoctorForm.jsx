@@ -4,17 +4,15 @@ import { useDispatch } from 'react-redux'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
-import { docRegister } from '../slice/auth-slice'
-import validateRegister from '../validators/validateDoctor-register'
+import { docLogin } from '../slice/auth-slice'
+import validateLogin from '../validators/validate-login'
 
 const initialInput = {
     email: '',
     password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
 }
-export default function RegisterDoctorForm({ onSuccess }) {
+
+export default function LoginDoctorForm() {
     const [input, setInput] = useState(initialInput)
     const [error, setError] = useState({})
 
@@ -27,24 +25,24 @@ export default function RegisterDoctorForm({ onSuccess }) {
     const handleSubmitForm = async (e) => {
         try {
             e.preventDefault()
-            ////validation
-            const result = validateRegister(input)
+            const result = validateLogin(input)
             if (result) {
                 return setError(result)
             }
             setError({})
-            await dispatch(docRegister(input)).unwrap()
-            toast.success('Register successfully')
-            onSuccess()
+            await dispatch(docLogin(input)).unwrap()
+            toast.success('Welcome Doctor!')
+            onSucess()
         } catch (err) {
             toast.error(err)
         }
     }
+
     return (
         <form onSubmit={handleSubmitForm}>
             <div className="flex flex-col gap-4 border shadow-lg rounded-lg p-10">
                 <p className="text-center text-2xl font-semibold pb-4 text-accent">
-                    Doctor Register
+                    Doctor Login
                 </p>
                 <div>
                     <p>Email</p>
@@ -67,52 +65,14 @@ export default function RegisterDoctorForm({ onSuccess }) {
                         isInvalid={error.password}
                     />
                     <InputErrorMessage message={error.password} />
-                </div>
-                <div>
-                    <p>Confirm password</p>
-                    <LoginInput
-                        placeholder="Confirm password"
-                        name="confirmPassword"
-                        value={input.confirmPassword}
-                        onChange={handleChangeInput}
-                        isInvalid={error.confirmPassword}
-                    />
-                    <InputErrorMessage message={error.confirmPassword} />
-                </div>
-
-                <div>
-                    <p>First name</p>
-                    <LoginInput
-                        placeholder="Your first name"
-                        name="firstName"
-                        value={input.firstName}
-                        onChange={handleChangeInput}
-                        isInvalid={error.firstName}
-                    />
-                    <InputErrorMessage message={error.firstName} />
-                </div>
-
-                <div>
-                    <p>Last name</p>
-                    <LoginInput
-                        placeholder="Your last name"
-                        name="lastName"
-                        value={input.lastName}
-                        onChange={handleChangeInput}
-                        isInvalid={error.lastName}
-                    />
-                    <InputErrorMessage message={error.lastName} />
-                </div>
-                <div className="pt-4 text-xs text-center w-[350px]">
-                    <p>
-                        By clicking Agree & Join, you agree to the doctorLink
-                        User Agreement, Privacy Policy, and Cookie Policy.
-                    </p>
+                    <span className="w-fit font-semibold">
+                        Forgot password?
+                    </span>
                 </div>
 
                 <div className="flex flex-col gap-4">
                     <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
-                        Agree & Join
+                        Log in
                     </button>
                     <p className="text-center text-xl">or</p>
                     <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">

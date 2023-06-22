@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
-import { provRegister } from "../slice/auth-slice";
-import validateRegister from "../validators/validateProvider-register"
-
+import { provRegister } from '../slice/auth-slice'
+import validateRegister from '../validators/validateProvider-register'
 
 const initialInput = {
     email: '',

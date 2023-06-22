@@ -6,10 +6,16 @@ import 'react-toastify/dist/ReactToastify.css'
 import store from './store'
 import { Provider } from 'react-redux'
 import { getToken } from './utils/localStorage.js'
-import { fetchMe } from './features/auth/slice/auth-slice.js'
+import { docFetchMe, provFetchMe } from './features/auth/slice/auth-slice.js'
+import jwt_decode from 'jwt-decode'
 
-if (getToken()) {
-    store.dispatch(fetchMe())
+const decoded = jwt_decode(getToken())
+
+if (decoded.role == 'doctor') {
+    store.dispatch(docFetchMe())
+}
+if (decoded.role == 'provider') {
+    store.dispatch(provFetchMe())
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

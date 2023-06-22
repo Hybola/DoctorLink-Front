@@ -1,45 +1,96 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import RedirectIfAuthenticated from '../features/auth/components/RedirectIfAuthenticated'
 import ProtectedRoute from '../features/auth/components/ProtectedRoute'
 import Container from '../layouts/Container'
 import RegisterDoctorPage from '../pages/RegisterDoctorPage'
 import RegisterProviderPage from '../pages/RegisterProviderPage'
 import LoginProviderPage from '../pages/LoginProviderPage'
 import LoginDoctorPage from '../pages/LoginDoctorPage'
+import HomePage from '../pages/HomePage'
+import { Outlet } from 'react-router-dom'
+import Profile from '../pages/Profile'
+import RedirectProvider from '../features/auth/components/RedirectProvider'
+import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 const router = createBrowserRouter([
     {
-        path: '/doctor/',
-        element: (
-            // <ProtectedRoute>
-            <Container />
-            // </ProtectedRoute>
-        ),
+        path: '/',
+        element: <Container />,
         children: [
             {
-                path: '/doctor/login/',
-                element: <LoginDoctorPage />,
+                path: '/',
+                element: <HomePage />,
             },
             {
-                path: '/doctor/register/',
-                element: <RegisterDoctorPage />,
+                path: '/doctor/',
+                element: <Outlet />,
+                children: [
+                    {
+                        path: '/doctor/login/',
+                        element: (
+                            <RedirectDoctor>
+                                <LoginDoctorPage />
+                            </RedirectDoctor>
+                        ),
+                    },
+                    {
+                        path: '/doctor/register/',
+                        element: (
+                            <RedirectDoctor>
+                                <RegisterDoctorPage />
+                            </RedirectDoctor>
+                        ),
+                    },
+                    {
+                        path: '/doctor/',
+                        element: (
+                            <ProtectedRoute>
+                                <Outlet />
+                            </ProtectedRoute>
+                        ),
+                        children: [
+                            {
+                                path: '/doctor/profile/',
+                                element: <Profile />,
+                            },
+                        ],
+                    },
+                ],
             },
-        ],
-    },
-    {
-        path: '/provider/',
-        element: (
-            // <ProtectedRoute>
-            <Container />
-            // </ProtectedRoute>
-        ),
-        children: [
+
             {
-                path: '/provider/login/',
-                element: <LoginProviderPage />,
-            },
-            {
-                path: '/provider/register/',
-                element: <RegisterProviderPage />,
+                path: '/provider/',
+                element: <Outlet />,
+                children: [
+                    {
+                        path: '/provider/login/',
+                        element: (
+                            <RedirectProvider>
+                                <LoginProviderPage />
+                            </RedirectProvider>
+                        ),
+                    },
+                    {
+                        path: '/provider/register/',
+                        element: (
+                            <RedirectProvider>
+                                <RegisterProviderPage />
+                            </RedirectProvider>
+                        ),
+                    },
+                    {
+                        path: '/provider/',
+                        element: (
+                            <ProtectedRoute>
+                                <Outlet />
+                            </ProtectedRoute>
+                        ),
+                        children: [
+                            {
+                                path: '/provider/profile/',
+                                element: <Profile />,
+                            },
+                        ],
+                    },
+                ],
             },
         ],
     },

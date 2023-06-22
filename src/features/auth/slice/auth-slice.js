@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import * as authService from '../../../api/auth-api'
 import { removeToken, setToken } from '../../../utils/localStorage'
 
@@ -8,6 +9,7 @@ const initialState = {
     loading: false,
     user: null,
     initialLoading: false,
+    role: '',
 }
 
 // Doctor
@@ -39,18 +41,35 @@ export const docLogin = createAsyncThunk(
     }
 )
 
-export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, thunkApi) => {
-    try {
-        const res = await authService.fetchMe()
-        return res.data.user
-    } catch (err) {
-        return thunkApi.rejectWithValue(err.response.data.message)
+export const docFetchMe = createAsyncThunk(
+    'auth/docfetchMe',
+    async (_, thunkApi) => {
+        try {
+            const res = await authService.doctorFetchMe()
+            return res.data.user
+        } catch (err) {
+            console.log('err----->', err)
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
     }
-})
+)
+export const provFetchMe = createAsyncThunk(
+    'auth/provfetchMe',
+    async (_, thunkApi) => {
+        try {
+            const res = await authService.providerFetchMe()
+            return res.data.user
+        } catch (err) {
+            console.log('err----->', err)
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
 
 // Logout
 export const logout = createAsyncThunk('auth/logout', async () => {
     removeToken()
+    toast.success('Logged out successfull!')
 })
 
 //Provider
@@ -90,6 +109,7 @@ const authSlice = createSlice({
             .addCase(logout.fulfilled, (state) => {
                 state.isAuthenticated = false
                 state.user = null
+                state.role = ''
             })
 
             .addCase(docRegister.pending, (state) => {
@@ -99,6 +119,7 @@ const authSlice = createSlice({
                 state.isAuthenticated = true
                 state.loading = false
                 state.user = action.payload
+                state.role = 'doctor'
             })
             .addCase(docRegister.rejected, (state, action) => {
                 state.error = action.payload
@@ -108,18 +129,34 @@ const authSlice = createSlice({
             .addCase(docLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
+                state.role = 'doctor'
             })
 
-            .addCase(fetchMe.fulfilled, (state, action) => {
+            .addCase(docFetchMe.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
                 state.initialLoading = false
+                state.role = 'doctor'
             })
-            .addCase(fetchMe.rejected, (state, action) => {
+            .addCase(docFetchMe.rejected, (state, action) => {
                 state.error = action.payload
                 state.initialLoading = false
             })
-            .addCase(fetchMe.pending, (state) => {
+            .addCase(docFetchMe.pending, (state) => {
+                state.initialLoading = true
+            })
+
+            .addCase(provFetchMe.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.user = action.payload
+                state.initialLoading = false
+                state.role = 'provider'
+            })
+            .addCase(provFetchMe.rejected, (state, action) => {
+                state.error = action.payload
+                state.initialLoading = false
+            })
+            .addCase(provFetchMe.pending, (state) => {
                 state.initialLoading = true
             })
 
@@ -130,15 +167,18 @@ const authSlice = createSlice({
                 state.isAuthenticated = true
                 state.loading = false
                 state.user = action.payload
+                state.role = 'provider'
             })
             .addCase(provRegister.rejected, (state, action) => {
                 state.error = action.payload
                 state.loading = false
+                state.role = 'provider'
             })
 
             .addCase(provLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
+                state.role = 'provider'
             }),
 })
 export default authSlice.reducer

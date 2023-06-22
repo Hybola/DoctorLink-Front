@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import HrPic from '../asset/forHR.jpg'
 import RegisterProviderForm from '../features/auth/components/RegisterProviderForm'
