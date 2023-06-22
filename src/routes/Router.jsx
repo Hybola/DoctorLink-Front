@@ -11,6 +11,7 @@ import Profile from '../pages/ProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
+import History from '../pages/HistoryPage'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
                             {
                                 path: '/provider/addpost/',
                                 element: <Addpost />,
+                            },
+                            {
+                                path: '/provider/history/',
+                                element: <History />,
                             },
                         ],
                     },

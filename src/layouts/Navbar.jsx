@@ -32,7 +32,11 @@ export default function Navbar() {
                         <Link to="/provider/addpost/">
                             <AddPostIcon />
                         </Link>
-                        <HistoryIcon />
+
+                        <Link to="/provider/history/">
+                            <HistoryIcon />
+                        </Link>
+
                         <NotificationIcon />
                     </div>
                 )}
