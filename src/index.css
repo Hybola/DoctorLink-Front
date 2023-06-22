@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: "K2D", sans-serif;
-  }
+    body {
+        font-family: "K2D", sans-serif;
+    }
 }
