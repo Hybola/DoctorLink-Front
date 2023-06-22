@@ -10,7 +10,9 @@ export default function Header() {
     return (
         <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
             <div className="py-2 flex justify-start self-center">
-                <h1>Logo</h1>
+                <Link to="/">
+                    <h1>Logo</h1>
+                </Link>
             </div>
             <div className="flex justify-self-end items-center gap-4">
                 {role == 'doctor' || role == 'provider' ? (
