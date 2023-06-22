@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RedirectIfAuthenticated from "../features/auth/auth-components/RedirectIfAuthenticated";
-import ProtectedRoute from "../features/auth/auth-components/ProtectedRoute";
+// import RedirectIfAuthenticated from "../features/auth/auth-components/RedirectIfAuthenticated";
+// import ProtectedRoute from "../features/auth/auth-components/ProtectedRoute";
 import Container from "../layouts/Container";
 import HomePage from "../pages/HomePage";
-import ProfilePage from "../pages/ProfilePage";
+// import ProfilePage from "../pages/ProfilePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,26 +17,26 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
-      {
-        path: "/profile",
-        element: <ProfilePage />,
-      },
-      {
-        path: "/addpost",
-        element: <AddPostPage />,
-      },
-      {
-        path: "/login",
-        element: <LogInPage />,
-      },
-      {
-        path: "/register",
-        element: <RegisterPage />,
-      },
-      {
-        path: "/history",
-        element: <HistoryPage />,
-      },
+      // {
+      //   path: "/profile",
+      //   element: <ProfilePage />,
+      // },
+      // {
+      //   path: "/addpost",
+      //   element: <AddPostPage />,
+      // },
+      // {
+      // path: "/login",
+      //   element: <LogInPage />,
+      // },
+      // {
+      //   path: "/register",
+      //   element: <RegisterPage />,
+      // },
+      // {
+      //   path: "/history",
+      //   element: <HistoryPage />,
+      // },
     ],
   },
 ]);

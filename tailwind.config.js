@@ -6,6 +6,9 @@ export default {
   },
   daisyui: {
     themes: [
+      // "light",
+      // "dark",
+      // "cupcake",
       {
         mytheme: {
           primary: "#35b8be",
@@ -16,7 +19,7 @@ export default {
 
           neutral: "#546285",
 
-          "base-100": "#FFFFF",
+          "base-100": "#FFFF",
 
           info: "#639dd4",
 
