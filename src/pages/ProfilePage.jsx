@@ -6,7 +6,7 @@ export default function ProfilePage() {
     const [isProvider, setProvider] = useState(false)
 
     return (
-        <div className=" w-full  bg-base-200 flex justify-center">
+        <div className=" h-screen w-full  bg-base-200 flex justify-center">
             {isProvider ? <ProviderProfile /> : <DoctorProfile />}
         </div>
     )

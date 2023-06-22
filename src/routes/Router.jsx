@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Container from '../layouts/Container'
 // import HomePage from "../pages/HomePage";
 import ProfilePage from '../pages/ProfilePage'
+import FollowedPage from '../pages/FollowedPage'
+import SavedJobPage from '../pages/SavedJobPage'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <ProfilePage />,
+            },
+            {
+                path: '/followed',
+                element: <FollowedPage />,
+            },
+            {
+                path: '/savedjob',
+                element: <SavedJobPage />,
             },
             // {
             //   path: "/addpost",

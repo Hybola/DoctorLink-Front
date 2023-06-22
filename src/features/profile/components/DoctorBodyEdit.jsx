@@ -3,7 +3,7 @@ import InputBar from './InputBar'
 export default function DoctorBodyEdit() {
     return (
         <dialog id="DoctorBodyEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-300">
+            <form method="dialog" className="modal-box bg-base-100">
                 <div className="flex justify-center mb-2">
                     <h3 className="font-bold text-lg">
                         Edit Profile Description
@@ -11,11 +11,14 @@ export default function DoctorBodyEdit() {
                 </div>
                 <InputBar label="Profile Name: " name="name" />
                 <div className="flex gap-2 ">
-                    <label htmlFor="description" className="w-[180px] ">
+                    <label
+                        htmlFor="description"
+                        className="w-[180px] font-normal text-sm "
+                    >
                         Description
                     </label>
                     <textarea
-                        className="textarea textarea-primary w-full  "
+                        className="w-full font-normal text-lg border border-bg-primary rounded-lg "
                         name="description"
                     ></textarea>
                 </div>

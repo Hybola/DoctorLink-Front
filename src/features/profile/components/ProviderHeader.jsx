@@ -7,8 +7,10 @@ export default function ProviderHeader({ profile, user }) {
     const currentCoverImage = profile?.coverImagePath || defaultCoverImage
     const currentProfileImage = profile?.profileImagePath || defaultProfileImage
     const handleCoverImageEdit = () => window.CoverImageEdit.showModal()
-    const handleProfileImageEdit = () =>
-        window.ProviderProfileImageEdit.showModal()
+    const handleProfileImageEdit = () => {
+        if (user?.userId == profile?.userId)
+            window.ProviderProfileImageEdit.showModal()
+    }
     return (
         <div className=" h-[220px] mb-[40px]">
             <div className="w-full h-[200px] bg-base-300 rounded-t-lg">
@@ -51,7 +53,7 @@ export default function ProviderHeader({ profile, user }) {
                 </div>
                 {user?.userId != profile?.userId ? (
                     <div className="w-[200px] h-[14px] ml-[200px] mt-[8px]">
-                        <button className="btn btn-success max-h-[20px]  min-h-[14px] font-normal px-2 py-0">
+                        <button className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-lg min-h-[14px] font-normal px-[4px] ">
                             Follow
                         </button>
                     </div>

@@ -2,38 +2,34 @@ import InputBar from './InputBar'
 
 export default function ProviderEdit() {
     return (
-        <dialog id="ProviderBodyEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-300">
+        <dialog id="ProviderBodyEdit" className="modal ">
+            <form method="dialog" className="modal-box bg-base-100 w-[600px]">
                 <div className="flex justify-center mb-2">
                     <h3 className="font-bold text-lg">Edit Provider Profile</h3>
                 </div>
-                <InputBar label="ชื่อสถานพยาบาล: " name="name" />
+                <InputBar label="Provider Name: " name="name" />
                 <div className="flex gap-2 ">
-                    <label htmlFor="description" className="w-[180px] ">
-                        คำบรรยาย
+                    <label
+                        htmlFor="description"
+                        className="w-[180px] font-normal text-sm"
+                    >
+                        Description
                     </label>
                     <textarea
-                        className="textarea textarea-primary w-full  "
+                        className=" w-full font-normal text-lg border border-bg-primary rounded-lg"
                         name="description"
-                        placeholder="ตย. โรงพยาบาลเอกชนชั้นนำของไทย"
                     ></textarea>
                 </div>
-                <InputBar
-                    label="ที่อยู่:"
-                    name="address"
-                    placeholder=" ตย. เลขที่ 1 ซอย เลียบคลองสอง 10 แขวงบางชัน"
-                />
-                <InputBar label="อำเภอ/เขต:" name="dictrict" />
-                <InputBar label="จังหวัด:" name="province" />
+                <InputBar label="Adress:" name="address" />
+                <InputBar label="District:" name="dictrict" />
+                <InputBar label="Province:" name="province" />
                 <InputBar label="Google Map Link: " name="googleMap" />
-                <InputBar label="เบอร์ติดต่อ :" name="phone" />
+                <InputBar label="Telephone :" name="phone" />
                 <InputBar label="LINE ID :" name="lineId" />
 
                 <div className="modal-action gap-2">
-                    <button className="btn w-[80px] hover:bg-warning">
-                        CANCEL
-                    </button>
-                    <button className="btn  w-[100px] font-bold hover:bg-success hover:text-white">
+                    <button className="btn w-[80px] ">CANCEL</button>
+                    <button className="btn bg-primary  w-[100px] font-bold text-white hover:bg-success">
                         SAVE
                     </button>
                 </div>

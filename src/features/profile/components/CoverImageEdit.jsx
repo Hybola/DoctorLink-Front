@@ -1,7 +1,7 @@
 export default function CoverImageEdit({ currentImage }) {
     return (
         <dialog id="CoverImageEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-300">
+            <form method="dialog" className="modal-box bg-base-100">
                 <div className="flex flex-col h-[300px] justify-between">
                     <div className="flex justify-center mb-2">
                         <h3 className="font-bold text-lg">Edit Cover Image</h3>
@@ -19,10 +19,10 @@ export default function CoverImageEdit({ currentImage }) {
                             Upload Image
                         </div>
                         <div className="modal-action flex items-center mt-0">
-                            <button className="btn  w-[100px] font-bold hover:bg-warning hover:text-black">
+                            <button className="btn  w-[100px] font-bold ">
                                 CANCEL
                             </button>
-                            <button className="btn  w-[100px] font-bold hover:bg-success hover:text-white">
+                            <button className="btn btn-primary  w-[100px] font-bold hover:bg-success text-white">
                                 SAVE
                             </button>
                         </div>

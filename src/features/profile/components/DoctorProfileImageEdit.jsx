@@ -1,7 +1,7 @@
 export default function DoctorProfileImageEdit({ currentImage }) {
     return (
         <dialog id="DoctorProfileImageEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-300">
+            <form method="dialog" className="modal-box bg-base-100">
                 <div className="flex flex-col h-[300px] justify-between">
                     <div className="flex justify-center mb-2">
                         <h3 className="font-bold text-lg">
@@ -17,14 +17,16 @@ export default function DoctorProfileImageEdit({ currentImage }) {
                             />
                         </div>
                     </div>
-
-                    <div className="modal-action gap-2">
-                        <button className="btn w-[80px] hover:bg-warning">
-                            CANCEL
-                        </button>
-                        <button className="btn  w-[100px] font-bold hover:bg-success hover:text-white">
-                            SAVE
-                        </button>
+                    <div className="w-full flex justify-around items-center mt-6">
+                        <div className="btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white">
+                            Upload Image
+                        </div>
+                        <div className="modal-action gap-2 mt-0">
+                            <button className="btn w-[80px] ">CANCEL</button>
+                            <button className="btn btn-primary w-[100px] font-bold hover:bg-success text-white">
+                                SAVE
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

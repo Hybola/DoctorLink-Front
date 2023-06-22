@@ -3,9 +3,8 @@ import DoctorBodyEdit from './DoctorBodyEdit'
 export default function DoctorBody({ profile, user }) {
     const handleBodyEdit = () => window.DoctorBodyEdit.showModal()
 
-
     return (
-        <div className="flex flex-col p-[20px] mx-[16px] border-solid border-2 rounded-lg gap-4">
+        <div className="flex flex-col p-[20px] mx-[16px] shadow-lg border-2  rounded-lg gap-4">
             <div className="w-full h-[30px] flex justify-between">
                 <div className=" min-w-[200px]  font-bold text-2xl">
                     {profile?.name}
@@ -22,17 +21,17 @@ export default function DoctorBody({ profile, user }) {
                     </div>
                 ) : null}
             </div>
-            <div className="w-full h-[30px]  text-xl">
+            <div className="w-full h-[30px]  text-lg">
                 {profile?.description}
             </div>
-            <div className="w-full text-lg flex flex-col">
-                <div className="flex gap-1">
+            <div className="w-full flex flex-col">
+                <div className="flex gap-1 text-xl">
                     <span>Phone:</span>
-                    <span>{profile?.phone}</span>
+                    <span className="text-base mt-1">{profile?.phone}</span>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-xl">
                     <span>Lind-Id:</span>
-                    <span>{profile?.lineId}</span>
+                    <span className="text-base mt-1">{profile?.lineId}</span>
                 </div>
             </div>
         </div>
