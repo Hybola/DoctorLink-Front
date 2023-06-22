@@ -10,6 +10,7 @@ import { Outlet } from 'react-router-dom'
 import Profile from '../pages/ProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
+import Addpost from '../pages/Addpost'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
                             {
                                 path: '/provider/profile/',
                                 element: <Profile />,
+                            },
+                            {
+                                path: '/provider/addpost/',
+                                element: <Addpost />,
                             },
                         ],
                     },
