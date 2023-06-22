@@ -1,5 +1,7 @@
-import Profile from "../features/profile/profile-components/profile";
+import React from 'react'
 
-export default function ProfilePage() {
-  return <Profile />;
+export default function Profile() {
+  return (
+    <div className="w-full bg-red-300 text-5xl">Profile</div>
+  )
 }
