@@ -7,7 +7,7 @@ import LoginProviderPage from '../pages/LoginProviderPage'
 import LoginDoctorPage from '../pages/LoginDoctorPage'
 import HomePage from '../pages/HomePage'
 import { Outlet } from 'react-router-dom'
-import Profile from '../pages/Profile'
+import Profile from '../pages/ProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 const router = createBrowserRouter([
