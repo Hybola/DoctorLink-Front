@@ -6,13 +6,16 @@ export default {
     },
     daisyui: {
         themes: [
+            // "light",
+            // "dark",
+            // "cupcake",
             {
                 mytheme: {
                     primary: '#35b8be',
 
                     secondary: '#EBEBEB',
 
-                    accent: '#08090A',
+                    accent: '#212528',
 
                     neutral: '#546285',
 

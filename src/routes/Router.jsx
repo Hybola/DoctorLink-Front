@@ -1,52 +1,97 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// import RedirectIfAuthenticated from "../features/auth/auth-components/RedirectIfAuthenticated";
-// import ProtectedRoute from "../features/auth/auth-components/ProtectedRoute";
+import ProtectedRoute from '../features/auth/components/ProtectedRoute'
 import Container from '../layouts/Container'
-// import HomePage from "../pages/HomePage";
-import ProfilePage from '../pages/ProfilePage'
-import FollowedPage from '../pages/FollowedPage'
-import SavedJobPage from '../pages/SavedJobPage'
+import RegisterDoctorPage from '../pages/RegisterDoctorPage'
+import RegisterProviderPage from '../pages/RegisterProviderPage'
+import LoginProviderPage from '../pages/LoginProviderPage'
+import LoginDoctorPage from '../pages/LoginDoctorPage'
+import HomePage from '../pages/HomePage'
+import { Outlet } from 'react-router-dom'
+import Profile from '../pages/ProfilePage'
+import RedirectProvider from '../features/auth/components/RedirectProvider'
+import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: (
-            //   <ProtectedRoute>
-            <Container />
-            //   </ProtectedRoute>
-        ),
+        element: <Container />,
         children: [
-            // {
-            //   path: "/",
-            //   element: <HomePage />,
-            // },
             {
-                path: '/profile',
-                element: <ProfilePage />,
+                path: '/',
+                element: <HomePage />,
             },
             {
-                path: '/followed',
-                element: <FollowedPage />,
+                path: '/doctor/',
+                element: <Outlet />,
+                children: [
+                    {
+                        path: '/doctor/login/',
+                        element: (
+                            <RedirectDoctor>
+                                <LoginDoctorPage />
+                            </RedirectDoctor>
+                        ),
+                    },
+                    {
+                        path: '/doctor/register/',
+                        element: (
+                            <RedirectDoctor>
+                                <RegisterDoctorPage />
+                            </RedirectDoctor>
+                        ),
+                    },
+                    {
+                        path: '/doctor/',
+                        element: (
+                            <ProtectedRoute>
+                                <Outlet />
+                            </ProtectedRoute>
+                        ),
+                        children: [
+                            {
+                                path: '/doctor/profile/',
+                                element: <Profile />,
+                            },
+                        ],
+                    },
+                ],
             },
+
             {
-                path: '/savedjob',
-                element: <SavedJobPage />,
+                path: '/provider/',
+                element: <Outlet />,
+                children: [
+                    {
+                        path: '/provider/login/',
+                        element: (
+                            <RedirectProvider>
+                                <LoginProviderPage />
+                            </RedirectProvider>
+                        ),
+                    },
+                    {
+                        path: '/provider/register/',
+                        element: (
+                            <RedirectProvider>
+                                <RegisterProviderPage />
+                            </RedirectProvider>
+                        ),
+                    },
+                    {
+                        path: '/provider/',
+                        element: (
+                            <ProtectedRoute>
+                                <Outlet />
+                            </ProtectedRoute>
+                        ),
+                        children: [
+                            {
+                                path: '/provider/profile/',
+                                element: <Profile />,
+                            },
+                        ],
+                    },
+                ],
             },
-            // {
-            //   path: "/addpost",
-            //   element: <AddPostPage />,
-            // },
-            // {
-            //   path: "/login",
-            //   element: <LogInPage />,
-            // },
-            // {
-            //   path: "/register",
-            //   element: <RegisterPage />,
-            // },
-            // {
-            //   path: "/history",
-            //   element: <HistoryPage />,
-            // },
         ],
     },
 ])
