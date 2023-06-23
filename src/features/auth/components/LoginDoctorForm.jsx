@@ -7,6 +7,10 @@ import InputErrorMessage from './InputErrorMessage'
 import { docLogin } from '../slice/auth-slice'
 import validateLogin from '../validators/validate-login'
 
+import { LoginSocialGoogle } from 'reactjs-social-login'
+
+
+
 const initialInput = {
     email: '',
     password: '',
@@ -78,6 +82,14 @@ export default function LoginDoctorForm() {
                     <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
                         Continue with Google
                     </button>
+                    <div>
+                        <LoginSocialGoogle
+                        client_id='166585259375-ui3lbpm9ksfgqceeh1gh5qkt0onv9kal.apps.googleusercontent.com'
+                        scope='email'
+                        >
+
+                        </LoginSocialGoogle>
+                    </div>
                 </div>
             </div>
         </form>

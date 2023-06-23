@@ -8,3 +8,5 @@ export const providerRegister = (input) => thisAxios.post('/auth/provider/regist
 export const providerLogin = (input) => thisAxios.post('/auth/provider/login', input);
 export const providerFetchMe = () => thisAxios.get('/auth/provider/me');
 
+
+export const loginGoogle = (input) => thisAxios.post('/auth/logingoogle/:role', input)

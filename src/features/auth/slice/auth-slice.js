@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import * as authService from '../../../api/auth-api'
 import { removeToken, setToken } from '../../../utils/localStorage'
+import jwt_decode from 'jwt-decode'
 
 const initialState = {
     isAuthenticated: false,
@@ -41,6 +42,27 @@ export const docLogin = createAsyncThunk(
     }
 )
 
+export const googleLogin = createAsyncThunk(
+    'auth/googleLogin',
+    async (input, thunkApi) => {
+        try {
+            const res = await authService.loginGoogle()
+            setToken(res.data.accessToken)
+            const decoded = jwt_decode(res.data.accessToken)
+            if (decoded.role == 'doctor') {
+                const resFetchMe = await authService.doctorFetchMe()
+                return { ...resFetchMe, role: 'doctor' }
+            }
+            if (decoded.role == 'provider') {
+                const resFetchMe = await authService.providerFetchMe()
+                return { ...resFetchMe, role: 'provider' }
+            }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
 export const docFetchMe = createAsyncThunk(
     'auth/docfetchMe',
     async (_, thunkApi) => {
@@ -69,7 +91,7 @@ export const provFetchMe = createAsyncThunk(
 // Logout
 export const logout = createAsyncThunk('auth/logout', async () => {
     removeToken()
-    toast.success('Logged out successfull!')
+    toast.success('Log out successfull!')
 })
 
 //Provider
@@ -176,6 +198,18 @@ const authSlice = createSlice({
             })
 
             .addCase(provLogin.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.user = action.payload
+                state.role = 'provider'
+            })
+
+            .addCase(googleLogin.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.user = action.payload
+                state.role = 'doctor'
+            })
+
+            .addCase(googleLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
                 state.role = 'provider'
