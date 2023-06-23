@@ -1,7 +1,13 @@
-import React from 'react'
+import { useSelector } from 'react-redux'
+import ProviderProfile from '../features/profile/components/ProviderProfile'
+import DoctorProfile from '../features/profile/components/DoctorProfile'
 
-export default function Profile() {
-  return (
-    <div className="w-full bg-red-300 text-5xl">Profile</div>
-  )
+export default function ProfilePage() {
+    const role = useSelector((state) => state.auth.role)
+
+    return (
+        <div className=" h-screen w-full  bg-base-200 flex justify-center">
+            {role == 'provider' ? <ProviderProfile /> : <DoctorProfile />}
+        </div>
+    )
 }

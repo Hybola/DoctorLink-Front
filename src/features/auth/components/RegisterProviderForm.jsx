@@ -11,7 +11,7 @@ const initialInput = {
     email: '',
     password: '',
     confirmPassword: '',
-    healthProviderName: '',
+    providerName: '',
     mobile: '',
 }
 export default function RegisterProviderForm() {
@@ -85,12 +85,12 @@ export default function RegisterProviderForm() {
                     <p>Health provider name</p>
                     <LoginInput
                         placeholder="Health provider name"
-                        name="healthProviderName"
-                        value={input.healthProviderName}
+                        name="providerName"
+                        value={input.providerName}
                         onChange={handleChangeInput}
-                        isInvalid={error.healthProviderName}
+                        isInvalid={error.providerName}
                     />
-                    <InputErrorMessage message={error.healthProviderName} />
+                    <InputErrorMessage message={error.providerName} />
                 </div>
 
                 <div>

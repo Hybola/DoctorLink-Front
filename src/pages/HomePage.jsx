@@ -1,47 +1,24 @@
-// import React from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { GoogleLogin, GoogleLogout } from 'react-google-login'
-// import { loginSuccess, loginFailure, logout } from './actions/authActions'
+import Header from '../features/homepage/components/Header'
+import PageLeft from '../features/homepage/components/PageLeft'
+import SearchBar from '../features/homepage/components/SearchBar'
+import SearchFullTime from '../features/homepage/components/SearchFullTime'
+import SearchPartTime from '../features/homepage/components/SearchPartTime'
+import { useState } from 'react'
 
 export default function HomePage() {
-//     const App = () => {
-//         const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-//         const dispatch = useDispatch()
+    const [input, setInput] = useState({
+        searchText: '',
+        location: '',
+        isParttime: true,
+    })
 
-//         const responseGoogleSuccess = (response) => {
-//             dispatch(loginSuccess(response.profileObj))
-//         }
+    return (
+        <div className="flex flex-col w-full">
+            <SearchBar input={input} setInput={setInput} />
+            {/* เงื่อไข useState */}
+            {input.isParttime ? <SearchPartTime /> : <SearchFullTime />}
 
-//         const responseGoogleFailure = () => {
-//             dispatch(loginFailure())
-//         }
-
-//         const handleLogout = () => {
-//             dispatch(logout())
-//         }
-        return (
-            <div>HOP\HGCC</div>
-//             <div>
-//                 <h1>Google Login Demo</h1>
-//                 {isLoggedIn ? (
-//                     <>
-//                         <h2>Welcome, {isLoggedIn.name}</h2>
-//                         <GoogleLogout
-//                             clientId="YOUR_CLIENT_ID"
-//                             buttonText="Logout"
-//                             onLogoutSuccess={handleLogout}
-//                         />
-//                     </>
-//                 ) : (
-//                     <GoogleLogin
-//                         clientId="YOUR_CLIENT_ID"
-//                         buttonText="Sign in with Google"
-//                         onSuccess={responseGoogleSuccess}
-//                         onFailure={responseGoogleFailure}
-//                         cookiePolicy={'single_host_origin'}
-//                     />
-//                 )}
-//             </div>
-        )
-    }
-// }
+            <PageLeft />
+        </div>
+    )
+}

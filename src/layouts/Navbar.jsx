@@ -17,20 +17,33 @@ export default function Navbar() {
             <div className="flex justify-center items-center">
                 {role == 'doctor' ? (
                     <div className="flex gap-16">
-                        <Link to='/'>
+                        <Link to="/">
                             <SearchHomeIcon />
                         </Link>
-                        <SavedJobIcon />
-                        <FollowerIcon />
+
+                        <Link to="/doctor/SavedJobPage/">
+                            <SavedJobIcon />
+                        </Link>
+
+                        <Link to="/doctor/FollwedPage/">
+                            <FollowerIcon />
+                        </Link>
+
                         <NotificationIcon />
                     </div>
                 ) : (
                     <div className="flex gap-16">
-                        <Link to='/'>
+                        <Link to="/">
                             <SearchHomeIcon />
                         </Link>
-                        <AddPostIcon />
-                        <HistoryIcon />
+                        <Link to="/provider/addpost/">
+                            <AddPostIcon />
+                        </Link>
+
+                        <Link to="/provider/history/">
+                            <HistoryIcon />
+                        </Link>
+
                         <NotificationIcon />
                     </div>
                 )}
