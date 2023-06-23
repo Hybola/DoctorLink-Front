@@ -5,11 +5,24 @@ import { useEffect } from 'react'
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
+import {
+    AddPostIcon,
+    FollowerIcon,
+    HistoryIcon,
+    NotificationIcon,
+    SavedJobIcon,
+    SearchHomeIcon,
+    PreviewJob,
+    EditJob,
+    BinJob,
+    GroupJob,
+} from '../icons/index'
+
 export default function History() {
     const arrHistory = [
         {
             id: 1,
-            title: 'แผนก ฉุกเฉิน xxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: 'แผนก ฉุกเฉิน xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             jobType: 'part-time',
             startDate: '20/06/2023',
             endDate: '20/12/2021',
@@ -142,6 +155,321 @@ export default function History() {
             deleted: false,
             create_at: '27/05/2021 10:00:00',
         },
+        {
+            id: 10,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 11,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 12,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 13,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 14,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 15,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 16,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 17,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 18,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 19,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 20,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 21,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 22,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 23,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 24,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 25,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 26,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 27,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 28,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 29,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
+        {
+            id: 30,
+            title: 'แผนก ฉุกเฉิน',
+            jobType: 'part-time',
+            startDate: '17/12/2021',
+            endDate: '17/12/2021',
+            startTime: '10:00:00',
+            endTime: '22:00:00',
+            wage: 15000,
+            status: 'Inactive',
+            statusDetail: 'รอการตอบรับ',
+            description: 'รายละเอียดงาน xxxxxx',
+            deleted: false,
+            create_at: '10/06/2023 10:00:00',
+        },
     ]
     let newDate = new Date()
     let day =
@@ -165,6 +493,7 @@ export default function History() {
     const [activeChk, setActiveChk] = useState('checked')
     const [sortPostChk, setsortPostChk] = useState('checked')
     const [sortJobChk, setsortJobChk] = useState('checked')
+    const [enterId, setEnterId] = useState('10000')
 
     const [inputSearch, setInputSearch] = useState('')
     const [showHistory, setShowHistory] = useState([])
@@ -256,9 +585,9 @@ export default function History() {
     // const hdlSearchOnChange = (event) => {
     //     setInputSearch(event.target.value)
     // }
-    const hdlMouseEnterFt = () => {
+    const hdlTextFtEnter = () => {
         console.log('hdlMouseEnter')
-        const cn = 'text-blue-500'
+        const cn = 'text-primary'
         setClassTextFullTime(cn)
     }
     const hdlMouseLeaveFt = () => {
@@ -268,13 +597,20 @@ export default function History() {
     }
     const hdlMouseEnterPt = () => {
         console.log('hdlMouseEnter')
-        const cn = 'text-blue-500'
+        const cn = 'text-primary'
         setClassTextPartTime(cn)
     }
-    const hdlMouseLeavePt = () => {
+    const hdlTextPtEnter = () => {
         console.log('hdlMouseLeave')
         const cn = ''
         setClassTextPartTime(cn)
+    }
+    const hdlRowEnter = (id) => {
+        console.log('hello id', id)
+        setEnterId(id)
+        // event.target.className.remove('bg-slate-100')
+        // event.target.className.add('bg-blue-300')
+        // event.target.className.replace('bg-slate-100', 'bg-blue-300')
     }
 
     const filter = (objFilter) => {
@@ -411,19 +747,22 @@ export default function History() {
     ])
 
     return (
-        <div className=" bg-gray-200  w-[100vw] h-[100vh] flex flex-col justify-start items-center">
-            <div className="bg-blue-400 w-[80%] mt-3 p-2 flex flex-row justify-center items-center gap-5">
+        <div
+            className="  w-[100vw] h-[100vh] flex flex-col justify-start items-center"
+            onMouseEnter={() => {}}
+        >
+            <div className="w-[80%] mt-3 p-2 flex flex-row justify-center items-center gap-8">
                 <div
                     className="cursor-pointer"
                     onClick={() => hdlPageAction('part-time')}
                 >
                     {actionPage == 'part-time' ? (
-                        <h1 className="text-blue-500">PartTime</h1>
+                        <h1 className="text-primary">PartTime</h1>
                     ) : (
                         <h1
                             className={classTextPartTime}
                             onMouseEnter={hdlMouseEnterPt}
-                            onMouseLeave={hdlMouseLeavePt}
+                            onMouseLeave={hdlTextPtEnter}
                         >
                             PartTime
                         </h1>
@@ -434,11 +773,11 @@ export default function History() {
                     onClick={() => hdlPageAction('full-time')}
                 >
                     {actionPage == 'full-time' ? (
-                        <h1 className="text-blue-500">FullTime</h1>
+                        <h1 className="text-primary">FullTime</h1>
                     ) : (
                         <h1
                             className={classTextFullTime}
-                            onMouseEnter={hdlMouseEnterFt}
+                            onMouseEnter={hdlTextFtEnter}
                             onMouseLeave={hdlMouseLeaveFt}
                         >
                             FullTime
@@ -447,7 +786,7 @@ export default function History() {
                 </div>
             </div>
 
-            <div className="bg-green-200 w-[80%] mb-3 p-2 flex flex-row justify-between items-center gap-5">
+            <div className=" w-[80%] mb-3 p-2 flex flex-row justify-between items-center gap-5">
                 <div className="flex flex-row gap-5">
                     {/* <label className="label cursor-pointer  gap-3">
                         <input
@@ -480,55 +819,158 @@ export default function History() {
                     </label>
                 </div>
             </div>
-            <div className="bg-red-200 w-[80%] h-[650px] mb-3 p-2 text-black">
-                <div className="flex flex-row  bg-yellow-300 mb-2 p-1 gap-2 ">
+
+            <dialog id="PreviewJob" className="modal">
+                <form
+                    method="dialog"
+                    className="modal-box max-w-5xl h-[800px] "
+                >
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                    </button>
+                    <div className=" ">
+                        <h3 className="font-bold text-lg">Preview Job</h3>
+                    </div>
+                </form>
+            </dialog>
+
+            <dialog id="BinJob" className="modal">
+                <form method="dialog" className="modal-box">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                    </button>
+
+                    <div>
+                        <h3 className="font-bold text-lg">Confirm Delete</h3>
+                    </div>
+
+                    <div className=" flex flex-row justify-end">
+                        <div>
+                            <button className="btn btn-primary text-white">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </dialog>
+            <dialog id="GroupJob" className="modal">
+                <form
+                    method="dialog"
+                    className="modal-box max-w-5xl h-[800px] "
+                >
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                    </button>
+                    <div className=" ">
+                        <h3 className="font-bold text-lg">Group Job</h3>
+                    </div>
+                </form>
+            </dialog>
+
+            {/* You can open the modal using ID.showModal() method */}
+
+            <div className="w-[80%] h-[650px] mb-3 p-2 text-black ">
+                <div className=" bg-primary rounded-lg flex flex-row  mb-2 p-2 gap-2 ">
                     <div
-                        className="bg-gray-400 w-[15%]  flex flex-row  justify-center items-center"
+                        className=" rounded-md w-[15%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
                         onClick={hdlSortJobDateOnChange}
                     >
-                        <h1>[JobDate]Sort</h1>
+                        <h1 className="text-base-100">[JobDate]Sort</h1>
                     </div>
-                    <div className="bg-gray-400 w-[40%]  flex flex-row  justify-center items-center">
-                        <h1>[Title]</h1>
+                    <div className=" rounded-md w-[40%]  flex flex-row  justify-center items-center">
+                        <h1 className="text-base-100">[Title]</h1>
                     </div>
                     <div
-                        className="bg-gray-400 w-[15%]  flex flex-row  justify-center items-center"
+                        className=" rounded-md  w-[15%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
                         onClick={hdlSortPostDateOnChange}
                     >
-                        <h1>[PostDate]Sort</h1>
+                        <h1 className="text-base-100">[PostDate]Sort</h1>
                     </div>
-                    <div className="bg-gray-400 w-[30%]  flex flex-row  justify-center items-center">
-                        <h1>[Management]</h1>
+                    <div className=" rounded-md w-[30%]  flex flex-row  justify-center items-center">
+                        <h1 className="text-base-100">[Management]</h1>
                     </div>
                 </div>
-                {showHistory.map((item, index) => {
-                    const dh = diffDay(item.create_at.split(' ')[0], today)
+                <div className=" h-[500px] overflow-scroll">
+                    {showHistory.map((item, index) => {
+                        const dh = diffDay(item.create_at.split(' ')[0], today)
 
-                    return (
-                        <>
-                            <div className="flex flex-row  bg-yellow-300  p-1 gap-2 ">
-                                <div className="bg-gray-400 w-[15%]  flex flex-row  justify-center items-center">
-                                    <h1>{item.startDate}</h1>
-                                </div>
-                                <div className="bg-gray-400 w-[40%]  flex flex-row  justify-center items-center">
-                                    <h1>
-                                        {item.title.length < 35
-                                            ? item.title
-                                            : item.title.slice(0, 35) + '...'}
-                                    </h1>
-                                </div>
-                                <div className="bg-gray-400 w-[15%]  flex flex-row  justify-center items-center">
-                                    <h1>{item.create_at.split(' ')[0]}</h1>
+                        return (
+                            <>
+                                <div
+                                    // onMouseEnter={() => hdlRowEnter(index)}
+                                    // onMouseLeave={() => hdlMouseLeave(index)}
+                                    key={index}
+                                    id={index}
+                                    // className={
+                                    //     index == enterId
+                                    //         ? 'bg-slate-300 flex flex-row mb-1  p-1 gap-2 rounded-lg'
+                                    //         : 'bg-slate-100 flex flex-row mb-1  p-1 gap-2 rounded-lg'
+                                    // }
+                                    className="bg-base-100 border border-primary shadow-lg flex flex-row mb-1  p-1 gap-2 rounded-lg hover:bg-teal-100"
+                                >
+                                    <div className=" w-[15%]  flex flex-row  justify-center items-center">
+                                        <h1>{item.startDate}</h1>
+                                    </div>
+                                    <div className=" w-[40%]  flex flex-row  justify-center items-center">
+                                        <h1>
+                                            {item.title.length < 35
+                                                ? item.title
+                                                : item.title.slice(0, 35) +
+                                                  '...'}
+                                        </h1>
+                                    </div>
+                                    <div className=" w-[15%]  flex flex-row  justify-center items-center">
+                                        <h1>{item.create_at.split(' ')[0]}</h1>
+                                    </div>
+
+                                    <div className=" w-[30%]  flex flex-row justify-around items-center">
+                                        <div
+                                            className="cursor-pointer "
+                                            onClick={() =>
+                                                window.PreviewJob.showModal()
+                                            }
+                                        >
+                                            <h1>
+                                                <PreviewJob
+                                                    height="1.5rem"
+                                                    width="1.5rem"
+                                                />
+                                            </h1>
+                                        </div>
+                                        <div className="cursor-pointer ">
+                                            <h1>
+                                                <EditJob
+                                                    height="1.5rem"
+                                                    width="1.5rem"
+                                                />
+                                            </h1>
+                                        </div>
+                                        <div
+                                            className="cursor-pointer "
+                                            onClick={() =>
+                                                window.BinJob.showModal()
+                                            }
+                                        >
+                                            <BinJob
+                                                height="1.5rem"
+                                                width="1.5rem"
+                                            />
+                                        </div>
+                                        <div
+                                            className="cursor-pointer "
+                                            onClick={() =>
+                                                window.GroupJob.showModal()
+                                            }
+                                        >
+                                            <GroupJob
+                                                height="1.5rem"
+                                                width="1.5rem"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="bg-gray-400 w-[30%]  flex flex-row justify-around items-center">
-                                    <h1>a</h1>
-                                    <h1>a</h1>
-                                    <h1>a</h1>
-                                    <h1>a</h1>
-                                </div>
-                            </div>
-                            {/* <div className="flex flex-row  bg-green-300 m-2 p-1 gap-2">
+                                {/* <div className="flex flex-row  bg-green-300 m-2 p-1 gap-2">
                                 <div>[{item.jobType}]</div>
                                 <div>[{item.statusDetail}]</div>
                                 <div>[{item.title}]</div>
@@ -547,9 +989,10 @@ export default function History() {
                                 </div>
                                 <div>[{item.status}]</div>
                             </div> */}
-                        </>
-                    )
-                })}
+                            </>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
