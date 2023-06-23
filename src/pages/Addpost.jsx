@@ -128,9 +128,9 @@ export default function Addpost() {
                 </div>
                 {/* Right */}
                 {page === 'FullTime' ? (
-                    <FullTime a={input} hdl={hdlchange} />
+                    <FullTime add={input} hdl={hdlchange} />
                 ) : (
-                    <PartTime a={input} hdl={hdlchange} />
+                    <PartTime add={input} hdl={hdlchange} />
                 )}
             </div>
             <div className="flex justify-between w-full ml-[120px]">
@@ -152,9 +152,9 @@ export default function Addpost() {
                 </div>
             </div>
             {/* Modal */}
-            <dialog id="preview" className="modal">
+            <dialog id="preview" className="modal ">
                 <form method="dialog" className="modal-box">
-                    <Preview />
+                    <Preview add={input} p={page} />
                     <div className="modal-action">
                         <button className="btn">Close</button>
                     </div>
