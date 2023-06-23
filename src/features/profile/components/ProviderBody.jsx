@@ -7,9 +7,9 @@ export default function ProviderBody({ profile, user }) {
         <div className="flex flex-col p-[20px] mx-[16px]  shadow-lg border-2 rounded-lg gap-4">
             <div className="w-full h-[30px] flex justify-between">
                 <div className=" min-w-[200px]  font-bold text-2xl">
-                    {profile?.name}
+                    {profile?.healthProviderName}
                 </div>
-                {user?.userId == profile?.userId ? (
+                {user?.userId == profile?.Id ? (
                     <div className=" mr-[20px]">
                         <button
                             className="btn btn-info max-h-[20px]  min-h-[14px] font-normal text-white px-2 py-0"
@@ -40,7 +40,7 @@ export default function ProviderBody({ profile, user }) {
             <div className="w-full flex flex-col">
                 <div className="flex gap-1 text-xl">
                     <span>Phone:</span>
-                    <span className="text-base mt-1">{profile?.phone}</span>
+                    <span className="text-base mt-1">{profile?.mobile}</span>
                 </div>
                 <div className="flex gap-1 text-xl">
                     <span>Lind-Id:</span>

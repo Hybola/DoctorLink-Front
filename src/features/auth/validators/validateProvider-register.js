@@ -17,7 +17,7 @@ const registerSchema = Joi.object({
         'any.only': 'Password and confirm password did not match.',
         'string.empty': 'Confirm password is required.',
     }),
-    healthProviderName: Joi.string().trim().required().messages({
+    providerName: Joi.string().trim().required().messages({
         'string.empty': 'Health provider name is required.',
     }),
     mobile: Joi.string()

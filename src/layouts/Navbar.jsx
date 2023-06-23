@@ -20,8 +20,15 @@ export default function Navbar() {
                         <Link to="/">
                             <SearchHomeIcon />
                         </Link>
-                        <SavedJobIcon />
-                        <FollowerIcon />
+
+                        <Link to="/doctor/SavedJobPage/">
+                            <SavedJobIcon />
+                        </Link>
+
+                        <Link to="/doctor/FollwedPage/">
+                            <FollowerIcon />
+                        </Link>
+
                         <NotificationIcon />
                     </div>
                 ) : (
