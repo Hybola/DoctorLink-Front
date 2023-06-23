@@ -6,6 +6,8 @@ import RegisterProviderPage from '../pages/RegisterProviderPage'
 import LoginProviderPage from '../pages/LoginProviderPage'
 import LoginDoctorPage from '../pages/LoginDoctorPage'
 import HomePage from '../pages/HomePage'
+import FollowedPage from '../pages/FollowedPage'
+import SavedJobPage from '../pages/SavedJobPage'
 import { Outlet } from 'react-router-dom'
 import Profile from '../pages/ProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
                             {
                                 path: '/doctor/profile/',
                                 element: <Profile />,
+                            },
+                            {
+                                path: '/doctor/FollwedPage/',
+                                element: <FollowedPage />,
+                            },
+                            {
+                                path: '/doctor/SavedJobPage/',
+                                element: <SavedJobPage />,
                             },
                         ],
                     },

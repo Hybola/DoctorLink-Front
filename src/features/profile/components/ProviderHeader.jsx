@@ -4,8 +4,8 @@ export default function ProviderHeader({ profile, user }) {
     const defaultCoverImage =
         'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1685524621/gqjpy7avowkrwuzlnqju.jpg'
     const defaultProfileImage = ''
-    const currentCoverImage = profile?.coverImagePath || defaultCoverImage
-    const currentProfileImage = profile?.profileImagePath || defaultProfileImage
+    const currentCoverImage = profile?.coverImage || defaultCoverImage
+    const currentProfileImage = profile?.profileImage || defaultProfileImage
     const handleCoverImageEdit = () => window.CoverImageEdit.showModal()
     const handleProfileImageEdit = () => {
         if (user?.userId == profile?.userId)
@@ -15,7 +15,7 @@ export default function ProviderHeader({ profile, user }) {
         <div className=" h-[220px] mb-[40px]">
             <div className="w-full h-[200px] bg-base-300 rounded-t-lg">
                 <img
-                    src={profile?.coverImagePath || defaultCoverImage}
+                    src={profile?.coverImage || defaultCoverImage}
                     alt="coverImage"
                     className="w-full h-[200px] rounded-t-lg object-cover"
                 />
@@ -47,11 +47,11 @@ export default function ProviderHeader({ profile, user }) {
             <div className="w-full flex flex-col  gap-2">
                 <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
                     <div className="flex justify-start gap-1">
-                        <div>{profile.follower}</div>
+                        <div>{30}</div>
                         <div>follower</div>
                     </div>
                 </div>
-                {user?.userId != profile?.userId ? (
+                {user?.Id != profile?.Id ? (
                     <div className="w-[200px] h-[14px] ml-[200px] mt-[8px]">
                         <button className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-lg min-h-[14px] font-normal px-[4px] ">
                             Follow
