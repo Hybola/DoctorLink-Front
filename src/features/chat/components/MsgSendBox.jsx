@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { socket } from '../socket'
+import { socket } from '../../../config/socket-config'
 
 export default function MsgSendBox(props) {
     const { room, username } = props
