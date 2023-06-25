@@ -9,7 +9,8 @@ import HomePage from '../pages/HomePage'
 import FollowedPage from '../pages/FollowedPage'
 import SavedJobPage from '../pages/SavedJobPage'
 import { Outlet } from 'react-router-dom'
-import Profile from '../pages/ProfilePage'
+import DoctorProfile from '../pages/DoctorProfilePage'
+import ProviderProfile from '../pages/ProviderProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
@@ -52,8 +53,8 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/doctor/profile/',
-                                element: <Profile />,
+                                path: '/doctor/:id/profile/',
+                                element: <DoctorProfile />,
                             },
                             {
                                 path: '/doctor/FollwedPage/',
@@ -97,8 +98,8 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/provider/profile/',
-                                element: <Profile />,
+                                path: '/provider/:id/profile/',
+                                element: <ProviderProfile />,
                             },
                             {
                                 path: '/provider/addpost/',
