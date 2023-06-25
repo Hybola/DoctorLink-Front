@@ -137,7 +137,6 @@ export function ChatIcon(props) {
             {...props}
         >
             <g
-                
                 fillRule="evenodd"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -156,6 +155,38 @@ export function ChatIcon(props) {
                         InkscapeStroke: 'none',
                     }}
                     transform="translate(-396 -292)"
+                />
+            </g>
+        </svg>
+    )
+}
+export function StethoscopeIcon(props) {
+    return (
+        <svg
+            height="4rem"
+            width="4rem"
+            viewBox="-4.8 -4.8 57.60 57.60"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#546285"
+            {...props}
+        >
+            <g
+                data-name="Layer 2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="#fff"
+                strokeWidth={2.496}
+            >
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
+                />
+            </g>
+            <g data-name="Layer 2">
+                <path fill="none" data-name="invisible box" d="M0 0H48V48H0z" />
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
                 />
             </g>
         </svg>
