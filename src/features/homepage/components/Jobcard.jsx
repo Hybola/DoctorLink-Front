@@ -1,26 +1,26 @@
 export default function Jobcard({ jobpost }) {
-  return (
-    <div className="h-[350px] w-[460px] rounded-lg border border-primary shadow-lg ">
-      <div className="">
-        <div className="text-base p-5 flex items-baseline gap-3">
-          <div>Logo</div>
-          <div>วันที่ประกาศ</div>
+    return (
+        <div className="h-[290px] w-[350px] rounded-lg border border-primary shadow-lg ">
+            <div className="">
+                <div className="text-base p-2 flex items-baseline gap-3 mt-3 ml-2">
+                    <div className="text-2xl font-bold">Logo</div>
+                    <div className="font-thin text-sm">วันที่ประกาศ</div>
+                </div>
+                <div className="text-base p-2 ml-2 font-normal flex items-baseline gap-6 mt-1 ">
+                    <p>{jobpost?.providerName}</p>
+                    <p>{jobpost?.location}</p>
+                </div>
+                <div className=" text-base p-2 ml-2 flex items-baseline gap-12 mt-5">
+                    <p>{jobpost?.jobType}</p>
+                    <p>{jobpost?.startDate}</p>
+                </div>
+                <div className=" text-base p-2 ml-2  flex items-baseline font-bold -mt-3">
+                    <p>{jobpost?.jobTitle}</p>
+                </div>
+                <div className="text-xl font-bold p-2 ml-2 mt-8">
+                    <p>{jobpost?.saraly}</p>
+                </div>
+            </div>
         </div>
-        <div className="text-xl p-5  flex items-baseline gap-5">
-          <p>{jobpost?.providerName}</p>
-          <p>{jobpost?.location}</p>
-        </div>
-        <div className=" text-sm p-5  flex items-baseline gap-12">
-          <p>{jobpost?.jobType}</p>
-          <p>{jobpost?.startDate}</p>
-        </div>
-        <div className=" text-sm p-5  flex items-baseline gap-12 font-bold">
-          <p>{jobpost?.jobTitle}</p>
-        </div>
-        <div className="text-xl font-bold p-5">
-          <p>{jobpost?.saraly}</p>
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
