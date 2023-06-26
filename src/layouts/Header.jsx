@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
-            <div className="py-2 flex justify-start self-center">
+            <div className="py-2 flex justify-start self-center ">
                 <Link to="/">
                     <img src={Logo} className='h-12'/>
                 </Link>
