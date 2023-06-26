@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
+import Logo from '../asset/Logo6.png'
 
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
@@ -11,7 +12,7 @@ export default function Header() {
         <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
             <div className="py-2 flex justify-start self-center">
                 <Link to="/">
-                    <h1>Logo</h1>
+                    <img src={Logo} className='h-12'/>
                 </Link>
             </div>
             <div className="flex justify-self-end items-center gap-4">
