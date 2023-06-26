@@ -6,6 +6,8 @@ import Logo from '../asset/Logo6.png'
 
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
+    const id = useSelector((state) => state.auth.user?.id)
+
     const dispatch = useDispatch()
 
     return (
@@ -37,7 +39,9 @@ export default function Header() {
                                         {role == 'doctor' ? (
                                             <>
                                                 <li>
-                                                    <Link to="/doctor/profile">
+                                                    <Link
+                                                        to={`/doctor/${id}/profile/`}
+                                                    >
                                                         <button>Profile</button>
                                                     </Link>
                                                 </li>
@@ -45,7 +49,9 @@ export default function Header() {
                                         ) : (
                                             <>
                                                 <li>
-                                                    <Link to="/provider/profile">
+                                                    <Link
+                                                        to={`/provider/${id}/profile/`}
+                                                    >
                                                         <button>Profile</button>
                                                     </Link>
                                                 </li>

@@ -7,9 +7,10 @@ import LoginProviderPage from '../pages/LoginProviderPage'
 import LoginDoctorPage from '../pages/LoginDoctorPage'
 import HomePage from '../pages/HomePage'
 import FollowedPage from '../pages/FollowedPage'
-import SavedJobPage from '../pages/SavedJobPage'
+import MyJobPage from '../pages/MyJobPage'
 import { Outlet } from 'react-router-dom'
-import Profile from '../pages/ProfilePage'
+import DoctorProfile from '../pages/DoctorProfilePage'
+import ProviderProfile from '../pages/ProviderProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
@@ -53,16 +54,16 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/doctor/profile/',
-                                element: <Profile />,
+                                path: '/doctor/:id/profile/',
+                                element: <DoctorProfile />,
                             },
                             {
-                                path: '/doctor/FollwedPage/',
+                                path: '/doctor/followed/',
                                 element: <FollowedPage />,
                             },
                             {
-                                path: '/doctor/SavedJobPage/',
-                                element: <SavedJobPage />,
+                                path: '/doctor/myjob/',
+                                element: <MyJobPage />,
                             },
                         ],
                     },
@@ -98,8 +99,8 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/provider/profile/',
-                                element: <Profile />,
+                                path: '/provider/:id/profile/',
+                                element: <ProviderProfile />,
                             },
                             {
                                 path: '/provider/addpost/',
