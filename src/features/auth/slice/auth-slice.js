@@ -42,17 +42,46 @@ export const docLogin = createAsyncThunk(
     }
 )
 
-export const googleLogin = createAsyncThunk(
-    'auth/googleLogin',
+// GoogleLogin
+export const doctorLoginGoogle = createAsyncThunk(
+    'auth/doctor/googlelogin',
     async (input, thunkApi) => {
         try {
-            const res = await authService.loginGoogle()
+            const payload = {
+                email: input.email,
+                firstName: input.given_name,
+                lastName: input.family_name,
+                ProfileName: input.picture,
+                password: input.sub,
+            }
+            const res = await authService.doctorLoginGoogle(payload)
+            // console.log(res)
             setToken(res.data.accessToken)
             const decoded = jwt_decode(res.data.accessToken)
             if (decoded.role == 'doctor') {
                 const resFetchMe = await authService.doctorFetchMe()
                 return { ...resFetchMe, role: 'doctor' }
             }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const providerLoginGoogle = createAsyncThunk(
+    'auth/provider/googlelogin',
+    async (input, thunkApi) => {
+        try {
+            const payload = {
+                email: input.email,
+                profileImage: input.picture,
+                password: input.sub,
+            }
+
+            const res = await authService.providerLoginGoogle(payload)
+            setToken(res.data.accessToken)
+            
+            const decoded = jwt_decode(res.data.accessToken)
             if (decoded.role == 'provider') {
                 const resFetchMe = await authService.providerFetchMe()
                 return { ...resFetchMe, role: 'provider' }
@@ -63,6 +92,7 @@ export const googleLogin = createAsyncThunk(
     }
 )
 
+// FetchMe
 export const docFetchMe = createAsyncThunk(
     'auth/docfetchMe',
     async (_, thunkApi) => {
@@ -196,23 +226,21 @@ const authSlice = createSlice({
                 state.loading = false
                 state.role = 'provider'
             })
-
             .addCase(provLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
                 state.role = 'provider'
             })
-
-            .addCase(googleLogin.fulfilled, (state, action) => {
+            .addCase(providerLoginGoogle.fulfilled, (state, action) => {
                 state.isAuthenticated = true
-                state.user = action.payload
-                state.role = 'doctor'
+                state.user = action.payload.user
+                state.role = action.payload.role
             })
 
-            .addCase(googleLogin.fulfilled, (state, action) => {
+            .addCase(doctorLoginGoogle.fulfilled, (state, action) => {
                 state.isAuthenticated = true
-                state.user = action.payload
-                state.role = 'provider'
+                state.user = action.payload.user
+                state.role = action.payload.role
             }),
 })
 export default authSlice.reducer

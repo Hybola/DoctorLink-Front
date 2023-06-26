@@ -9,4 +9,5 @@ export const providerLogin = (input) => thisAxios.post('/auth/provider/login', i
 export const providerFetchMe = () => thisAxios.get('/auth/provider/me');
 
 
-export const loginGoogle = (input) => thisAxios.post('/auth/logingoogle/:role', input)
+export const doctorLoginGoogle = (input) => thisAxios.post('/auth/doctor/logingoogle', input)
+export const providerLoginGoogle = (input) => thisAxios.post('/auth/provider/logingoogle', input)

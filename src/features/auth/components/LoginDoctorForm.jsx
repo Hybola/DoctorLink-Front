@@ -7,9 +7,7 @@ import InputErrorMessage from './InputErrorMessage'
 import { docLogin } from '../slice/auth-slice'
 import validateLogin from '../validators/validate-login'
 
-import { LoginSocialGoogle } from 'reactjs-social-login'
-
-
+import { DoctorGoogleLoginForm } from './GoogleLoginForm'
 
 const initialInput = {
     email: '',
@@ -60,7 +58,10 @@ export default function LoginDoctorForm() {
                     <InputErrorMessage message={error.email} />
                 </div>
                 <div>
-                    <p>Password</p>
+                    <span>Password </span>
+                    <span className="w-fit font-semibold text-xs">
+                        (Forgot password?)
+                    </span>
                     <LoginInput
                         placeholder="Password (6 or more characters)"
                         name="password"
@@ -69,9 +70,6 @@ export default function LoginDoctorForm() {
                         isInvalid={error.password}
                     />
                     <InputErrorMessage message={error.password} />
-                    <span className="w-fit font-semibold">
-                        Forgot password?
-                    </span>
                 </div>
 
                 <div className="flex flex-col gap-4">
@@ -79,17 +77,7 @@ export default function LoginDoctorForm() {
                         Log in
                     </button>
                     <p className="text-center text-xl">or</p>
-                    <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
-                        Continue with Google
-                    </button>
-                    <div>
-                        <LoginSocialGoogle
-                        client_id='166585259375-ui3lbpm9ksfgqceeh1gh5qkt0onv9kal.apps.googleusercontent.com'
-                        scope='email'
-                        >
-
-                        </LoginSocialGoogle>
-                    </div>
+                    <DoctorGoogleLoginForm />
                 </div>
             </div>
         </form>
