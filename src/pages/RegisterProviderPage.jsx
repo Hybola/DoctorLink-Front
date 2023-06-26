@@ -10,14 +10,14 @@ export default function RegisterProviderPage() {
                     <RegisterProviderForm />
                     <div className="text-center pt-8">
                         <span>
-                            Already on doctorLink?
-                            <Link to="/provider/login"> Log in</Link>
+                            Already on doctorLink? 
+                            <Link to="/provider/login" className="font-bold"> Log in</Link>
                         </span>
                     </div>
                 </div>
             </div>
-            <div className="flex flex-1 justify-center">
-                <img src={HrPic} className="w-[630px]" />
+            <div className="flex flex-1 -mt-[700px]">
+                <img src={HrPic} className="w-[630px] fixed" />
             </div>
         </div>
     )
