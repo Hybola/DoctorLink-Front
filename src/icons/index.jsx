@@ -85,7 +85,7 @@ export function NotificationIcon() {
     )
 }
 
-export function SavedJobIcon() {
+export function MyJobIcon() {
     return (
         <svg
             height="2rem"
@@ -122,6 +122,73 @@ export function FollowerIcon() {
             <path d="M12 40a2 2 0 00-2 2v6H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-4h16v4h-4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-4h17v4h-4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-6a2 2 0 00-2-2H34v-5h14a6.006 6.006 0 006-6V4a2 2 0 00-2-2H13a2 2 0 00-2 2v8H9a2 2 0 00-2 2v15a6.006 6.006 0 006 6h17v5zm4 18H8v-6h8zm20 0h-8v-6h8zm21 0h-8v-6h8zM15 6h35v23a2 2 0 01-4 0V14a2 2 0 00-2-2H15zm-4 23V16h31v13a5.972 5.972 0 00.343 2H13a2 2 0 01-2-2z" />
             <path d="M15 20H19V24H15z" />
             <path d="M23 20H36V24H23z" />
+        </svg>
+    )
+}
+
+export function ChatIcon(props) {
+    return (
+        <svg
+            height="2rem"
+            width="2rem"
+            fill="#fff"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g
+                fillRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={4.1}
+            >
+                <path
+                    d="M420 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM417 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM414 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM410 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM407 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM404 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1z"
+                    style={{
+                        InkscapeStroke: 'none',
+                    }}
+                    transform="translate(-396 -292)"
+                />
+                <path
+                    d="M400.059 294.014c-1.094 0-2.059.877-2.059 2v10c0 1.122.965 2 2.059 2H402v3a1 1 0 001.707.707l3.707-3.707H408v7c0 1.122.965 2 2.059 2h4.88l3.707 3.707a1 1 0 001.708-.707v-3h3.587c1.094 0 2.059-.878 2.059-2v-10c0-1.122-.965-2-2.059-2H416v-7c0-1.123-.965-2-2.059-2zm0 2h13.882c.04 0 .054.004.059.006v9.988a.17.17 0 01-.059.006H407a1 1 0 00-.707.293L404 308.6v-1.586a1 1 0 00-1-1h-2.941a.168.168 0 01-.059-.006v-9.989a.17.17 0 01.059-.006zm15.941 9h7.941c.04 0 .054.004.059.006v9.988a.17.17 0 01-.059.006h-4.587a1 1 0 00-1 1v1.586l-2.293-2.293a1 1 0 00-.707-.293h-5.295a.168.168 0 01-.059-.006v-6.994h3.941c1.094 0 2.059-.878 2.059-2z"
+                    style={{
+                        InkscapeStroke: 'none',
+                    }}
+                    transform="translate(-396 -292)"
+                />
+            </g>
+        </svg>
+    )
+}
+export function StethoscopeIcon(props) {
+    return (
+        <svg
+            height="4rem"
+            width="4rem"
+            viewBox="-4.8 -4.8 57.60 57.60"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#546285"
+            {...props}
+        >
+            <g
+                data-name="Layer 2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="#fff"
+                strokeWidth={2.496}
+            >
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
+                />
+            </g>
+            <g data-name="Layer 2">
+                <path fill="none" data-name="invisible box" d="M0 0H48V48H0z" />
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
+                />
+            </g>
         </svg>
     )
 }

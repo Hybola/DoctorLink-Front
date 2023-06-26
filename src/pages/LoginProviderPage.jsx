@@ -13,8 +13,9 @@ export default function LoginProviderPage() {
                     <LoginProviderForm />
                     <div className="text-center pt-8">
                         <span>
-                            New to doctorLink?
-                            <Link to="/provider/register"> Join now</Link>
+                            New to doctorLink? 
+                            <Link to="/provider/register" className="font-bold"> Join now
+                            </Link>
                         </span>
                     </div>
                 </div>

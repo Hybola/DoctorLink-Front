@@ -6,8 +6,9 @@ import {
     FollowerIcon,
     HistoryIcon,
     NotificationIcon,
-    SavedJobIcon,
+    MyJobIcon,
     SearchHomeIcon,
+    ChatIcon,
 } from '../icons'
 
 export default function Navbar() {
@@ -21,11 +22,11 @@ export default function Navbar() {
                             <SearchHomeIcon />
                         </Link>
 
-                        <Link to="/doctor/SavedJobPage/">
-                            <SavedJobIcon />
+                        <Link to="/doctor/myJob/">
+                            <MyJobIcon />
                         </Link>
 
-                        <Link to="/doctor/FollwedPage/">
+                        <Link to="/doctor/followed/">
                             <FollowerIcon />
                         </Link>
 
@@ -42,6 +43,9 @@ export default function Navbar() {
 
                         <Link to="/provider/history/">
                             <HistoryIcon />
+                        </Link>
+                        <Link to="/provider/chat">
+                            <ChatIcon />
                         </Link>
 
                         <NotificationIcon />
