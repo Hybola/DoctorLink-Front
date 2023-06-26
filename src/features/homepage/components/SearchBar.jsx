@@ -10,7 +10,7 @@ export default function SearchBar({ input, setInput }) {
   return (
     <div className=" ">
       {/* inputrow1#แถวการค้นหา */}
-      <div className="flex pl-10 py-10 gap-7 border shadow-lg  bg-secondary">
+      <div className="flex pl-10 py-10 gap-7 border shadow-lg bg-[#F5FBFC]">
         <div className="flex justify-center">
           <input
             className="bg-base-100 rounded-lg text-xl p-2 h-[50px] w-[320px] text-center border border-primary shadow-lg "

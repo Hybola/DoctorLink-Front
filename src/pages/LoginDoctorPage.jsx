@@ -13,8 +13,8 @@ export default function LoginDoctorPage() {
                     <LoginDoctorForm />
                     <div className="text-center pt-8">
                         <span>
-                            New to doctorLink?
-                            <Link to="/doctor/register"> Join now</Link>
+                            New to doctorLink? 
+                            <Link to="/doctor/register" className="font-bold"> Join now</Link>
                         </span>
                     </div>
                 </div>
