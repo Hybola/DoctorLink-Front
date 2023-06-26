@@ -1,6 +1,6 @@
 import HistoryForm from '../features/history/HistoryForm'
 
-//             id: 1,                                   post.id
+//             id: 1,                                   jobPost.id
 //             title: 'แผนก ฉุกเฉิน ต้องการด่วน',           post.title
 //             jobType: 'PartTime',                     post.jobType
 //             description: 'รายละเอียดงาน xxxxxx',      post.description
