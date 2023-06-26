@@ -10,14 +10,15 @@ export default function RegisterDoctorPage() {
                     <RegisterDoctorForm />
                     <div className="text-center pt-8">
                         <span>
-                            Already on doctorLink?
-                            <Link to="/doctor/login"> Log in</Link>
+                            Already on doctorLink?  
+                            <Link to="/doctor/login" className="font-bold"> Log in
+                            </Link>
                         </span>
                     </div>
                 </div>
             </div>
-            <div className="flex flex-1 justify-center">
-                <img src={DocPic} className="w-[630px]" />
+            <div className="flex flex-1 -mt-[700px]">
+                <img src={DocPic} className="w-[630px] fixed" />
             </div>
         </div>
     )

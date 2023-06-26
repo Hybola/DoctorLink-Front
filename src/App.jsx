@@ -8,7 +8,7 @@ function App() {
             <ToastContainer
                 position="top-center"
                 theme="dark"
-                autoClose={4000}
+                autoClose={3000}
             />
         </div>
     )

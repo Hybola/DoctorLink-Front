@@ -6,6 +6,7 @@ import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
 import { provRegister } from '../slice/auth-slice'
 import validateRegister from '../validators/validateProvider-register'
+import { Link } from 'react-router-dom'
 
 const initialInput = {
     email: '',
@@ -116,9 +117,11 @@ export default function RegisterProviderForm() {
                         Agree & Join
                     </button>
                     <p className="text-center text-xl">or</p>
-                    <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
-                        Continue with Google
-                    </button>
+                    <Link to="/provider/login">
+                        <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
+                            Back to Log in
+                        </button>
+                    </Link>
                 </div>
             </div>
         </form>
