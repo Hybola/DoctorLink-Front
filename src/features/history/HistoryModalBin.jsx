@@ -8,7 +8,9 @@ export default function HistoryModalBin() {
                     </button>
 
                     <div>
-                        <h3 className="font-bold text-lg">Confirm Delete</h3>
+                        <h3 className="font-bold text-lg">
+                            Confirm Close This Case
+                        </h3>
                     </div>
 
                     <div className=" flex flex-row justify-end">

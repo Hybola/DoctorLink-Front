@@ -6,7 +6,7 @@ export default function HistoryModalPreview() {
             <dialog id="PreviewJob" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[800px] "
+                    className="modal-box max-w-5xl h-[800px] p-10 "
                 >
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                         ✕

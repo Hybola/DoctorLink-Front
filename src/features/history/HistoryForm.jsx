@@ -24,7 +24,7 @@ export default function HistoryForm(props) {
     const [showHistory, setShowHistory] = useState([])
     const [classTextFullTime, setClassTextFullTime] = useState('')
     const [classTextPartTime, setClassTextPartTime] = useState('')
-    const [actionPage, setActionPage] = useState('part-time')
+    const [actionPage, setActionPage] = useState('PartTime')
     const [sortBy, setSortBy] = useState('create_at')
 
     const diffDay = (start, end) => {
@@ -102,8 +102,8 @@ export default function HistoryForm(props) {
                     return item
                 }
             }
-            if (objFilter.actionPage == 'part-time') {
-                if (item.jobType == 'part-time') {
+            if (objFilter.actionPage == 'PartTime') {
+                if (item.jobType == 'PartTime') {
                     return item
                 }
             }
@@ -206,9 +206,9 @@ export default function HistoryForm(props) {
             <div className="w-[80%] mt-3 p-2 flex flex-row justify-center items-center gap-8">
                 <div
                     className="cursor-pointer"
-                    onClick={() => hdlPageAction('part-time')}
+                    onClick={() => hdlPageAction('PartTime')}
                 >
-                    {actionPage == 'part-time' ? (
+                    {actionPage == 'PartTime' ? (
                         <h1 className="text-primary">PartTime</h1>
                     ) : (
                         <h1
@@ -247,7 +247,7 @@ export default function HistoryForm(props) {
                             checked={activeChk}
                             onChange={hdlActiveOnChange}
                         />
-                        <span className="label-text">On</span>
+                        <span className="label-text">Active</span>
                     </label>
                 </div>
             </div>
@@ -257,22 +257,25 @@ export default function HistoryForm(props) {
 
             <div className="w-[80%] h-[650px] mb-3 p-2 text-black ">
                 <div className=" bg-primary rounded-lg flex flex-row  mb-2 p-2 gap-2 ">
+                    <div className=" rounded-md w-[10%]  flex flex-row  justify-center items-center">
+                        <h1 className="text-base-100"></h1>
+                    </div>
                     <div
                         className=" rounded-md w-[15%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
                         onClick={hdlSortJobDateOnChange}
                     >
-                        <h1 className="text-base-100">[JobDate]Sort</h1>
+                        <h1 className="text-base-100">[JobDate]</h1>
                     </div>
                     <div className=" rounded-md w-[40%]  flex flex-row  justify-center items-center">
                         <h1 className="text-base-100">[Title]</h1>
                     </div>
                     <div
-                        className=" rounded-md  w-[15%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
+                        className=" rounded-md  w-[10%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
                         onClick={hdlSortPostDateOnChange}
                     >
-                        <h1 className="text-base-100">[PostDate]Sort</h1>
+                        <h1 className="text-base-100">[PostDate]</h1>
                     </div>
-                    <div className=" rounded-md w-[30%]  flex flex-row  justify-center items-center">
+                    <div className=" rounded-md w-[20%]  flex flex-row  justify-center items-center">
                         <h1 className="text-base-100">[Management]</h1>
                     </div>
                 </div>
@@ -287,6 +290,38 @@ export default function HistoryForm(props) {
                                 id={index}
                                 className="bg-base-100 border border-primary shadow-lg flex flex-row mb-1  p-1 gap-2 rounded-lg hover:bg-teal-100"
                             >
+                                <div className=" w-[10%] flex flex-row justify-center">
+                                    {/* <h1>{item.statusDetail}</h1> */}
+                                    <div className="dropdown dropdown-bottom">
+                                        <label
+                                            tabIndex={0}
+                                            className={
+                                                item.statusDetail == 'success'
+                                                    ? 'btn btn-primary  text-white w-[100px]'
+                                                    : item.statusDetail ==
+                                                      'pending'
+                                                    ? 'btn btn-info  text-white w-[100px]'
+                                                    : 'btn btn-warning  text-white w-[100px]'
+                                            }
+                                        >
+                                            {item.statusDetail}
+                                        </label>
+                                        <ul
+                                            tabIndex={0}
+                                            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                                        >
+                                            <li>
+                                                <a>success</a>
+                                            </li>
+                                            <li>
+                                                <a>cancel</a>
+                                            </li>
+                                            <li>
+                                                <a>pending</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div className=" w-[15%]  flex flex-row  justify-center items-center">
                                     <h1>{item.startDate}</h1>
                                 </div>
@@ -297,10 +332,12 @@ export default function HistoryForm(props) {
                                             : item.title.slice(0, 35) + '...'}
                                     </h1>
                                 </div>
-                                <div className=" w-[15%]  flex flex-row  justify-center items-center">
+                                <div className=" w-[10%]  flex flex-row  justify-center items-center">
                                     <h1>{item.create_at.split(' ')[0]}</h1>
                                 </div>
-                                <HistoryRowMenu follower={item.follower} />
+                                <div className=" w-[20%]  flex flex-row justify-around items-center">
+                                    <HistoryRowMenu follower={item.follower} />
+                                </div>
                             </div>
                         )
                     })}

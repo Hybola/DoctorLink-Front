@@ -188,3 +188,19 @@ export function GroupJob(props) {
         </svg>
     )
 }
+
+export function PowerJob(props) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g fill="#35b8be">
+                <path d="M12 21A9 9 0 015.64 5.64a.74.74 0 011.06 0 .75.75 0 010 1.06 7.5 7.5 0 1010.6 10.6 7.482 7.482 0 000-10.6.75.75 0 010-1.06.74.74 0 011.06 0A9 9 0 0112 21z" />
+                <path d="M12 12.75a.76.76 0 01-.75-.75V4a.75.75 0 111.5 0v8a.76.76 0 01-.75.75z" />
+            </g>
+        </svg>
+    )
+}

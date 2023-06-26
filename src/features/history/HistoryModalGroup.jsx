@@ -5,10 +5,10 @@ export default function HistoryModalGroup() {
             name: 'Hart Hagerty',
             location: 'Bangkok',
             contact: '084-7723676',
-            email: 'aa@gmail.com',
             line: '@aalinesupport',
             socketId: 'uusjiioeokoogijfmiewii',
             Rooms: 'room1',
+            selected: true,
             update_at: '12/06/2023 12:00:00',
             photoUrl: 'https://picsum.photos/200/200',
         },
@@ -17,10 +17,10 @@ export default function HistoryModalGroup() {
             name: 'Jone yipwam',
             location: 'Chainat',
             contact: '099-65689909',
-            email: 'bb@gmail.com',
             line: '@bblinesupport',
             socketId: '00ookwliirij[ovkovipi',
             Rooms: 'room2',
+            selected: true,
             update_at: '18/06/2023 12:00:00',
             photoUrl: 'https://picsum.photos/200/200',
         },
@@ -29,10 +29,10 @@ export default function HistoryModalGroup() {
             name: 'Tyuii Rtfyya',
             location: 'Bangkok',
             contact: '084-7723676',
-            email: 'cc@gmail.com',
             line: '@cclinesupport',
             socketId: 'pldldlssooreomofdsml;',
             Rooms: 'room3',
+            selected: false,
             update_at: '20/06/2023 12:00:00',
             photoUrl: 'https://picsum.photos/200/200',
         },
@@ -41,10 +41,10 @@ export default function HistoryModalGroup() {
             name: 'Hovel Jansmit',
             location: 'Pathumthani',
             contact: '086-6654576',
-            email: 'cc@gmail.com',
             line: '@cclinesupport',
             socketId: 'pldldlssooreomofdsml;',
             Rooms: 'room3',
+            selected: false,
             update_at: '12/05/2023 12:00:00',
             photoUrl: 'https://picsum.photos/200/200',
         },
@@ -122,20 +122,18 @@ export default function HistoryModalGroup() {
                                                             <div className="font-bold">
                                                                 {member.name}
                                                             </div>
-                                                            <div className="text-sm opacity-50">
-                                                                {
-                                                                    member.location
-                                                                }
+                                                            <div className="text-sm opacity-50 text-green-500">
+                                                                {member.selected
+                                                                    ? 'selected'
+                                                                    : null}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {member.contact +
-                                                        ', ' +
-                                                        member.email}
+                                                    {member.contact}
                                                     <br />
-                                                    <span className="badge badge-success badge-md">
+                                                    <span className="badge badge-success badge-md mt-1">
                                                         line: {member.line}
                                                     </span>
                                                 </td>
@@ -157,9 +155,19 @@ export default function HistoryModalGroup() {
                                                           )[0]}
                                                 </td>
                                                 <th>
-                                                    <button className="btn btn-primary btn-xs">
+                                                    <button className="btn btn-primary btn-xs text-white">
                                                         Chat
                                                     </button>
+
+                                                    {member.selected ? (
+                                                        <button className="btn btn-warning btn-xs ml-3  text-white">
+                                                            un-select
+                                                        </button>
+                                                    ) : (
+                                                        <button className="btn btn-primary btn-xs ml-3  text-white">
+                                                            Select
+                                                        </button>
+                                                    )}
                                                 </th>
                                             </tr>
                                         </>
