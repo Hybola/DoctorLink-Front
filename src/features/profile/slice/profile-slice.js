@@ -8,7 +8,7 @@ const initialState = {
 
 // Doctor
 export const getProfile = createAsyncThunk(
-    'profile/',
+    'profile',
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
@@ -26,7 +26,7 @@ export const getProfile = createAsyncThunk(
 )
 
 export const uploadImage = createAsyncThunk(
-    'profile/uploadImage',
+    'uploadImage',
     async (input, thunkApi) => {
         try {
             const res = await profileService.uploadImage(input)
@@ -38,13 +38,14 @@ export const uploadImage = createAsyncThunk(
 )
 
 export const editProfile = createAsyncThunk(
-    'profile/editProfile',
+    'editProfile',
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
                 const res = await profileService.editDoctorProfile(
                     input.payload
                 )
+                console.log(res.data)
                 if (res.data[0] > 0) {
                     return input.payload
                 }

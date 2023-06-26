@@ -85,7 +85,7 @@ export function NotificationIcon() {
     )
 }
 
-export function SavedJobIcon() {
+export function MyJobIcon() {
     return (
         <svg
             height="2rem"

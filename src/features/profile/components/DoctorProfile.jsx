@@ -9,7 +9,7 @@ import DoctorBody from './DoctorBody'
 export default function DoctorProfile() {
     const userId = useSelector((state) => state.auth.user?.id)
     const myRole = useSelector((state) => state.auth?.role)
-    const profile = useSelector((state) => state.profile)
+    const profile = useSelector((state) => state.profile?.profile)
 
     const dispatch = useDispatch()
 
@@ -17,16 +17,16 @@ export default function DoctorProfile() {
     const canEdit = myRole == 'doctor' && userId == id
 
     useEffect(() => {
-        const myProfile = async (input) => {
+        const currentProfile = async (input) => {
             await dispatch(getProfile(input)).unwrap()
         }
-        const input = { role: myRole, id: userId }
-        myProfile(input)
+        const input = { role: myRole, id: id }
+        currentProfile(input)
     }, [])
 
     return (
         <div className="w-full flex justify-center">
-            <div className=" max-w-[900px]  min-w-[600px] w-[700px] bg-base-100 rounded-lg  my-4 shadow-sm h-fit pb-[20px]">
+            <div className=" max-w-[900px]  min-w-[600px] w-[700px] bg-base-100  shadow-lg my-4h-fit pb-[20px]">
                 <DoctorHeader profile={profile} canEdit={canEdit} />
                 <DoctorBody profile={profile} canEdit={canEdit} />
             </div>

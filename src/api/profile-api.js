@@ -7,7 +7,7 @@ export const providerProfile = (id) => thisAxios.get(`/profile/provider/${id}`)
 export const uploadImage = (input) => thisAxios.patch('/profile/image', input)
 
 export const editDoctorProfile = (payload) =>
-    thisAxios.patch(`/profile/doctor/myprofile'`, payload)
+    thisAxios.patch(`/profile/doctor/myprofile`, payload)
 
 export const editProviderProfile = (payload) =>
     thisAxios.patch(`/profile/provider/myprofile`, payload)

@@ -45,7 +45,9 @@ export default function ProviderHeader({ profile, canEdit }) {
                         onClick={handleProfileImageEdit}
                     />
                 </div>
-                <ProviderProfileImageEdit currentImage={currentProfileImage} />
+                <ProviderProfileImageEdit
+                    currentProfileImage={currentProfileImage}
+                />
             </div>
             <div className="w-full flex flex-col  gap-2">
                 <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">

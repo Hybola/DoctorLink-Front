@@ -7,12 +7,12 @@ export default function DoctorHeader({ profile, canEdit }) {
     const defaultProfileImage =
         'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1687293840/Screen_Shot_2566-06-21_at_03.42.41_j0dnwe.png'
 
-    const currentCoverImage = profile?.coverImagePath || defaultCoverImage
-    const currentProfileImage = profile?.profileImagePath || defaultProfileImage
+    const currentCoverImage = profile?.coverImage || defaultCoverImage
+    const currentProfileImage = profile?.profileImage || defaultProfileImage
 
     const handleCoverImageEdit = () => window.CoverImageEdit.showModal()
     const handleProfileImageEdit = () => {
-        window.DoctorProfileImageEdit.showModal()
+        if (canEdit) window.DoctorProfileImageEdit.showModal()
     }
 
     return (
@@ -32,7 +32,9 @@ export default function DoctorHeader({ profile, canEdit }) {
                     >
                         <div>Edit</div>
                     </div>
-                    <DoctorCoverImageEdit currentImage={currentCoverImage} />
+                    <DoctorCoverImageEdit
+                        currentCoverImage={currentCoverImage}
+                    />
                 </div>
             ) : null}
 
@@ -45,7 +47,9 @@ export default function DoctorHeader({ profile, canEdit }) {
                         onClick={handleProfileImageEdit}
                     />
                 </div>
-                <DoctorProfileImageEdit currentImage={currentProfileImage} />
+                <DoctorProfileImageEdit
+                    currentProfileImage={currentProfileImage}
+                />
             </div>
         </div>
     )

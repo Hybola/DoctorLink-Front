@@ -17,15 +17,15 @@ export default function ProviderProfile() {
     const canEdit = myRole == 'provider' && userId == id
 
     useEffect(() => {
-        const myProfile = async (input) => {
+        const currentProfile = async (input) => {
             await dispatch(getProfile(input)).unwrap()
         }
         const input = { role: myRole, id: id }
-        myProfile(input)
+        currentProfile(input)
     }, [])
 
     return (
-        <div className="  max-w-[900px]  min-w-[600px] w-[700px]  bg-base-100 rounded-lg  my-4 shadow-sm h-fit p-[20px]">
+        <div className="  max-w-[900px]  min-w-[600px] w-[700px] bg-base-100   my-4 shadow-lg h-fit p-[20px]">
             <ProviderHeader profile={profile} canEdit={canEdit} />
             <ProviderBody profile={profile} canEdit={canEdit} />
         </div>
