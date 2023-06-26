@@ -15,6 +15,7 @@ import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
+import ChatPage from '../pages/ChatPage'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
                             {
                                 path: '/provider/history/',
                                 element: <History />,
+                            },
+                            {
+                                path: '/provider/chat/',
+                                element: <ChatPage />,
                             },
                         ],
                     },

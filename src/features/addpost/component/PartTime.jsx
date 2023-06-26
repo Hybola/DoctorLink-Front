@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function PartTime({ a, hdl }) {
+export default function PartTime({ add, hdl }) {
     return (
         <>
             <div className="w-[1000px] max-w-[1000px] min-w-[800px] h-[500px] bg-base-100 rounded-lg shadow-lg p-4 flex flex-col gap-1">
@@ -13,7 +13,7 @@ export default function PartTime({ a, hdl }) {
                             <textarea
                                 className="w-full  h-[110px] p-2 border border-primary rounded-lg "
                                 onChange={hdl}
-                                value={a.jobDes}
+                                value={add.jobDes}
                                 name="jobDes"
                             />
                         </div>
@@ -26,7 +26,7 @@ export default function PartTime({ a, hdl }) {
                                         type="datetime-local"
                                         className="w-full   h-[40px] p-2 border border-primary rounded-lg "
                                         onChange={hdl}
-                                        value={a.startDateTime}
+                                        value={add.startDateTime}
                                         name="partstart"
                                     />
                                 </div>
@@ -38,7 +38,7 @@ export default function PartTime({ a, hdl }) {
                                         type="datetime-local"
                                         className="w-full  h-[40px] p-2 border border-primary rounded-lg "
                                         onChange={hdl}
-                                        value={a.endDateTime}
+                                        value={add.endDateTime}
                                         name="partend"
                                     />
                                 </div>
@@ -52,7 +52,7 @@ export default function PartTime({ a, hdl }) {
                                     type="text"
                                     className="w-full   h-[40px] p-2 border border-primary rounded-lg "
                                     onChange={hdl}
-                                    value={a.wage}
+                                    value={add.wage}
                                     name="wage"
                                 />
                             </div>
@@ -62,7 +62,7 @@ export default function PartTime({ a, hdl }) {
                                     type="text"
                                     className="w-full   h-[40px] p-2 border border-primary rounded-lg "
                                     onChange={hdl}
-                                    value={a.other}
+                                    value={add.other}
                                     name="other"
                                 />
                             </div>
