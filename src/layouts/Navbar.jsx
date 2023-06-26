@@ -8,6 +8,7 @@ import {
     NotificationIcon,
     SavedJobIcon,
     SearchHomeIcon,
+    ChatIcon,
 } from '../icons'
 
 export default function Navbar() {
@@ -42,6 +43,9 @@ export default function Navbar() {
 
                         <Link to="/provider/history/">
                             <HistoryIcon />
+                        </Link>
+                        <Link to="/provider/chat">
+                            <ChatIcon />
                         </Link>
 
                         <NotificationIcon />
