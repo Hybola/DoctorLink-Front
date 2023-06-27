@@ -55,12 +55,11 @@ export const doctorLoginGoogle = createAsyncThunk(
                 password: input.sub,
             }
             const res = await authService.doctorLoginGoogle(payload)
-            // console.log(res)
             setToken(res.data.accessToken)
             const decoded = jwt_decode(res.data.accessToken)
             if (decoded.role == 'doctor') {
                 const resFetchMe = await authService.doctorFetchMe()
-                return { ...resFetchMe, role: 'doctor' }
+                return { ...resFetchMe.data, role: 'doctor' }
             }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -80,11 +79,11 @@ export const providerLoginGoogle = createAsyncThunk(
 
             const res = await authService.providerLoginGoogle(payload)
             setToken(res.data.accessToken)
-            
+
             const decoded = jwt_decode(res.data.accessToken)
             if (decoded.role == 'provider') {
                 const resFetchMe = await authService.providerFetchMe()
-                return { ...resFetchMe, role: 'provider' }
+                return { ...resFetchMe.data, role: 'provider' }
             }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)

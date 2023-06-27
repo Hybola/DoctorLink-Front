@@ -22,7 +22,7 @@ export default function MyJobPage() {
         },
     ]
     return (
-        <div className=" h-screen w-full  bg-base-100 border rounded-lg  shadow-lg  flex justify-center">
+        <div className="  w-full h-screen  bg-[#F5FBFC] flex justify-center">
             <MyJob savedJob={savedJob} />
         </div>
     )
