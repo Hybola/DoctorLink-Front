@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import ProviderCoverImageEdit from './CoverImageEdit'
 import ProviderProfileImageEdit from './ProviderProfileImageEdit'
+import { PenIcon } from '../../../icons'
 
 export default function ProviderHeader({ profile, canEdit }) {
     const defaultCoverImage =
@@ -29,11 +29,11 @@ export default function ProviderHeader({ profile, canEdit }) {
                         className="bg-base-100 w-[40px] h-[40px] rounded-[50%]  -my-[160px] mr-[20px] flex justify-center  items-center"
                         onClick={handleCoverImageEdit}
                     >
-                        <div>Edit</div>
-                        <ProviderCoverImageEdit
-                            currentCoverImage={currentCoverImage}
-                        />
+                        <PenIcon />
                     </div>
+                    <ProviderCoverImageEdit
+                        currentCoverImage={currentCoverImage}
+                    />
                 </div>
             ) : null}
             <div>
@@ -41,7 +41,7 @@ export default function ProviderHeader({ profile, canEdit }) {
                     <img
                         src={currentProfileImage}
                         alt="profileImage"
-                        className="w-[150px] h-[150px] object-cover"
+                        className="w-[150px] h-[150px] object-cover border-4 border-white"
                         onClick={handleProfileImageEdit}
                     />
                 </div>
