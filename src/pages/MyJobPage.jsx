@@ -1,6 +1,6 @@
-import SavedJob from '../features/savedjob/components/SavedJob'
+import MyJob from '../features/myjob/components/Myjob'
 
-export default function SavedJobPage() {
+export default function MyJobPage() {
     const savedJob = [
         {
             id: 1,
@@ -22,8 +22,8 @@ export default function SavedJobPage() {
         },
     ]
     return (
-        <div className=" h-screen w-full  bg-base-200 flex justify-center">
-            <SavedJob savedJob={savedJob} />
+        <div className=" h-screen w-full  bg-base-100 border rounded-lg  shadow-lg  flex justify-center">
+            <MyJob savedJob={savedJob} />
         </div>
     )
 }

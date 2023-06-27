@@ -47,7 +47,7 @@ export default function FollowedPage() {
         },
     ]
     return (
-        <div className=" h-screen w-full  bg-base-200 flex justify-center">
+        <div className=" h-screen w-full  bg-base-100 flex justify-center">
             <Followed followedProvider={followedProvider} />
         </div>
     )
