@@ -7,6 +7,18 @@ import Logo from '../asset/Logo6.png'
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
     const id = useSelector((state) => state.auth.user?.id)
+    const providerName = useSelector(
+        (state) => state.profile?.profile?.providerName
+    )
+    const doctorName = useSelector(
+        (state) => state.profile?.profile?.profileName
+    )
+    const doctorProfile = useSelector(
+        (state) => state.profile?.profile?.profileImage
+    )
+    const providerProfile = useSelector(
+        (state) => state.profile?.profile?.profileImage
+    )
 
     const dispatch = useDispatch()
 
@@ -14,22 +26,52 @@ export default function Header() {
         <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
             <div className="py-2 flex justify-start self-center ">
                 <Link to="/">
-                    <img src={Logo} className='h-12'/>
+                    <img src={Logo} className="h-12" />
                 </Link>
             </div>
-            <div className="flex justify-self-end items-center gap-4">
+            <div className="flex justify-self-end items-center gap-10">
                 {role == 'doctor' || role == 'provider' ? (
                     <>
                         <Navbar />
                         <div className="flex justify-self-end items-center gap-4">
-                            <div className="flex-none gap-2">
+                            <div className="flex justify-center gap-3 w-[150px]">
+                                {role == 'doctor' ? (
+                                    <>
+                                        <div className="self-center w-fit">
+                                            <p>{doctorName}</p>
+                                            <p className="text-xs">
+                                                I'm a {role}
+                                            </p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="self-center">
+                                            <p>{providerName}</p>
+                                            <p className="text-xs">
+                                                I'm a {role}
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
                                 <div className="dropdown dropdown-end">
                                     <label
                                         tabIndex={0}
                                         className="btn btn-ghost btn-circle avatar"
                                     >
                                         <div className="w-10 rounded-full">
-                                            <img src="https://img.freepik.com/free-icon/doctor_318-201540.jpg" />
+                                            {role == 'doctor' ? (
+                                                <>
+                                                    <img src={doctorProfile} />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <img
+                                                        src={providerProfile}
+                                                    />
+                                                </>
+                                            )}
+                                            <img src={providerProfile} />
                                         </div>
                                     </label>
                                     <ul
