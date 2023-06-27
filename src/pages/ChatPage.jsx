@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { socket } from '../config/socket-config'
+import socket from '../config/socket-config'
 import ChatBox from '../features/chat/components/ChatBox'
 
 export default function ChatPage() {

@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux'
 
 export default function doctorChat() {
     const doctorId = useSelector((state) => state.auth.user.id)
-    socket.connect()
+    const providerId = 1
+
     useEffect(() => {
-        socket.emit('startChat', { doctorId, providerId })
+        socket.emit('startChat', { role: 'doctor', doctorId, providerId })
         return () => {}
     }, [])
     return <div>doctorChat</div>
