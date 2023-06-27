@@ -66,12 +66,9 @@ export default function Header() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <img
-                                                        src={providerProfile}
-                                                    />
+                                                    <img src={providerProfile} />
                                                 </>
                                             )}
-                                            <img src={providerProfile} />
                                         </div>
                                     </label>
                                     <ul
