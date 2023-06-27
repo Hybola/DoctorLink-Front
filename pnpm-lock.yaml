@@ -33,7 +33,7 @@ dependencies:
     version: 18.2.0
   react-datepicker:
     specifier: ^4.14.0
-    version: 4.14.1(react-dom@18.2.0)(react@18.2.0)
+    version: 4.14.0(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -3583,8 +3583,8 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-datepicker@4.14.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-uiPfjD+25KI5WOfCAXlzQgSLyksTagk3wwKn1KGBdF19YtybFDregRmcoNNGveQHAbT10SJZdCvk/8pbc7zxJg==}
+  /react-datepicker@4.14.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-MLky2SF8hVTPgFRseauoOprjz6/rUMWq8MHadWYwExJvojUyCZOWDMWq9bRqoliQqqPhcViYjyxAxvFQpD9aDA==}
     peerDependencies:
       react: ^16.9.0 || ^17 || ^18
       react-dom: ^16.9.0 || ^17 || ^18
@@ -4035,14 +4035,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       shallowequal: 1.1.0
-      stylis: 4.2.0
-      tslib: 2.5.3
+      stylis: 4.3.0
+      tslib: 2.6.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
+    dev: false
+
+  /stylis@4.3.0:
+    resolution: {integrity: sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==}
     dev: false
 
   /sucrase@3.32.0:
@@ -4139,8 +4143,8 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /tslib@2.5.3:
-    resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
+  /tslib@2.6.0:
+    resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
     dev: false
 
   /type-check@0.4.0:
