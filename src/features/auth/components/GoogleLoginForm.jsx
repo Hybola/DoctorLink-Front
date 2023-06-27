@@ -1,8 +1,8 @@
-import React from 'react'
 import { LoginSocialGoogle } from 'reactjs-social-login'
 import { GoogleLoginButton } from 'react-social-login-buttons'
 import { useDispatch } from 'react-redux'
 import { doctorLoginGoogle, providerLoginGoogle } from '../slice/auth-slice'
+import { SearchHomeIcon } from '../../../icons'
 
 export function DoctorGoogleLoginForm() {
     const dispatch = useDispatch()
@@ -23,12 +23,27 @@ export function DoctorGoogleLoginForm() {
                     console.log(err)
                 }}
             >
-                <GoogleLoginButton />
+                <GoogleLoginButton
+                    style={{
+                        background: '#35b8be',
+                        color: 'white',
+                        borderRadius: '0.375rem',
+                        fontSize: '1.25rem',
+                        fontWeight: '700',
+                        boxShadow: 'none',
+                        width: '368px',
+                        height: '48px',
+                        margin: '0',
+                    }}
+                    activeStyle={{ background: '#0d6d4f' }}
+                    align="center"
+                    text="Continue with Google"
+                    iconSize="0"
+                />
             </LoginSocialGoogle>
         </div>
     )
 }
-
 
 export function ProviderGoogleLoginForm() {
     const dispatch = useDispatch()
@@ -49,9 +64,24 @@ export function ProviderGoogleLoginForm() {
                     console.log(err)
                 }}
             >
-                <GoogleLoginButton />
+                <GoogleLoginButton
+                    style={{
+                        background: '#35b8be',
+                        color: 'white',
+                        borderRadius: '0.375rem',
+                        fontSize: '1.25rem',
+                        fontWeight: '700',
+                        boxShadow: 'none',
+                        width: '368px',
+                        height: '48px',
+                        margin: '0',
+                    }}
+                    activeStyle={{ background: '#0d6d4f' }}
+                    align="center"
+                    text="Continue with Google"
+                    iconSize="0"
+                />
             </LoginSocialGoogle>
         </div>
     )
 }
-

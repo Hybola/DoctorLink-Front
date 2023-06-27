@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
-import { docLogin } from '../slice/auth-slice'
 import validateLogin from '../validators/validate-login'
+import { docLogin } from '../slice/auth-slice'
 
 import { DoctorGoogleLoginForm } from './GoogleLoginForm'
 
@@ -76,7 +76,7 @@ export default function LoginDoctorForm() {
                     <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
                         Log in
                     </button>
-                    <p className="text-center text-xl">or</p>
+                    <p className="text-center text-xl">OR</p>
                     <DoctorGoogleLoginForm />
                 </div>
             </div>
