@@ -1,4 +1,57 @@
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setFilterJob } from '../slice/myjob-slice'
+import { compareDateAsc } from '../../../utils/dateTime'
+
 export default function SavedJobHeader() {
+    const allJob = useSelector((state) => state.myjob?.savedJob.allJob)
+    const [filterCondition, setFilterCondition] = useState({
+        jobType: { parttime: true, fulltime: true },
+        sortBy: 'workdate',
+        titletext: '',
+    })
+    const dispatch = useDispatch()
+
+    const handdleOnchange = (e) => {
+        setFilterCondition({ ...filterCondition, titletext: e.target.value })
+    }
+
+    useEffect(() => {
+        const result = allJob.filter((job) => {
+            const typeCondition =
+                (filterCondition.jobType.parttime &&
+                    job.jobtype == 'PartTime') ||
+                (filterCondition.jobType.fulltime && job.jobtype == 'FullTime')
+            const titleCondition =
+                filterCondition.titletext?.trim() == ''
+                    ? true
+                    : job.title
+                          .toLocaleLowerCase()
+                          .includes(
+                              filterCondition.titletext.toLocaleLowerCase()
+                          )
+
+            return typeCondition && titleCondition
+        })
+
+        if (filterCondition.sortBy == 'workdate') {
+            const sortedResultByWorkingDate = result.sort((job1, job2) => {
+                return compareDateAsc(job1.startDate, job2.startDate)
+            })
+            dispatch(setFilterJob(sortedResultByWorkingDate)).unwrap()
+        } else {
+            const sortedResulByProviderName = result.sort((job1, job2) => {
+                const provider1 = job1.providerName.toLocaleLowerCase()
+                const provider2 = job2.providerName.toLocaleLowerCase()
+                if (provider1 < provider2) return -1
+                if (provider1 > provider2) return 1
+            })
+
+            dispatch(setFilterJob(sortedResulByProviderName)).unwrap()
+        }
+    }, [filterCondition])
+
     return (
         <div className=" flex flex-col max-w-[900px]  min-w-[600px] w-[700px]  bg-base-100  rounded-t-lg  shadow-sm h-fit p-[20px]">
             <div className="w-full flex flex-col">
@@ -15,8 +68,19 @@ export default function SavedJobHeader() {
                                         type="checkbox"
                                         name="jobtype"
                                         id="parttime"
-                                        value="parttime"
                                         className="w-[18px] h-[18px] "
+                                        checked={
+                                            filterCondition.jobType.parttime
+                                        }
+                                        onChange={(e) => {
+                                            setFilterCondition({
+                                                ...filterCondition,
+                                                jobType: {
+                                                    ...filterCondition.jobType,
+                                                    parttime: e.target.checked,
+                                                },
+                                            })
+                                        }}
                                     />
                                     <label htmlFor="parttime" className="">
                                         Part-time
@@ -27,8 +91,19 @@ export default function SavedJobHeader() {
                                         type="checkbox"
                                         name="jobtype"
                                         id="fulltime"
-                                        value="fulltime"
                                         className="w-[18px] h-[18px]"
+                                        checked={
+                                            filterCondition.jobType.fulltime
+                                        }
+                                        onChange={(e) => {
+                                            setFilterCondition({
+                                                ...filterCondition,
+                                                jobType: {
+                                                    ...filterCondition.jobType,
+                                                    fulltime: e.target.checked,
+                                                },
+                                            })
+                                        }}
                                     />
                                     <label htmlFor="parttime" className="">
                                         Full-time
@@ -40,12 +115,19 @@ export default function SavedJobHeader() {
                             <label htmlFor="sortBy" className="w-[70px]">
                                 Sort By:
                             </label>
-                            <select name="sortBy" id="sortBy">
-                                <option value="Recently Followed">
-                                    Recently Saved
-                                </option>
-                                <option value="Job Post Amount">
-                                    Working date
+                            <select
+                                name="sortBy"
+                                id="sortBy"
+                                onChange={(e) => {
+                                    setFilterCondition({
+                                        ...filterCondition,
+                                        sortBy: e.target.value,
+                                    })
+                                }}
+                            >
+                                <option value="workdate">Working date</option>
+                                <option value="providername">
+                                    Provider Name
                                 </option>
                             </select>
                         </div>
@@ -54,7 +136,8 @@ export default function SavedJobHeader() {
                         <input
                             type="search"
                             className="border w-[300px] border-primary py-1 px-4  rounded-lg"
-                            placeholder="Search by Health Provider Name"
+                            placeholder="Search by Job title"
+                            onChange={handdleOnchange}
                         />
                     </div>
                 </div>

@@ -1,33 +1,64 @@
+import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
+import { MenuIcon, Unsaved, Apply } from '../../../icons/index'
 export default function SavedJobCard({ job }) {
     return (
         <div
             className="w-full flex justify-between mb-2 border-b-[1px]"
-            id={job.id}
+            id={job.savedJobId}
         >
             <div className="w-[500px] flex gap-2 min-h-[60px]">
                 <div className="w-[60px] h-[60px] bg-slate-600">
                     <img
-                        src={job?.profileImage}
+                        src={job?.image}
                         alt="profileImage"
                         className="w-[60px] h-[60px]  bg-slate-600 object-cover"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <div className="flex  text-lg font-bold ">
-                        รับ GP parttime
+                    <div className="flex  text-lg font-bold ">{job?.title}</div>
+                    <div className="flex  text-primary text-base font-thin gap-2">
+                        <div>{job?.jobtype == 'FullTime' ? 'FT' : 'PT'}</div>
+                        {job?.jobtype == 'FullTime' ? (
+                            <div> ({dateReverse(job?.startDate)}) </div>
+                        ) : (
+                            <div>
+                                <div> ({dateTimeTH(job?.startDate)}) </div>
+                            </div>
+                        )}
                     </div>
-                    <div className="flex  text-primary text-base font-thin ">
-                        {job?.name}
-                    </div>
-                    <div className="flex   pb-2 text-primary  text-[14px] font-thin">
-                        Posted: 14/04/66
+                    <div className="flex  text-primary text-base font-thin gap-4 ">
+                        <div>{job?.providerName}</div>
+                        <div>#{job?.location}</div>
                     </div>
                 </div>
             </div>
-            <div className="flex items-center">
-                <button className=" border  btn btn-primary rounded-2xl px-4 min-h-[30px] h-[30px] hover:bg-success hover:text-white">
-                    view post
-                </button>
+            <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="">
+                    <div className="w-[24px] h-[24px] rounded-full hover:bg-base-300 flex justify-center items-center">
+                        <MenuIcon />
+                    </div>
+                </label>
+                <ul
+                    tabIndex={0}
+                    className="mt-1 z-[1] p-2  shadow-xl menu menu-sm dropdown-content bg-base-100  w-52   border-base-300 border-[1px] rounded-b-lg rounded-l-lg"
+                >
+                    <li>
+                        <div>
+                            <div className="w-[30px]">
+                                <Unsaved />
+                            </div>
+                            <div>Unsaved</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div className="w-[30px]">
+                                <Apply />
+                            </div>
+                            <div>Interested</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     )

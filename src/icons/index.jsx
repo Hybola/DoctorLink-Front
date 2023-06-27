@@ -255,3 +255,55 @@ export function EditIcon() {
         </svg>
     )
 }
+
+export function MenuIcon() {
+    return (
+        <svg
+            height="1rem"
+            width="1rem"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-5 h-5 stroke-current"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+            ></path>
+        </svg>
+    )
+}
+
+export function Unsaved() {
+    return (
+        <svg
+            height="1.5rem"
+            width="1.5rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M10.5 8.56l1.5 1.5m0 0l1.5 1.5m-1.5-1.5l1.5-1.5m-1.5 1.5l-1.5 1.5M8.25 5h7.5c.69 0 1.25.588 1.25 1.313V19l-5-3.5L7 19V6.312C7 5.588 7.56 5 8.25 5z"
+                stroke="#606062"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export function Apply() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M0 16l12 4 4 12L32 0zm14.016 2.016l12-12L16 24z" />
+        </svg>
+    )
+}

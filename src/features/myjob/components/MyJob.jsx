@@ -7,7 +7,7 @@ import SavedJob from './Savedjob'
 
 export default function MyJob() {
     const userId = useSelector((state) => state.auth.user?.id)
-    const savedJob = useSelector((state) => state.myjob?.savedJob)
+    const [myJob, setMyJob] = useState(1)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -18,8 +18,8 @@ export default function MyJob() {
     }, [])
     return (
         <div className=" bg-[#F5FBFC] flex justify-center w-fit gap-8 mt-4">
-            <NavBar />
-            <SavedJob  /> 
+            <NavBar myJob={myJob} setMyJob={setMyJob} />
+            {myJob == 1 ? <SavedJob /> : null}
         </div>
     )
 }
