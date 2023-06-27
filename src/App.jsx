@@ -2,6 +2,8 @@ import Router from './routes/Router'
 import { ToastContainer } from 'react-toastify'
 
 function App() {
+    console.log('first')
+    console.log('Second')
     return (
         <div>
             <Router />
