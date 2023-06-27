@@ -1,6 +1,9 @@
 export default function SavedJobCard({ job }) {
     return (
-        <div className="w-full flex justify-between mb-2" id={job.id}>
+        <div
+            className="w-full flex justify-between mb-2 border-b-[1px]"
+            id={job.id}
+        >
             <div className="w-[500px] flex gap-2 min-h-[60px]">
                 <div className="w-[60px] h-[60px] bg-slate-600">
                     <img
