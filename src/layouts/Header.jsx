@@ -2,16 +2,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
+import Logo from '../asset/Logo6.png'
 
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
+    const id = useSelector((state) => state.auth.user?.id)
+
     const dispatch = useDispatch()
 
     return (
         <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
-            <div className="py-2 flex justify-start self-center">
+            <div className="py-2 flex justify-start self-center ">
                 <Link to="/">
-                    <h1>Logo</h1>
+                    <img src={Logo} className='h-12'/>
                 </Link>
             </div>
             <div className="flex justify-self-end items-center gap-4">
@@ -36,7 +39,9 @@ export default function Header() {
                                         {role == 'doctor' ? (
                                             <>
                                                 <li>
-                                                    <Link to="/doctor/profile">
+                                                    <Link
+                                                        to={`/doctor/${id}/profile/`}
+                                                    >
                                                         <button>Profile</button>
                                                     </Link>
                                                 </li>
@@ -44,7 +49,9 @@ export default function Header() {
                                         ) : (
                                             <>
                                                 <li>
-                                                    <Link to="/provider/profile">
+                                                    <Link
+                                                        to={`/provider/${id}/profile/`}
+                                                    >
                                                         <button>Profile</button>
                                                     </Link>
                                                 </li>

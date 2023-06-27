@@ -18,12 +18,7 @@ export default function FollowedHeader({ followedProvider }) {
                             <option value="Recently Followed">
                                 Recently Followed
                             </option>
-                            <option value="Job Post Amount">
-                                Lastest Job-Post
-                            </option>
-                            <option value="Job Post Amount">
-                                Amount Job-Post
-                            </option>
+                            <option value="Job Post Amount">Name</option>
                         </select>
                     </div>
                     <div>

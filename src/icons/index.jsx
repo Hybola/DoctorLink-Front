@@ -85,7 +85,7 @@ export function NotificationIcon() {
     )
 }
 
-export function SavedJobIcon() {
+export function MyJobIcon() {
     return (
         <svg
             height="2rem"
@@ -122,6 +122,136 @@ export function FollowerIcon() {
             <path d="M12 40a2 2 0 00-2 2v6H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-4h16v4h-4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-4h17v4h-4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V50a2 2 0 00-2-2h-4v-6a2 2 0 00-2-2H34v-5h14a6.006 6.006 0 006-6V4a2 2 0 00-2-2H13a2 2 0 00-2 2v8H9a2 2 0 00-2 2v15a6.006 6.006 0 006 6h17v5zm4 18H8v-6h8zm20 0h-8v-6h8zm21 0h-8v-6h8zM15 6h35v23a2 2 0 01-4 0V14a2 2 0 00-2-2H15zm-4 23V16h31v13a5.972 5.972 0 00.343 2H13a2 2 0 01-2-2z" />
             <path d="M15 20H19V24H15z" />
             <path d="M23 20H36V24H23z" />
+        </svg>
+    )
+}
+
+export function ChatIcon(props) {
+    return (
+        <svg
+            height="2rem"
+            width="2rem"
+            fill="#fff"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g
+                fillRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={4.1}
+            >
+                <path
+                    d="M420 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM417 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM414 309.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM410 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM407 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1zM404 300.014a1 1 0 00-1 1 1 1 0 001 1 1 1 0 001-1 1 1 0 00-1-1z"
+                    style={{
+                        InkscapeStroke: 'none',
+                    }}
+                    transform="translate(-396 -292)"
+                />
+                <path
+                    d="M400.059 294.014c-1.094 0-2.059.877-2.059 2v10c0 1.122.965 2 2.059 2H402v3a1 1 0 001.707.707l3.707-3.707H408v7c0 1.122.965 2 2.059 2h4.88l3.707 3.707a1 1 0 001.708-.707v-3h3.587c1.094 0 2.059-.878 2.059-2v-10c0-1.122-.965-2-2.059-2H416v-7c0-1.123-.965-2-2.059-2zm0 2h13.882c.04 0 .054.004.059.006v9.988a.17.17 0 01-.059.006H407a1 1 0 00-.707.293L404 308.6v-1.586a1 1 0 00-1-1h-2.941a.168.168 0 01-.059-.006v-9.989a.17.17 0 01.059-.006zm15.941 9h7.941c.04 0 .054.004.059.006v9.988a.17.17 0 01-.059.006h-4.587a1 1 0 00-1 1v1.586l-2.293-2.293a1 1 0 00-.707-.293h-5.295a.168.168 0 01-.059-.006v-6.994h3.941c1.094 0 2.059-.878 2.059-2z"
+                    style={{
+                        InkscapeStroke: 'none',
+                    }}
+                    transform="translate(-396 -292)"
+                />
+            </g>
+        </svg>
+    )
+}
+export function StethoscopeIcon(props) {
+    return (
+        <svg
+            height="4rem"
+            width="4rem"
+            viewBox="-4.8 -4.8 57.60 57.60"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#546285"
+            {...props}
+        >
+            <g
+                data-name="Layer 2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="#fff"
+                strokeWidth={2.496}
+            >
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
+                />
+            </g>
+            <g data-name="Layer 2">
+                <path fill="none" data-name="invisible box" d="M0 0H48V48H0z" />
+                <path
+                    d="M39 12a7 7 0 00-2 13.7V30a10 10 0 01-20 0v-.2A12.9 12.9 0 0028 17V7a3 3 0 00-3-3h-3a2 2 0 000 4h2v9a9 9 0 01-18 0V8h2a2 2 0 000-4H5a3 3 0 00-3 3v10a12.9 12.9 0 0011 12.8v.2a14 14 0 0028 0v-4.3A7 7 0 0039 12zm0 10a3 3 0 113-3 2.9 2.9 0 01-3 3z"
+                    data-name="Layer 4"
+                />
+            </g>
+        </svg>
+    )
+}
+
+export function PenIcon() {
+    return (
+        <svg
+            height="1rem"
+            width="1rem"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M31.25 7.003v-.001c0-.346-.14-.659-.365-.886l-5-5a1.25 1.25 0 00-1.77 0L3.116 22.115a1.258 1.258 0 00-.316.532l-.002.009-2 7A1.252 1.252 0 002 31.25c.126 0 .248-.019.363-.053l-.009.002 6.788-2c.206-.063.383-.17.527-.311l21.211-21c.229-.226.37-.539.371-.886zM8.133 26.891l-4.307 1.268 1.287-4.504L20.004 8.764l3.219 3.187zM25 10.191l-3.228-3.196L25 3.767l3.229 3.228z" />
+        </svg>
+    )
+}
+
+export function MapIcon() {
+    return (
+        <svg
+            height="2rem"
+            width="2rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M18.5 21.5l-6-15m9-2l-19 4"
+                stroke="#2A4157"
+                strokeOpacity={0.24}
+            />
+            <path
+                d="M2.5 5.7c0-1.12 0-1.68.218-2.108a2 2 0 01.874-.874C4.02 2.5 4.58 2.5 5.7 2.5h12.6c1.12 0 1.68 0 2.108.218a2 2 0 01.874.874c.218.428.218.988.218 2.108v12.6c0 1.12 0 1.68-.218 2.108a2 2 0 01-.874.874c-.428.218-.988.218-2.108.218H5.7c-1.12 0-1.68 0-2.108-.218a2 2 0 01-.874-.874C2.5 19.98 2.5 19.42 2.5 18.3V5.7z"
+                stroke="#33363F"
+                strokeLinecap="round"
+            />
+            <path
+                d="M12.5 15.03c0 2.158-2.14 3.674-3.073 4.233a.827.827 0 01-.854 0C7.64 18.704 5.5 17.188 5.5 15.029 5.5 12.912 7.196 11.5 9 11.5c1.867 0 3.5 1.412 3.5 3.53z"
+                stroke="#222"
+            />
+            <circle cx={9} cy={15} r={1} fill="#222" />
+        </svg>
+    )
+}
+
+export function EditIcon() {
+    return (
+        <svg
+            height="1.5rem"
+            width="1.5rem"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g
+                fill="none"
+                stroke="#4f3fca"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+            >
+                <path d="M20 16v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h4" />
+                <path d="M12.5 15.8L22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8z" />
+            </g>
         </svg>
     )
 }
