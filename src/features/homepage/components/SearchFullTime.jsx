@@ -47,7 +47,7 @@ export default function SearchFullTime({ handleJobType, isParttime }) {
                     </div>
                     <div className="flex items-center ">
                         <button
-                            // onClick={handleFilter}
+                            onClick={handleFilter}
                             className="bg-primary w-[100px]  h-[30px] text-sm text-base-100  rounded-lg hover:bg-success ml-14   "
                         >
                             Filter

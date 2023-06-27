@@ -13,7 +13,6 @@ export default function HomePage() {
 
     const [input, setInput] = useState({
         searchText: '',
-        location: '',
         isParttime: true,
     })
 
