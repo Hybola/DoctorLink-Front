@@ -31,7 +31,7 @@ export default function Addpost() {
     const hdlsumbit = async (e) => {
         e.preventDefault()
         const jobType = document.getElementById('jobType').value
-        const payload = { ...input, providerId: '1', jobType: jobType }
+        const payload = { ...input, provinceId: '1', jobType: jobType }
         console.log(payload)
         try {
             await axios.post('/post/createpost', payload)

@@ -154,3 +154,66 @@ export function StethoscopeIcon(props) {
         </svg>
     )
 }
+
+export function PenIcon() {
+    return (
+        <svg
+            height="1rem"
+            width="1rem"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M31.25 7.003v-.001c0-.346-.14-.659-.365-.886l-5-5a1.25 1.25 0 00-1.77 0L3.116 22.115a1.258 1.258 0 00-.316.532l-.002.009-2 7A1.252 1.252 0 002 31.25c.126 0 .248-.019.363-.053l-.009.002 6.788-2c.206-.063.383-.17.527-.311l21.211-21c.229-.226.37-.539.371-.886zM8.133 26.891l-4.307 1.268 1.287-4.504L20.004 8.764l3.219 3.187zM25 10.191l-3.228-3.196L25 3.767l3.229 3.228z" />
+        </svg>
+    )
+}
+
+export function MapIcon() {
+    return (
+        <svg
+            height="2rem"
+            width="2rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M18.5 21.5l-6-15m9-2l-19 4"
+                stroke="#2A4157"
+                strokeOpacity={0.24}
+            />
+            <path
+                d="M2.5 5.7c0-1.12 0-1.68.218-2.108a2 2 0 01.874-.874C4.02 2.5 4.58 2.5 5.7 2.5h12.6c1.12 0 1.68 0 2.108.218a2 2 0 01.874.874c.218.428.218.988.218 2.108v12.6c0 1.12 0 1.68-.218 2.108a2 2 0 01-.874.874c-.428.218-.988.218-2.108.218H5.7c-1.12 0-1.68 0-2.108-.218a2 2 0 01-.874-.874C2.5 19.98 2.5 19.42 2.5 18.3V5.7z"
+                stroke="#33363F"
+                strokeLinecap="round"
+            />
+            <path
+                d="M12.5 15.03c0 2.158-2.14 3.674-3.073 4.233a.827.827 0 01-.854 0C7.64 18.704 5.5 17.188 5.5 15.029 5.5 12.912 7.196 11.5 9 11.5c1.867 0 3.5 1.412 3.5 3.53z"
+                stroke="#222"
+            />
+            <circle cx={9} cy={15} r={1} fill="#222" />
+        </svg>
+    )
+}
+
+export function EditIcon() {
+    return (
+        <svg
+            height="1.5rem"
+            width="1.5rem"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g
+                fill="none"
+                stroke="#4f3fca"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+            >
+                <path d="M20 16v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h4" />
+                <path d="M12.5 15.8L22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8z" />
+            </g>
+        </svg>
+    )
+}
