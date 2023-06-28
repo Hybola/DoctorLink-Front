@@ -27,8 +27,25 @@ export const setFilterJob = createAsyncThunk(
     'filterjob',
     async (input, thunkApi) => {
         try {
-            console.log(input)
             return input
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const unsavejob = createAsyncThunk(
+    'unsavejob',
+    async (input, thunkApi) => {
+        try {
+            const res = await myjobService.unsavejob(input.id)
+            if (res > 0) {
+                const allJobAfterUnsave = input.allJob.filter(
+                    (job) => job.id != input.id
+                )
+                return allJobAfterUnsave
+            }
+            return input.allJob
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -50,6 +67,10 @@ const myjobSlice = createSlice({
             })
 
             .addCase(setFilterJob.fulfilled, (state, action) => {
+                state.savedJob.filterJob = action.payload
+            })
+
+            .addCase(unsavejob.fulfilled, (state, action) => {
                 state.savedJob.filterJob = action.payload
             }),
 })

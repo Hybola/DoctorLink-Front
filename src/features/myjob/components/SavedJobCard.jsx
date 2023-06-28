@@ -1,6 +1,14 @@
 import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
 import { MenuIcon, Unsaved, Apply } from '../../../icons/index'
 export default function SavedJobCard({ job }) {
+
+    const handleUnsave = () => {
+        
+
+
+
+    }
+    
     return (
         <div
             className="w-full flex justify-between mb-2 border-b-[1px]"
@@ -43,7 +51,7 @@ export default function SavedJobCard({ job }) {
                     className="mt-1 z-[1] p-2  shadow-xl menu menu-sm dropdown-content bg-base-100  w-52   border-base-300 border-[1px] rounded-b-lg rounded-l-lg"
                 >
                     <li>
-                        <div>
+                        <div value={job.savedJobId}>
                             <div className="w-[30px]">
                                 <Unsaved />
                             </div>
@@ -51,7 +59,7 @@ export default function SavedJobCard({ job }) {
                         </div>
                     </li>
                     <li>
-                        <div>
+                        <div value={job.savedJobId}>
                             <div className="w-[30px]">
                                 <Apply />
                             </div>
