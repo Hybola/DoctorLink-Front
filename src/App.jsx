@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import Loading from './components/Loading'
 
 function App() {
+    console.log('first')
+    console.log('Second')
     return (
         <div>
             <Router />
