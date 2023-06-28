@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import HistoryRowMenu from './HistoryRowMenu'
 import HistoryModals from './HistoryModals'
+import { getLists } from './slice/history-slice'
 
 export default function HistoryForm(props) {
+    const input = { id: 1 }
+    const loading = useSelector((state) => state.history?.loading)
+    const allLists = useSelector((state) => state.history?.allLists)
+    const dispatch = useDispatch()
+
+    // const [allLists, setAllLists] = useState([])
+
+    useEffect(() => {
+        dispatch(getLists(input)).unwrap()
+    }, [])
+
+    console.log(loading)
+    console.log(allLists)
+
     const { arrHistory } = props
-    console.log('HistoryForm')
+
     let newDate = new Date()
     let day =
         newDate.getDate() < 10
@@ -97,8 +113,8 @@ export default function HistoryForm(props) {
 
     const filter = (objFilter) => {
         const arrayFP = arrHistory.filter((item) => {
-            if (objFilter.actionPage == 'full-time') {
-                if (item.jobType == 'full-time') {
+            if (objFilter.actionPage == 'FullTime') {
+                if (item.jobType == 'FullTime') {
                     return item
                 }
             }
@@ -110,19 +126,17 @@ export default function HistoryForm(props) {
         })
         const arrayActive = arrayFP.filter((item) => {
             if (objFilter.activeChk == 'checked') {
-                if (item.status == 'Active') {
+                if (item.status == 'active') {
                     return item
                 }
             } else {
-                if (item.status == 'Inactive') {
+                if (item.status == 'inactive') {
                     return item
                 }
             }
         })
 
         if (objFilter.sortBy == 'create_at') {
-            console.log('randerxxxx')
-
             if (objFilter.sortPostChk == 'checked') {
                 let sortable = []
                 let x = []
@@ -135,9 +149,8 @@ export default function HistoryForm(props) {
                 sortable.sort(function (a, b) {
                     return a[1] - b[1]
                 })
-                console.log(sortable)
+
                 sortable.map((item) => {
-                    console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -155,7 +168,7 @@ export default function HistoryForm(props) {
                 })
                 console.log(sortable)
                 sortable.map((item) => {
-                    console.log(item[0])
+                    // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -174,7 +187,7 @@ export default function HistoryForm(props) {
                 })
                 console.log(sortable)
                 sortable.map((item) => {
-                    console.log(item[0])
+                    // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -189,7 +202,7 @@ export default function HistoryForm(props) {
                 })
                 console.log(sortable)
                 sortable.map((item) => {
-                    console.log(item[0])
+                    // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -199,7 +212,7 @@ export default function HistoryForm(props) {
 
     useEffect(() => {
         filter(objFilter)
-        console.log(objFilter)
+        // console.log(objFilter)
     }, [activeChk, sortPostChk, actionPage, sortJobChk, sortBy])
     return (
         <>
