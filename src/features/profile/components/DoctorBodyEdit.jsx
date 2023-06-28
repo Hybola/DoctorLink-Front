@@ -19,6 +19,7 @@ export default function DoctorBodyEdit() {
         const input = { role: myRole, payload: profile }
         dispatch(editProfile(input)).unwrap()
     }
+
     return (
         <dialog id="DoctorBodyEdit" className="modal">
             <form method="dialog" className="modal-box bg-base-100">
@@ -45,18 +46,6 @@ export default function DoctorBodyEdit() {
                         onChange={handleOnchange}
                     ></textarea>
                 </div>
-                <InputBar
-                    label="Mobile :"
-                    name="mobile"
-                    value={profile?.mobile}
-                    onChange={handleOnchange}
-                />
-                <InputBar
-                    label="LINE ID :"
-                    name="lineId"
-                    value={profile?.lineId}
-                    onChange={handleOnchange}
-                />
 
                 <div className="modal-action gap-2">
                     <button className="btn w-[80px] hover:bg-warning">

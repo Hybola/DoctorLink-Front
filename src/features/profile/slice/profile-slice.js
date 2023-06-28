@@ -71,6 +71,10 @@ const profileSlice = createSlice({
     initialState,
     extraReducers: (builder) =>
         builder
+            .addCase(getProfile.pending, (state, action) => {
+                state.profile = {}
+            })
+
             .addCase(getProfile.fulfilled, (state, action) => {
                 state.profile = action.payload
             })
@@ -90,6 +94,10 @@ const profileSlice = createSlice({
 
             .addCase(editProfile.fulfilled, (state, action) => {
                 state.profile = { ...state.profile, ...action.payload }
+            })
+
+            .addCase(editProfile.pending, (state, action) => {
+                state.profile = {}
             }),
 })
 export default profileSlice.reducer

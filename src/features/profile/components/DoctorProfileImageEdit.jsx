@@ -9,6 +9,14 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
 
     const dispatch = useDispatch()
 
+    const classUpload = file
+        ? 'btn btn-success  w-[150px] font-bold  text-white '
+        : 'btn  w-[150px] font-bold   btn-disabled'
+
+    const classSelect = loading
+        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white  btn-disabled'
+        : 'btn w-[180px]  bg-primary  p-2 rounded-lg flex justify-center items-center hover:text-white hover:bg-success'
+
     const updateProfileImage = async (input) => {
         const formData = new FormData()
         formData.append('profileImage', input)
@@ -26,7 +34,7 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
                     }
                 }}
             />
-            <form method="dialog" className="modal-box bg-base-100">
+            <form method="dialog" className="modal-box  ml-[250px] bg-base-100">
                 <button
                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                     onClick={() => {
@@ -57,17 +65,20 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
                     </div>
                     <div className="w-full flex justify-around items-center mt-6">
                         <div
-                            className="btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white"
+                            className={classSelect}
                             onClick={() => inputEl.current.click()}
                         >
                             Select Image
                         </div>
                         <div className="modal-action gap-2 mt-0">
                             {loading ? (
-                                <div> Image is uploading !!</div>
+                                <button className="btn">
+                                    <span className="loading loading-spinner"></span>
+                                    Image is uploading
+                                </button>
                             ) : (
                                 <button
-                                    className="btn btn-primary w-[100px] font-bold  hover:bg-success text-white"
+                                    className={classUpload}
                                     onClick={(e) => {
                                         updateProfileImage(file)
                                         e.preventDefault()

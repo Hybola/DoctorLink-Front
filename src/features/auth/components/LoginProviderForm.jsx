@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
@@ -76,11 +75,8 @@ export default function LoginProviderForm() {
                     <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
                         Log in
                     </button>
-                    <p className="text-center text-xl">or</p>
-                    {/* <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold"> */}
-                    {/* Continue with Google */}
+                    <p className="text-center text-xl">OR</p>
                     <ProviderGoogleLoginForm />
-                    {/* </button> */}
                 </div>
             </div>
         </form>

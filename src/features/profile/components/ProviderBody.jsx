@@ -1,7 +1,13 @@
+import { useState } from 'react'
 import ProviderBodyEdit from './ProviderBodyEdit'
+import { MapIcon } from '../../../icons'
 
 export default function ProviderBody({ profile, canEdit }) {
-    const handleEdit = () => window.ProviderBodyEdit.showModal()
+    const [editMode, setEditMode] = useState(false)
+    const handleEdit = () => {
+        setEditMode(true)
+        window.ProviderBodyEdit.showModal()
+    }
 
     return (
         <div className="flex flex-col p-[20px] mx-[16px]  shadow-lg border-2 rounded-lg gap-4">
@@ -17,7 +23,7 @@ export default function ProviderBody({ profile, canEdit }) {
                         >
                             Edit
                         </button>
-                        <ProviderBodyEdit />
+                        {editMode ? <ProviderBodyEdit /> : null}
                     </div>
                 ) : null}
             </div>
@@ -25,21 +31,25 @@ export default function ProviderBody({ profile, canEdit }) {
                 {profile?.description}
             </div>
             <div className="w-full   text-xl flex gap-2">
-                <div>Location: </div>
+                <div>
+                    <div>Location: </div>
+                </div>
                 <div className="flex flex-col text-base mt-1">
                     <div>{profile?.address}</div>
                     <div>{profile?.province}</div>
-                    <a href={profile?.googleMap}> [ Google Map ]</a>
+                    <a href={profile?.googleMap}>
+                        <MapIcon />
+                    </a>
                 </div>
             </div>
 
             <div className="w-full flex flex-col">
                 <div className="flex gap-1 text-xl">
-                    <span>Phone:</span>
+                    <span>Telephone:</span>
                     <span className="text-base mt-1">{profile?.mobile}</span>
                 </div>
                 <div className="flex gap-1 text-xl">
-                    <span>Lind-Id:</span>
+                    <span>Line ID:</span>
                     <span className="text-base mt-1">{profile?.lineId}</span>
                 </div>
             </div>
