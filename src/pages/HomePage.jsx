@@ -30,31 +30,42 @@ export default function HomePage() {
     }, [])
 
     return (
-        <div className="flex flex-col w-full">
-            <div>
-                <SearchBar input={input} setInput={setInput} />
+        <div>
+            <div className='text-center'>
+                <h1 className="font-semibold text-4xl">
+                    Find The
+                    <span className="text-primary"> Right Job</span>
+                    <span> You Deserve</span>
+                </h1>
+                <p>Find Jobs, Employment & Career Opportunities</p>
             </div>
 
-            <div>
-                {/* เงื่อนไข useState */}
-                {input.isParttime ? (
-                    <SearchPartTime
-                        handleJobType={handleJobType}
-                        isParttime={input.isParttime}
-                    />
-                ) : (
-                    <SearchFullTime
-                        handleJobType={handleJobType}
-                        isParttime={input.isParttime}
-                    />
-                )}
-            </div>
+            <div className="flex flex-col w-full">
+                <div>
+                    <SearchBar input={input} setInput={setInput} />
+                </div>
 
-            <div className="flex gap-2">
-                <PageLeft />
-                <PageRight />
+                <div>
+                    {/* เงื่อนไข useState */}
+                    {input.isParttime ? (
+                        <SearchPartTime
+                            handleJobType={handleJobType}
+                            isParttime={input.isParttime}
+                        />
+                    ) : (
+                        <SearchFullTime
+                            handleJobType={handleJobType}
+                            isParttime={input.isParttime}
+                        />
+                    )}
+                </div>
+
+                <div className="flex gap-2">
+                    <PageLeft />
+                    <PageRight />
+                </div>
+                <StartChatButton />
             </div>
-            <StartChatButton />
         </div>
     )
 }

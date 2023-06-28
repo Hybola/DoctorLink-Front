@@ -303,7 +303,7 @@ export default function History() {
         })
 
         if (objFilter.sortBy == 'create_at') {
-            console.log('randerxxxx')
+            // console.log('randerxxxx')
             // if (objFilter.sortPostChk == 'checked') {
             //     const x = arrayActive.sort((a, b) => {
             //         return (
