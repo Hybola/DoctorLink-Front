@@ -1,9 +1,11 @@
+import StartChatButton from '../features/chat/components/StartChatButton'
 import Header from '../features/homepage/components/Header'
 import PageLeft from '../features/homepage/components/PageLeft'
 import SearchBar from '../features/homepage/components/SearchBar'
 import SearchFullTime from '../features/homepage/components/SearchFullTime'
 import SearchPartTime from '../features/homepage/components/SearchPartTime'
 import { useState } from 'react'
+
 
 export default function HomePage() {
     const [input, setInput] = useState({
@@ -19,6 +21,7 @@ export default function HomePage() {
             {input.isParttime ? <SearchPartTime /> : <SearchFullTime />}
 
             <PageLeft />
+            <StartChatButton/>
         </div>
     )
 }

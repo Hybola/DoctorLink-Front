@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { socket } from '../../config/socket-config'
-import ChatBox from '../chat/components/ChatBox'
+import ChatBox from './components/ChatBox'
 
-export default function providerChat() {
+export default function ProviderChat() {
     const providerId = useSelector((state) => state.auth.user.id)
 
-    socket.connect()
     useEffect(() => {
         socket.on('acceptChat', (data) => {
             data.doctorId

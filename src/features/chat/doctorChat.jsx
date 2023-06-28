@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { socket } from '../../config/socket-config'
-import ChatBox from '../chat/components/ChatBox'
+import ChatBox from './components/ChatBox'
 import { useSelector } from 'react-redux'
 
-export default function doctorChat() {
+export default function DoctorChat() {
     const doctorId = useSelector((state) => state.auth.user.id)
     const providerId = 1
 
     useEffect(() => {
-        socket.emit('startChat', { role: 'doctor', doctorId, providerId })
+        socket.emit('startChat', { doctorId, providerId })
+
         return () => {}
     }, [])
     return <div>doctorChat</div>
