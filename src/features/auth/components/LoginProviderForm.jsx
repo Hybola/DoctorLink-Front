@@ -57,7 +57,7 @@ export default function LoginProviderForm() {
                     <InputErrorMessage message={error.email} />
                 </div>
                 <div>
-                <span>Password  </span>
+                    <span>Password </span>
                     <span className="w-fit font-semibold text-xs">
                         (Forgot password?)
                     </span>
@@ -76,7 +76,7 @@ export default function LoginProviderForm() {
                         Log in
                     </button>
                     <p className="text-center text-xl">OR</p>
-                        <ProviderGoogleLoginForm />
+                    <ProviderGoogleLoginForm />
                 </div>
             </div>
         </form>

@@ -1,5 +1,9 @@
+import { useSelector } from 'react-redux'
 import Router from './routes/Router'
 import { ToastContainer } from 'react-toastify'
+import socket from './config/socket-config'
+import { useEffect } from 'react'
+import Loading from './components/Loading'
 
 function App() {
     return (

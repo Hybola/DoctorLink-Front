@@ -1,3 +1,4 @@
+import StartChatButton from '../features/chat/components/StartChatButton'
 import PageLeft from '../features/homepage/components/PageLeft'
 import PageRight from '../features/homepage/components/PageRight'
 import SearchBar from '../features/homepage/components/SearchBar'
@@ -53,6 +54,7 @@ export default function HomePage() {
                 <PageLeft />
                 <PageRight />
             </div>
+            <StartChatButton />
         </div>
     )
 }
