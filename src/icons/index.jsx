@@ -26,11 +26,11 @@ export function AddPostIcon() {
             className="icon glyph"
             fill="#fff"
             stroke="#fff"
-          >
+        >
             <path d="M20.71 3.29a2.91 2.91 0 00-2.2-.84 3.25 3.25 0 00-2.17 1l-6.88 6.84s0 0 0 0a.62.62 0 00-.11.17 1 1 0 00-.1.18h0L8 14.72A1 1 0 009 16a.9.9 0 00.28 0l4-1.17h0l.18-.1a.62.62 0 00.17-.11h0l6.87-6.88a3.25 3.25 0 001-2.17 2.91 2.91 0 00-.79-2.28z" />
             <path d="M20 22H4a2 2 0 01-2-2V4a2 2 0 012-2h8a1 1 0 010 2H4v16h16v-8a1 1 0 012 0v8a2 2 0 01-2 2z" />
-          </svg>
-          )
+        </svg>
+    )
 }
 
 export function HistoryIcon() {
@@ -213,6 +213,23 @@ export function EditIcon() {
             >
                 <path d="M20 16v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h4" />
                 <path d="M12.5 15.8L22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8z" />
+            </g>
+        </svg>
+    )
+}
+
+export function LoaderIcon({ className = null }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            height="4rem"
+            width="4rem"
+            fill="#000"
+            className={className}
+        >
+            <g>
+                <path d="M10,1V3a7,7,0,1,1-7,7H1a9,9,0,1,0,9-9Z" />
             </g>
         </svg>
     )

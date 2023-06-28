@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 export default function PageLeft() {
     const joblist = useSelector((state) => state.home?.allJobPost)
 
-    const job = joblist.map((j) => <Jobcard jobpost={j} />)
+    // const job = joblist.map((j) => <Jobcard jobpost={j} />)
 
     return (
         <div className="h-[500px] w-[430px] flex justify-center border  rounded-xl shadow-xl pt-1 ml-5">
@@ -35,7 +35,7 @@ export default function PageLeft() {
 
                 <div className="flex flex-col items-center gap-3  w-full ">
                     {/* ส่วนของการ์ดงานด้านซ้าย */}
-                    {job}
+                    {/* {job} */}
                 </div>
             </div>
         </div>
