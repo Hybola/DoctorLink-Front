@@ -1,6 +1,14 @@
-import React from 'react'
+import ChatPage from '../../../pages/ChatPage'
 
 export default function StartChatButton() {
+    const formWrapper = document.querySelector('.formbold-form-wrapper')
+    const crossIcon = document.querySelector('.cross-icon')
+    const chatIcon = document.querySelector('.chat-icon')
+    function chatboxToogleHandler() {
+        formWrapper.classList.toggle('hidden')
+        crossIcon.classList.toggle('hidden')
+        chatIcon.classList.toggle('hidden')
+    }
     return (
         <>
             {/* component */}
@@ -9,12 +17,12 @@ export default function StartChatButton() {
                 {/* Learn More: https://formbold.com */}
                 <div className="w-full">
                     <div className="formbold-form-wrapper mx-auto hidden w-full max-w-[550px] rounded-lg border border-[#e0e0e0] bg-white">
-                        <div className="flex items-center justify-between rounded-t-lg bg-[#6A64F1] py-4 px-9">
+                        <div className="flex items-center justify-between rounded-t-lg bg-primary py-4 px-9">
                             <h3 className="text-xl font-bold text-white">
                                 Let's chat? - Online
                             </h3>
                             <button
-                                onclick="chatboxToogleHandler()"
+                                onClick={chatboxToogleHandler}
                                 className="text-white"
                             >
                                 <svg
@@ -36,68 +44,12 @@ export default function StartChatButton() {
                                 </svg>
                             </button>
                         </div>
-                        <form
-                            action="https://formbold.com/s/FORM_ID"
-                            method="POST"
-                            className="py-6 px-9"
-                        >
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="name"
-                                    className="mb-3 block text-base font-medium text-[#07074D]"
-                                >
-                                    Your Name
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    placeholder="ENter your name"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                />
-                            </div>
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="email"
-                                    className="mb-3 block text-base font-medium text-[#07074D]"
-                                >
-                                    Email Address
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    placeholder="example@domain.com"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                />
-                            </div>
-                            <div className="mb-5">
-                                <label
-                                    htmlFor="message"
-                                    className="mb-3 block text-base font-medium text-[#07074D]"
-                                >
-                                    Message
-                                </label>
-                                <textarea
-                                    rows={4}
-                                    name="message"
-                                    id="message"
-                                    placeholder="Explain your queries"
-                                    className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    defaultValue={''}
-                                />
-                            </div>
-                            <div>
-                                <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                                    Start Chat
-                                </button>
-                            </div>
-                        </form>
+                        <ChatPage />
                     </div>
                     <div className="mx-auto mt-12 flex max-w-[550px] items-center justify-end space-x-5">
                         <button
-                            className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-[#6A64F1] text-white"
-                            onclick="chatboxToogleHandler()"
+                            className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-primary text-white"
+                            onClick={chatboxToogleHandler}
                         >
                             <span className="cross-icon hidden">
                                 <svg

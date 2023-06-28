@@ -15,7 +15,7 @@ export default function ChatBox(props) {
                                 alt="username"
                             />
                             <span className="block ml-2 font-bold text-gray-600">
-                                {username}
+                                Provider Id: {username}
                             </span>
                             <span
                                 className={
