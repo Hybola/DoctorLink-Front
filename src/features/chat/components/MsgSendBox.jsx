@@ -1,16 +1,10 @@
 import { useState } from 'react'
-import socket from '../../../config/socket-config'
 
 export default function MsgSendBox(props) {
-    const { room, username } = props
+    const { hdlSubmit } = props
     const [input, setInput] = useState('')
 
-    const hdlSubmit = (e) => {
-        e.preventDefault()
-        if (!input.trim()) return setInput('')
-        socket.emit('sendMessage', { username, msg: input, room })
-        setInput('')
-    }
+   
     return (
         <form
             onSubmit={hdlSubmit}
