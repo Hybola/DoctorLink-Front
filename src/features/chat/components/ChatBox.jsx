@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import MsgBody from './MsgBody'
 import MsgSendBox from './MsgSendBox'
+import socket from '../../../config/socket-config'
 
 export default function ChatBox(props) {
     const { username, allMsg, socketId, room } = props
