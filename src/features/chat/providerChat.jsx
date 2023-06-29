@@ -6,7 +6,7 @@ import MsgSendBox from './components/MsgSendBox'
 
 export default function ProviderChat() {
     const ref = useRef()
-    const providerId = useSelector((state) => state.auth.user.id)
+    const providerId = useSelector((state) => state.auth.user?.id)
 
     const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
 

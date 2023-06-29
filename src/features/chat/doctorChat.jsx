@@ -88,8 +88,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                                     el.from == 'doctor'
                                                 }
                                                 isMe={
-                                                    el.from == 'provider' ||
-                                                    el.to == 'provider'
+                                                    el.from == 'doctor'
                                                 }
                                             />
                                         ))}
