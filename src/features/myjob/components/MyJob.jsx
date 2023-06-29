@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getSavedJob } from '../slice/myjob-slice'
+import { getDocotorJob } from '../slice/myjob-slice'
 import NavBar from './NavBar'
 import SavedJob from './Savedjob'
+import InterestedJob from './InterestedJob'
 
 export default function MyJob() {
     const userId = useSelector((state) => state.auth.user?.id)
@@ -11,15 +12,16 @@ export default function MyJob() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const currentSavedJob = async (id) => {
-            await dispatch(getSavedJob(id)).unwrap()
+        const currentDoctorJob = async (id) => {
+            await dispatch(getDocotorJob(id)).unwrap()
         }
-        currentSavedJob(userId)
+        currentDoctorJob(userId)
     }, [])
     return (
         <div className=" bg-[#F5FBFC] flex justify-center w-fit gap-8 mt-4">
             <NavBar myJob={myJob} setMyJob={setMyJob} />
             {myJob == 1 ? <SavedJob /> : null}
+            {myJob == 2 ? <InterestedJob /> : null}
         </div>
     )
 }

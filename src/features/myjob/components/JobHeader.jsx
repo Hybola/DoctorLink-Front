@@ -1,16 +1,21 @@
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setFilterJob } from '../slice/myjob-slice'
+import { setFilterSavedJob, setFilterInterestedJob } from '../slice/myjob-slice'
 import { compareDateAsc } from '../../../utils/dateTime'
 
-export default function SavedJobHeader() {
-    const allJob = useSelector((state) => state.myjob?.savedJob.allJob)
+export default function JobHeader({ myJob }) {
+    const savedJob = useSelector((state) => state.myjob?.savedJob.allJob)
+    const interestJob = useSelector(
+        (state) => state.myjob?.interestedJob?.allJob
+    )
+    const allJob = myJob == 1 ? savedJob : interestJob
     const [filterCondition, setFilterCondition] = useState({
         jobType: { parttime: true, fulltime: true },
         sortBy: 'workdate',
         titletext: '',
     })
+
     const dispatch = useDispatch()
 
     const handdleOnchange = (e) => {
@@ -39,7 +44,14 @@ export default function SavedJobHeader() {
             const sortedResultByWorkingDate = result.sort((job1, job2) => {
                 return compareDateAsc(job1.startDate, job2.startDate)
             })
-            dispatch(setFilterJob(sortedResultByWorkingDate)).unwrap()
+            if (myJob == 1) {
+                dispatch(setFilterSavedJob(sortedResultByWorkingDate)).unwrap()
+            }
+            if (myJob == 2) {
+                dispatch(
+                    setFilterInterestedJob(sortedResultByWorkingDate)
+                ).unwrap()
+            }
         } else {
             const sortedResulByProviderName = result.sort((job1, job2) => {
                 const provider1 = job1.providerName.toLocaleLowerCase()
@@ -47,8 +59,14 @@ export default function SavedJobHeader() {
                 if (provider1 < provider2) return -1
                 if (provider1 > provider2) return 1
             })
-
-            dispatch(setFilterJob(sortedResulByProviderName)).unwrap()
+            if (myJob == 1) {
+                dispatch(setFilterSavedJob(sortedResulByProviderName)).unwrap()
+            }
+            if (myJob == 2) {
+                dispatch(
+                    setFilterInterestedJob(sortedResulByProviderName)
+                ).unwrap()
+            }
         }
     }, [filterCondition])
 

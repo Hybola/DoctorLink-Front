@@ -1,18 +1,15 @@
 import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
 import { MenuIcon, Unsaved, Apply } from '../../../icons/index'
-export default function SavedJobCard({ job }) {
-
-    const handleUnsave = () => {
-        
-
-
-
-    }
-    
+export default function SavedJobCard({
+    job,
+    type,
+    handleClick1,
+    handleClick2,
+}) {
     return (
         <div
             className="w-full flex justify-between mb-2 border-b-[1px]"
-            id={job.savedJobId}
+            id={job.doctorJobId}
         >
             <div className="w-[500px] flex gap-2 min-h-[60px]">
                 <div className="w-[60px] h-[60px] bg-slate-600">
@@ -51,21 +48,39 @@ export default function SavedJobCard({ job }) {
                     className="mt-1 z-[1] p-2  shadow-xl menu menu-sm dropdown-content bg-base-100  w-52   border-base-300 border-[1px] rounded-b-lg rounded-l-lg"
                 >
                     <li>
-                        <div value={job.savedJobId}>
-                            <div className="w-[30px]">
+                        <div>
+                            <div
+                                className="w-[30px]"
+                                id={job.doctorJobId}
+                                onClick={handleClick1}
+                            >
                                 <Unsaved />
                             </div>
-                            <div>Unsaved</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div value={job.savedJobId}>
-                            <div className="w-[30px]">
-                                <Apply />
+                            <div id={job.doctorJobId} onClick={handleClick1}>
+                                {type == 1 ? 'Unsaved' : 'UnInterested'}
                             </div>
-                            <div>Interested</div>
                         </div>
                     </li>
+
+                    {type == 1 ? (
+                        <li>
+                            <div>
+                                <div
+                                    className="w-[30px]"
+                                    id={job.doctorJobId}
+                                    onClick={handleClick2}
+                                >
+                                    <Apply />
+                                </div>
+                                <div
+                                    id={job.doctorJobId}
+                                    onClick={handleClick2}
+                                >
+                                    Interested
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
                 </ul>
             </div>
         </div>

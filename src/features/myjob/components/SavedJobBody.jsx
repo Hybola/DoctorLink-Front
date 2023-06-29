@@ -1,12 +1,38 @@
 import SavedJobCard from './SavedJobCard'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { unSaveJob, uptoInterestJob } from '../slice/myjob-slice'
 
 export default function SavedJobBody() {
-    const filterJob = useSelector((state) => state.myjob?.savedJob.filterJob)
+    const allJob = useSelector((state) => state.myjob?.savedJob?.allJob)
+    const filterJob = useSelector((state) => state.myjob?.savedJob?.filterJob)
+    const interestJob = useSelector(
+        (state) => state.myjob?.interestedJob?.allJob
+    )
+
+    const dispatch = useDispatch()
+
+    const handleUnsave = (e) => {
+        dispatch(unSaveJob({ id: e.target.id, allJob: allJob })).unwrap()
+    }
+
+    const handleinterestJob = (e) => {
+        dispatch(
+            uptoInterestJob({
+                id: e.target.id,
+                savedJob: allJob,
+                interestJob: interestJob,
+            })
+        ).unwrap()
+    }
 
     const jobList = filterJob.map((job) => (
-        <SavedJobCard job={job} key={job.savedJobId} />
+        <SavedJobCard
+            job={job}
+            key={job.doctorJobId}
+            type={1}
+            handleClick1={handleUnsave}
+            handleClick2={handleinterestJob}
+        />
     ))
 
     return (
