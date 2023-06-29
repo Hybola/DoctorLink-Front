@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { socket } from '../config/socket-config'
+import socket from '../config/socket-config'
 import ChatBox from '../features/chat/components/ChatBox'
 
 export default function ChatPage() {
@@ -16,21 +16,15 @@ export default function ChatPage() {
             setSocketId(socket.id)
             setIsConnected(true)
         }
-        function onDisconnect() {
-            setIsConnected(false)
-        }
-
         function onGetMessage(roomMsg) {
             console.log('getMessage', roomMsg)
             setAllMsg(roomMsg)
         }
         socket.on('connect', onConnect)
-        socket.on('disconnect', onDisconnect)
         socket.on('getMessage', onGetMessage)
 
         return () => {
             socket.off('connect')
-            socket.off('disconnect')
             socket.off('getMessage')
         }
     }, [])

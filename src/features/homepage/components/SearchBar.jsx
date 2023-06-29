@@ -1,74 +1,75 @@
-import React from "react";
+import { useDispatch } from 'react-redux'
+import { filterJob } from '../slice/home-slice'
+import { FilterIcon, SearchIcon } from '../../../icons'
 
 export default function SearchBar({ input, setInput }) {
-  const hdlChangeInput = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-  const handleSearch = (e) => {
-    console.log(input);
-  };
-  return (
-    <div className=" ">
-      {/* inputrow1#แถวการค้นหา */}
-      <div className="flex pl-10 py-10 gap-7 border shadow-lg bg-[#F5FBFC]">
-        <div className="flex justify-center">
-          <input
-            className="bg-base-100 rounded-lg text-xl p-2 h-[50px] w-[320px] text-center border border-primary shadow-lg "
-            placeholder="Find a Job"
-            name="searchText"
-            value={input.searchText}
-            onChange={hdlChangeInput}
-          />
-        </div>
+    const dispatch = useDispatch()
+    const hdlChangeInput = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+    const handleSearch = (e) => {
+        const location = document.getElementById('location').value
+        const payload = { searchText: input.searchText, location: location }
+        console.log(payload)
+        dispatch(filterJob(payload)).unwrap()
+    }
 
-        <div>
-          <input
-            className="bg-base-100 rounded-lg text-xl p-2 h-[50px] w-[200px] text-center border border-primary shadow-lg"
-            placeholder="Location"
-            name="location"
-            value={input.location}
-            onChange={hdlChangeInput}
-          />
-        </div>
-        {/* radio */}
-        <div className="flex w-[300px] justify-between items-center min-w-[300px]">
-          <div
-            className="form-control "
-            onClick={(e) => {
-              const isParttime = input.isParttime;
-              setInput({ ...input, isParttime: !isParttime });
-            }}
-          >
-            <label className="label cursor-pointer gap-2">
-              <span className="label-text">Part-Time</span>
+    return (
+        <div className="flex w-full justify-center text-success">
+            {/* inputrow1#แถวการค้นหา */}
+            <div className=" flex justify-center items-center w-fit gap-3 shadow-lg p-5 rounded-xl">
+                <div className="flex justify-center items-center">
+                    <input
+                        className="text-md pl-4 h-[40px] w-[250px] rounded-lg border border-primary"
+                        placeholder="Keyword"
+                        name="searchText"
+                        value={input.searchText}
+                        onChange={hdlChangeInput}
+                    />
+                </div>
+                <div>
+                    <select
+                        name="location"
+                        id="location"
+                        className="text-md pl-2 h-[40px] w-[150px] rounded-lg border border-primary"
+                    >
+                        <option className="text-gray-400" disabled selected>
+                            Select location
+                        </option>
+                        <option>Ayutthaya</option>
+                        <option>Bangkok</option>
+                        <option>Chachoengsao</option>
+                        <option>Chiangmai</option>
+                        <option>Chonburi</option>
+                        <option>Khonkaen</option>
+                        <option>Pathumtani</option>
+                        <option>Phuket</option>
+                        <option>Rayong</option>
+                        <option>Samutsakhon</option>
+                    </select>
+                </div>
 
-              <input
-                type="radio"
-                name="radio-4"
-                className="radio radio-primary"
-                checked={input.isParttime}
-              />
-              <input
-                type="radio"
-                name="radio-4"
-                className="radio radio-primary"
-                checked={!input.isParttime}
-              />
+                {/* <div>
+                    <select
+                        name="fullOrPart"
+                        id="fullOrPart"
+                        className="text-md pl-2 h-[40px] w-[100px] rounded-lg border border-primary"
+                    >
+                        <option>Part-time</option>
+                        <option>Full-time</option>
+                    </select>
+                </div> */}
 
-              <span className="label-text">Full-Time</span>
-            </label>
-          </div>
+                {/* จบก้อน searchBar*/}
+                <div className="flex justify-end w-[150px] items-center ">
+                    <button
+                        onClick={handleSearch}
+                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[120px] h-[40px]"
+                    >
+                        <SearchIcon /> Search
+                    </button>
+                </div>
+            </div>
         </div>
-        {/* จบก้อน swap */}
-        <div className="flex justify-end w-[300px]">
-          <button
-            onClick={handleSearch}
-            class="bg-primary hover:bg-success text-base-100 text-xl py-2 px-4  border-neutral rounded-lg shadow-lg w-[150px]"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    )
 }

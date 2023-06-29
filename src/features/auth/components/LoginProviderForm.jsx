@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 import LoginInput from './LoginInput'
 import InputErrorMessage from './InputErrorMessage'
@@ -42,8 +41,8 @@ export default function LoginProviderForm() {
 
     return (
         <form onSubmit={handleSubmitForm}>
-            <div className="flex flex-col gap-4 border shadow-lg rounded-lg p-10">
-                <p className="text-center text-2xl font-semibold pb-4 text-accent">
+            <div className="flex flex-col gap-4 border shadow-lg rounded-lg p-10 text-success">
+                <p className="text-center text-2xl font-semibold pb-4 ">
                     Provider Login
                 </p>
                 <div>
@@ -58,7 +57,7 @@ export default function LoginProviderForm() {
                     <InputErrorMessage message={error.email} />
                 </div>
                 <div>
-                <span>Password  </span>
+                    <span>Password </span>
                     <span className="w-fit font-semibold text-xs">
                         (Forgot password?)
                     </span>
@@ -72,15 +71,12 @@ export default function LoginProviderForm() {
                     <InputErrorMessage message={error.password} />
                 </div>
 
-                <div className="flex flex-col gap-4">
-                    <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold">
+                <div className="flex flex-col gap-4 pt-4">
+                    <button className="bg-success hover:bg-primary text-white w-full leading-[3rem] rounded-md text-xl font-bold">
                         Log in
                     </button>
-                    <p className="text-center text-xl">or</p>
-                    {/* <button className="bg-primary hover:bg-success text-white w-full leading-[3rem] rounded-md text-xl font-bold"> */}
-                        {/* Continue with Google */}
-                        <ProviderGoogleLoginForm />
-                    {/* </button> */}
+                    <p className="text-center text-xl">OR</p>
+                    <ProviderGoogleLoginForm />
                 </div>
             </div>
         </form>

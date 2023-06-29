@@ -11,7 +11,7 @@ export default {
             // "cupcake",
             {
                 mytheme: {
-                    primary: '#35b8be',
+                    primary: '#3C65F5',
 
                     secondary: '#EBEBEB',
 
@@ -23,7 +23,7 @@ export default {
 
                     info: '#639dd4',
 
-                    success: '#0d6d4f',
+                    success: '#05264E',
 
                     warning: '#FFA879',
 
