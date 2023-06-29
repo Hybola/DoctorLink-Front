@@ -8,7 +8,9 @@ export const unSaveJob = (doctorJobId) =>
 export const uptoInterestJob = (doctorJobId) =>
     thisAxios.patch(`/myjob/uptointerestedjob/${doctorJobId}`)
 
-export const getInterestJob = () => thisAxios.get(`/myjob/interestedjob/`)
+export const getInterestedJob = () => thisAxios.get(`/myjob/interestedjob/`)
 
 export const unInterestJob = (doctorJobId) =>
     thisAxios.patch(`/myjob/uninterestedjob/${doctorJobId}`)
+
+export const getConfirmedJob = () => thisAxios.get(`/myjob/comfirmedjob`)

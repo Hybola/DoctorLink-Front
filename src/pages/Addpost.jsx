@@ -3,6 +3,7 @@ import FullTime from '../features/addpost/component/FullTime'
 import PartTime from '../features/addpost/component/PartTime'
 import axios from '../api/thisAxios'
 import Preview from '../features/addpost/component/Preview'
+import { useNavigate } from 'react-router-dom'
 
 const initial = {
     title: '',
@@ -25,6 +26,8 @@ export default function Addpost() {
     const [input, setInput] = useState(initial)
     const [page, setPage] = useState('FullTime')
 
+    const navigate = useNavigate()
+
     const hdlchange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
@@ -34,6 +37,7 @@ export default function Addpost() {
         const payload = { ...input, provinceId: '1', jobType: jobType }
         try {
             await axios.post('/post/createpost', payload)
+            navigate('/provider/history/') 
         } catch (error) {
             console.log(error)
         }

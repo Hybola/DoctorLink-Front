@@ -1,15 +1,20 @@
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setFilterSavedJob, setFilterInterestedJob } from '../slice/myjob-slice'
+import {
+    setFilterSavedJob,
+    setFilterInterestedJob,
+    setFilterConfirmedJob,
+} from '../slice/myjob-slice'
 import { compareDateAsc } from '../../../utils/dateTime'
 
 export default function JobHeader({ myJob }) {
-    const savedJob = useSelector((state) => state.myjob?.savedJob.allJob)
+    const savedJob = useSelector((state) => state.myjob?.savedJob?.allJob)
     const interestJob = useSelector(
         (state) => state.myjob?.interestedJob?.allJob
     )
-    const allJob = myJob == 1 ? savedJob : interestJob
+    const confirmJob = useSelector((state) => state.myjob?.confirmedJob?.allJob)
+    const allJob = myJob == 1 ? savedJob : myJob == 2 ? interestJob : confirmJob
     const [filterCondition, setFilterCondition] = useState({
         jobType: { parttime: true, fulltime: true },
         sortBy: 'workdate',
@@ -52,6 +57,11 @@ export default function JobHeader({ myJob }) {
                     setFilterInterestedJob(sortedResultByWorkingDate)
                 ).unwrap()
             }
+            if (myJob == 3) {
+                dispatch(
+                    setFilterConfirmedJob(sortedResultByWorkingDate)
+                ).unwrap()
+            }
         } else {
             const sortedResulByProviderName = result.sort((job1, job2) => {
                 const provider1 = job1.providerName.toLocaleLowerCase()
@@ -67,6 +77,11 @@ export default function JobHeader({ myJob }) {
                     setFilterInterestedJob(sortedResulByProviderName)
                 ).unwrap()
             }
+            if (myJob == 3) {
+                dispatch(
+                    setFilterConfirmedJob(sortedResulByProviderName)
+                ).unwrap()
+            }
         }
     }, [filterCondition])
 
@@ -74,7 +89,11 @@ export default function JobHeader({ myJob }) {
         <div className=" flex flex-col max-w-[900px]  min-w-[600px] w-[700px]  bg-base-100  rounded-t-lg  shadow-sm h-fit p-[20px]">
             <div className="w-full flex flex-col">
                 <div className="w-full felx font-bold text-xl mb-2">
-                    Saved Job
+                    {myJob == 1
+                        ? 'Saved Jobs'
+                        : myJob == 2
+                        ? 'Interested Jobs'
+                        : 'Confirmed Jobs'}
                 </div>
                 <div className="w-full flex justify-between  ">
                     <div className=" flex flex-col items-start gap-2">

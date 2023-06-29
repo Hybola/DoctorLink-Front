@@ -307,3 +307,33 @@ export function Apply() {
         </svg>
     )
 }
+
+export function Reverse() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M19 7v6c0 1.103-.896 2-2 2H3v-3h13V8H5v2L1 6.5 5 3v2h12a2 2 0 012 2z" />
+        </svg>
+    )
+}
+
+export function ChatBTN() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g stroke="#323232" strokeWidth={2} strokeLinejoin="round">
+                <path d="M8 10h.01M12 10h.01M16 10h.01" strokeLinecap="round" />
+                <path d="M21 13V7c0-1.886 0-2.828-.586-3.414C19.828 3 18.886 3 17 3H7c-1.886 0-2.828 0-3.414.586C3 4.172 3 5.114 3 7v6c0 1.886 0 2.828.586 3.414C4.172 17 5.114 17 7 17h.5a.5.5 0 01.5.5v2.65c0 .354.401.558.688.35l4.408-3.206c.262-.191.579-.294.904-.294h3c1.886 0 2.828 0 3.414-.586C21 15.828 21 14.886 21 13z" />
+            </g>
+        </svg>
+    )
+}

@@ -1,4 +1,4 @@
-import SavedJobCard from './SavedJobCard'
+import JobCard from './JobCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { unSaveJob, uptoInterestJob } from '../slice/myjob-slice'
 
@@ -25,8 +25,10 @@ export default function SavedJobBody() {
         ).unwrap()
     }
 
+    
+
     const jobList = filterJob.map((job) => (
-        <SavedJobCard
+        <JobCard
             job={job}
             key={job.doctorJobId}
             type={1}

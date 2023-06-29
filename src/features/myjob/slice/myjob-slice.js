@@ -5,6 +5,7 @@ import { compareDateAsc } from '../../../utils/dateTime'
 const initialState = {
     savedJob: { allJob: [], filterJob: [] },
     interestedJob: { allJob: [], filterJob: [] },
+    confirmedJob: { allJob: [], filterJob: [] },
     loading: false,
 }
 
@@ -18,15 +19,26 @@ export const getDocotorJob = createAsyncThunk(
                     return compareDateAsc(job1.startDate, job2.startDate)
                 }
             )
-            const interestedJob = await myjobService.getInterestJob()
+
+            const interestedJob = await myjobService.getInterestedJob()
+
             const sortedInterestedJobByWorkingDate = interestedJob.data.sort(
                 (job1, job2) => {
                     return compareDateAsc(job1.startDate, job2.startDate)
                 }
             )
+            const confirmedJob = await myjobService.getConfirmedJob()
+
+            const sortedconfirmedJobByWorkingDate = confirmedJob.data.sort(
+                (job1, job2) => {
+                    return compareDateAsc(job1.startDate, job2.startDate)
+                }
+            )
+
             return {
                 savedJob: sortedSavedJobByWorkingDate,
                 interestedJob: sortedInterestedJobByWorkingDate,
+                confirmedJob: sortedconfirmedJobByWorkingDate,
             }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -47,6 +59,17 @@ export const setFilterSavedJob = createAsyncThunk(
 
 export const setFilterInterestedJob = createAsyncThunk(
     'filterInterestedjob',
+    async (input, thunkApi) => {
+        try {
+            return input
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const setFilterConfirmedJob = createAsyncThunk(
+    'filterConfirmedjob',
     async (input, thunkApi) => {
         try {
             return input
@@ -124,6 +147,7 @@ const myjobSlice = createSlice({
             .addCase(getDocotorJob.pending, (state, action) => {
                 state.savedJob = { allJob: [], filterJob: [] }
                 state.interestedJob = { allJob: [], filterJob: [] }
+                state.confirmedJob = { allJob: [], filterJob: [] }
             })
 
             .addCase(getDocotorJob.fulfilled, (state, action) => {
@@ -131,6 +155,8 @@ const myjobSlice = createSlice({
                 state.savedJob.filterJob = action.payload.savedJob
                 state.interestedJob.allJob = action.payload.interestedJob
                 state.interestedJob.filterJob = action.payload.interestedJob
+                state.confirmedJob.allJob = action.payload.confirmedJob
+                state.confirmedJob.filterJob = action.payload.confirmedJob
             })
 
             .addCase(setFilterSavedJob.fulfilled, (state, action) => {
@@ -139,6 +165,10 @@ const myjobSlice = createSlice({
 
             .addCase(setFilterInterestedJob.fulfilled, (state, action) => {
                 state.interestedJob.filterJob = action.payload
+            })
+
+            .addCase(setFilterConfirmedJob.fulfilled, (state, action) => {
+                state.confirmedJob.filterJob = action.payload
             })
 
             .addCase(unSaveJob.fulfilled, (state, action) => {

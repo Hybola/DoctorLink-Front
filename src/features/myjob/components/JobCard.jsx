@@ -1,10 +1,17 @@
 import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
-import { MenuIcon, Unsaved, Apply } from '../../../icons/index'
-export default function SavedJobCard({
+import {
+    MenuIcon,
+    Unsaved,
+    Apply,
+    Reverse,
+    ChatBTN,
+} from '../../../icons/index'
+export default function JobCard({
     job,
     type,
     handleClick1,
     handleClick2,
+    handleClick3,
 }) {
     return (
         <div
@@ -54,10 +61,18 @@ export default function SavedJobCard({
                                 id={job.doctorJobId}
                                 onClick={handleClick1}
                             >
-                                <Unsaved />
+                                {type == 1 ? (
+                                    <Unsaved />
+                                ) : type == 2 ? (
+                                    <Reverse />
+                                ) : null}
                             </div>
                             <div id={job.doctorJobId} onClick={handleClick1}>
-                                {type == 1 ? 'Unsaved' : 'UnInterested'}
+                                {type == 1
+                                    ? 'Unsaved'
+                                    : type == 2
+                                    ? 'UnInterested'
+                                    : null}
                             </div>
                         </div>
                     </li>
@@ -77,6 +92,22 @@ export default function SavedJobCard({
                                     onClick={handleClick2}
                                 >
                                     Interested
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
+                    {type == 2 || type == 3 ? (
+                        <li>
+                            <div>
+                                <div
+                                    className="w-[30px]"
+                                    id={job.providerId}
+                                    onClick={handleClick3}
+                                >
+                                    <ChatBTN />
+                                </div>
+                                <div id={job.providerId} onClick={handleClick3}>
+                                    Chat
                                 </div>
                             </div>
                         </li>
