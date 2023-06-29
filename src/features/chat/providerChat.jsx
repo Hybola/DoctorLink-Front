@@ -60,14 +60,7 @@ export default function ProviderChat() {
             <div className="text-sm text-purple-500 text-right">
                 My Socket Id : {socket.id}{' '}
             </div>
-
-            {/* <ChatBox
-                userName={providerId}
-                socketId={socket.id}
-                allMsg={allMsg}
-                room={room}
-            /> */}
-
+            {/* <ChatBox userName={providerId} socketId={socket.id} allMsg={allMsg} room={room}/> */}
             <div className="container mx-auto">
                 <div className="max-w-2xl border rounded">
                     <div>

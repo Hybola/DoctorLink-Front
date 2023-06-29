@@ -15,7 +15,6 @@ import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
-import ChatPage from '../pages/ChatPage'
 import ProviderChat from '../features/chat/providerChat'
 const router = createBrowserRouter([
     {
