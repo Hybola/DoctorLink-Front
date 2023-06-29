@@ -297,6 +297,26 @@ export function EditIcon() {
     )
 }
 
+export function MenuIcon() {
+    return (
+        <svg
+            height="1rem"
+            width="1rem"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-5 h-5 stroke-current"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+            ></path>
+        </svg>
+    )
+}
+
 export function LoaderIcon({ className = null }) {
     return (
         <svg
@@ -310,6 +330,25 @@ export function LoaderIcon({ className = null }) {
             <g>
                 <path d="M10,1V3a7,7,0,1,1-7,7H1a9,9,0,1,0,9-9Z" />
             </g>
+        </svg>
+    )
+}
+
+export function Unsaved() {
+    return (
+        <svg
+            height="1.5rem"
+            width="1.5rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M10.5 8.56l1.5 1.5m0 0l1.5 1.5m-1.5-1.5l1.5-1.5m-1.5 1.5l-1.5 1.5M8.25 5h7.5c.69 0 1.25.588 1.25 1.313V19l-5-3.5L7 19V6.312C7 5.588 7.56 5 8.25 5z"
+                stroke="#606062"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
     )
 }
@@ -335,6 +374,49 @@ export function SearchIcon() {
                     d="M5.5 11.146a6.144 6.144 0 1112.288-.002 6.144 6.144 0 01-12.288.002z"
                 />
                 <path d="M15.989 15.49l3.511 3.511" />
+            </g>
+        </svg>
+    )
+}
+
+export function Apply() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M0 16l12 4 4 12L32 0zm14.016 2.016l12-12L16 24z" />
+        </svg>
+    )
+}
+
+export function Reverse() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M19 7v6c0 1.103-.896 2-2 2H3v-3h13V8H5v2L1 6.5 5 3v2h12a2 2 0 012 2z" />
+        </svg>
+    )
+}
+
+export function ChatBTN() {
+    return (
+        <svg
+            height="1.2rem"
+            width="1.2rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g stroke="#323232" strokeWidth={2} strokeLinejoin="round">
+                <path d="M8 10h.01M12 10h.01M16 10h.01" strokeLinecap="round" />
+                <path d="M21 13V7c0-1.886 0-2.828-.586-3.414C19.828 3 18.886 3 17 3H7c-1.886 0-2.828 0-3.414.586C3 4.172 3 5.114 3 7v6c0 1.886 0 2.828.586 3.414C4.172 17 5.114 17 7 17h.5a.5.5 0 01.5.5v2.65c0 .354.401.558.688.35l4.408-3.206c.262-.191.579-.294.904-.294h3c1.886 0 2.828 0 3.414-.586C21 15.828 21 14.886 21 13z" />
             </g>
         </svg>
     )
