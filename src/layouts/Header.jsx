@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
-import Logo from '../asset/Logo6.png'
+import Logo from '../asset/Logo8.png'
 
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
@@ -23,7 +23,7 @@ export default function Header() {
     const dispatch = useDispatch()
 
     return (
-        <div className="flex justify-between px-8 bg-primary shadow-lg sticky top-0 z-10 h-[80px] text-white">
+        <div className="flex justify-between px-8 bg-success shadow-lg sticky top-0 z-10 h-[80px] text-white">
             <div className="py-2 flex justify-start self-center ">
                 <Link to="/">
                     <img src={Logo} className="h-12" />
@@ -66,7 +66,9 @@ export default function Header() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <img src={providerProfile} />
+                                                    <img
+                                                        src={providerProfile}
+                                                    />
                                                 </>
                                             )}
                                         </div>
@@ -113,10 +115,14 @@ export default function Header() {
                 ) : (
                     <>
                         <Link to="/doctor/login">
-                            <button>Doctor</button>
+                            <button className="hover:text-primary">
+                                Doctor
+                            </button>
                         </Link>
                         <Link to="/provider/login">
-                            <button>Provider</button>
+                            <button className="hover:text-primary">
+                                Provider
+                            </button>
                         </Link>
                     </>
                 )}
