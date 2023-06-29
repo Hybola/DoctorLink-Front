@@ -49,7 +49,7 @@ export default function SearchBar({ input, setInput }) {
                     </select>
                 </div>
 
-                <div>
+                {/* <div>
                     <select
                         name="fullOrPart"
                         id="fullOrPart"
@@ -58,7 +58,7 @@ export default function SearchBar({ input, setInput }) {
                         <option>Part-time</option>
                         <option>Full-time</option>
                     </select>
-                </div>
+                </div> */}
 
                 {/* จบก้อน searchBar*/}
                 <div className="flex justify-end w-[150px] items-center ">

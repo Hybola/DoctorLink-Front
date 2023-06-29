@@ -51,7 +51,7 @@ export default function HomePage() {
 
                 <div className="flex justify-center items-center w-full">
                     {/* เงื่อนไข useState */}
-                    {input.isParttime ? (
+                    {/* {input.isParttime ? (
                         <SearchPartTime
                             handleJobType={handleJobType}
                             isParttime={input.isParttime}
@@ -61,7 +61,7 @@ export default function HomePage() {
                             handleJobType={handleJobType}
                             isParttime={input.isParttime}
                         />
-                    )}
+                    )} */}
                 </div>
             </div>
 
