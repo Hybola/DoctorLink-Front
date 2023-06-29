@@ -8,7 +8,7 @@ export default function StartChatButton(prop) {
     const [openChat, setOpenChat] = useState(false)
     const handleClickChat = () => {
         setOpenChat = !openChat
-    }
+    } 
 
     const formWrapper = document.querySelector('.formbold-form-wrapper')
     const crossIcon = document.querySelector('.cross-icon')

@@ -1,4 +1,3 @@
-import StartChatButton from '../features/chat/components/StartChatButton'
 import PageLeft from '../features/homepage/components/PageLeft'
 import PageRight from '../features/homepage/components/PageRight'
 import SearchBar from '../features/homepage/components/SearchBar'
@@ -9,11 +8,27 @@ import { useState, useEffect } from 'react'
 import Toggle from '../features/homepage/components/Toggle'
 
 import { useDispatch } from 'react-redux'
-import { FilterIcon } from '../icons'
+import { FilterIcon, LetsChatIcon } from '../icons'
+import DoctorChat from '../features/chat/doctorChat'
 
 export default function HomePage() {
     const dispatch = useDispatch()
-
+    ////=========  code by Chee
+    const [open, setOpen] = useState(false) //toggle Open Modal DoctorChat
+    //// Mock data all providers for mapping
+    const [providers, setProviders] = useState([
+        { id: 1, name: 'John' },
+        { id: 2, name: 'Andy' },
+        { id: 3, name: 'Bob' },
+        { id: 4, name: 'James' },
+        { id: 5, name: 'Rachel' },
+    ])
+    //// state manage chosen chat provider from JobCard
+    const [chatUser, setChatUser] = useState({
+        id: 1,
+        name: 'Johny',
+    })
+    ////===================
     const [input, setInput] = useState({
         searchText: '',
         isParttime: true,
@@ -30,6 +45,17 @@ export default function HomePage() {
         }
         getAllJobPost()
     }, [])
+
+    ////=== code by Chee
+    const handleOpenChat = (user) => {
+        setOpen((prev) => !prev)
+        setChatUser(user)
+    }
+    const handleCloseChat = () => {
+        setOpen(false)
+        setChatUser({ id: null, name: '' })
+    }
+    ////===================
 
     return (
         <div>
@@ -68,9 +94,27 @@ export default function HomePage() {
             <div className="flex gap-2 pt-10">
                 <PageLeft />
                 <PageRight />
-            </div>
-            <div className="flex justify-end">
-                <StartChatButton />
+                {/* //// ==== code by Chee =====// */}
+
+                <div className="flex items-end">
+                    {providers.map((provider, i) => (
+                        <button
+                            key={i}
+                            class="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-primary text-white"
+                            onClick={() => {
+                                handleOpenChat(provider)
+                            }}
+                        >
+                            <LetsChatIcon />
+                        </button>
+                    ))}
+                </div>
+                {open && (
+                    <DoctorChat
+                        chatUser={chatUser}
+                        handleCloseChat={handleCloseChat}
+                    />
+                )}
             </div>
         </div>
     )
