@@ -56,45 +56,45 @@ export default function SearchPartTime({ handleJobType, isParttime }) {
     }
 
     return (
-        <div className="">
+        <div className="text-success flex justify-center w-fit rounded-xl shadow-md">
             {/* แถว2 เงินเดือน วันที่เริ่มงาน */}
-            <div className="flex justify-start gap-5 row-span-1 pb-5 ml-16 items-center mt-2">
+            <div className="flex justify-start items-center gap-3 w-fit p-3">
                 {/* จากวันที่ */}
-                <div className="flex gap-5 ">
-                    <div className="ml-10">
+                <div className="flex gap-3">
+                    <div>
                         <Toggle
                             handleJobType={handleJobType}
                             isParttime={isParttime}
                         />
                     </div>
-                    <div className="flex items-center font-normal">
+                    <div className="flex self-center font-normal">
                         Start Date
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex self-center">
                         <input
                             type="date"
                             name="startDate"
                             id="startDate"
-                            className="border border-lg border-primary rounded-lg h-[30px] hover:bg-secondary shadow-lg  px-4 font-normal"
+                            className="pl-2 h-[30px] w-[140px] rounded-lg border border-primary"
                         />
                     </div>
                 </div>
 
                 {/* ถึงวันที่เท่าไร */}
-                <div className="flex  gap-5">
-                    <div className="flex items-center text-base">To</div>
+                <div className="flex gap-3">
+                    <div className="flex self-center">To</div>
                     <input
                         type="date"
                         name="endDate"
                         id="endDate"
-                        className="border border-lg border-primary rounded-lg h-[30px] hover:bg-secondary shadow-lg  px-4 font-normal"
+                        className="pl-2 h-[30px] w-[140px] rounded-lg border border-primary"
                     />
                 </div>
                 {/* อัตราการจ้าง */}
                 <select
                     name="wage"
                     id="wage"
-                    className="select  max-w-xs border border-primary shadow-lg h-[30px] hover:bg-secondary w-[150px] min-h-[30px] max-h[30px] font-normal"
+                    className=" pl-2 h-[30px] w-[140px] rounded-lg border border-primary"
                 >
                     <option disabled selected>
                         Wage/Hour
@@ -105,10 +105,10 @@ export default function SearchPartTime({ handleJobType, isParttime }) {
                     <option>6000-10000</option>
                     <option>{'>10000'}</option>
                 </select>
-                <div className="flex items-center  ml-16   ">
+                <div className="flex pl-5">
                     <button
                         onClick={handleFilter}
-                        className="bg-primary w-[100px]  h-[30px] text-sm text-base-100  rounded-lg p-2 hover:bg-success "
+                        className="flex justify-center items-center bg-success hover:bg-primary text-base-100 text-center rounded-lg w-[80px] h-[30px]"
                     >
                         Filter
                     </button>

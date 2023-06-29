@@ -1,6 +1,6 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { filterJob } from '../slice/home-slice'
+import { FilterIcon, SearchIcon } from '../../../icons'
 
 export default function SearchBar({ input, setInput }) {
     const dispatch = useDispatch()
@@ -15,47 +15,58 @@ export default function SearchBar({ input, setInput }) {
     }
 
     return (
-        <div className=" ">
+        <div className="flex w-full justify-center text-success">
             {/* inputrow1#แถวการค้นหา */}
-            <div className="flex pl-10 py-10 gap-7 border shadow-md  bg-[#f5fbfc] h-[120px] justify-center">
-                <div className="flex justify-center items-center ">
+            <div className=" flex justify-center items-center w-fit gap-3 shadow-lg p-5 rounded-xl">
+                <div className="flex justify-center items-center">
                     <input
-                        className="bg-base-100 rounded-lg text-xl placeholder:pl-2 p-2 h-[50px] w-[320px]  border border-primary shadow-lg  "
-                        placeholder="Find a Job"
+                        className="text-md pl-4 h-[40px] w-[250px] rounded-lg border border-primary"
+                        placeholder="Keyword"
                         name="searchText"
                         value={input.searchText}
                         onChange={hdlChangeInput}
                     />
                 </div>
-                <div className="flex items-center">
+                <div>
                     <select
                         name="location"
                         id="location"
-                        className="bg-base-100 rounded-lg text-xl text-gray-400  p-2 h-[50px] w-[200px]  border border-primary shadow-lg "
+                        className="text-md pl-2 h-[40px] w-[150px] rounded-lg border border-primary"
                     >
-                        <option disabled selected>
+                        <option className="text-gray-400" disabled selected>
                             Select location
                         </option>
-                        <option className="text-black">Bangkok</option>
-                        <option className="text-black">Pathumtani</option>
-                        <option className="text-black">Chiangmai</option>
-                        <option className="text-black">Chonburi</option>
-                        <option className="text-black">Phuket</option>
-                        <option className="text-black">Rayong</option>
-                        <option className="text-black">Khonkaen</option>
-                        <option className="text-black">Chachoengsao</option>
-                        <option className="text-black">Samutsakhon</option>
-                        <option className="text-black">Ayutthaya</option>
+                        <option>Ayutthaya</option>
+                        <option>Bangkok</option>
+                        <option>Chachoengsao</option>
+                        <option>Chiangmai</option>
+                        <option>Chonburi</option>
+                        <option>Khonkaen</option>
+                        <option>Pathumtani</option>
+                        <option>Phuket</option>
+                        <option>Rayong</option>
+                        <option>Samutsakhon</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select
+                        name="fullOrPart"
+                        id="fullOrPart"
+                        className="text-md pl-2 h-[40px] w-[100px] rounded-lg border border-primary"
+                    >
+                        <option>Part-time</option>
+                        <option>Full-time</option>
                     </select>
                 </div>
 
                 {/* จบก้อน searchBar*/}
-                <div className="flex justify-end w-[300px] items-center ">
+                <div className="flex justify-end w-[150px] items-center ">
                     <button
                         onClick={handleSearch}
-                        class="bg-primary hover:bg-success text-base-100 text-xl py-2 px-4  border-neutral rounded-lg shadow-lg w-[150px] items-center"
+                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[120px] h-[40px]"
                     >
-                        Search
+                        <SearchIcon /> Search
                     </button>
                 </div>
             </div>
