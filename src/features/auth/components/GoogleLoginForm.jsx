@@ -25,7 +25,7 @@ export function DoctorGoogleLoginForm() {
             >
                 <GoogleLoginButton
                     style={{
-                        background: '#35b8be',
+                        background: '#05264E',
                         color: 'white',
                         borderRadius: '0.375rem',
                         fontSize: '1.25rem',
@@ -35,7 +35,7 @@ export function DoctorGoogleLoginForm() {
                         height: '48px',
                         margin: '0',
                     }}
-                    activeStyle={{ background: '#0d6d4f' }}
+                    activeStyle={{ background: '#3C65F5' }}
                     align="center"
                     text="Continue with Google"
                     iconSize="0"
@@ -66,7 +66,7 @@ export function ProviderGoogleLoginForm() {
             >
                 <GoogleLoginButton
                     style={{
-                        background: '#35b8be',
+                        background: '#05264E',
                         color: 'white',
                         borderRadius: '0.375rem',
                         fontSize: '1.25rem',
@@ -76,7 +76,7 @@ export function ProviderGoogleLoginForm() {
                         height: '48px',
                         margin: '0',
                     }}
-                    activeStyle={{ background: '#0d6d4f' }}
+                    activeStyle={{ background: '#3C65F5' }}
                     align="center"
                     text="Continue with Google"
                     iconSize="0"
