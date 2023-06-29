@@ -18,8 +18,7 @@ const initial = {
     annual: '',
     benefit: '',
     other: '',
-    startDateTime: '',
-    endDateTime: '',
+    endDate: '',
     wage: '',
 }
 export default function Addpost() {
@@ -29,6 +28,7 @@ export default function Addpost() {
     const navigate = useNavigate()
 
     const hdlchange = (e) => {
+        console.log(e.target.value)
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const hdlsumbit = async (e) => {
@@ -37,7 +37,7 @@ export default function Addpost() {
         const payload = { ...input, provinceId: '1', jobType: jobType }
         try {
             await axios.post('/post/createpost', payload)
-            navigate('/provider/history/') 
+            navigate('/provider/history/')
         } catch (error) {
             console.log(error)
         }
