@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function MsgSendBox(props) {
-    const {} = props
+    const {fn} = props
     const [input, setInput] = useState('')
     const hdlSubmit = (e) => {
         e.preventDefault()
@@ -12,7 +12,7 @@ export default function MsgSendBox(props) {
 
     return (
         <form
-            onSubmit={hdlSubmit}
+            onSubmit={(e)=>fn(e,input)}
             className="flex items-center justify-between w-full p-3 border-t border-gray-300"
         >
             <input

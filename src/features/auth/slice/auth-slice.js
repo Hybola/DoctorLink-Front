@@ -35,10 +35,8 @@ export const docLogin = createAsyncThunk(
             const res = await authService.doctorLogin(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
-            const test = {...resFetchMe.data, role: 'doctor'}
-            console.log('test docLogin----->',test)
+            const test = { ...resFetchMe.data, role: 'doctor' }
             return test
-            // return resFetchMe.data.user
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -64,7 +62,7 @@ export const doctorLoginGoogle = createAsyncThunk(
             if (decoded.role == 'doctor') {
                 const resFetchMe = await authService.doctorFetchMe()
                 const test = { ...resFetchMe.data, role: 'doctor' }
-                console.log('test dovGGLogin----->',test)
+                console.log('test dovGGLogin----->', test)
                 return test
             }
         } catch (err) {
@@ -90,7 +88,7 @@ export const providerLoginGoogle = createAsyncThunk(
             const decoded = jwt_decode(res.data.accessToken)
             if (decoded.role == 'provider') {
                 const resFetchMe = await authService.providerFetchMe()
-                const test = {...resFetchMe.data, role: 'provider'}
+                const test = { ...resFetchMe.data, role: 'provider' }
                 // console.log('test provGGLogin----->',test)
                 return test
             }
@@ -106,7 +104,8 @@ export const docFetchMe = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const res = await authService.doctorFetchMe()
-            return res.data.user
+            console.log(res.data)
+            return res.data
         } catch (err) {
             console.log('err----->', err)
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -118,7 +117,7 @@ export const provFetchMe = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const res = await authService.providerFetchMe()
-            return res.data.user
+            return res.data
         } catch (err) {
             console.log('err----->', err)
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -154,7 +153,7 @@ export const provLogin = createAsyncThunk(
             const res = await authService.providerLogin(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.providerFetchMe()
-            const test = {...resFetchMe.data, role: 'provider'}
+            const test = { ...resFetchMe.data, role: 'provider' }
             // console.log('test provLogin----->',test)
             return test
 

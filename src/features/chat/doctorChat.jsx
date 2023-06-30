@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
 import { CloseWindowIcon } from '../../icons'
-//Mock data chatUser ={ id: 1,name: 'John'}
 export default function DoctorChat({ chatUser, handleCloseChat }) {
     const doctorId = useSelector((state) => state.auth.user?.id)
+    // console.log(` doctorId: ===>>${doctorId}`)
     const ref = useRef()
 
     const [allMsg, setAllMsg] = useState([]) // เอา allMsg ไป render
@@ -14,9 +14,25 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     const [providerId, setProviderId] = useState(chatUser?.id) // onChange
     const [providerName, setProviderName] = useState(chatUser?.name)
 
+    ////Mock data test allMsg.map()
+    const converationArray = [
+        {
+            message: 'hi,iam provider',
+            to: 'doctor',
+            from: 'provider',
+        },
+        {
+            message: "hi,i'm doctor",
+            to: 'provider',
+            from: 'doctor',
+        },
+    ]
+
     useEffect(() => {
         socket.emit('startChat', { doctorId, providerId })
-
+        // console.log(
+        //     `"startChat", doctorId:${doctorId}, providerId: ${providerId}`
+        // )
         socket.on('doctorGetMessage', (data) => {
             setAllMsg([...allMsg, data.conversation])
         })
@@ -24,25 +40,31 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
         return () => {
             socket.off('doctorGetMessage')
         }
-    }, [])
+    }, [chatUser.id])
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }, [allMsg.length])
 
-    const hdlSubmit = (e) => {
+    const handleSendMessage = (e) => {
         e.preventDefault()
         if (!input.trim()) return setInput('')
-        socket.emit('doctorSendMessage', { message, doctorId, providerId }) //อยู่ใน send box
+        const conversation = {
+            message: input,
+            to: 'provider',
+            from: 'doctor',
+        }
+        setAllMsg([...allMsg, conversation])
         setInput('')
+        socket.emit('doctorSendMessage', { input, doctorId, providerId })
     }
     return (
         <>
             {/* ======= Chat Modal  ====== */}
-            <div className="flex flex-col w-[400px] border shadow-xl fixed bg-white right-1 bottom-1">
+            <div className="flex flex-col w-[400px] border shadow-xl fixed bg-white right-2 bottom-2">
                 {/* ======= Chat title ====== */}
                 <div className="flex items-center justify-between rounded-t-lg bg-primary py-4 px-9">
                     <h3 className="text-xl font-bold text-white">
-                        Let's chat? - Online
+                        Let's chat Online
                     </h3>
                     <button onClick={handleCloseChat} className="text-white">
                         <CloseWindowIcon />
@@ -63,7 +85,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                         alt="username"
                                     />
                                     <span className="block ml-2 font-bold text-gray-600">
-                                        Chat with Provider: {providerName}
+                                        Provider: {providerName}
                                     </span>
                                     <span
                                         className={
@@ -82,14 +104,8 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                         {allMsg.map((el, i) => (
                                             <MsgBody
                                                 key={i}
-                                                msg={el.message}
-                                                chatuser={
-                                                    el.to == 'doctor' ||
-                                                    el.from == 'doctor'
-                                                }
-                                                isMe={
-                                                    el.from == 'doctor'
-                                                }
+                                                conversation={el}
+                                                role={'doctor'}
                                             />
                                         ))}
                                         <li ref={ref}></li>
@@ -98,7 +114,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                 {/* ======  Send Message Box ====== */}
                                 {/* <MsgSendBox username={username} hdlSubmit={hdlSubmit}/> */}
                                 <form
-                                    onSubmit={hdlSubmit}
+                                    onSubmit={handleSendMessage}
                                     className="flex items-center justify-between w-full p-3 border-t border-gray-300"
                                 >
                                     <input

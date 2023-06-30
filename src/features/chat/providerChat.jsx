@@ -6,7 +6,7 @@ import MsgSendBox from './components/MsgSendBox'
 
 export default function ProviderChat() {
     const ref = useRef()
-    const providerId = useSelector((state) => state.auth.user?.id)
+    const providerId = useSelector((state) => state.auth.user.id)
 
     const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
 
@@ -16,11 +16,14 @@ export default function ProviderChat() {
     const [input, setInput] = useState('') // เอาไป binding onChange
 
     useEffect(() => {
+        console.log('before provider acceptChat')
         socket.on('acceptChat', (data) => {
-            // socket.join(data.newRoom) //provider joins chat
+            console.log('provider acceptChat====>>>', data.newRoom) //data={newRoom: '1:1', doctorId: 1}
             socket.emit('providerJoinRoom', data.newRoom)
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
             setDoctorIdList([...doctorIdList, data.doctorId]) //เก็บ id ของ doctor ไว้ใช้งาน
+            console.log('chatLists===>>>', chatLists)
+            console.log('doctorList===>>>', doctorIdList)
         })
         socket.on('providerGetMessage', (data) => {
             setChatLists({
@@ -39,21 +42,29 @@ export default function ProviderChat() {
 
     useEffect(() => {
         if (Object.keys(chatLists).length !== 0)
-            setAllMsg([...chatLists[`${currentDoctor}:${providerId}`]]) // เอา allMsg ไป render
+            setAllMsg(...[chatLists[`${currentDoctor}:${providerId}`]]) // เอา allMsg ไป render
     }, [currentDoctor])
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }, [allMsg.length])
 
-    const hdlSubmit = (e) => {
+    const handleSendMessage = (e) => {
         e.preventDefault()
         if (!input.trim()) return setInput('')
+
         socket.emit('providerSendMessage', {
             message: input,
             doctorId: doctorIdList[currentDoctor],
             providerId,
         }) //อยู่ใน send box
+
+        const conversation = {
+            message: input,
+            to: 'doctor',
+            from: 'provider',
+        }
+        setAllMsg([...allMsg, conversation])
         setInput('')
     }
     return (
@@ -91,21 +102,37 @@ export default function ProviderChat() {
                                     {allMsg.map((el, i) => (
                                         <MsgBody
                                             key={i}
-                                            msg={el.message}
-                                            chatuser={
-                                                el.to == 'doctor' ||
-                                                el.from == 'doctor'
-                                            }
-                                            isMe={
-                                                el.from == 'provider' ||
-                                                el.to == 'provider'
-                                            }
+                                            conversation={el}
+                                            role={'provider'}
                                         />
                                     ))}
                                     <li ref={ref}></li>
                                 </ul>
                             </div>
-                            <MsgSendBox hdlSubmit={hdlSubmit} />
+                            {/* <MsgSendBox hdlSubmit={handleSendMessage} /> */}
+                            <form
+                                onSubmit={handleSendMessage}
+                                className="flex items-center justify-between w-full p-3 border-t border-gray-300"
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Message"
+                                    className="flex-1 py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
+                                    name="message"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                />
+                                <button type="submit">
+                                    <svg
+                                        className="w-5 h-5 text-gray-500 origin-center transform rotate-90"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

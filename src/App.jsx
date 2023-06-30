@@ -14,8 +14,8 @@ function App() {
 
     useEffect(() => {
         if (user) {
-            console.log('user detail==>>', user)
-            console.log('role ===>>', role) //role = "doctor", "provider"
+            // console.log('user detail==>>', user)
+            // console.log('role ===>>', role) //role = "doctor", "provider"
             socket.auth = { user, role }
             socket.connect()
             // setSocketId(socket.id)
@@ -33,7 +33,7 @@ function App() {
         <div>
             <Router />
             <ToastContainer
-                position="top-center"
+                position="bottom-center"
                 theme="dark"
                 autoClose={3000}
             />
