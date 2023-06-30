@@ -16,8 +16,17 @@ export default function HomePage() {
 
     const [input, setInput] = useState({
         searchText: '',
-        isParttime: true,
+        // jobType: 'FULLTIME',
     })
+
+    // const selectedJob = useState({title: 'accounting'})
+
+    // const [renderCards, setRenderCards] = useState('Input from redux')
+
+    // const [filter, setFilter] = useState({
+    //     date: null,
+    //     salary: [20000,40000],
+    // })
 
     const handleJobType = (e) => {
         const isParttime = input.isParttime
@@ -30,6 +39,25 @@ export default function HomePage() {
         }
         getAllJobPost()
     }, [])
+
+    // const handleSalary = (e) => {
+    //     //[20000,40000]
+    //     const newRenderCard = renderCards.filter((card)=>{
+    //         const filterdCard = [...renderCards]
+    //         if(filter.salary){
+    //             card.salary >= e[0] && card.salary <= e[1]
+    //         }
+    //         if(filter.date){
+
+    //         }
+    //         if
+    //         setRenderCards(filterdCard))
+    //     }
+    // }
+
+    // const filteredJob = () => {
+    //     return allJob.filter()
+    // }
 
     return (
         <div>
@@ -64,10 +92,18 @@ export default function HomePage() {
                     )} */}
                 </div>
             </div>
+{/* <select name="" id="" onChange={event => {setInput({jobType: event.target.value})}}>
+    <option value="ALL">All</option>
+    <option value="FULLTIME">Full Time</option>
+    <option value="PARTTIME">Part Time</option>
+</select>
+{input.jobType === 'FULLTIME' ? <h1>Full </h1> : ''}
+
+{input.jobType === 'PARTTIME' ? <h1>Part</h1> : ''} */}
 
             <div className="flex gap-2 pt-10">
                 <PageLeft />
-                <PageRight />
+                <PageRight /> 
             </div>
             <div className="flex justify-end">
                 <StartChatButton />
