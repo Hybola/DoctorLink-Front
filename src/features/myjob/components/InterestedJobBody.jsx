@@ -21,12 +21,15 @@ export default function InterestedJobBody() {
         ).unwrap()
     }
 
+
+
     const jobList = filterJob.map((job) => (
         <JobCard
             job={job}
             key={job.doctorJobId}
             type={2}
             handleClick1={handleUninterestJob}
+            
         />
     ))
 

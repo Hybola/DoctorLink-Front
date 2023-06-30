@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getProfile } from '../slice/profile-slice'
+import { getMyProfile, getOtherProfile } from '../slice/profile-slice'
 import DoctorHeader from './DoctorHeader'
 import DoctorBody from './DoctorBody'
 import DoctorData from './DoctorData'
@@ -10,29 +10,38 @@ import DoctorData from './DoctorData'
 export default function DoctorProfile() {
     const userId = useSelector((state) => state.auth.user?.id)
     const myRole = useSelector((state) => state.auth?.role)
-    const profile = useSelector((state) => state.profile?.profile)
+    const myProfile = useSelector((state) => state.profile?.myProfile)
+    const otherProfile = useSelector((state) => state.profile?.otherProfile)
 
     const dispatch = useDispatch()
 
-    const { id } = useParams()
-    const canEdit = myRole == 'doctor' && userId == id
+    const { doctorId } = useParams()
+    const isHost = myRole == 'doctor' && userId == doctorId
+    const profile = isHost ? myProfile : otherProfile
 
     useEffect(() => {
-        const currentProfile = async (input) => {
-            await dispatch(getProfile(input)).unwrap()
+        const myProfile = async (input) => {
+            await dispatch(getMyProfile(input)).unwrap()
         }
-        const input = { role: myRole, id: id }
-        currentProfile(input)
+        const otherProfile = async (input) => {
+            await dispatch(getOtherProfile(input)).unwrap()
+        }
+        const input = { role: 'doctor', id: doctorId }
+        if (isHost) {
+            myProfile(input)
+        } else {
+            otherProfile(input)
+        }
     }, [])
 
     return (
         <div className="w-full flex justify-center gap-6">
             <div className=" max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100  rounded-lg  shadow-lg my-4 h-fit pb-[20px]">
-                <DoctorHeader profile={profile} canEdit={canEdit} />
-                <DoctorBody profile={profile} canEdit={canEdit} />
+                <DoctorHeader profile={profile} canEdit={isHost} />
+                <DoctorBody profile={profile} canEdit={isHost} />
             </div>
             <div className=" max-w-[600px]  min-w-[400px] w-[400px] bg-base-100  rounded-lg  shadow-lg my-4 h-fit pb-[20px]">
-                <DoctorData profile={profile} canEdit={canEdit} />
+                <DoctorData profile={profile} canEdit={isHost} />
             </div>
         </div>
     )

@@ -1,33 +1,42 @@
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getProfile } from '../slice/profile-slice'
+import { getMyProfile, getOtherProfile } from '../slice/profile-slice'
 import ProviderHeader from './ProviderHeader'
 import ProviderBody from './ProviderBody'
 
 export default function ProviderProfile() {
     const userId = useSelector((state) => state.auth.user?.id)
     const myRole = useSelector((state) => state.auth?.role)
-    const profile = useSelector((state) => state.profile?.profile)
+    const myProfile = useSelector((state) => state.profile?.myProfile)
+    const otherProfile = useSelector((state) => state.profile?.otherProfile)
 
     const dispatch = useDispatch()
 
-    const { id } = useParams()
-    const canEdit = myRole == 'provider' && userId == id
+    const { providerId } = useParams()
+    const isHost = myRole == 'provider' && userId == providerId
+    const profile = isHost ? myProfile : otherProfile
 
     useEffect(() => {
-        const currentProfile = async (input) => {
-            await dispatch(getProfile(input)).unwrap()
+        const myProfile = async (input) => {
+            await dispatch(getMyProfile(input)).unwrap()
         }
-        const input = { role: myRole, id: id }
-        currentProfile(input)
+        const otherProfile = async (input) => {
+            await dispatch(getOtherProfile(input)).unwrap()
+        }
+        const input = { role: 'provider', id: providerId }
+        if (isHost) {
+            myProfile(input)
+        } else {
+            otherProfile(input)
+        }
     }, [])
 
     return (
         <div className="  max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100 rounded-lg my-4 shadow-lg h-fit pb-[20px]">
-            <ProviderHeader profile={profile} canEdit={canEdit} />
-            <ProviderBody profile={profile} canEdit={canEdit} />
+            <ProviderHeader profile={profile} canEdit={isHost} />
+            <ProviderBody profile={profile} canEdit={isHost} />
         </div>
     )
 }

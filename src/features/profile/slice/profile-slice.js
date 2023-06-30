@@ -2,13 +2,32 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as profileService from '../../../api/profile-api'
 
 const initialState = {
-    profile: {},
+    myProfile: {},
+    otherProfile: {},
     loading: false,
 }
 
 // Doctor
-export const getProfile = createAsyncThunk(
-    'profile',
+export const getMyProfile = createAsyncThunk(
+    'myprofile',
+    async (input, thunkApi) => {
+        try {
+            if (input.role == 'doctor') {
+                const res = await profileService.doctorProfile(input.id)
+                return res.data
+            }
+            if (input.role == 'provider') {
+                const res = await profileService.providerProfile(input.id)
+                return res.data
+            }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const getOtherProfile = createAsyncThunk(
+    'otherprofile',
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
@@ -71,12 +90,20 @@ const profileSlice = createSlice({
     initialState,
     extraReducers: (builder) =>
         builder
-            .addCase(getProfile.pending, (state, action) => {
-                state.profile = {}
+            .addCase(getMyProfile.pending, (state, action) => {
+                state.myProfile = {}
             })
 
-            .addCase(getProfile.fulfilled, (state, action) => {
-                state.profile = action.payload
+            .addCase(getMyProfile.fulfilled, (state, action) => {
+                state.myProfile = action.payload
+            })
+
+            .addCase(getOtherProfile.pending, (state, action) => {
+                state.otherProfile = {}
+            })
+
+            .addCase(getOtherProfile.fulfilled, (state, action) => {
+                state.otherProfile = action.payload
             })
 
             .addCase(uploadImage.pending, (state, action) => {
@@ -84,7 +111,7 @@ const profileSlice = createSlice({
             })
 
             .addCase(uploadImage.fulfilled, (state, action) => {
-                state.profile = { ...state.profile, ...action.payload }
+                state.myProfile = { ...state.myProfile, ...action.payload }
                 state.loading = false
             })
 
@@ -93,11 +120,11 @@ const profileSlice = createSlice({
             })
 
             .addCase(editProfile.fulfilled, (state, action) => {
-                state.profile = { ...state.profile, ...action.payload }
+                state.myProfile = { ...state.profile, ...action.payload }
             })
 
             .addCase(editProfile.pending, (state, action) => {
-                state.profile = {}
+                state.myProfile = {}
             }),
 })
 export default profileSlice.reducer
