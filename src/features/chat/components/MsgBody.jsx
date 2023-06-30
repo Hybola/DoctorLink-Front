@@ -1,12 +1,12 @@
 export default function MsgBody(props) {
     const { conversation, role } = props
-    const currentTime = new Date()
+    // const currentTime = new Date()
 
     return (
         <>
             <li
                 className={`flex ${
-                    role == conversation.from ? 'justify-end' : 'justify-start'
+                    role == conversation?.from ? 'justify-end' : 'justify-start'
                 }`}
             >
                 <div>

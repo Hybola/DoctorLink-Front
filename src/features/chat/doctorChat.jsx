@@ -34,7 +34,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
         //     `"startChat", doctorId:${doctorId}, providerId: ${providerId}`
         // )
         socket.on('doctorGetMessage', (data) => {
-            setAllMsg([...allMsg, data.conversation])
+            setAllMsg((prev)=>[...prev, data.conversation])
         })
 
         return () => {
@@ -53,9 +53,11 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             to: 'provider',
             from: 'doctor',
         }
+        const room=`${doctorId}:${providerId}`
+
         setAllMsg([...allMsg, conversation])
         setInput('')
-        socket.emit('doctorSendMessage', { input, doctorId, providerId })
+        socket.emit('doctorSendMessage', { conversation, room})
     }
     return (
         <>

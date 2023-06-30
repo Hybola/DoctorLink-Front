@@ -11,27 +11,32 @@ export default function ProviderChat() {
     const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
 
     const [doctorIdList, setDoctorIdList] = useState([]) //เก็บรายชื่อ id ของ doctor ทุกคน
-    const [currentDoctor, setCurrentDoctor] = useState(0) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= doctorId
     const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
     const [input, setInput] = useState('') // เอาไป binding onChange
+    const [currentDoctor, setCurrentDoctor] = useState(1) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= doctorId
 
     useEffect(() => {
-        console.log('before provider acceptChat')
         socket.on('acceptChat', (data) => {
-            console.log('provider acceptChat====>>>', data.newRoom) //data={newRoom: '1:1', doctorId: 1}
+            console.log('provider acceptChat:Room >>>', data.newRoom) //data={newRoom: '1:1', doctorId: 1}
             socket.emit('providerJoinRoom', data.newRoom)
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
             setDoctorIdList([...doctorIdList, data.doctorId]) //เก็บ id ของ doctor ไว้ใช้งาน
-            console.log('chatLists===>>>', chatLists)
-            console.log('doctorList===>>>', doctorIdList)
         })
         socket.on('providerGetMessage', (data) => {
-            setChatLists({
-                ...chatLists,
-                [data.room]: [...chatLists[data.room], data.conversation],
-            })
-            //เอา chatList เดิมมา spreed แล้ว update เฉพาะ room ที่ส่งมา ให้มีค่าเท่ากับ ===> ข้อความเดิมที่มีอยู่ มาบวกเพิ่มข้อความใหม่ที่ส่งเข้ามา
-            setAllMsg([...allMsg, data.converation])
+            // console.log('providerGetMessage: data =', data)
+            if (Object.keys(chatLists)?.length !== 0) {
+                setChatLists({
+                    ...chatLists,
+                    [data.room]: [...chatLists[data.room], data.conversation],
+                })
+            }
+            //เอา chatList อันเดิมมา spreed แล้ว update เฉพาะ room ที่ส่งมา ให้มีค่าเท่ากับ ===> ข้อความเดิมที่มีอยู่ มาบวกเพิ่มข้อความใหม่ที่ส่งเข้ามา
+
+            setAllMsg((prev) => [...prev, data.conversation])
+            /// ***** อะไรที่อยากจะทำ หลังจาก render ui ได้แล้ว ให้เอาไปใส่ใน useEffct ### *****
+            // setAllMsg([...allMsg, data.conversation])  // code บรรทัด นี้ทำงานผิดเพี๊ยน เพราะอยุ่ใน useEffect
+            //ตามหลักการเรื่อง closure แล้ว การ set state ใหม่ภายใน useEffect นั้น ค่าเริ่มต้นของ allMsg จะอ้างอิงมาจากค่าที่เคยเก็บไว้ก่อนรัน useEffect
+            // ดังนั้นจึงควรเลี่ยงไปใช้ setAllMsg((prev) => [...prev, data.conversation]) แทน
         })
 
         return () => {
@@ -41,8 +46,8 @@ export default function ProviderChat() {
     }, [])
 
     useEffect(() => {
-        if (Object.keys(chatLists).length !== 0)
-            setAllMsg(...[chatLists[`${currentDoctor}:${providerId}`]]) // เอา allMsg ไป render
+        if (Object.keys(chatLists)?.length !== 0)
+            setAllMsg([...[chatLists[`${currentDoctor}:${providerId}`]]]) // เอา allMsg ไป render
     }, [currentDoctor])
 
     useEffect(() => {
@@ -53,17 +58,19 @@ export default function ProviderChat() {
         e.preventDefault()
         if (!input.trim()) return setInput('')
 
-        socket.emit('providerSendMessage', {
-            message: input,
-            doctorId: doctorIdList[currentDoctor],
-            providerId,
-        }) //อยู่ใน send box
-
         const conversation = {
             message: input,
             to: 'doctor',
             from: 'provider',
         }
+        const room=`${currentDoctor}:${providerId}`
+
+        socket.emit('providerSendMessage', {
+            conversation,room
+        }) //อยู่ใน send box
+
+        
+        // console.log("conversation from Provider:==>>",conversation)
         setAllMsg([...allMsg, conversation])
         setInput('')
     }
@@ -101,7 +108,7 @@ export default function ProviderChat() {
                                 <ul className="space-y-2">
                                     {allMsg.map((el, i) => (
                                         <MsgBody
-                                            key={i}
+                                            key={`${i}-${el.message}`}
                                             conversation={el}
                                             role={'provider'}
                                         />
