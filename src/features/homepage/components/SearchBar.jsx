@@ -17,7 +17,7 @@ export default function SearchBar({ input, setInput }) {
     return (
         <div className="flex w-full justify-center text-success">
             {/* inputrow1#แถวการค้นหา */}
-            <div className=" flex justify-center items-center w-fit gap-3 shadow-lg p-5 rounded-xl">
+            <div className=" flex justify-center items-center w-fit gap-6 shadow-lg p-5 rounded-xl">
                 <div className="flex justify-center items-center">
                     <input
                         className="text-md pl-4 h-[40px] w-[250px] rounded-lg border border-primary"
@@ -31,7 +31,7 @@ export default function SearchBar({ input, setInput }) {
                     <select
                         name="location"
                         id="location"
-                        className="text-md pl-2 h-[40px] w-[150px] rounded-lg border border-primary"
+                        className="text-md pl-2 h-[40px] w-[160px] rounded-lg border border-primary"
                     >
                         <option className="text-gray-400" disabled selected>
                             Select location
@@ -61,10 +61,10 @@ export default function SearchBar({ input, setInput }) {
                 </div> */}
 
                 {/* จบก้อน searchBar*/}
-                <div className="flex justify-end w-[150px] items-center ">
+                <div className="flex justify-end w-[160px] items-center ">
                     <button
                         onClick={handleSearch}
-                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[120px] h-[40px]"
+                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[130px] h-[40px]"
                     >
                         <SearchIcon /> Search
                     </button>

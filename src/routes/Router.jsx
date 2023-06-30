@@ -15,8 +15,10 @@ import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
-import ChatPage from '../pages/ChatPage'
+
 import JobPost from '../pages/JobPostPage'
+import ProviderChat from '../features/chat/providerChat'
+import ChatSideBar from '../features/chat/components/ChatSideBar'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -117,7 +119,8 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/provider/chat/',
-                                element: <ChatPage />,
+                                element: <ProviderChat />,
+                                // element:<ChatSideBar/>,
                             },
                         ],
                     },

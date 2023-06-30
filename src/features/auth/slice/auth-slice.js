@@ -36,9 +36,7 @@ export const docLogin = createAsyncThunk(
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
             const test = { ...resFetchMe.data, role: 'doctor' }
-            console.log('test docLogin----->', test)
             return test
-            // return resFetchMe.data.user
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
