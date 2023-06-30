@@ -4,7 +4,7 @@ import PreviewFull from './PreviewFull'
 
 export default function Preview({ add, p }) {
     return (
-        <div className="w-[800px]">
+        <div className=" ">
             <div className="bg-slate-600 h-20 "></div>
             <div className="flex">
                 <div className="h-24 w-24 bg-cyan-300 mt-[-50px] ml-4"></div>

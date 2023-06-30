@@ -104,7 +104,6 @@ export const docFetchMe = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const res = await authService.doctorFetchMe()
-            console.log(res.data)
             return res.data
         } catch (err) {
             console.log('err----->', err)

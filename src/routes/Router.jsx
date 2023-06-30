@@ -15,6 +15,8 @@ import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
+
+import JobPost from '../pages/JobPostPage'
 import ProviderChat from '../features/chat/providerChat'
 import ChatSideBar from '../features/chat/components/ChatSideBar'
 const router = createBrowserRouter([
@@ -55,7 +57,7 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/doctor/:id/profile/',
+                                path: '/doctor/:doctorId/profile/',
                                 element: <DoctorProfile />,
                             },
                             {
@@ -65,6 +67,10 @@ const router = createBrowserRouter([
                             {
                                 path: '/doctor/myjob/',
                                 element: <MyJobPage />,
+                            },
+                            {
+                                path: '/doctor/provider/:providerId/post/:postId',
+                                element: <JobPost />,
                             },
                         ],
                     },
@@ -100,7 +106,7 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/provider/:id/profile/',
+                                path: '/provider/:providerId/profile/',
                                 element: <ProviderProfile />,
                             },
                             {
