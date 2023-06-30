@@ -10,6 +10,7 @@ import Toggle from '../features/homepage/components/Toggle'
 
 import { useDispatch } from 'react-redux'
 import { FilterIcon } from '../icons'
+import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -77,7 +78,7 @@ export default function HomePage() {
                     <SearchBar input={input} setInput={setInput} />
                 </div>
 
-                <div className="flex justify-center items-center w-full">
+                {/* <div className="flex justify-center items-center w-full"> */}
                     {/* เงื่อนไข useState */}
                     {/* {input.isParttime ? (
                         <SearchPartTime
@@ -90,6 +91,9 @@ export default function HomePage() {
                             isParttime={input.isParttime}
                         />
                     )} */}
+                {/* </div> */}
+                <div>
+                    <Filter />
                 </div>
             </div>
 {/* <select name="" id="" onChange={event => {setInput({jobType: event.target.value})}}>
