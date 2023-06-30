@@ -1,8 +1,10 @@
 import DoctorDataEdit from './DoctorDataEdit'
 import { PenIcon, EditIcon } from '../../../icons'
 import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
+import { useSelector } from 'react-redux'
 
 export default function DoctorDataBody({ profile, canEdit }) {
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const handleBodyEdit = () => {
         window.DoctorDataEdit.showModal()
     }
@@ -22,7 +24,7 @@ export default function DoctorDataBody({ profile, canEdit }) {
                             <EditIcon />
                         </button>
 
-                        <DoctorDataEdit />
+                        {currrentProfile.firstName ? <DoctorDataEdit /> : null}
                     </div>
                 ) : null}
             </div>

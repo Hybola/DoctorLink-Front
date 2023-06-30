@@ -21,6 +21,8 @@ export default function ProviderEdit() {
         dispatch(editProfile(input)).unwrap()
     }
 
+    console.log(profile)
+
     return (
         <dialog id="ProviderBodyEdit" className="modal ">
             <form method="dialog" className="modal-box bg-base-100 w-[600px]">

@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import ProviderBodyEdit from './ProviderBodyEdit'
 import { MapIcon } from '../../../icons'
+import { useSelector } from 'react-redux'
 
 export default function ProviderBody({ profile, canEdit }) {
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const handleEdit = () => {
         window.ProviderBodyEdit.showModal()
     }
@@ -21,7 +23,9 @@ export default function ProviderBody({ profile, canEdit }) {
                         >
                             Edit
                         </button>
-                        <ProviderBodyEdit />
+                        {currrentProfile?.providerName ? (
+                            <ProviderBodyEdit />
+                        ) : null}
                     </div>
                 ) : null}
             </div>
