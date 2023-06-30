@@ -8,8 +8,9 @@ import { useState, useEffect } from 'react'
 import Toggle from '../features/homepage/components/Toggle'
 
 import { useDispatch } from 'react-redux'
-import { FilterIcon, LetsChatIcon } from '../icons'
+import { LetsChatIcon } from '../icons'
 import DoctorChat from '../features/chat/doctorChat'
+import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -72,9 +73,9 @@ export default function HomePage() {
                     <SearchBar input={input} setInput={setInput} />
                 </div>
 
-                <div className="flex justify-center items-center w-full">
-                    {/* เงื่อนไข useState */}
-                    {/* {input.isParttime ? (
+                {/* <div className="flex justify-center items-center w-full"> */}
+                {/* เงื่อนไข useState */}
+                {/* {input.isParttime ? (
                         <SearchPartTime
                             handleJobType={handleJobType}
                             isParttime={input.isParttime}
@@ -85,6 +86,9 @@ export default function HomePage() {
                             isParttime={input.isParttime}
                         />
                     )} */}
+                {/* </div> */}
+                <div>
+                    <Filter />
                 </div>
             </div>
 
