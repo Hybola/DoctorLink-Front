@@ -61,6 +61,7 @@ export const editProfile = createAsyncThunk(
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
+                console.log(input.payload)
                 const res = await profileService.editDoctorProfile(
                     input.payload
                 )
@@ -98,12 +99,20 @@ const profileSlice = createSlice({
                 state.myProfile = action.payload
             })
 
+            .addCase(getMyProfile.rejected, (state, action) => {
+                state.myProfile = {}
+            })
+
             .addCase(getOtherProfile.pending, (state, action) => {
                 state.otherProfile = {}
             })
 
             .addCase(getOtherProfile.fulfilled, (state, action) => {
                 state.otherProfile = action.payload
+            })
+
+            .addCase(getOtherProfile.rejected, (state, action) => {
+                state.otherProfile = {}
             })
 
             .addCase(uploadImage.pending, (state, action) => {
@@ -120,11 +129,7 @@ const profileSlice = createSlice({
             })
 
             .addCase(editProfile.fulfilled, (state, action) => {
-                state.myProfile = { ...state.profile, ...action.payload }
-            })
-
-            .addCase(editProfile.pending, (state, action) => {
-                state.myProfile = {}
+                state.myProfile = { ...state.myProfile, ...action.payload }
             }),
 })
 export default profileSlice.reducer

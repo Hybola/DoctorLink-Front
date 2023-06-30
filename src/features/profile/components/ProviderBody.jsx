@@ -3,9 +3,7 @@ import ProviderBodyEdit from './ProviderBodyEdit'
 import { MapIcon } from '../../../icons'
 
 export default function ProviderBody({ profile, canEdit }) {
-    const [editMode, setEditMode] = useState(false)
     const handleEdit = () => {
-        setEditMode(true)
         window.ProviderBodyEdit.showModal()
     }
 
@@ -23,7 +21,7 @@ export default function ProviderBody({ profile, canEdit }) {
                         >
                             Edit
                         </button>
-                        {editMode ? <ProviderBodyEdit /> : null}
+                        <ProviderBodyEdit />
                     </div>
                 ) : null}
             </div>

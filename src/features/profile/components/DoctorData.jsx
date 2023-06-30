@@ -1,12 +1,9 @@
 import DoctorDataEdit from './DoctorDataEdit'
-import { useState } from 'react'
 import { PenIcon, EditIcon } from '../../../icons'
+import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
 
 export default function DoctorDataBody({ profile, canEdit }) {
-    const [editMode, setEditMode] = useState(false)
-
     const handleBodyEdit = () => {
-        setEditMode(true)
         window.DoctorDataEdit.showModal()
     }
 
@@ -25,7 +22,7 @@ export default function DoctorDataBody({ profile, canEdit }) {
                             <EditIcon />
                         </button>
 
-                        {editMode ? <DoctorDataEdit /> : null}
+                        <DoctorDataEdit />
                     </div>
                 ) : null}
             </div>
@@ -46,13 +43,17 @@ export default function DoctorDataBody({ profile, canEdit }) {
                     <div className="flex gap-1 text-lg">
                         <span>Gender:</span>
                         <span className="text-base mt-1">
-                            {profile?.gender}
+                            {profile?.gender == 1
+                                ? 'male'
+                                : profile.gender == 2
+                                ? 'female'
+                                : 'other'}
                         </span>
                     </div>
                     <div className="flex gap-1 text-lg">
                         <span>Birthdate:</span>
                         <span className="text-base mt-1">
-                            {profile?.birthdate}
+                            {dateReverse(profile?.birthDate)}
                         </span>
                     </div>
                     <div className="flex gap-1 text-lg">
@@ -76,7 +77,7 @@ export default function DoctorDataBody({ profile, canEdit }) {
                     <div className="flex gap-1 text-lg">
                         <span>Work Experience:</span>
                         <span className="text-base mt-1">
-                            {profile?.workexperience}
+                            {profile?.workExperience}
                         </span>
                     </div>
                 </div>
