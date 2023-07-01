@@ -4,10 +4,10 @@ export default function ChatSideBar() {
     return (
         <>
             {/* start: Chat */}
-            <section className="chat-section">
-                <div className="chat-container">
+            <section className="min-h-screen flex items-center justify-center shadow-lg">
+                <div className="h-screen w-full">
                     {/* start: Sidebar */}
-                    <aside className="chat-sidebar">
+                    {/* <aside className="chat-sidebar">
                         <a href="#" className="chat-sidebar-logo">
                             <i className="ri-chat-1-fill" />
                         </a>
@@ -58,27 +58,27 @@ export default function ChatSideBar() {
                                 </ul>
                             </li>
                         </ul>
-                    </aside>
+                    </aside> */}
                     {/* end: Sidebar */}
                     {/* start: Content */}
-                    <div className="chat-content">
+                    <div className="h-full relative pl-16">
                         {/* start: Content side */}
-                        <div className="content-sidebar">
+                        <div className="w-64 bg-[color:var(--white)] flex flex-col h-full absolute left-16 top-0">
                             <div className="content-sidebar-title">Chats</div>
-                            <form action="" className="content-sidebar-form">
+                            <form action="" className="relative px-4 py-0">
                                 <input
                                     type="search"
-                                    className="content-sidebar-input"
+                                    className="bg-[color:var(--slate-100)] border border-[color:var(--slate-300)] w-full rounded text-sm pr-8 px-4 py-2 border-solid outline: none "
                                     placeholder="Search..."
                                 />
                                 <button
                                     type="submit"
-                                    className="content-sidebar-submit"
+                                    className="absolute -translate-y-2/4 text-[color:var(--slate-400)] bg-transparent cursor-pointer transition-[color] duration-[0.15s] ease-[ease-in-out] border-[none] right-8 top-2/4 outline: transparent"
                                 >
                                     <i className="ri-search-line" />
                                 </button>
                             </form>
-                            <div className="content-messages">
+                            <div className="overflow-y-auto h-full mt-4">
                                 <ul className="content-messages-list">
                                     <li className="content-message-title">
                                         <span>Recently</span>
@@ -169,34 +169,37 @@ export default function ChatSideBar() {
                         </div>
                         {/* end: Content side */}
                         {/* start: Conversation */}
-                        <div className="conversation conversation-default active">
+                        <div className="bg-[color:var(--slate-100)] h-full hidden pl-64 ">
                             <i className="ri-chat-3-line" />
                             <p>Select chat and view conversation!</p>
                         </div>
-                        <div className="conversation" id="conversation-1">
-                            <div className="conversation-top">
+                        <div
+                            className="bg-[color:var(--slate-100)] h-full hidden pl-64"
+                            id="conversation-1"
+                        >
+                            <div className="bg-[color:var(--white)] flex items-center px-4 py-2">
                                 <button
                                     type="button"
-                                    className="conversation-back"
+                                    className="bg-transparent w-8 h-8 items-center justify-center text-xl cursor-pointer text-[color:var(--slate-400)] hidden mr-3 border-[none]"
                                 >
                                     <i className="ri-arrow-left-line" />
                                 </button>
-                                <div className="conversation-user">
+                                <div className="flex items-center">
                                     <img
                                         className="conversation-user-image"
                                         src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                                         alt=""
                                     />
                                     <div>
-                                        <div className="conversation-user-name">
+                                        <div className="font-medium text-[17px]">
                                             Someone
                                         </div>
-                                        <div className="conversation-user-status online">
+                                        <div className="text-[color:var(--slate-400)] text-[13px] online">
                                             online
                                         </div>
                                     </div>
                                 </div>
-                                <div className="conversation-buttons">
+                                <div className="flex items-center ml-auto">
                                     <button type="button">
                                         <i className="ri-phone-fill" />
                                     </button>
@@ -208,20 +211,20 @@ export default function ChatSideBar() {
                                     </button>
                                 </div>
                             </div>
-                            <div className="conversation-main">
-                                <ul className="conversation-wrapper">
-                                    <div className="coversation-divider">
+                            <div className="overflow-y-auto overflow-x-hidden h-full p-4">
+                                <ul className="list-none">
+                                    <div className="text-center text-[13px] text-[color:var(--slate-400)] relative mb-4">
                                         <span>Today</span>
                                     </div>
-                                    <li className="conversation-item me">
-                                        <div className="conversation-item-side">
+                                    <li className="flex items-end flex-row-reverse mb-4 me">
+                                        <div className="ml-2">
                                             <img
-                                                className="conversation-item-image"
+                                                className="w-6 h-6 object-cover block rounded-[50%]"
                                                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                                                 alt=""
                                             />
                                         </div>
-                                        <div className="conversation-item-content">
+                                        <div className="cw-full">
                                             <div className="conversation-item-wrapper">
                                                 <div className="conversation-item-box">
                                                     <div className="conversation-item-text">
@@ -618,7 +621,10 @@ export default function ChatSideBar() {
                                 </button>
                             </div>
                         </div>
-                        <div className="conversation" id="conversation-2">
+                        <div
+                            className="bg-[color:var(--slate-100)] h-full hidden pl-64"
+                            id="conversation-2"
+                        >
                             <div className="conversation-top">
                                 <button
                                     type="button"
