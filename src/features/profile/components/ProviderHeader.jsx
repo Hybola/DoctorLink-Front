@@ -26,7 +26,7 @@ export default function ProviderHeader({ profile, canEdit }) {
             {canEdit ? (
                 <div className="w-full flex  flex-col  items-end">
                     <div
-                        className="bg-base-100 w-[40px] h-[40px] rounded-[50%]  -my-[160px] mr-[20px] flex justify-center  items-center"
+                        className="bg-base-100 w-[40px] h-[40px] rounded-[50%]  -my-[160px] mr-[20px] flex justify-center items-center border border-primary"
                         onClick={handleCoverImageEdit}
                     >
                         <PenIcon />
@@ -49,7 +49,7 @@ export default function ProviderHeader({ profile, canEdit }) {
                     currentProfileImage={currentProfileImage}
                 />
             </div>
-            <div className="w-full flex flex-col  gap-2">
+            <div className="w-full flex flex-col gap-2 text-success">
                 <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
                     <div className="flex justify-start gap-1">
                         <div>{profile?.follower}</div>

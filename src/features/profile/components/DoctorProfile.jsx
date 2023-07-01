@@ -35,12 +35,12 @@ export default function DoctorProfile() {
     }, [])
 
     return (
-        <div className="w-full flex justify-center gap-6">
-            <div className=" max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100  rounded-lg  shadow-lg my-4 h-fit pb-[20px]">
+        <div className="w-full flex justify-center gap-6 mt-4">
+            <div className=" max-w-[1000px]  min-w-[600px] w-[700px] rounded-xl shadow-lg my-4 h-fit pb-[20px] bg-white">
                 <DoctorHeader profile={profile} canEdit={isHost} />
                 <DoctorBody profile={profile} canEdit={isHost} />
             </div>
-            <div className=" max-w-[600px]  min-w-[400px] w-[400px] bg-base-100  rounded-lg  shadow-lg my-4 h-fit pb-[20px]">
+            <div className=" max-w-[600px]  min-w-[400px] w-[400px] rounded-xl shadow-lg my-4 h-fit pb-[20px] bg-white">
                 <DoctorData profile={profile} canEdit={isHost} />
             </div>
         </div>
