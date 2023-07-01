@@ -2,17 +2,20 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editProfile } from '../slice/profile-slice'
+import { dateTimeTH } from '../../../utils/dateTime'
 import InputBar from './InputBar'
 
 export default function DoctorDataEdit() {
     const myRole = useSelector((state) => state.auth?.role)
-    const currrentProfile = useSelector((state) => state.profile?.profile)
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const [profile, setProfile] = useState({ ...currrentProfile })
 
     const dispatch = useDispatch()
 
     const handleOnchange = (e) => {
         setProfile({ ...profile, [e.target.name]: e.target.value })
+        console.log(profile)
+        console.log(e.target.value)
     }
 
     const handleOnclick = (e) => {
@@ -34,20 +37,33 @@ export default function DoctorDataEdit() {
                 />
                 <InputBar
                     label="Last Name: "
-                    name="lasstName"
+                    name="lastName"
                     value={profile?.lastName}
                     onChange={handleOnchange}
                 />
-                <InputBar
-                    label="Gender: "
-                    name="gender"
-                    value={profile?.gender}
-                    onChange={handleOnchange}
-                />
+                <div className="flex items-center gap-2   h-[34px] rounded-ld my-2 font-normal text-sm">
+                    <label htmlFor="gender" className="w-[180px]">
+                        Gender:
+                    </label>
+                    <div className=" w-full  h-[80%] p-2 ">
+                        <select
+                            name="gender"
+                            id="gender"
+                            value={profile.gender}
+                            onChange={handleOnchange}
+                        >
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Other</option>
+                        </select>
+                    </div>
+                </div>
+
                 <InputBar
                     label="Birthdate: "
-                    name="birthdate"
-                    value={profile?.birth}
+                    name="birthDate"
+                    type="date"
+                    value={profile?.birthDate}
                     onChange={handleOnchange}
                 />
                 <InputBar
@@ -65,13 +81,13 @@ export default function DoctorDataEdit() {
                 <InputBar
                     label="Education: "
                     name="education"
-                    value={profile?.birth}
+                    value={profile?.education}
                     onChange={handleOnchange}
                 />
                 <InputBar
                     label="Work experience: "
-                    name="education"
-                    value={profile?.birth}
+                    name="workExperience"
+                    value={profile?.workExperience}
                     onChange={handleOnchange}
                 />
 

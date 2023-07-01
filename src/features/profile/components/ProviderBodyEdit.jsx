@@ -6,7 +6,8 @@ import InputBar from './InputBar'
 
 export default function ProviderEdit() {
     const myRole = useSelector((state) => state.auth?.role)
-    const currrentProfile = useSelector((state) => state.profile?.profile)
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
+
     const [profile, setProfile] = useState({ ...currrentProfile })
 
     const dispatch = useDispatch()
@@ -19,6 +20,8 @@ export default function ProviderEdit() {
         const input = { role: myRole, payload: profile }
         dispatch(editProfile(input)).unwrap()
     }
+
+    console.log(profile)
 
     return (
         <dialog id="ProviderBodyEdit" className="modal ">
@@ -52,12 +55,7 @@ export default function ProviderEdit() {
                     value={profile?.address}
                     onChange={handleOnchange}
                 />
-                <InputBar
-                    label="Province:"
-                    name="Province"
-                    value={profile?.Province}
-                    onChange={handleOnchange}
-                />
+
                 <InputBar
                     label="Google Map Link: "
                     name="googleMap"

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
 import Logo from '../asset/Logo8.png'
+import { getMyProfile } from '../features/profile/slice/profile-slice'
+import { useEffect } from 'react'
 
 export default function Header() {
     const role = useSelector((state) => state.auth.role)
@@ -21,6 +23,16 @@ export default function Header() {
     )
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        const myProfile = async (input) => {
+            await dispatch(getMyProfile(input)).unwrap()
+        }
+
+        const input = { role, id }
+
+        myProfile(input)
+    }, [])
 
     return (
         <div className="flex justify-between px-8 bg-success shadow-lg sticky top-0 z-10 h-[80px] text-white">

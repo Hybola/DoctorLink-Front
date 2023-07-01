@@ -23,7 +23,7 @@ export default function DoctorBody({ profile, canEdit }) {
                             <PenIcon />
                         </button>
 
-                        {editMode ? <DoctorBodyEdit /> : null}
+                      <DoctorBodyEdit /> 
                     </div>
                 ) : null}
             </div>

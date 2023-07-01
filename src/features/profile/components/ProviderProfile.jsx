@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getMyProfile, getOtherProfile } from '../slice/profile-slice'
+import { getOtherProfile, getMyProfile } from '../slice/profile-slice'
 import ProviderHeader from './ProviderHeader'
 import ProviderBody from './ProviderBody'
 
