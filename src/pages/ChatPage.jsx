@@ -64,26 +64,7 @@ export default function ChatPage() {
                     Socket Id : {socketId}{' '}
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-2">
-                <input
-                    type="text"
-                    className="input input-primary col-span-2"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    disabled={isConnected}
-                />
-                <button
-                    className="btn"
-                    onClick={hdlEnter}
-                    disabled={isConnected}
-                >
-                    Enter
-                </button>
-                <button className="btn" onClick={hdlLeave}>
-                    Leave
-                </button>
-            </div>
+
             <ChatBox
                 username={username}
                 allMsg={allMsg}

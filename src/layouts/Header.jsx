@@ -8,16 +8,16 @@ export default function Header() {
     const role = useSelector((state) => state.auth.role)
     const id = useSelector((state) => state.auth.user?.id)
     const providerName = useSelector(
-        (state) => state.profile?.profile?.providerName
+        (state) => state.profile?.myProfile?.providerName
     )
     const doctorName = useSelector(
-        (state) => state.profile?.profile?.profileName
+        (state) => state.profile?.myProfile?.profileName
     )
     const doctorProfile = useSelector(
-        (state) => state.profile?.profile?.profileImage
+        (state) => state.profile?.myProfile?.profileImage
     )
     const providerProfile = useSelector(
-        (state) => state.profile?.profile?.profileImage
+        (state) => state.profile?.myProfile?.profileImage
     )
 
     const dispatch = useDispatch()

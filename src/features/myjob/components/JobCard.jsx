@@ -1,4 +1,5 @@
-import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
+import { dateTimeTH } from '../../../utils/dateTime'
+import { useNavigate } from 'react-router-dom'
 import {
     MenuIcon,
     Unsaved,
@@ -6,6 +7,7 @@ import {
     Reverse,
     ChatBTN,
 } from '../../../icons/index'
+
 export default function JobCard({
     job,
     type,
@@ -13,14 +15,21 @@ export default function JobCard({
     handleClick2,
     handleClick3,
 }) {
+    const navigate = useNavigate()
+
     return (
         <div
             className="w-full flex justify-between mb-2 border-b-[1px]"
             id={job.doctorJobId}
         >
             <div className="w-[500px] flex gap-2 min-h-[60px]">
-                <div className="w-[60px] h-[60px] bg-slate-600">
+                <div
+                    className="w-[60px] h-[60px] bg-slate-600"
+                    id={job.providerId + '/post/' + job.jobPostId}
+                    onClick={(e) => navigate(`/doctor/provider/${e.target.id}`)}
+                >
                     <img
+                        id={job.providerId + '/post/' + job.jobPostId}
                         src={job?.image}
                         alt="profileImage"
                         className="w-[60px] h-[60px]  bg-slate-600 object-cover"
@@ -31,7 +40,7 @@ export default function JobCard({
                     <div className="flex  text-primary text-base font-thin gap-2">
                         <div>{job?.jobtype == 'FullTime' ? 'FT' : 'PT'}</div>
                         {job?.jobtype == 'FullTime' ? (
-                            <div> ({dateReverse(job?.startDate)}) </div>
+                            <div> ({dateTimeTH(job?.startDate)}) </div>
                         ) : (
                             <div>
                                 <div> ({dateTimeTH(job?.startDate)}) </div>
@@ -106,7 +115,11 @@ export default function JobCard({
                                 >
                                     <ChatBTN />
                                 </div>
-                                <div id={job.providerId} onClick={handleClick3}>
+                                <div
+                                    id={job.providerId}
+                                    onClick={handleClick3}
+                                    name={job.providerName}
+                                >
                                     Chat
                                 </div>
                             </div>
