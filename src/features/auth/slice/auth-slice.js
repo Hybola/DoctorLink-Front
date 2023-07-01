@@ -36,7 +36,7 @@ export const docLogin = createAsyncThunk(
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
             const test = {...resFetchMe.data, role: 'doctor'}
-            console.log('test docLogin----->',test)
+            // console.log('test docLogin----->',test)
             return test
             // return resFetchMe.data.user
         } catch (err) {
@@ -64,7 +64,7 @@ export const doctorLoginGoogle = createAsyncThunk(
             if (decoded.role == 'doctor') {
                 const resFetchMe = await authService.doctorFetchMe()
                 const test = { ...resFetchMe.data, role: 'doctor' }
-                console.log('test dovGGLogin----->',test)
+                // console.log('test dovGGLogin----->',test)
                 return test
             }
         } catch (err) {
