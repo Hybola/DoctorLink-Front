@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
 import MsgSendBox from './components/MsgSendBox'
+import { toast } from 'react-toastify'
 
 export default function ProviderChat() {
     const ref = useRef()
@@ -19,6 +20,7 @@ export default function ProviderChat() {
         socket.on('acceptChat', (data) => {
             console.log('provider acceptChat:Room >>>', data.newRoom) //data={newRoom: '1:1', doctorId: 1}
             socket.emit('providerJoinRoom', data.newRoom)
+            toast.info(`incomming message`)
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
             setDoctorIdList([...doctorIdList, data.doctorId]) //เก็บ id ของ doctor ไว้ใช้งาน
         })
@@ -63,13 +65,13 @@ export default function ProviderChat() {
             to: 'doctor',
             from: 'provider',
         }
-        const room=`${currentDoctor}:${providerId}`
+        const room = `${currentDoctor}:${providerId}`
 
         socket.emit('providerSendMessage', {
-            conversation,room
+            conversation,
+            room,
         }) //อยู่ใน send box
 
-        
         // console.log("conversation from Provider:==>>",conversation)
         setAllMsg([...allMsg, conversation])
         setInput('')
