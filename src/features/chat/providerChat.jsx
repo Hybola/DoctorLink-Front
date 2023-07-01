@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
-import MsgSendBox from './components/MsgSendBox'
 import { toast } from 'react-toastify'
+import ChatHeader from './components/ChatHeader'
+import { EmojiIcon, SendImageIcon, SumbitChatMessageIcon } from '../../icons'
 
 export default function ProviderChat() {
     const ref = useRef()
@@ -14,7 +15,10 @@ export default function ProviderChat() {
     const [doctorIdList, setDoctorIdList] = useState([]) //เก็บรายชื่อ id ของ doctor ทุกคน
     const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
     const [input, setInput] = useState('') // เอาไป binding onChange
-    const [currentDoctor, setCurrentDoctor] = useState(1) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= doctorId
+    const [currentDoctor, setCurrentDoctor] = useState({
+        id: 1,
+        name: 'หมอไอดี 1',
+    }) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= doctorId
 
     useEffect(() => {
         socket.on('acceptChat', (data) => {
@@ -49,7 +53,7 @@ export default function ProviderChat() {
 
     useEffect(() => {
         if (Object.keys(chatLists)?.length !== 0)
-            setAllMsg([...[chatLists[`${currentDoctor}:${providerId}`]]]) // เอา allMsg ไป render
+            setAllMsg([...[chatLists[`${currentDoctor.id}:${providerId}`]]]) // เอา allMsg ไป render
     }, [currentDoctor])
 
     useEffect(() => {
@@ -65,7 +69,7 @@ export default function ProviderChat() {
             to: 'doctor',
             from: 'provider',
         }
-        const room = `${currentDoctor}:${providerId}`
+        const room = `${currentDoctor.id}:${providerId}`
 
         socket.emit('providerSendMessage', {
             conversation,
@@ -77,75 +81,73 @@ export default function ProviderChat() {
         setInput('')
     }
     return (
-        <div className="pt-2 max-w-2xl mx-auto grid grid-cols-1 gap-3 w-3/4">
-            <div className="text-sm text-purple-500 text-right">
-                My Socket Id : {socket.id}{' '}
-            </div>
-            {/* <ChatBox userName={providerId} socketId={socket.id} allMsg={allMsg} room={room}/> */}
-            <div className="container mx-auto">
-                <div className="max-w-2xl border rounded">
-                    <div>
-                        <div className="w-full">
-                            <div className="relative flex items-center p-3 border-b border-gray-300">
-                                <img
-                                    className="object-cover w-10 h-10 rounded-full"
-                                    src="https://www.svgrepo.com/show/508199/user-square.svg"
-                                    alt="username"
-                                />
-                                <span className="block ml-2 font-bold text-gray-600">
-                                    Chat with doctor Id: {currentDoctor}
-                                </span>
-                                <span
-                                    className={
-                                        'absolute w-3 h-3 rounded-full left-10 top-3' +
-                                        ` ${
-                                            socket.id
-                                                ? 'bg-green-600'
-                                                : 'bg-red-500'
-                                        }`
-                                    }
-                                ></span>
+        <>
+            <div className="mx-auto grid grid-cols-1 gap-3 w-full border-slate-500 shadow-md">
+                <div className="container mx-auto ">
+                    <div className=" border rounded">
+                        <div className="w-full bg-primary text-white">
+                            {/* === Header ===  */}
+
+                            <ChatHeader
+                                currentDoctor={currentDoctor.name}
+                                socketId={socket.id}
+                            />
+                        </div>
+
+                        {/* ======= Conversation Body ======  */}
+                        <div className="relative w-full p-6 overflow-y-auto h-[41.5rem] bg-secondary">
+                            <ul className="space-y-2 ">
+                                {allMsg.map((el, i) => (
+                                    <MsgBody
+                                        key={`${i}-${el.message}`}
+                                        conversation={el}
+                                        role={'provider'}
+                                    />
+                                ))}
+                                <li ref={ref}></li>
+                            </ul>
+                            <div className="text-sm text-purple-500 text-right absolute bottom-1 right-1">
+                                My Socket Id : {socket.id}{' '}
                             </div>
-                            <div className="relative w-full p-6 overflow-y-auto h-[29rem]">
-                                <ul className="space-y-2">
-                                    {allMsg.map((el, i) => (
-                                        <MsgBody
-                                            key={`${i}-${el.message}`}
-                                            conversation={el}
-                                            role={'provider'}
-                                        />
-                                    ))}
-                                    <li ref={ref}></li>
-                                </ul>
-                            </div>
-                            {/* <MsgSendBox hdlSubmit={handleSendMessage} /> */}
-                            <form
-                                onSubmit={handleSendMessage}
-                                className="flex items-center justify-between w-full p-3 border-t border-gray-300"
-                            >
+                        </div>
+                        {/* ======  Send Message Box ====== */}
+                        <form
+                            onSubmit={handleSendMessage}
+                            className="bg-info flex items-center justify-between w-full p-1 border-t border-gray-300 "
+                        >
+                            
+                            <div className="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700 w-full p-3">
+                                <button
+                                    type="button"
+                                    className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                                >
+                                    <SendImageIcon />
+                                </button>
+                                <button
+                                    type="button"
+                                    className="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                                >
+                                    <EmojiIcon />
+                                </button>
                                 <input
                                     type="text"
-                                    placeholder="Message"
-                                    className="flex-1 py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
+                                    className="block mx-4 p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Your message..."
                                     name="message"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                 />
-                                <button type="submit">
-                                    <svg
-                                        className="w-5 h-5 text-gray-500 origin-center transform rotate-90"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                    </svg>
+                                <button
+                                    type="submit"
+                                    className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+                                >
+                                    <SumbitChatMessageIcon />
                                 </button>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
