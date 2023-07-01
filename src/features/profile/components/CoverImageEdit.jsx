@@ -77,7 +77,10 @@ export default function CoverImageEdit({ currentCoverImage }) {
                             </div>
                             <div className="modal-action flex items-center mt-0">
                                 {loading ? (
-                                    <button className="btn">
+                                    <button
+                                        className="btn"
+                                        style={{ textTransform: 'none' }}
+                                    >
                                         <span className="loading loading-spinner"></span>
                                         Image is uploading
                                     </button>
