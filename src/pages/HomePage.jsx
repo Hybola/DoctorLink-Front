@@ -25,7 +25,7 @@ export default function HomePage() {
         { id: 5, name: 'Rachel' },
     ])
     //// state manage chosen chat provider from JobCard
-    const [chatUser, setChatUser] = useState({})
+    const [chatUser, setChatUser] = useState({}) //chatUser ตรงนี้คือ provider
     ////===================
     const [input, setInput] = useState({
         searchText: '',
@@ -44,7 +44,7 @@ export default function HomePage() {
         getAllJobPost()
     }, [])
 
-    ////=== code by Chee
+    ////=== code below will be removed by Chee soon
     const handleOpenChat = (user) => {
         setOpen((prev) => !prev)
         setChatUser(user)
@@ -56,8 +56,8 @@ export default function HomePage() {
     ////===================
 
     return (
-        <div>
-            <div className="flex flex-col justify-center items-center p-20">
+        <div className="bg-[#F5FBFC]">
+            <div className="flex flex-col justify-center items-center p-20 ">
                 <h1 className="font-semibold text-4xl text-success">
                     Find The
                     <span className="text-primary"> Right Job</span>
@@ -68,7 +68,7 @@ export default function HomePage() {
                 </p>
             </div>
 
-            <div className="flex flex-col w-full ">
+            <div className="flex flex-col w-full justify-center items-center">
                 <div className="pb-10">
                     <SearchBar input={input} setInput={setInput} />
                 </div>
@@ -95,8 +95,8 @@ export default function HomePage() {
             <div className="flex gap-2 pt-10">
                 <PageLeft />
                 <PageRight />
-                {/* //// ==== code by Chee ===== to InterestedJobBody// */}
-
+                {/* //// ==== code below will be removed soon// */}
+                
                 <div className="flex items-end">
                     {providers.map((provider, i) => (
                         <button

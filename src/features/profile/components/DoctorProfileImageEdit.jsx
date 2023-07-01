@@ -10,12 +10,12 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
     const dispatch = useDispatch()
 
     const classUpload = file
-        ? 'btn btn-success  w-[150px] font-bold  text-white '
-        : 'btn  w-[150px] font-bold   btn-disabled'
+        ? 'btn w-[180px] font-semibold btn-success text-base text-white hover:border-primary hover:bg-primary'
+        : 'btn w-[180px] font-semibold btn-disabled text-base'
 
     const classSelect = loading
-        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white  btn-disabled'
-        : 'btn w-[180px]  bg-primary  p-2 rounded-lg flex justify-center items-center hover:text-white hover:bg-success'
+        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-primary text-white  btn-disabled text-base'
+        : 'btn w-[180px]  bg-success p-2 rounded-lg flex justify-center items-center text-white hover:bg-primary text-base'
 
     const updateProfileImage = async (input) => {
         const formData = new FormData()
@@ -51,7 +51,7 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
                         </h3>
                     </div>
                     <div className="w-full flex justify-center items-center ">
-                        <div className="w-[150px] h-[150px] bg-info  shadow-lg flex justify-center items-center  rounded-[50%]">
+                        <div className="w-[150px] h-[150px] bg-info  shadow-lg flex justify-center items-center rounded-[50%]">
                             <img
                                 src={
                                     file
@@ -66,6 +66,7 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
                     <div className="w-full flex justify-around items-center mt-6">
                         <div
                             className={classSelect}
+                            style={{ textTransform: 'none' }}
                             onClick={() => inputEl.current.click()}
                         >
                             Select Image
@@ -79,6 +80,7 @@ export default function DoctorProfileImageEdit({ currentProfileImage }) {
                             ) : (
                                 <button
                                     className={classUpload}
+                                    style={{ textTransform: 'none' }}
                                     onClick={(e) => {
                                         updateProfileImage(file)
                                         e.preventDefault()

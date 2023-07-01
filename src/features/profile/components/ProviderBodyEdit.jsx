@@ -24,40 +24,40 @@ export default function ProviderEdit() {
     console.log(profile)
 
     return (
-        <dialog id="ProviderBodyEdit" className="modal ">
-            <form method="dialog" className="modal-box bg-base-100 w-[600px]">
-                <div className="flex justify-center mb-2">
+        <dialog id="ProviderBodyEdit" className="modal text-success">
+            <form method="dialog" className="modal-box bg-base-100 px-10">
+                <div className="flex justify-center mb-8">
                     <h3 className="font-bold text-lg">Edit Provider Profile</h3>
                 </div>
                 <InputBar
-                    label="Provider Name: "
+                    label="Provider Name : "
                     name="providerName"
                     value={profile?.providerName}
                     onChange={handleOnchange}
                 />
-                <div className="flex gap-2 ">
+                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
                     <label
                         htmlFor="description"
-                        className="w-[180px] font-normal text-sm"
+                        className="w-[180px] font-semibold"
                     >
-                        Description
+                        Description :
                     </label>
                     <textarea
-                        className=" w-full min-h-[20px] p-2 font-normal text-sm border border-bg-primary rounded-lg"
+                        className="w-full font-normal text-lg border border-primary rounded-lg p-2 pl-3"
                         name="description"
                         value={profile?.description}
                         onChange={handleOnchange}
                     ></textarea>
                 </div>
                 <InputBar
-                    label="Adress:"
+                    label="Adress :"
                     name="address"
                     value={profile?.address}
                     onChange={handleOnchange}
                 />
 
                 <InputBar
-                    label="Google Map Link: "
+                    label="Google Map : "
                     name="googleMap"
                     value={profile?.googleMap}
                     onChange={handleOnchange}
@@ -76,12 +76,18 @@ export default function ProviderEdit() {
                 />
 
                 <div className="modal-action gap-2">
-                    <button className="btn w-[80px] ">CANCEL</button>
                     <button
-                        className="btn bg-primary  w-[100px] font-bold text-white hover:bg-success"
+                        className="btn w-[80px] text-base"
+                        style={{ textTransform: 'none' }}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className="btn w-[80px] bg-success text-white hover:bg-primary text-base"
+                        style={{ textTransform: 'none' }}
                         onClick={handleOnclick}
                     >
-                        SAVE
+                        Save
                     </button>
                 </div>
             </form>

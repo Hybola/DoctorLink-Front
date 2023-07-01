@@ -10,12 +10,12 @@ export default function CoverImageEdit({ currentCoverImage }) {
     const dispatch = useDispatch()
 
     const classUpload = file
-        ? 'btn btn-success  w-[150px] font-bold  text-white '
-        : 'btn  w-[150px] font-bold   btn-disabled'
+        ? 'btn w-[180px] btn-success font-semibold btn-success text-base text-white hover:border-primary hover:bg-primary'
+        : 'btn w-[180px] font-semibold btn-disabled text-base'
 
     const classSelect = loading
-        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white  btn-disabled'
-        : 'btn w-[180px]  bg-primary  p-2 rounded-lg flex justify-center items-center hover:text-white hover:bg-success'
+        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-primary text-white  btn-disabled text-base'
+        : 'btn w-[180px]  bg-success p-2 rounded-lg flex justify-center items-center text-white hover:bg-primary text-base'
 
     const updateCoverImage = async (input) => {
         const formData = new FormData()
@@ -38,7 +38,7 @@ export default function CoverImageEdit({ currentCoverImage }) {
                 />
                 <form
                     method="dialog"
-                    className="modal-box mt-[200px] bg-base-100"
+                    className="modal-box mt-[200px] bg-base-100 pb-10"
                 >
                     <button
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -50,12 +50,12 @@ export default function CoverImageEdit({ currentCoverImage }) {
                         ✕
                     </button>
                     <div className="flex flex-col h-[300px] justify-between">
-                        <div className="flex justify-center mb-2">
+                        <div className="flex justify-center mb-4">
                             <h3 className="font-bold text-lg">
                                 Edit Cover Image
                             </h3>
                         </div>
-                        <div className="w-full h-[200px] bg-base-300 rounded-t-lg">
+                        <div className="w-full h-[200px] bg-base-300 rounded-lg">
                             <img
                                 src={
                                     file
@@ -63,13 +63,14 @@ export default function CoverImageEdit({ currentCoverImage }) {
                                         : currentCoverImage
                                 }
                                 alt="coverImage"
-                                className="w-full h-[200px] rounded-t-lg object-cover"
+                                className="w-full h-[200px] rounded-lg object-cover"
                             />
                         </div>
 
-                        <div className="w-full flex justify-between items-center mt-6">
+                        <div className="w-full flex justify-around items-center mt-6">
                             <div
                                 className={classSelect}
+                                style={{ textTransform: 'none' }}
                                 onClick={() => inputEl.current.click()}
                             >
                                 Select Image
@@ -84,6 +85,7 @@ export default function CoverImageEdit({ currentCoverImage }) {
                                     <>
                                         <button
                                             className={classUpload}
+                                            style={{ textTransform: 'none' }}
                                             onClick={(e) => {
                                                 updateCoverImage(file)
                                                 e.preventDefault()

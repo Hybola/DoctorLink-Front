@@ -287,7 +287,7 @@ export function EditIcon() {
         >
             <g
                 fill="none"
-                stroke="#4f3fca"
+                stroke="#05264E"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
