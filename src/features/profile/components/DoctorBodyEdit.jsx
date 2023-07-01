@@ -6,7 +6,7 @@ import InputBar from './InputBar'
 
 export default function DoctorBodyEdit() {
     const myRole = useSelector((state) => state.auth?.role)
-    const currrentProfile = useSelector((state) => state.profile?.profile)
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const [profile, setProfile] = useState({ ...currrentProfile })
 
     const dispatch = useDispatch()
