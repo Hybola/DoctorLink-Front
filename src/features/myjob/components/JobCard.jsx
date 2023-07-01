@@ -110,15 +110,12 @@ export default function JobCard({
                             <div>
                                 <div
                                     className="w-[30px]"
-                                    id={job.providerId}
-                                    onClick={handleClick3}
+                                onClick={(e)=>{handleClick3({id: job.providerId,name: job.providerName,providerImage:job.image})}}
                                 >
                                     <ChatBTN />
                                 </div>
                                 <div
-                                    id={job.providerId}
-                                    onClick={handleClick3}
-                                    name={job.providerName}
+                                     onClick={(e)=>{handleClick3({id: job.providerId,name: job.providerName, providerImage:job.image})}}
                                 >
                                     Chat
                                 </div>
