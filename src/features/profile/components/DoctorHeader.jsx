@@ -29,7 +29,7 @@ export default function DoctorHeader({ profile, canEdit }) {
                 {canEdit ? (
                     <div className="w-full flex  flex-col  items-end z-10">
                         <div
-                            className="bg-base-100 w-[40px] h-[40px] rounded-[50%]  -my-[160px] mr-[20px] flex justify-center  items-center  hover:bg-base-300 hover:cursor-pointer"
+                            className="bg-base-100 w-[40px] h-[40px] rounded-[50%] -my-[160px] mr-[20px] flex justify-center  items-center hover:bg-base-300 hover:cursor-pointer border border-primary"
                             onClick={handleCoverImageEdit}
                         >
                             <PenIcon />

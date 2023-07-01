@@ -25,32 +25,36 @@ export default function DoctorDataEdit() {
 
     return (
         <dialog id="DoctorDataEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-100">
-                <div className="flex justify-center mb-2">
+            <form method="dialog" className="modal-box bg-base-100 px-10">
+                <div className="flex justify-center mb-8">
                     <h3 className="font-bold text-lg">Edit Doctor Profile</h3>
                 </div>
                 <InputBar
-                    label="First Name: "
+                    label="First Name : "
                     name="firstName"
                     value={profile?.firstName}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Last Name: "
+                    label="Last Name : "
                     name="lastName"
                     value={profile?.lastName}
                     onChange={handleOnchange}
                 />
-                <div className="flex items-center gap-2   h-[34px] rounded-ld my-2 font-normal text-sm">
-                    <label htmlFor="gender" className="w-[180px]">
-                        Gender:
+                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
+                    <label
+                        htmlFor="gender"
+                        className="w-[123px] font-semibold "
+                    >
+                        Gender :
                     </label>
-                    <div className=" w-full  h-[80%] p-2 ">
+                    <div className=" w-fit border border-primary rounded-lg" >
                         <select
                             name="gender"
                             id="gender"
                             value={profile.gender}
                             onChange={handleOnchange}
+                            className=" w-full border border-bg-primary rounded-lg p-2 pl-2"
                         >
                             <option value="1">Male</option>
                             <option value="2">Female</option>
@@ -92,14 +96,18 @@ export default function DoctorDataEdit() {
                 />
 
                 <div className="modal-action gap-2">
-                    <button className="btn w-[80px] hover:bg-warning">
-                        CANCEL
+                    <button
+                        className="btn w-[80px] text-base"
+                        style={{ textTransform: 'none' }}
+                    >
+                        Cancel
                     </button>
                     <button
-                        className="btn  w-[100px] font-bold hover:bg-success hover:text-white"
+                        className="btn w-[80px] bg-success text-white hover:bg-primary text-base"
+                        style={{ textTransform: 'none' }}
                         onClick={handleOnclick}
                     >
-                        SAVE
+                        Save
                     </button>
                 </div>
             </form>

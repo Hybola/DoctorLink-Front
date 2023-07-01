@@ -5,8 +5,8 @@ export default function Filter() {
             <div className="dropdown">
                 <label
                     tabIndex={0}
-                    className="btn m-1 shadow-md"
-                    style={{ textTransform: 'none' }}
+                    className="btn shadow-md"
+                    style={{ textTransform: 'none', fontWeight: 'normal'}}
                 >
                     Date Posted
                 </label>
@@ -25,8 +25,8 @@ export default function Filter() {
             <div className="dropdown">
                 <label
                     tabIndex={0}
-                    className="btn m-1 shadow-md"
-                    style={{ textTransform: 'none' }}
+                    className="btn shadow-md"
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
                 >
                     Salary Estimate
                 </label>
@@ -48,8 +48,8 @@ export default function Filter() {
             <div className="dropdown">
                 <label
                     tabIndex={0}
-                    className="btn m-1 shadow-md"
-                    style={{ textTransform: 'none' }}
+                    className="btn shadow-md"
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
                 >
                     Employment Type
                 </label>

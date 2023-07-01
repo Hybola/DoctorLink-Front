@@ -56,8 +56,8 @@ export default function HomePage() {
     ////===================
 
     return (
-        <div>
-            <div className="flex flex-col justify-center items-center p-20">
+        <div className="bg-[#F5FBFC]">
+            <div className="flex flex-col justify-center items-center p-20 ">
                 <h1 className="font-semibold text-4xl text-success">
                     Find The
                     <span className="text-primary"> Right Job</span>
@@ -68,7 +68,7 @@ export default function HomePage() {
                 </p>
             </div>
 
-            <div className="flex flex-col w-full ">
+            <div className="flex flex-col w-full justify-center items-center">
                 <div className="pb-10">
                     <SearchBar input={input} setInput={setInput} />
                 </div>

@@ -62,7 +62,6 @@ export const doctorLoginGoogle = createAsyncThunk(
             if (decoded.role == 'doctor') {
                 const resFetchMe = await authService.doctorFetchMe()
                 const test = { ...resFetchMe.data, role: 'doctor' }
-                console.log('test dovGGLogin----->', test)
                 return test
             }
         } catch (err) {

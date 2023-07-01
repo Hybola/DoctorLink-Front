@@ -13,7 +13,7 @@ export default function FollowedCard({ provider }) {
                     <div className="flex text-lg font-bold  ">
                         {provider.name}
                     </div>
-                    <div className="flex  text-primary text-base font-thin">
+                    <div className="flex text-primary text-base font-thin">
                         Best Hospital
                     </div>
                     <div className="flex   pb-2 text-primary  text-[14px] font-thin">
@@ -22,7 +22,7 @@ export default function FollowedCard({ provider }) {
                 </div>
             </div>
             <div className="flex items-center">
-                <button className=" border border-primary  text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50">
+                <button className=" border border-primary text-success rounded-2xl px-4 py-1 hover:bg-primary hover:bg-opacity-40">
                     Unfollow
                 </button>
             </div>
