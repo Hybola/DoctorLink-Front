@@ -25,7 +25,7 @@ export default function HomePage() {
         { id: 5, name: 'Rachel' },
     ])
     //// state manage chosen chat provider from JobCard
-    const [chatUser, setChatUser] = useState({})
+    const [chatUser, setChatUser] = useState({}) //chatUser ตรงนี้คือ provider
     ////===================
     const [input, setInput] = useState({
         searchText: '',
@@ -44,7 +44,7 @@ export default function HomePage() {
         getAllJobPost()
     }, [])
 
-    ////=== code by Chee
+    ////=== code below will be removed by Chee soon
     const handleOpenChat = (user) => {
         setOpen((prev) => !prev)
         setChatUser(user)
@@ -95,8 +95,8 @@ export default function HomePage() {
             <div className="flex gap-2 pt-10">
                 <PageLeft />
                 <PageRight />
-                {/* //// ==== code by Chee ===== to InterestedJobBody// */}
-
+                {/* //// ==== code below will be removed soon// */}
+                
                 <div className="flex items-end">
                     {providers.map((provider, i) => (
                         <button
