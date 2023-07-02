@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux'
 
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
-import { CloseWindowIcon } from '../../icons'
+import {
+    CloseWindowIcon,
+    EmojiIcon,
+    SendImageIcon,
+    SumbitChatMessageIcon,
+} from '../../icons'
 export default function DoctorChat({ chatUser, handleCloseChat }) {
     const doctorId = useSelector((state) => state.auth.user?.id)
     // console.log(` doctorId: ===>>${doctorId}`)
@@ -34,7 +39,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
         //     `"startChat", doctorId:${doctorId}, providerId: ${providerId}`
         // )
         socket.on('doctorGetMessage', (data) => {
-            setAllMsg((prev)=>[...prev, data.conversation])
+            setAllMsg((prev) => [...prev, data.conversation])
         })
 
         return () => {
@@ -53,16 +58,16 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             to: 'provider',
             from: 'doctor',
         }
-        const room=`${doctorId}:${providerId}`
+        const room = `${doctorId}:${providerId}`
 
         setAllMsg([...allMsg, conversation])
         setInput('')
-        socket.emit('doctorSendMessage', { conversation, room})
+        socket.emit('doctorSendMessage', { conversation, room })
     }
     return (
         <>
             {/* ======= Chat Modal  ====== */}
-            <div className="flex flex-col w-[400px] border shadow-xl fixed bg-white right-2 bottom-2">
+            <div className="flex flex-col w-[400px] border shadow-xl fixed bg-white right-3 bottom-3 z-10">
                 {/* ======= Chat title ====== */}
                 <div className="flex items-center justify-between rounded-t-lg bg-primary py-4 px-9">
                     <h3 className="text-xl font-bold text-white">
@@ -83,7 +88,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                 <div className="relative flex items-center p-3 border-b border-gray-300">
                                     <img
                                         className="object-cover w-10 h-10 rounded-full"
-                                        src="https://www.svgrepo.com/show/508199/user-square.svg"
+                                        src={chatUser.providerImage}
                                         alt="username"
                                     />
                                     <span className="block ml-2 font-bold text-gray-600">
@@ -91,7 +96,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                     </span>
                                     <span
                                         className={
-                                            'absolute w-3 h-3 rounded-full left-10 top-3' +
+                                            'absolute w-3 h-3 rounded-full left-10 top-3 border-2 border-white' +
                                             ` ${
                                                 socket.id
                                                     ? 'bg-green-600'
@@ -114,31 +119,41 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                     </ul>
                                 </div>
                                 {/* ======  Send Message Box ====== */}
-                                {/* <MsgSendBox username={username} hdlSubmit={hdlSubmit}/> */}
                                 <form
                                     onSubmit={handleSendMessage}
-                                    className="flex items-center justify-between w-full p-3 border-t border-gray-300"
+                                    className="bg-info flex items-center justify-between w-full p-1 border-t border-gray-300 "
                                 >
-                                    <input
-                                        type="text"
-                                        placeholder="Message"
-                                        className="flex-1 py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
-                                        name="message"
-                                        value={input}
-                                        onChange={(e) =>
-                                            setInput(e.target.value)
-                                        }
-                                    />
-                                    <button type="submit">
-                                        <svg
-                                            className="w-5 h-5 text-gray-500 origin-center transform rotate-90"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                    <div className="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700 w-full p-3">
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-center p-1 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                                         >
-                                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                        </svg>
-                                    </button>
+                                            <SendImageIcon />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="p-1 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                                        >
+                                            <EmojiIcon />
+                                        </button>
+                                        <input
+                                            type="text"
+                                            className="block mx-1 p-3 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Your message..."
+                                            name="message"
+                                            value={input}
+                                            onChange={(e) =>
+                                                setInput(e.target.value)
+                                            }
+                                        />
+
+                                        <button
+                                            type="submit"
+                                            className="inline-flex justify-center p-1 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+                                        >
+                                            <SumbitChatMessageIcon />
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

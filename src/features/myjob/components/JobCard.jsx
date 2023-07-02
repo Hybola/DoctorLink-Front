@@ -122,6 +122,7 @@ export default function JobCard({
                                         handleClick3({
                                             id: job.providerId,
                                             name: job.providerName,
+                                            providerImage: job.image,
                                         })
                                     }}
                                 >
@@ -132,6 +133,7 @@ export default function JobCard({
                                         handleClick3({
                                             id: job.providerId,
                                             name: job.providerName,
+                                            providerImage: job.image,
                                         })
                                     }}
                                 >
