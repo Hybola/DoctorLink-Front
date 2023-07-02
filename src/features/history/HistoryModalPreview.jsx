@@ -23,19 +23,27 @@ export default function HistoryModalPreview() {
                         </div>
                         <hr className="mt-2 border-black"></hr>
                         <div className="flex flex-col gap-3 mt-2">
-                            <div>Title : {detail.title}</div>
+                            <div>Job Title : {detail.title}</div>
                             <div>Location : {detail.location}</div>
                             <div>Phone : {detail.phone}</div>
-                            <div>Line : {detail.line}</div>
+                            <div>Line ID : {detail.line}</div>
                             <div>Job Type : {detail.jobType}</div>
-                            <div>Job Description :{detail.jobDes}</div>
-                            <div>WorkingDay :{detail.workingDay}</div>
-                            <div>StartDate :{detail.startDate}</div>
-                            <div>Salary :{detail.salary}</div>
-                            <div>Annual holiday :{detail.annual}</div>
-                            <div>Benefit :{detail.benefit}</div>
-                            <div>Other :{detail.other}</div>
+                            <div>Job Description : {detail.jobDes}</div>
+                            <div>Working Day : {detail.workingDay}</div>
+                            <div>Start Date : {detail.startDate}</div>
+                            <div>Salary : {detail.salary}</div>
+                            <div>Annual holiday : {detail.annual}</div>
+                            <div>Benefit : {detail.benefit}</div>
+                            <div>Other : {detail.other}</div>
                         </div>
+                    </div>
+                    <div className="modal-action mr-4">
+                        <button
+                            className="btn w-[120px] text-base"
+                            style={{ textTransform: 'none' }}
+                        >
+                            Close
+                        </button>
                     </div>
                 </form>
             </dialog>

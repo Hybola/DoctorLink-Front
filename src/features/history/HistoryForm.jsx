@@ -309,7 +309,7 @@ export default function HistoryForm(props) {
                             >
                                 <div className=" w-[10%] flex flex-row justify-center">
                                     {/* <h1>{item.statusDetail}</h1> */}
-                                    <div className="dropdown dropdown-bottom">
+                                    <div className="dropdown dropdown-right">
                                         <label
                                             tabIndex={0}
                                             className={

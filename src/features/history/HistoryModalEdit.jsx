@@ -18,7 +18,7 @@ export default function HistoryModalEdit() {
                             <div className="w-full ">
                                 <input
                                     type="text"
-                                    className="w-full  h-[40px] p-2 pl-3 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // value={input.title}
                                     // onChange={hdlchange}
                                     name="title"
@@ -30,7 +30,7 @@ export default function HistoryModalEdit() {
                             <div className="w-full  ">
                                 <input
                                     type="text"
-                                    className="w-full  h-[40px] p-2 pl-3 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // value={input.location}
                                     // onChange={hdlchange}
                                     name="location"
@@ -38,11 +38,11 @@ export default function HistoryModalEdit() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <div>Google Map Link</div>
+                            <div>Google Map</div>
                             <div className="w-full  ">
                                 <input
                                     type="text"
-                                    className="w-full  h-[40px] p-2 pl-3 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // value={input.map}
                                     // onChange={hdlchange}
                                     name="map"
@@ -54,7 +54,7 @@ export default function HistoryModalEdit() {
                             <div className="w-full  ">
                                 <input
                                     type="text"
-                                    className="w-full  h-[40px] p-2 pl-3 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // value={input.phone}
                                     // onChange={hdlchange}
                                     name="phone"
@@ -62,11 +62,11 @@ export default function HistoryModalEdit() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <div>Line Id</div>
+                            <div>Line ID</div>
                             <div className="w-full  ">
                                 <input
                                     type="text"
-                                    className="w-full  h-[40px] p-2 pl-3 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // value={input.line}
                                     // onChange={hdlchange}
                                     name="line"
@@ -74,10 +74,10 @@ export default function HistoryModalEdit() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <div>Employment Type</div>
+                            <div>Job Type</div>
                             <select
                                 name="JobType"
-                                className=" h-[40px] border border-primary rounded-lg p-2 pl-3"
+                                className=" h-[40px] font-normal border border-primary rounded-lg p-2 pl-3"
                                 // onChange={hdlfull}
                                 id="jobType"
                             >
@@ -90,7 +90,7 @@ export default function HistoryModalEdit() {
                         <div className="flex flex-col gap-1">
                             <div>Job Descreiption</div>
                             <textarea
-                                className="w-full h-[110px] p-2 pl-3 border border-primary rounded-lg "
+                                className="w-full h-[110px] font-normal p-2 pl-3 border border-primary rounded-lg "
                                 // onChange={hdl}
                                 // value={add.jobDes}
                                 name="jobDes"
@@ -102,7 +102,7 @@ export default function HistoryModalEdit() {
                                 <div className="w-full  ">
                                     <input
                                         type="datetime-local"
-                                        className="w-full h-[40px] p-2 border border-primary rounded-lg "
+                                        className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                         // onChange={hdl}
                                         // value={add.startDateTime}
                                         name="partstart"
@@ -114,7 +114,7 @@ export default function HistoryModalEdit() {
                                 <div className="w-full  ">
                                     <input
                                         type="datetime-local"
-                                        className="w-full h-[40px] p-2 border border-primary rounded-lg "
+                                        className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                         // onChange={hdl}
                                         // value={add.endDateTime}
                                         name="partend"
@@ -123,11 +123,11 @@ export default function HistoryModalEdit() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <div>Salary Estimate</div>
+                            <div>Salary</div>
                             <div className="w-full ">
                                 <input
                                     type="text"
-                                    className="w-full h-[40px] p-2 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // onChange={hdl}
                                     // value={add.wage}
                                     name="wage"
@@ -139,7 +139,7 @@ export default function HistoryModalEdit() {
                             <div className="w-full  ">
                                 <input
                                     type="text"
-                                    className="w-full h-[40px] p-2 border border-primary rounded-lg "
+                                    className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
                                     // onChange={hdl}
                                     // value={add.other}
                                     name="other"
@@ -147,7 +147,7 @@ export default function HistoryModalEdit() {
                             </div>
                         </div>
                     </div>
-                    <div className="modal-action gap-2 mr-4">
+                    <div className="modal-action gap-8 mr-4">
                         <button
                             className="btn w-[120px] text-base"
                             style={{ textTransform: 'none' }}

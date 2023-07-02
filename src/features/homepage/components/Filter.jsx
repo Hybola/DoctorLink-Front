@@ -1,19 +1,14 @@
-
 export default function Filter() {
+    const style = {
+        textTransform: 'none',
+    }
     return (
         <div className="flex justify-center text-success gap-4">
-            <div className="dropdown">
-                <label
-                    tabIndex={0}
-                    className="btn shadow-md"
-                    style={{ textTransform: 'none', fontWeight: 'normal'}}
-                >
+            <details className="dropdown">
+                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
                     Date Posted
-                </label>
-                <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                >
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                     <li>
                         <a>Last 3 days</a>
                     </li>
@@ -21,19 +16,12 @@ export default function Filter() {
                         <a>Last 7 days</a>
                     </li>
                 </ul>
-            </div>
-            <div className="dropdown">
-                <label
-                    tabIndex={0}
-                    className="btn shadow-md"
-                    style={{ textTransform: 'none', fontWeight: 'normal' }}
-                >
-                    Salary Estimate
-                </label>
-                <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                >
+            </details>
+            <details className="dropdown">
+                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
+                    Salary
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                     <li>
                         <a>40000-100000</a>
                     </li>
@@ -44,19 +32,12 @@ export default function Filter() {
                         <a>150000-200000</a>
                     </li>
                 </ul>
-            </div>
-            <div className="dropdown">
-                <label
-                    tabIndex={0}
-                    className="btn shadow-md"
-                    style={{ textTransform: 'none', fontWeight: 'normal' }}
-                >
-                    Employment Type
-                </label>
-                <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                >
+            </details>
+            <details className="dropdown">
+                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
+                    Job Type
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                     <li>
                         <a>Part-time</a>
                     </li>
@@ -64,7 +45,7 @@ export default function Filter() {
                         <a>Full-time</a>
                     </li>
                 </ul>
-            </div>
+            </details>
         </div>
     )
 }

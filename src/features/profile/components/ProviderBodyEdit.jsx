@@ -25,22 +25,22 @@ export default function ProviderEdit() {
 
     return (
         <dialog id="ProviderBodyEdit" className="modal text-success">
-            <form method="dialog" className="modal-box bg-base-100 px-10">
+            <form method="dialog" className="modal-box bg-base-100 p-10">
                 <div className="flex justify-center mb-8">
                     <h3 className="font-bold text-lg">Edit Provider Profile</h3>
                 </div>
                 <InputBar
-                    label="Provider Name : "
+                    label="Provider Name"
                     name="providerName"
                     value={profile?.providerName}
                     onChange={handleOnchange}
                 />
-                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
+                <div className="flex flex-col gap-1 rounded-lg font-normal text-lg mb-3">
                     <label
                         htmlFor="description"
-                        className="w-[180px] font-semibold"
+                        className="w-fit font-semibold"
                     >
-                        Description :
+                        Description
                     </label>
                     <textarea
                         className="w-full font-normal text-lg border border-primary rounded-lg p-2 pl-3"
@@ -50,32 +50,32 @@ export default function ProviderEdit() {
                     ></textarea>
                 </div>
                 <InputBar
-                    label="Adress :"
+                    label="Address"
                     name="address"
                     value={profile?.address}
                     onChange={handleOnchange}
                 />
 
                 <InputBar
-                    label="Google Map : "
+                    label="Google Map"
                     name="googleMap"
                     value={profile?.googleMap}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Telephone :"
+                    label="Phone"
                     name="mobile"
                     value={profile?.mobile}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="LINE ID :"
+                    label="Line ID"
                     name="lineId"
                     value={profile?.lineId}
                     onChange={handleOnchange}
                 />
 
-                <div className="modal-action gap-2">
+                <div className="modal-action gap-8">
                     <button
                         className="btn w-[80px] text-base"
                         style={{ textTransform: 'none' }}

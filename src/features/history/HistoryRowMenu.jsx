@@ -39,7 +39,8 @@ export default function RowMenu({ follower }) {
                 onClick={() => window.GroupJob.showModal()}
             >
                 {/* <GroupJob height="1.5rem" width="1.5rem" /> */}
-                <div className="indicator hover:scale-125 duration-200">
+                <div className="indicator hover:scale-125 duration-200 flex items-center justify-center">
+                    <GroupJob height="1.5rem" width="1.5rem" />
                     {follower > 0 ? (
                         <span
                             className="indicator-item indicator-middle badge badge-secondary bg-red-400 text-white "
@@ -52,8 +53,6 @@ export default function RowMenu({ follower }) {
                             {follower > 9 ? '+9' : follower}
                         </span>
                     ) : null}
-
-                    <GroupJob height="1.5rem" width="1.5rem" />
                 </div>
             </div>
         </>

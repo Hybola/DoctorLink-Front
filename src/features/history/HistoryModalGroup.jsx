@@ -157,16 +157,16 @@ export default function HistoryModalGroup() {
                                                           )[0]}
                                                 </td>
                                                 <th>
-                                                    <button className="btn btn-success hover:btn-primary btn-xs text-white">
+                                                    <button className="btn btn-primary hover:btn-success btn-xs text-white">
                                                         Chat
                                                     </button>
 
                                                     {member.selected ? (
-                                                        <button className="btn btn-xs ml-3">
+                                                        <button className="btn btn-xs ml-3 text-gray-400">
                                                             un-select
                                                         </button>
                                                     ) : (
-                                                        <button className="btn btn-primary btn-xs ml-3  text-white">
+                                                        <button className="btn btn-xs ml-3  ">
                                                             Select
                                                         </button>
                                                     )}
