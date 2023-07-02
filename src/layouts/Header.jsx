@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
 import Logo from '../asset/Logo8.png'
-import { getMyProfile } from '../features/profile/slice/profile-slice'
+import {
+    getMyProfile,
+    getProvince,
+} from '../features/profile/slice/profile-slice'
 import { useEffect } from 'react'
 
 export default function Header() {
@@ -28,10 +31,11 @@ export default function Header() {
         const myProfile = async (input) => {
             await dispatch(getMyProfile(input)).unwrap()
         }
-
-        const input = { role, id }
-
-        myProfile(input)
+        myProfile(id)
+        const Province = async () => {
+            await dispatch(getProvince()).unwrap()
+        }
+        Province()
     }, [])
 
     return (

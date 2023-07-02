@@ -24,7 +24,7 @@ export default function JobCard({
         >
             <div className="w-[500px] flex gap-2 min-h-[60px]">
                 <div
-                    className="w-[60px] h-[60px] bg-slate-600"
+                    className="w-[60px] h-[60px] bg-slate-600  cursor-pointer"
                     id={job.providerId + '/post/' + job.jobPostId}
                     onClick={(e) => navigate(`/doctor/provider/${e.target.id}`)}
                 >
@@ -32,11 +32,19 @@ export default function JobCard({
                         id={job.providerId + '/post/' + job.jobPostId}
                         src={job?.image}
                         alt="profileImage"
-                        className="w-[60px] h-[60px]  bg-slate-600 object-cover"
+                        className="w-[60px] h-[60px]  bg-slate-600 object-cover    cursor-pointer"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <div className="flex  text-lg font-bold ">{job?.title}</div>
+                    <div
+                        className="flex  text-lg font-bold  cursor-pointer "
+                        id={job.providerId + '/post/' + job.jobPostId}
+                        onClick={(e) =>
+                            navigate(`/doctor/provider/${e.target.id}`)
+                        }
+                    >
+                        {job?.title}
+                    </div>
                     <div className="flex  text-primary text-base font-thin gap-2">
                         <div>{job?.jobtype == 'FullTime' ? 'FT' : 'PT'}</div>
                         {job?.jobtype == 'FullTime' ? (
@@ -110,12 +118,24 @@ export default function JobCard({
                             <div>
                                 <div
                                     className="w-[30px]"
-                                onClick={(e)=>{handleClick3({id: job.providerId,name: job.providerName,providerImage:job.image})}}
+                                    onClick={(e) => {
+                                        handleClick3({
+                                            id: job.providerId,
+                                            name: job.providerName,
+                                            providerImage: job.image,
+                                        })
+                                    }}
                                 >
                                     <ChatBTN />
                                 </div>
                                 <div
-                                     onClick={(e)=>{handleClick3({id: job.providerId,name: job.providerName, providerImage:job.image})}}
+                                    onClick={(e) => {
+                                        handleClick3({
+                                            id: job.providerId,
+                                            name: job.providerName,
+                                            providerImage: job.image,
+                                        })
+                                    }}
                                 >
                                     Chat
                                 </div>

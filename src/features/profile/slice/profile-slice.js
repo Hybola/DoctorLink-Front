@@ -5,6 +5,7 @@ const initialState = {
     myProfile: {},
     otherProfile: {},
     loading: false,
+    province: [],
 }
 
 // Doctor
@@ -61,25 +62,35 @@ export const editProfile = createAsyncThunk(
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
-                console.log(input.payload)
                 const res = await profileService.editDoctorProfile(
                     input.payload
                 )
-                console.log(res.data)
                 if (res.data[0] > 0) {
                     return input.payload
                 }
                 return {}
             }
             if (input.role == 'provider') {
-                const res = await profileService.editProviderProfile(
-                    input.payload
-                )
+                const payload = { ...input.payload }
+                delete payload.Province
+                const res = await profileService.editProviderProfile(payload)
                 if (res.data[0] > 0) {
                     return input.payload
                 }
                 return {}
             }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const getProvince = createAsyncThunk(
+    'province',
+    async (input, thunkApi) => {
+        try {
+            const rs = await profileService.getProvince()
+            return rs.data
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -130,6 +141,10 @@ const profileSlice = createSlice({
 
             .addCase(editProfile.fulfilled, (state, action) => {
                 state.myProfile = { ...state.myProfile, ...action.payload }
+            })
+
+            .addCase(getProvince.fulfilled, (state, action) => {
+                state.province = action.payload
             }),
 })
 export default profileSlice.reducer

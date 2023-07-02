@@ -14,8 +14,6 @@ export default function DoctorDataEdit() {
 
     const handleOnchange = (e) => {
         setProfile({ ...profile, [e.target.name]: e.target.value })
-        console.log(profile)
-        console.log(e.target.value)
     }
 
     const handleOnclick = (e) => {
@@ -48,7 +46,7 @@ export default function DoctorDataEdit() {
                     >
                         Gender :
                     </label>
-                    <div className=" w-fit border border-primary rounded-lg" >
+                    <div className=" w-fit border border-primary rounded-lg">
                         <select
                             name="gender"
                             id="gender"
