@@ -7,6 +7,7 @@ const initialState = {
     interestedJob: { allJob: [], filterJob: [] },
     confirmedJob: { allJob: [], filterJob: [] },
     loading: false,
+    test: '',
 }
 
 export const getDocotorJob = createAsyncThunk(
