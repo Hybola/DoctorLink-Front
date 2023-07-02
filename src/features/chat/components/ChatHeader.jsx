@@ -6,7 +6,7 @@ export default function ChatHeader(prop) {
     return (
         <>
             {/* ==== Header ====== */}
-            <div className="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center border-b border-gray-300">
+            <div className="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center border-b border-gray-300 ">
           
                 <div className="flex items-center">
 

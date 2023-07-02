@@ -82,7 +82,7 @@ export default function ProviderChat() {
     }
     return (
         <>
-            <div className="mx-auto grid grid-cols-1 gap-3 w-full border-slate-500 shadow-md">
+            <div className="mx-auto grid grid-cols-1 gap-3 w-full border-slate-500 shadow-md ">
                 <div className="container mx-auto ">
                     <div className=" border rounded">
                         <div className="w-full bg-primary text-white">
@@ -113,7 +113,7 @@ export default function ProviderChat() {
                         {/* ======  Send Message Box ====== */}
                         <form
                             onSubmit={handleSendMessage}
-                            className="bg-info flex items-center justify-between w-full p-1 border-t border-gray-300 "
+                            className="bg-info flex items-center justify-between w-full p-1 border-t border-gray-300 rounded-lg"
                         >
                             
                             <div className="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700 w-full p-3">

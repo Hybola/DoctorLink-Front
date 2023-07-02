@@ -8,9 +8,9 @@ export default function ChatConsole() {
             <div className="container mx-auto">
                 <div className="flex border border-grey rounded shadow-lg h-full">
                     {/* Left */}
-                    <div className="w-1/3 border flex flex-col">
+                    <div className="w-1/2 border flex flex-col">
                         {/* Header */}
-                        <div className="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
+                        <div className="py-2 px-4 bg-grey-lighter flex flex-row justify-between items-center ">
                             <div className="avatar">Chats</div>
 
                             <div className="flex">
@@ -63,8 +63,8 @@ export default function ChatConsole() {
                             className="bg-[color:var(--slate-100)] border border-[color:var(--slate-300)] w-[90%] rounded text-sm pr-8 px-4 py-2 border-solid outline: none mx-3 mb-4"
                             placeholder="Search..."
                         />
-                        {/* Contacts */}
-                        <div className="bg-grey-lighter flex-1 overflow-auto">
+                        {/* ===== Contacts ===== */}
+                        <div className="bg-grey-lighter flex-1 overflow-auto p-2 ">
                             <div className="bg-white w-full flex items-center p-2 rounded-xl shadow border  hover:bg-blue-300 cursor-pointer">
                                 <div className="flex items-center space-x-4">
                                     <img
