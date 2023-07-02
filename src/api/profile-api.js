@@ -12,4 +12,4 @@ export const editDoctorProfile = (payload) =>
 export const editProviderProfile = (payload) =>
     thisAxios.patch(`/profile/provider/myprofile`, payload)
 
-
+export const getProvince = () => thisAxios.get('/profile/province')

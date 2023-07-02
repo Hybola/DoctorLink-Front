@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editProfile } from '../slice/profile-slice'
 import InputBar from './InputBar'
+import AutoCompleteInput from '../../../components/autoCompleteInput'
 
 export default function ProviderEdit() {
     const myRole = useSelector((state) => state.auth?.role)
     const currrentProfile = useSelector((state) => state.profile?.myProfile)
+    const province = useSelector((state) => state.profile?.province)
 
     const [profile, setProfile] = useState({ ...currrentProfile })
 
@@ -15,17 +17,25 @@ export default function ProviderEdit() {
     const handleOnchange = (e) => {
         setProfile({ ...profile, [e.target.name]: e.target.value })
     }
-
     const handleOnclick = (e) => {
-        const input = { role: myRole, payload: profile }
+        const provinceObj = province.find((obj) => obj.id == profile.provinceId)
+
+        const payload = {
+            ...profile,
+            provinceId: provinceObj?.id || '0',
+            Province: { name: provinceObj?.name },
+        }
+
+        const input = { role: myRole, payload: payload }
         dispatch(editProfile(input)).unwrap()
     }
 
-    console.log(profile)
-
     return (
-        <dialog id="ProviderBodyEdit" className="modal text-success">
-            <form method="dialog" className="modal-box bg-base-100 px-10">
+        <dialog id="ProviderBodyEdit" className="modal text-success ">
+            <form
+                method="dialog"
+                className="modal-box bg-base-100 px-10 min-w-[800px] w-[800px] "
+            >
                 <div className="flex justify-center mb-8">
                     <h3 className="font-bold text-lg">Edit Provider Profile</h3>
                 </div>
@@ -55,9 +65,24 @@ export default function ProviderEdit() {
                     value={profile?.address}
                     onChange={handleOnchange}
                 />
+                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
+                    <label
+                        htmlFor="province"
+                        className="w-[142px] font-semibold"
+                    >
+                        Province
+                    </label>
+
+                    <AutoCompleteInput
+                        name="provinceId"
+                        state={profile}
+                        setState={setProfile}
+                        items={province}
+                    />
+                </div>
 
                 <InputBar
-                    label="Google Map : "
+                    label="Google Map Link: "
                     name="googleMap"
                     value={profile?.googleMap}
                     onChange={handleOnchange}
