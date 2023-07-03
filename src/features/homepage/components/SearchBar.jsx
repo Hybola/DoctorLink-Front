@@ -26,7 +26,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="flex w-full justify-center text-success bg-white">
+        <div className="flex justify-center text-success bg-white">
             {/* inputrow1#แถวการค้นหา */}
             <div className=" flex justify-center items-center w-fit gap-6 shadow-lg p-5 rounded-xl">
                 <div className="flex justify-center items-center">
@@ -44,7 +44,7 @@ export default function SearchBar() {
                         id="provinceId"
                         onChange={handdleChangeInput}
                         value={input.provinceId}
-                        className="text-md pl-2 h-[40px] w-[160px] rounded-lg border border-primary"
+                        className="text-md pl-2 h-[50px] w-[160px] rounded-lg border border-primary"
                     >
                         <option
                             className="text-gray-400"
@@ -71,7 +71,7 @@ export default function SearchBar() {
                 <div className="flex justify-end w-[160px] items-center ">
                     <button
                         onClick={handdleSearch}
-                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[130px] h-[40px]"
+                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[130px] h-[50px]"
                     >
                         <SearchIcon /> Search
                     </button>

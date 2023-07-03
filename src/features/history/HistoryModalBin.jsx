@@ -79,7 +79,7 @@ export default function HistoryModalBin() {
                     </button>
 
                     <div>
-                        <h3 className="font-bold text-lg">
+                        <h3 className="font-semibold text-xl p-3">
                             Case{': '}
                             {objPost.title?.length > 40
                                 ? objPost.title.slice(0, 40) + '...'
@@ -137,9 +137,10 @@ export default function HistoryModalBin() {
                     <div className=" flex flex-row justify-end mt-4">
                         <div>
                             <button
-                                className="btn btn-primary text-white"
                                 type="button"
                                 onClick={handleConfirm}
+                                className="btn w-[120px] bg-success text-white hover:bg-primary text-base"
+                                style={{ textTransform: 'none' }}
                             >
                                 Confirm
                             </button>

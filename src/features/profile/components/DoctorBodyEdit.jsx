@@ -29,27 +29,27 @@ export default function DoctorBodyEdit() {
                     </h3>
                 </div>
                 <InputBar
-                    label="Profile Name : "
+                    label="Profile Name"
                     name="profileName"
                     value={profile?.profileName}
                     onChange={handleOnchange}
                 />
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-1">
                     <label
                         htmlFor="description"
                         className="w-[180px] font-semibold text-lg"
                     >
-                        Description :
+                        Description
                     </label>
                     <textarea
-                        className="w-full font-normal text-lg border border-bg-primary rounded-lg p-2 pl-3"
+                        className="w-full font-normal text-lg border border-primary rounded-lg p-2 pl-3"
                         name="description"
                         value={profile?.description}
                         onChange={handleOnchange}
                     ></textarea>
                 </div>
 
-                <div className="modal-action gap-2">
+                <div className="modal-action gap-8">
                     <button
                         className="btn w-[80px]"
                         style={{ textTransform: 'none' }}

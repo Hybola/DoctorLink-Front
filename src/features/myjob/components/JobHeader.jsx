@@ -86,7 +86,7 @@ export default function JobHeader({ myJob }) {
     }, [filterCondition])
 
     return (
-        <div className=" flex flex-col max-w-[900px] min-w-[600px] w-[700px] bg-base-100  rounded-t-xl shadow-lg h-fit p-[30px]">
+        <div className=" flex flex-col max-w-[900px] min-w-[600px] w-[700px] bg-base-100 rounded-t-xl shadow-lg h-fit p-[30px]">
             <div className="w-full flex flex-col">
                 <div className="w-full felx font-bold text-xl mb-2">
                     {myJob == 1

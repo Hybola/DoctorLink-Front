@@ -291,36 +291,40 @@ export default function HistoryForm(props) {
 
     return (
         <>
-            <div className="w-[80%] mt-3 p-2 flex flex-row justify-center items-center gap-8">
+            <div className="w-[80%] mt-8 p-2 flex flex-row justify-center items-center gap-8 text-success">
                 <div
-                    className="cursor-pointer"
+                    className="cursor-pointer p-1"
                     onClick={() => hdlPageAction('PartTime')}
                 >
                     {actionPage == 'PartTime' ? (
-                        <h1 className="text-primary">PartTime</h1>
+                        <h1 className="text-primary border border-x-0 border-t-0 border-b-primary pb-1">
+                            Part-time
+                        </h1>
                     ) : (
                         <h1
                             className={classTextPartTime}
                             onMouseEnter={hdlMouseEnterPt}
                             onMouseLeave={hdlTextPtEnter}
                         >
-                            PartTime
+                            Part-time
                         </h1>
                     )}
                 </div>
                 <div
-                    className="cursor-pointer"
+                    className="cursor-pointer p-1"
                     onClick={() => hdlPageAction('FullTime')}
                 >
                     {actionPage == 'FullTime' ? (
-                        <h1 className="text-primary">FullTime</h1>
+                        <h1 className="text-primary border border-x-0 border-t-0 border-b-primary pb-1">
+                            Full-time
+                        </h1>
                     ) : (
                         <h1
                             className={classTextFullTime}
                             onMouseEnter={hdlTextFtEnter}
                             onMouseLeave={hdlMouseLeaveFt}
                         >
-                            FullTime
+                            Full-time
                         </h1>
                     )}
                 </div>
@@ -335,40 +339,41 @@ export default function HistoryForm(props) {
                             checked={activeChk}
                             onChange={hdlActiveOnChange}
                         />
-                        <span className="label-text">Active</span>
+                        <span className="label-text text-success text-base">
+                            Active
+                        </span>
                     </label>
                 </div>
             </div>
 
             <HistoryModals />
 
-            {/* You can open the modal using ID.showModal() method */}
-
-            <div className="w-[80%] h-[650px] mb-3 p-2 text-black ">
-                <div className=" bg-primary rounded-lg flex flex-row  mb-2 p-2 gap-2 ">
+            <div className="w-[80%] h-[650px] mb-3 p-2 text-success ">
+                <div className=" bg-success rounded-lg flex flex-row  mb-2 p-2 gap-2 ">
                     <div className=" rounded-md w-[10%]  flex flex-row  justify-center items-center">
                         <h1 className="text-base-100"></h1>
                     </div>
                     <div
-                        className=" rounded-md w-[15%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
+                        className=" rounded-md w-[15%]  flex justify-center items-center"
                         onClick={hdlSortJobDateOnChange}
                     >
-                        <h1 className="text-base-100">[JobDate]</h1>
+                        <h1 className="text-base-100 cursor-pointer hover:text-primary">
+                            Job Date
+                        </h1>
                     </div>
-                    <div className=" rounded-md w-[40%]  flex flex-row  justify-center items-center">
-                        <h1 className="text-base-100">[Title]</h1>
+                    <div className=" rounded-md w-[40%]  flex justify-center items-center">
+                        <h1 className="text-base-100">Title</h1>
                     </div>
                     <div
-                        className=" rounded-md  w-[10%]  flex flex-row  justify-center items-center  hover:bg-blue-200"
+                        className=" rounded-md  w-[10%]  flex justify-center items-center"
                         onClick={hdlSortPostDateOnChange}
                     >
-                        <h1 className="text-base-100">[PostDate]</h1>
+                        <h1 className="text-base-100 cursor-pointer hover:text-primary">
+                            Post Date
+                        </h1>
                     </div>
-                    <div
-                        className=" rounded-md w-[20%]  flex flex-row  justify-center items-center "
-                        id="hideme"
-                    >
-                        <h1 className="text-base-100">[Management]</h1>
+                    <div className=" rounded-md w-[20%] flex justify-center items-center">
+                        <h1 className="text-base-100">Management</h1>
                     </div>
                 </div>
 
@@ -384,7 +389,7 @@ export default function HistoryForm(props) {
                             <div
                                 key={index}
                                 id={index}
-                                className="bg-base-100 border border-primary shadow-lg flex flex-row mb-1  p-1 gap-2 rounded-lg hover:bg-teal-100"
+                                className="bg-base-100 border border-success shadow-lg flex flex-row mb-1  p-1 gap-2 rounded-lg hover:bg-blue-100"
                             >
                                 <div className=" w-[10%] flex flex-row justify-center">
                                     <HistoryStage stage={item.stage} />
@@ -418,7 +423,7 @@ export default function HistoryForm(props) {
                                               '-'
                                           )}
                                 </div>
-                                <div className=" w-[20%]  flex flex-row justify-around items-center">
+                                <div className=" w-[20%]  flex justify-around items-center fill-success">
                                     <HistoryRowMenu
                                         follower={follow}
                                         title={item.title}

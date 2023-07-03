@@ -127,20 +127,22 @@ export default function HistoryModalGroup() {
             <dialog id="GroupJob" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[850px] "
+                    className="modal-box max-w-5xl h-[800px] p-12 text-base text-success"
                 >
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-4">
                         ✕
                     </button>
 
                     <div className="flex flex-col ">
-                        <h3 className="font-bold text-lg">Group Job</h3>
+                        <div className="w-fit text-xl self-center font-bold mb-4">
+                            Group Job
+                        </div>
                         {/* <div className="overflow-x-auto"> */}
-                        <div className="overflow-x-auto h-[650px]">
-                            <table className="table">
+                        <div className="overflow-x-auto  h-[650px]">
+                            <table className="table text-base">
                                 {/* head */}
                                 <thead>
-                                    <tr>
+                                    <tr className="font-light">
                                         <th></th>
                                         <th>Name</th>
                                         <th>Contact</th>
