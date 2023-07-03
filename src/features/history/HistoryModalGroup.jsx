@@ -78,19 +78,21 @@ export default function HistoryModalGroup() {
             <dialog id="GroupJob" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[800px] "
+                    className="modal-box max-w-5xl h-[800px] p-12 text-base text-success"
                 >
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-4">
                         ✕
                     </button>
                     <div className="flex flex-col ">
-                        <h3 className="font-bold text-lg">Group Job</h3>
+                        <div className="w-fit text-xl self-center font-bold mb-4">
+                            Group Job
+                        </div>
                         {/* <div className="overflow-x-auto"> */}
                         <div className="overflow-x-auto">
-                            <table className="table">
+                            <table className="table text-base">
                                 {/* head */}
                                 <thead>
-                                    <tr>
+                                    <tr className="font-light">
                                         <th></th>
                                         <th>Name</th>
                                         <th>Contact</th>
@@ -105,7 +107,7 @@ export default function HistoryModalGroup() {
                                         <>
                                             <tr>
                                                 <td>
-                                                    <div className="avatar">
+                                                    <div className="avatar flex justify-center items-center">
                                                         <div className="mask mask-squircle w-12 h-12">
                                                             <img
                                                                 src={
@@ -155,16 +157,16 @@ export default function HistoryModalGroup() {
                                                           )[0]}
                                                 </td>
                                                 <th>
-                                                    <button className="btn btn-primary btn-xs text-white">
+                                                    <button className="btn btn-primary hover:btn-success btn-xs text-white">
                                                         Chat
                                                     </button>
 
                                                     {member.selected ? (
-                                                        <button className="btn btn-warning btn-xs ml-3  text-white">
+                                                        <button className="btn btn-xs ml-3 text-gray-400">
                                                             un-select
                                                         </button>
                                                     ) : (
-                                                        <button className="btn btn-primary btn-xs ml-3  text-white">
+                                                        <button className="btn btn-xs ml-3  ">
                                                             Select
                                                         </button>
                                                     )}

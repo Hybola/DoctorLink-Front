@@ -38,8 +38,6 @@ export default function JopPost() {
         })
     }, [])
 
-    console.log(profileProvider)
-
     return (
         <div className="w-[700px]">
             <div className=" h-[220px] mb-[60px]">

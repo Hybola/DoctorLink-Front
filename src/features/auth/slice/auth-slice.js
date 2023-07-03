@@ -11,6 +11,8 @@ const initialState = {
     user: null,
     initialLoading: false,
     role: '',
+    profileImage: '',
+    name: '',
 }
 
 // Doctor

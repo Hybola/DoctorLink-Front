@@ -145,6 +145,7 @@ const profileSlice = createSlice({
             .addCase(uploadImage.fulfilled, (state, action) => {
                 state.myProfile = { ...state.myProfile, ...action.payload }
                 state.loading = false
+                // state.auth.user = { ...state.auth, ...action.payload }
             })
 
             .addCase(uploadImage.rejected, (state, action) => {
