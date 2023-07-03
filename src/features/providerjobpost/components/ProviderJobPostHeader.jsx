@@ -1,9 +1,9 @@
-export default function SavedJobHeader() {
+export default function ProiverJobPostHeader() {
     return (
         <div className=" flex flex-col max-w-[900px]  min-w-[600px] w-[700px]  bg-base-100  rounded-t-lg  shadow-sm h-fit p-[20px]">
             <div className="w-full flex flex-col">
                 <div className="w-full felx font-bold text-xl mb-2">
-                    Saved Job
+                    Job Post
                 </div>
                 <div className="w-full flex justify-between  ">
                     <div className=" flex flex-col items-start gap-2">
@@ -15,7 +15,6 @@ export default function SavedJobHeader() {
                                         type="checkbox"
                                         name="jobtype"
                                         id="parttime"
-                                        value="parttime"
                                         className="w-[18px] h-[18px] "
                                     />
                                     <label htmlFor="parttime" className="">
@@ -27,7 +26,6 @@ export default function SavedJobHeader() {
                                         type="checkbox"
                                         name="jobtype"
                                         id="fulltime"
-                                        value="fulltime"
                                         className="w-[18px] h-[18px]"
                                     />
                                     <label htmlFor="parttime" className="">
@@ -41,11 +39,9 @@ export default function SavedJobHeader() {
                                 Sort By:
                             </label>
                             <select name="sortBy" id="sortBy">
-                                <option value="Recently Followed">
-                                    Recently Saved
-                                </option>
-                                <option value="Job Post Amount">
-                                    Working date
+                                <option value="workdate">Working date</option>
+                                <option value="providername">
+                                    Posted date
                                 </option>
                             </select>
                         </div>
@@ -54,7 +50,7 @@ export default function SavedJobHeader() {
                         <input
                             type="search"
                             className="border w-[300px] border-primary py-1 px-4  rounded-lg"
-                            placeholder="Search by Health Provider Name"
+                            placeholder="Search by Job title"
                         />
                     </div>
                 </div>

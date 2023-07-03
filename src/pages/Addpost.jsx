@@ -3,6 +3,7 @@ import FullTime from '../features/addpost/component/FullTime'
 import PartTime from '../features/addpost/component/PartTime'
 import axios from '../api/thisAxios'
 import Preview from '../features/addpost/component/Preview'
+import { useNavigate } from 'react-router-dom'
 
 const initial = {
     title: '',
@@ -17,24 +18,26 @@ const initial = {
     annual: '',
     benefit: '',
     other: '',
-    startDateTime: '',
-    endDateTime: '',
+    endDate: '',
     wage: '',
 }
 export default function Addpost() {
     const [input, setInput] = useState(initial)
     const [page, setPage] = useState('FullTime')
 
+    const navigate = useNavigate()
+
     const hdlchange = (e) => {
+        console.log(e.target.value)
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const hdlsumbit = async (e) => {
         e.preventDefault()
         const jobType = document.getElementById('jobType').value
         const payload = { ...input, provinceId: '1', jobType: jobType }
-        console.log(payload)
         try {
             await axios.post('/post/createpost', payload)
+            navigate('/provider/history/')
         } catch (error) {
             console.log(error)
         }
@@ -152,8 +155,11 @@ export default function Addpost() {
                 </div>
             </div>
             {/* Modal */}
-            <dialog id="preview" className="modal ">
-                <form method="dialog" className="modal-box">
+            <dialog id="preview" className="modal">
+                <form
+                    method="dialog"
+                    className="modal-box min-w-[1100px] w-[1100px] max-w-[1100px] overflow-auto"
+                >
                     <Preview add={input} p={page} />
                     <div className="modal-action">
                         <button className="btn">Close</button>

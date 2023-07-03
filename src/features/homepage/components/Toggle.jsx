@@ -5,10 +5,10 @@ export default function Toggle({ handleJobType, isParttime }) {
     return (
         <div>
             {/* radio */}
-            <div className="flex w-[250px] justify-between items-center min-w-[250px]">
-                <div className="form-control " onClick={handleJobType}>
+            <div className="flex justify-between items-center w-fit text-success">
+                <div className="form-control" onClick={handleJobType}>
                     <label className="label cursor-pointer gap-2 ">
-                        <span className="label-text">Part-Time</span>
+                        <span>Part-Time</span>
 
                         <input
                             type="radio"
@@ -22,7 +22,7 @@ export default function Toggle({ handleJobType, isParttime }) {
                             className="radio radio-primary"
                             checked={!isParttime}
                         />
-                        <span className="label-text">Full-Time</span>
+                        <span>Full-Time</span>
                     </label>
                 </div>
             </div>

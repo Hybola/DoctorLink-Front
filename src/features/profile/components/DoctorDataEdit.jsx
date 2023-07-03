@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editProfile } from '../slice/profile-slice'
+import { dateTimeTH } from '../../../utils/dateTime'
 import InputBar from './InputBar'
 
 export default function DoctorDataEdit() {
     const myRole = useSelector((state) => state.auth?.role)
-    const currrentProfile = useSelector((state) => state.profile?.profile)
+    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const [profile, setProfile] = useState({ ...currrentProfile })
 
     const dispatch = useDispatch()
@@ -22,32 +23,49 @@ export default function DoctorDataEdit() {
 
     return (
         <dialog id="DoctorDataEdit" className="modal">
-            <form method="dialog" className="modal-box bg-base-100">
-                <div className="flex justify-center mb-2">
+            <form method="dialog" className="modal-box bg-base-100 px-10">
+                <div className="flex justify-center mb-8">
                     <h3 className="font-bold text-lg">Edit Doctor Profile</h3>
                 </div>
                 <InputBar
-                    label="First Name: "
+                    label="First Name : "
                     name="firstName"
                     value={profile?.firstName}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Last Name: "
-                    name="lasstName"
+                    label="Last Name : "
+                    name="lastName"
                     value={profile?.lastName}
                     onChange={handleOnchange}
                 />
-                <InputBar
-                    label="Gender: "
-                    name="gender"
-                    value={profile?.gender}
-                    onChange={handleOnchange}
-                />
+                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
+                    <label
+                        htmlFor="gender"
+                        className="w-[123px] font-semibold "
+                    >
+                        Gender :
+                    </label>
+                    <div className=" w-fit border border-primary rounded-lg">
+                        <select
+                            name="gender"
+                            id="gender"
+                            value={profile.gender}
+                            onChange={handleOnchange}
+                            className=" w-full border border-bg-primary rounded-lg p-2 pl-2"
+                        >
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Other</option>
+                        </select>
+                    </div>
+                </div>
+
                 <InputBar
                     label="Birthdate: "
-                    name="birthdate"
-                    value={profile?.birth}
+                    name="birthDate"
+                    type="date"
+                    value={profile?.birthDate}
                     onChange={handleOnchange}
                 />
                 <InputBar
@@ -65,25 +83,29 @@ export default function DoctorDataEdit() {
                 <InputBar
                     label="Education: "
                     name="education"
-                    value={profile?.birth}
+                    value={profile?.education}
                     onChange={handleOnchange}
                 />
                 <InputBar
                     label="Work experience: "
-                    name="education"
-                    value={profile?.birth}
+                    name="workExperience"
+                    value={profile?.workExperience}
                     onChange={handleOnchange}
                 />
 
                 <div className="modal-action gap-2">
-                    <button className="btn w-[80px] hover:bg-warning">
-                        CANCEL
+                    <button
+                        className="btn w-[80px] text-base"
+                        style={{ textTransform: 'none' }}
+                    >
+                        Cancel
                     </button>
                     <button
-                        className="btn  w-[100px] font-bold hover:bg-success hover:text-white"
+                        className="btn w-[80px] bg-success text-white hover:bg-primary text-base"
+                        style={{ textTransform: 'none' }}
                         onClick={handleOnclick}
                     >
-                        SAVE
+                        Save
                     </button>
                 </div>
             </form>

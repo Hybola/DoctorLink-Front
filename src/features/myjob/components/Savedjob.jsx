@@ -1,10 +1,10 @@
 import SavedJobBody from './SavedJobBody'
-import SavedJobHeader from './SavedJobHeader'
+import JobHeader from './JobHeader'
 
-export default function MyJob() {
+export default function SavedJob() {
     return (
-        <div className="flex flex-col mt-4">
-            <SavedJobHeader />
+        <div className="flex flex-col">
+            <JobHeader myJob={1} />
             <hr />
             <SavedJobBody />
         </div>
