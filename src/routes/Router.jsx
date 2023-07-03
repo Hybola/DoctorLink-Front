@@ -118,7 +118,7 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/provider/chat/',
-                                element:<ChatConsole/>,
+                                element: <ChatConsole />,
                             },
                         ],
                     },

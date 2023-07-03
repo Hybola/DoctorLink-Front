@@ -1,8 +1,17 @@
 import ProviderCoverImageEdit from './CoverImageEdit'
 import ProviderProfileImageEdit from './ProviderProfileImageEdit'
 import { PenIcon } from '../../../icons'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function ProviderHeader({ profile, canEdit }) {
+export default function ProviderHeader({
+    profile,
+    canEdit,
+    follow,
+    handdleFollow,
+    handdleUnFollow,
+}) {
+    const myRole = useSelector((state) => state.auth?.role)
+
     const defaultCoverImage =
         'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1685524621/gqjpy7avowkrwuzlnqju.jpg'
     const defaultProfileImage =
@@ -14,6 +23,7 @@ export default function ProviderHeader({ profile, canEdit }) {
     const handleProfileImageEdit = () => {
         if (canEdit) window.ProviderProfileImageEdit.showModal()
     }
+
     return (
         <div className=" h-[220px] mb-[40px]">
             <div className="w-full h-[200px] bg-base-300 rounded-t-lg">
@@ -51,18 +61,38 @@ export default function ProviderHeader({ profile, canEdit }) {
             </div>
             <div className="w-full flex flex-col gap-2 text-success">
                 <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
-                    <div className="flex justify-start gap-1">
+                    <div className="flex justify-start gap-2">
                         <div>{profile?.follower}</div>
                         <div>follower</div>
                     </div>
                 </div>
-                {!canEdit ? (
-                    <div className="w-[200px] h-[14px] ml-[200px] mt-[8px]">
-                        <button className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-lg min-h-[14px] font-normal px-[4px] ">
+                {myRole != 'doctor' ? null : follow ? (
+                    <div
+                        className="w-[200px] h-[14px] ml-[200px] mt-[8px]"
+                        id={profile?.id}
+                    >
+                        <button
+                            className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-2xl w-[65px]  text-lg min-h-[14px] font-normal px-[4px]  flex items-center justify-center"
+                            id={profile?.id}
+                            onClick={handdleFollow}
+                        >
                             Follow
                         </button>
                     </div>
-                ) : null}
+                ) : (
+                    <div
+                        className="w-[200px] h-[14px] ml-[200px] mt-[8px]"
+                        id={profile?.id}
+                    >
+                        <button
+                            className="border border-primary  text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50 h-[22px] w-[65px] flex items-center justify-center text-sm"
+                            id={profile?.id}
+                            onClick={handdleUnFollow}
+                        >
+                            Unfollow
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )

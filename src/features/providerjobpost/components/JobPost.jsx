@@ -1,16 +1,14 @@
 import * as postService from '../../../api/post-api'
-import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
 import * as myjobService from '../../../api/myjob-api'
 import * as profileService from '../../../api/profile-api'
 import { useNavigate } from 'react-router-dom'
 
-export default function JopPost() {
+export default function JopPost({ providerId, postId }) {
     const [jobPost, setJobPost] = useState([])
     const [profileProvider, setProviderProfile] = useState({})
 
-    const { providerId, postId } = useParams()
     const naviagte = useNavigate()
     const defaultCoverImage =
         'https://res.cloudinary.com/dbhkkoqkt/image/upload/v1685524621/gqjpy7avowkrwuzlnqju.jpg'
@@ -64,11 +62,6 @@ export default function JopPost() {
                             <div>follower</div>
                         </div>
                     </div>
-                    <div className="w-[200px] h-[14px] ml-[200px] mt-[8px]">
-                        <button className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-lg min-h-[14px] font-normal px-[4px] ">
-                            Follow
-                        </button>
-                    </div>
                 </div>
                 <div
                     className=" text-2xl font-bold"
@@ -79,6 +72,7 @@ export default function JopPost() {
                     {jobPost?.providerName}
                 </div>
             </div>
+
             <hr />
             <ProviderJobCard post={jobPost} handleClick1={handleinterestJob} />
         </div>
