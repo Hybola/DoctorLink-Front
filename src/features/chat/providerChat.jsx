@@ -64,6 +64,7 @@ export default function ProviderChat() {
     useEffect(() => {
         if (Object.keys(chatLists)?.length !== 0)
             setAllMsg([...[chatLists[`${currentDoctor?.id}:${providerId}`]]]) // เอา allMsg ไป render
+            // setAllMsg((prev)=>[...prev[`${currentDoctor?.id}:${providerId}`]])
     }, [currentDoctor])
 
     useEffect(() => {
@@ -91,12 +92,18 @@ export default function ProviderChat() {
         setInput('')
     }
     const handleSelectChat = (id) => {
+        // socket.emit('requestOldConversation',{room:`${id}:${providerId}`})
+        // socket.on("getOldConversation",data=>{
+        //     setAllMsg(data.arrayConversatoin)
+
+        // })
         // console.log('doctorList >>>', doctorList)
         const index = doctorList.findIndex((el) => el.id == id)
         // console.log('found index >>>', index)
         setCurrentDoctor(doctorList[index])
-        console.log("new allMsg >>>",[...[chatLists[`${id}:${providerId}`]]])
+        // console.log('new allMsg >>>', [...[chatLists[`${id}:${providerId}`]]])
         setAllMsg([...[chatLists[`${id}:${providerId}`]]])
+        // setAllMsg((prev)=>[...[prev[`${id}:${providerId}`]]])
     }
     return (
         <>
