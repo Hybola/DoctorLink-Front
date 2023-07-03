@@ -3,12 +3,17 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import HistoryRowMenu from './HistoryRowMenu'
 import HistoryModals from './HistoryModals'
-import { getLists } from './slice/history-slice'
+import HistoryStage from './HistoryStage'
+import { getLists, getJob } from './slice/history-slice'
+import { all } from 'axios'
+import { array } from 'joi'
+import MyLoad from '../../components/Loading'
 
 export default function HistoryForm(props) {
     const input = { id: 1 }
     const loading = useSelector((state) => state.history?.loading)
     const allLists = useSelector((state) => state.history?.allLists)
+    const [follower, setFollower] = useState(0)
     const dispatch = useDispatch()
 
     // const [allLists, setAllLists] = useState([])
@@ -17,10 +22,8 @@ export default function HistoryForm(props) {
         dispatch(getLists(input)).unwrap()
     }, [])
 
-    console.log(loading)
-    console.log(allLists)
-
-    const { arrHistory } = props
+    // console.log(loading)
+    // console.log(allLists)
 
     let newDate = new Date()
     let day =
@@ -32,7 +35,7 @@ export default function HistoryForm(props) {
             ? `0${newDate.getMonth() + 1}`
             : `${newDate.getMonth() + 1}`
     let year = newDate.getFullYear()
-    const today = `${day}/${month}/${year}`
+    const today = `${day}-${month}-${year}`
 
     const [activeChk, setActiveChk] = useState('checked')
     const [sortPostChk, setsortPostChk] = useState('checked')
@@ -43,14 +46,20 @@ export default function HistoryForm(props) {
     const [actionPage, setActionPage] = useState('PartTime')
     const [sortBy, setSortBy] = useState('create_at')
 
+    const changeDateFormat = (date, joinBy) => {
+        const arr = date.split('T')
+        const newDate = arr[0].split('-').reverse().join(joinBy)
+        return newDate
+    }
     const diffDay = (start, end) => {
         const oneDay = 24 * 60 * 60 * 1000
-        const arrCreate = start.split('/')
-        const arrToday = end.split('/')
+        const arrCreate = start.split('-')
+        const arrToday = end.split('-')
 
         const firstDate = new Date(arrCreate[2], arrCreate[1], arrCreate[0])
         const secondDate = new Date(arrToday[2], arrToday[1], arrToday[0])
         const diffDays = Math.round((secondDate - firstDate) / oneDay)
+        // console.log(diffDays)
 
         return diffDays
     }
@@ -64,11 +73,11 @@ export default function HistoryForm(props) {
     }
 
     const hdlActiveOnChange = () => {
-        console.log('hdlActiveOnChange')
+        // console.log('hdlActiveOnChange')
         activeChk == 'checked' ? setActiveChk('') : setActiveChk('checked')
     }
     const hdlSortPostDateOnChange = () => {
-        console.log('hdlSortPostDateOnChange')
+        // console.log('hdlSortPostDateOnChange')
         setSortBy('create_at')
         sortPostChk == 'checked'
             ? setsortPostChk('')
@@ -76,13 +85,13 @@ export default function HistoryForm(props) {
     }
 
     const hdlSortJobDateOnChange = () => {
-        console.log('hdlSortJobDateOnChange')
+        // console.log('hdlSortJobDateOnChange')
         setSortBy('startDate')
         sortJobChk == 'checked' ? setsortJobChk('') : setsortJobChk('checked')
     }
 
     const hdlPageAction = (page) => {
-        if (page == 'full-time') {
+        if (page == 'FullTime') {
             setClassTextPartTime('')
         } else {
             setClassTextFullTime('')
@@ -91,30 +100,32 @@ export default function HistoryForm(props) {
     }
 
     const hdlTextFtEnter = () => {
-        console.log('hdlMouseEnter')
+        // console.log('hdlMouseEnter')
         const cn = 'text-primary'
         setClassTextFullTime(cn)
     }
     const hdlMouseLeaveFt = () => {
-        console.log('hdlMouseLeave')
+        // console.log('hdlMouseLeave')
         const cn = ''
         setClassTextFullTime(cn)
     }
     const hdlMouseEnterPt = () => {
-        console.log('hdlMouseEnter')
+        // console.log('hdlMouseEnter')
         const cn = 'text-primary'
         setClassTextPartTime(cn)
     }
     const hdlTextPtEnter = () => {
-        console.log('hdlMouseLeave')
+        // console.log('hdlMouseLeave')
         const cn = ''
         setClassTextPartTime(cn)
     }
 
     const filter = (objFilter) => {
-        const arrayFP = arrHistory.filter((item) => {
+        // console.log(objFilter)
+        const arrayFP = allLists.filter((item) => {
             if (objFilter.actionPage == 'FullTime') {
                 if (item.jobType == 'FullTime') {
+                    // console.log(item)
                     return item
                 }
             }
@@ -124,6 +135,7 @@ export default function HistoryForm(props) {
                 }
             }
         })
+
         const arrayActive = arrayFP.filter((item) => {
             if (objFilter.activeChk == 'checked') {
                 if (item.status == 'active') {
@@ -143,13 +155,20 @@ export default function HistoryForm(props) {
                 for (let job of arrayActive) {
                     sortable.push([
                         job,
-                        diffDay(job.create_at.split(' ')[0], today),
+                        diffDay(
+                            job.createdAt
+                                .split('T')[0]
+                                .split('-')
+                                .reverse()
+                                .join('-'),
+                            today
+                        ),
+                        // diffDay(job.create_at.split(' ')[0], today),
                     ])
                 }
                 sortable.sort(function (a, b) {
                     return a[1] - b[1]
                 })
-
                 sortable.map((item) => {
                     x.push(item[0])
                 })
@@ -160,15 +179,22 @@ export default function HistoryForm(props) {
                 for (let job of arrayActive) {
                     sortable.push([
                         job,
-                        diffDay(job.create_at.split(' ')[0], today),
+                        diffDay(
+                            job.createdAt
+                                .split('T')[0]
+                                .split('-')
+                                .reverse()
+                                .join('-'),
+                            today
+                        ),
                     ])
                 }
                 sortable.sort(function (a, b) {
                     return b[1] - a[1]
                 })
-                console.log(sortable)
+                // console.log(sortable)
                 sortable.map((item) => {
-                    // console.log(item[0])
+                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -177,17 +203,39 @@ export default function HistoryForm(props) {
 
         if (objFilter.sortBy == 'startDate') {
             if (objFilter.sortJobChk == 'checked') {
+                // console.log('hello')
                 let sortable = []
                 let x = []
                 for (let job of arrayActive) {
-                    sortable.push([job, diffDay(job.startDate, today)])
+                    // console.log(job)
+
+                    sortable.push([
+                        job,
+                        // job.jobType == 'FullTime'
+                        //     ? job.FullTime?.startDate + 'full'
+                        //     : job.PartTime?.startDate + 'part',
+                        diffDay(
+                            job.jobType == 'FullTime'
+                                ? job.FullTime?.startDate
+                                      .split('T')[0]
+                                      .split('-')
+                                      .reverse()
+                                      .join('-')
+                                : job.PartTime?.startDate
+                                      .split('T')[0]
+                                      .split('-')
+                                      .reverse()
+                                      .join('-'),
+                            today
+                        ),
+                    ])
                 }
                 sortable.sort(function (a, b) {
                     return b[1] - a[1]
                 })
-                console.log(sortable)
+                // console.log(sortable)
                 sortable.map((item) => {
-                    // console.log(item[0])
+                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -195,14 +243,30 @@ export default function HistoryForm(props) {
                 let sortable = []
                 let x = []
                 for (let job of arrayActive) {
-                    sortable.push([job, diffDay(job.startDate, today)])
+                    sortable.push([
+                        job,
+                        diffDay(
+                            job.jobType == 'FullTime'
+                                ? job.FullTime?.startDate
+                                      .split('T')[0]
+                                      .split('-')
+                                      .reverse()
+                                      .join('-')
+                                : job.PartTime?.startDate
+                                      .split('T')[0]
+                                      .split('-')
+                                      .reverse()
+                                      .join('-'),
+                            today
+                        ),
+                    ])
                 }
                 sortable.sort(function (a, b) {
                     return a[1] - b[1]
                 })
-                console.log(sortable)
+                // console.log(sortable)
                 sortable.map((item) => {
-                    // console.log(item[0])
+                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -211,9 +275,20 @@ export default function HistoryForm(props) {
     }
 
     useEffect(() => {
+        // const arr = []
+        // allLists.map((item) => {
+        //     arr.push(item)
+        // })
+        // setShowHistory(arr)
         filter(objFilter)
-        // console.log(objFilter)
-    }, [activeChk, sortPostChk, actionPage, sortJobChk, sortBy])
+
+        // // console.log(objFilter)
+    }, [activeChk, sortPostChk, actionPage, sortJobChk, sortBy, allLists])
+
+    if (loading) {
+        return <MyLoad />
+    }
+
     return (
         <>
             <div className="w-[80%] mt-3 p-2 flex flex-row justify-center items-center gap-8">
@@ -235,9 +310,9 @@ export default function HistoryForm(props) {
                 </div>
                 <div
                     className="cursor-pointer"
-                    onClick={() => hdlPageAction('full-time')}
+                    onClick={() => hdlPageAction('FullTime')}
                 >
-                    {actionPage == 'full-time' ? (
+                    {actionPage == 'FullTime' ? (
                         <h1 className="text-primary">FullTime</h1>
                     ) : (
                         <h1
@@ -264,6 +339,7 @@ export default function HistoryForm(props) {
                     </label>
                 </div>
             </div>
+
             <HistoryModals />
 
             {/* You can open the modal using ID.showModal() method */}
@@ -288,15 +364,22 @@ export default function HistoryForm(props) {
                     >
                         <h1 className="text-base-100">[PostDate]</h1>
                     </div>
-                    <div className=" rounded-md w-[20%]  flex flex-row  justify-center items-center">
+                    <div
+                        className=" rounded-md w-[20%]  flex flex-row  justify-center items-center "
+                        id="hideme"
+                    >
                         <h1 className="text-base-100">[Management]</h1>
                     </div>
                 </div>
 
                 <div className=" h-[500px] overflow-scroll">
                     {showHistory.map((item, index) => {
-                        const dh = diffDay(item.create_at.split(' ')[0], today)
-
+                        let follow = 0
+                        if (item.DoctorJobs?.length == 0) {
+                            follow = 0
+                        } else {
+                            follow = item.DoctorJobs?.length
+                        }
                         return (
                             <div
                                 key={index}
@@ -304,39 +387,18 @@ export default function HistoryForm(props) {
                                 className="bg-base-100 border border-primary shadow-lg flex flex-row mb-1  p-1 gap-2 rounded-lg hover:bg-teal-100"
                             >
                                 <div className=" w-[10%] flex flex-row justify-center">
-                                    {/* <h1>{item.statusDetail}</h1> */}
-                                    <div className="dropdown dropdown-bottom">
-                                        <label
-                                            tabIndex={0}
-                                            className={
-                                                item.statusDetail == 'success'
-                                                    ? 'btn btn-primary  text-white w-[100px]'
-                                                    : item.statusDetail ==
-                                                      'pending'
-                                                    ? 'btn btn-info  text-white w-[100px]'
-                                                    : 'btn btn-warning  text-white w-[100px]'
-                                            }
-                                        >
-                                            {item.statusDetail}
-                                        </label>
-                                        <ul
-                                            tabIndex={0}
-                                            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                                        >
-                                            <li>
-                                                <a>success</a>
-                                            </li>
-                                            <li>
-                                                <a>cancel</a>
-                                            </li>
-                                            <li>
-                                                <a>pending</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <HistoryStage stage={item.stage} />
                                 </div>
                                 <div className=" w-[15%]  flex flex-row  justify-center items-center">
-                                    <h1>{item.startDate}</h1>
+                                    {item.jobType == 'FullTime'
+                                        ? changeDateFormat(
+                                              item.FullTime?.startDate,
+                                              '-'
+                                          )
+                                        : changeDateFormat(
+                                              item.PartTime?.startDate,
+                                              '-'
+                                          )}
                                 </div>
                                 <div className=" w-[40%]  flex flex-row  justify-center items-center">
                                     <h1>
@@ -346,10 +408,22 @@ export default function HistoryForm(props) {
                                     </h1>
                                 </div>
                                 <div className=" w-[10%]  flex flex-row  justify-center items-center">
-                                    <h1>{item.create_at.split(' ')[0]}</h1>
+                                    {item.jobType == 'FullTime'
+                                        ? changeDateFormat(
+                                              item.FullTime?.createdAt,
+                                              '-'
+                                          )
+                                        : changeDateFormat(
+                                              item.PartTime?.createdAt,
+                                              '-'
+                                          )}
                                 </div>
                                 <div className=" w-[20%]  flex flex-row justify-around items-center">
-                                    <HistoryRowMenu follower={item.follower} />
+                                    <HistoryRowMenu
+                                        follower={follow}
+                                        title={item.title}
+                                        objUser={item}
+                                    />
                                 </div>
                             </div>
                         )

@@ -1,54 +1,24 @@
+import { useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import {
+    getLists,
+    updateSelectedDoctor,
+    getObjSelected,
+    getJob,
+} from './slice/history-slice'
+import { useEffect } from 'react'
+import { all } from 'axios'
+import MyLoad from '../../components/Loading'
 export default function HistoryModalGroup() {
-    const arrayMembers = [
-        {
-            id: 1,
-            name: 'Hart Hagerty',
-            location: 'Bangkok',
-            contact: '084-7723676',
-            line: '@aalinesupport',
-            socketId: 'uusjiioeokoogijfmiewii',
-            Rooms: 'room1',
-            selected: true,
-            update_at: '12/06/2023 12:00:00',
-            photoUrl: 'https://picsum.photos/200/200',
-        },
-        {
-            id: 2,
-            name: 'Jone yipwam',
-            location: 'Chainat',
-            contact: '099-65689909',
-            line: '@bblinesupport',
-            socketId: '00ookwliirij[ovkovipi',
-            Rooms: 'room2',
-            selected: true,
-            update_at: '18/06/2023 12:00:00',
-            photoUrl: 'https://picsum.photos/200/200',
-        },
-        {
-            id: 3,
-            name: 'Tyuii Rtfyya',
-            location: 'Bangkok',
-            contact: '084-7723676',
-            line: '@cclinesupport',
-            socketId: 'pldldlssooreomofdsml;',
-            Rooms: 'room3',
-            selected: false,
-            update_at: '20/06/2023 12:00:00',
-            photoUrl: 'https://picsum.photos/200/200',
-        },
-        {
-            id: 4,
-            name: 'Hovel Jansmit',
-            location: 'Pathumthani',
-            contact: '086-6654576',
-            line: '@cclinesupport',
-            socketId: 'pldldlssooreomofdsml;',
-            Rooms: 'room3',
-            selected: false,
-            update_at: '12/05/2023 12:00:00',
-            photoUrl: 'https://picsum.photos/200/200',
-        },
-    ]
+    const dispatch = useDispatch()
+    // const allLists = useSelector((state) => state.history.allLists)
+    const objUser = useSelector((state) => state.history.objSelected)
+    const loading = useSelector((state) => state.history?.loading)
+    const [arrChecked, setArrChecked] = React.useState([])
+    const [index, setIndex] = React.useState(0)
+    const [checked, setChecked] = React.useState()
+    let myArray = []
 
     let newDate = new Date()
     let day =
@@ -60,12 +30,12 @@ export default function HistoryModalGroup() {
             ? `0${newDate.getMonth() + 1}`
             : `${newDate.getMonth() + 1}`
     let year = newDate.getFullYear()
-    const today = `${day}/${month}/${year}`
+    const today = `${day}-${month}-${year}`
 
     const diffDay = (start, end) => {
         const oneDay = 24 * 60 * 60 * 1000
-        const arrCreate = start.split('/')
-        const arrToday = end.split('/')
+        const arrCreate = start.split('-')
+        const arrToday = end.split('-')
 
         const firstDate = new Date(arrCreate[2], arrCreate[1], arrCreate[0])
         const secondDate = new Date(arrToday[2], arrToday[1], arrToday[0])
@@ -73,20 +43,77 @@ export default function HistoryModalGroup() {
 
         return diffDays
     }
+    const handleCheckbox = (e) => {
+        const id = e.target.id
+        const value = JSON.parse(e.target.value)
+        setIndex(index + 1)
+        if (e.target.checked) {
+            console.log('checked')
+            setChecked('')
+            myArray = arrChecked
+            myArray[value.index] = 3
+            console.log(myArray)
+            setArrChecked(myArray)
+
+            // console.log({ id: id, status: 3 })
+            dispatch(updateSelectedDoctor({ id: id, status: 3 })).unwrap()
+
+            // setChecked(arrChecked)
+        } else {
+            console.log('uncheck')
+            setChecked('checked')
+            myArray = arrChecked
+            myArray[value.index] = 1
+            console.log(myArray)
+            setArrChecked(myArray)
+            // console.log({ id: id, status: 1 })
+            dispatch(updateSelectedDoctor({ id: id, status: 1 })).unwrap()
+
+            // setChecked(arrChecked)
+        }
+
+        // console.log('index', value.index)
+        // console.log('event', checked)
+    }
+
+    useEffect(() => {
+        // console.log('useEffect-checked')
+        if (index == 0) {
+            objUser.DoctorJobs?.map((item) => {
+                // console.log(item)
+                // console.log(item.status)
+                myArray.push(item.status)
+            })
+            setArrChecked(myArray)
+        } else {
+            myArray = arrChecked
+        }
+        // console.log('myArray', myArray)
+        // console.log(index)
+    }, [objUser, index])
+
+    // console.log('myArray', myArray)
+    // console.log('arrChecked', arrChecked)
+    // console.log('objUser', objUser)
+
+    if (loading) {
+        return <MyLoad />
+    }
     return (
         <>
             <dialog id="GroupJob" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[800px] "
+                    className="modal-box max-w-5xl h-[850px] "
                 >
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                         ✕
                     </button>
+
                     <div className="flex flex-col ">
                         <h3 className="font-bold text-lg">Group Job</h3>
                         {/* <div className="overflow-x-auto"> */}
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto h-[650px]">
                             <table className="table">
                                 {/* head */}
                                 <thead>
@@ -101,7 +128,7 @@ export default function HistoryModalGroup() {
                                 <tbody>
                                     {/* row 1 */}
 
-                                    {arrayMembers.map((member) => (
+                                    {objUser.DoctorJobs?.map((item, index) => (
                                         <>
                                             <tr>
                                                 <td>
@@ -109,7 +136,8 @@ export default function HistoryModalGroup() {
                                                         <div className="mask mask-squircle w-12 h-12">
                                                             <img
                                                                 src={
-                                                                    member.photoUrl
+                                                                    item.Doctor
+                                                                        ?.profileImage
                                                                 }
                                                                 alt="Avatar Tailwind CSS Component"
                                                             />
@@ -120,54 +148,76 @@ export default function HistoryModalGroup() {
                                                     <div className="flex items-center space-x-3">
                                                         <div>
                                                             <div className="font-bold">
-                                                                {member.name}
-                                                            </div>
-                                                            <div className="text-sm opacity-50 text-green-500">
-                                                                {member.selected
-                                                                    ? 'selected'
-                                                                    : null}
+                                                                หมอ{' '}
+                                                                {item.Doctor
+                                                                    ?.firstName +
+                                                                    ' ' +
+                                                                    item.Doctor
+                                                                        ?.lastName}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {member.contact}
+                                                    {item.Doctor.mobile}
                                                     <br />
                                                     <span className="badge badge-success badge-md mt-1">
-                                                        line: {member.line}
+                                                        line:{' '}
+                                                        {item.Doctor.lineId}
                                                     </span>
                                                 </td>
                                                 <td>
                                                     {diffDay(
-                                                        member.update_at.split(
-                                                            ' '
-                                                        )[0],
+                                                        item.createdAt
+                                                            .split('T')[0]
+                                                            .split('-')
+                                                            .reverse()
+                                                            .join('-'),
                                                         today
                                                     ) < 30
                                                         ? diffDay(
-                                                              member.update_at.split(
-                                                                  ' '
-                                                              )[0],
+                                                              item.createdAt
+                                                                  .split('T')[0]
+                                                                  .split('-')
+                                                                  .reverse()
+                                                                  .join('-'),
                                                               today
                                                           ) + ' d'
-                                                        : member.update_at.split(
-                                                              ' '
-                                                          )[0]}
+                                                        : item.createdAt
+                                                              .split('T')[0]
+                                                              .split('-')
+                                                              .reverse()
+                                                              .join('-')}
                                                 </td>
                                                 <th>
-                                                    <button className="btn btn-primary btn-xs text-white">
-                                                        Chat
-                                                    </button>
+                                                    <div className="flex flex-row justify-center items-center gap-5">
+                                                        <button className="btn btn-primary btn-xs text-white h-[40px]">
+                                                            Chat
+                                                        </button>
 
-                                                    {member.selected ? (
-                                                        <button className="btn btn-warning btn-xs ml-3  text-white">
-                                                            un-select
-                                                        </button>
-                                                    ) : (
-                                                        <button className="btn btn-primary btn-xs ml-3  text-white">
-                                                            Select
-                                                        </button>
-                                                    )}
+                                                        <input
+                                                            type="checkbox"
+                                                            className="checkbox checkbox-accent"
+                                                            id={item.id}
+                                                            checked={
+                                                                arrChecked[
+                                                                    index
+                                                                ] == 3
+                                                                    ? true
+                                                                    : false
+                                                            }
+                                                            // my
+                                                            value={JSON.stringify(
+                                                                {
+                                                                    id: item.id,
+                                                                    index: index,
+                                                                }
+                                                            )}
+                                                            onClick={
+                                                                handleCheckbox
+                                                            }
+                                                        />
+                                                    </div>
                                                 </th>
                                             </tr>
                                         </>
@@ -184,6 +234,11 @@ export default function HistoryModalGroup() {
                                     </tr>
                                 </tfoot>
                             </table>
+                        </div>
+                        <div className="w-[100%] h-[100px] flex flex-row justify-end items-center ">
+                            <button className="btn btn-primary btn-sm h-[50px] ">
+                                Confirm
+                            </button>
                         </div>
                     </div>
                 </form>
