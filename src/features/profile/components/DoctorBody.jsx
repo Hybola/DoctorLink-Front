@@ -12,7 +12,7 @@ export default function DoctorBody({ profile, canEdit }) {
 
     return (
         <div className="flex flex-col p-[20px] mx-[16px] gap-4">
-            <div className="w-full h-[30px] flex gap-8">
+            <div className="w-full h-[30px] flex gap-4">
                 <div className="font-bold text-2xl">{profile?.profileName}</div>
                 {canEdit ? (
                     <div className=" mr-[20px]">
@@ -23,12 +23,12 @@ export default function DoctorBody({ profile, canEdit }) {
                             <PenIcon />
                         </button>
 
-                        {editMode ? <DoctorBodyEdit /> : null}
+                      <DoctorBodyEdit /> 
                     </div>
                 ) : null}
             </div>
             <div>
-                <div className="w-full h-[30px]  text-lg">
+                <div className="w-full h-[30px] text-lg">
                     {profile?.description}
                 </div>
             </div>

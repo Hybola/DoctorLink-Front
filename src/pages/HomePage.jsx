@@ -1,7 +1,7 @@
 import { allJobPost } from '../features/homepage/slice/home-slice'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import StartChatButton from '../features/chat/components/StartChatButton'
+
 import PageLeft from '../features/homepage/components/PageLeft'
 import PageRight from '../features/homepage/components/PageRight'
 import SearchBar from '../features/homepage/components/SearchBar'
@@ -56,9 +56,6 @@ export default function HomePage() {
                     setPageAt={setPageAt}
                 />
                 <PageRight />
-            </div>
-            <div className="flex justify-end">
-                <StartChatButton />
             </div>
         </div>
     )

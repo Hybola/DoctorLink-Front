@@ -7,6 +7,7 @@ const initialState = {
     interestedJob: { allJob: [], filterJob: [] },
     confirmedJob: { allJob: [], filterJob: [] },
     loading: false,
+    test: '',
 }
 
 export const getDocotorJob = createAsyncThunk(
@@ -110,7 +111,7 @@ export const uptoInterestJob = createAsyncThunk(
                 (job) => job.doctorJobId == input.id
             )
             const newInterestedJob = [...input.interestJob, uptoInterestJob]
-            console.log(newInterestedJob)
+
             return { interestedJob: newInterestedJob, savedJob: newSaveJob }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)

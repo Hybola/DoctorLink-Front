@@ -15,7 +15,9 @@ import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
-import ChatPage from '../pages/ChatPage'
+
+import JobPost from '../pages/JobPostPage'
+import ChatConsole from '../features/chat/ChatConsole'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -54,7 +56,7 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/doctor/:id/profile/',
+                                path: '/doctor/:doctorId/profile/',
                                 element: <DoctorProfile />,
                             },
                             {
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
                             {
                                 path: '/doctor/myjob/',
                                 element: <MyJobPage />,
+                            },
+                            {
+                                path: '/doctor/provider/:providerId/post/:postId',
+                                element: <JobPost />,
                             },
                         ],
                     },
@@ -99,7 +105,7 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/provider/:id/profile/',
+                                path: '/provider/:providerId/profile/',
                                 element: <ProviderProfile />,
                             },
                             {
@@ -112,7 +118,7 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/provider/chat/',
-                                element: <ChatPage />,
+                                element:<ChatConsole/>,
                             },
                         ],
                     },

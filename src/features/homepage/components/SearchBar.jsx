@@ -26,12 +26,12 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="flex w-full justify-center text-success">
+        <div className="flex w-full justify-center text-success bg-white">
             {/* inputrow1#แถวการค้นหา */}
             <div className=" flex justify-center items-center w-fit gap-6 shadow-lg p-5 rounded-xl">
                 <div className="flex justify-center items-center">
                     <input
-                        className="text-md pl-4 h-[40px] w-[250px] rounded-lg border border-primary"
+                        className="text-md pl-4 h-[50px] w-[260px] rounded-lg border border-primary"
                         placeholder="Keyword"
                         name="searchText"
                         value={input.searchText}
