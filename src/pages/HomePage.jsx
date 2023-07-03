@@ -27,7 +27,7 @@ export default function HomePage() {
     }, [])
 
     return (
-        <div>
+        <div className='bg-[#F5FBFC]'>
             {isAuthenticate ? null : (
                 <div className="flex flex-col justify-center items-center p-20">
                     <h1 className="font-semibold text-4xl text-success">
@@ -40,8 +40,8 @@ export default function HomePage() {
                     </p>
                 </div>
             )}
-            <div className="flex flex-col w-full mt-4">
-                <div className="pb-10">
+            <div className="flex flex-col pt-8 w-full">
+                <div className="pb-10 w-fit self-center">
                     <SearchBar />
                 </div>
 

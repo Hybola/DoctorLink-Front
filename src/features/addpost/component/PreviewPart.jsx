@@ -2,29 +2,19 @@ import React from 'react'
 
 export default function PreviewPart({ detail }) {
     return (
-        <div className="mt-2">
-            <div className="font-bold mt-2">Title : {detail.title}</div>
-            <div className="font-bold mt-2">Location : {detail.location}</div>
-            <div className="font-bold mt-2">
-                Contract :
-                <div className="font-thin">
-                    Phone : {detail.phone}
-                    <br></br>
-                    Line : {detail.line}
-                </div>
+        <div className="mt-2 font-semibold">
+            <div className="flex flex-col gap-3 mt-2">
+                <div>Job Title : {detail.title}</div>
+                <div>Location : {detail.location}</div>
+                <div>Phone : {detail.phone}</div>
+                <div>Line ID : {detail.line}</div>
+                <div>Job Type : {detail.jobType}</div>
+                <div>Job Description : {detail.jobDes}</div>
+                <div>Start Date Time :{detail.startDateTime}</div>
+                <div>End Date Time :{detail.endDateTime}</div>
+                <div>Salary :{detail.wage}</div>
+                <div>Other :{detail.other}</div>
             </div>
-            <div className="font-bold mt-2">Job Type : {detail.jobType}</div>
-            <div className="font-bold mt-2">
-                Job Description :{detail.jobDes}
-            </div>
-            <div className="font-bold mt-2">
-                StartDateTime :{detail.startDateTime}
-            </div>
-            <div className="font-bold mt-2">
-                EndDateTime :{detail.endDateTime}
-            </div>
-            <div className="font-bold mt-2"> Wage :{detail.wage}</div>
-            <div className="font-bold mt-2"> Other :{detail.other}</div>
         </div>
     )
 }

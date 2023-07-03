@@ -1,7 +1,7 @@
 export default function InputBar({ label, type, name, value, onChange }) {
     return (
-        <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
-            <label htmlFor={name} className="w-[180px] font-semibold">
+        <div className="flex flex-col gap-1 rounded-lg font-normal text-lg mb-3">
+            <label htmlFor={name} className="w-fit font-semibold ">
                 {label}
             </label>
             <input
