@@ -28,72 +28,76 @@ export default function DoctorDataEdit() {
                     <h3 className="font-bold text-lg">Edit Doctor Profile</h3>
                 </div>
                 <InputBar
-                    label="First Name : "
+                    label="First Name"
                     name="firstName"
                     value={profile?.firstName}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Last Name : "
+                    label="Last Name"
                     name="lastName"
                     value={profile?.lastName}
                     onChange={handleOnchange}
                 />
-                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
-                    <label
-                        htmlFor="gender"
-                        className="w-[123px] font-semibold "
-                    >
-                        Gender :
-                    </label>
-                    <div className=" w-fit border border-primary rounded-lg">
-                        <select
-                            name="gender"
-                            id="gender"
-                            value={profile.gender}
+                <div className="flex justify-between gap-6">
+                    <div className='w-full'>
+                        <InputBar
+                            label="Birthdate"
+                            name="birthDate"
+                            type="date"
+                            value={profile?.birthDate}
                             onChange={handleOnchange}
-                            className=" w-full border border-bg-primary rounded-lg p-2 pl-2"
+                        />
+                    </div>
+                    <div className="w-full flex flex-col gap-1 rounded-lg font-normal text-lg mb-4">
+                        <label
+                            htmlFor="gender"
+                            className=" font-semibold "
                         >
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Other</option>
-                        </select>
+                            Gender
+                        </label>
+                        <div className="h-[48px] border border-primary rounded-lg">
+                            <select
+                                name="gender"
+                                id="gender"
+                                value={profile.gender}
+                                onChange={handleOnchange}
+                                className=" w-full h-full rounded-lg p-2 pl-2"
+                            >
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Other</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <InputBar
-                    label="Birthdate: "
-                    name="birthDate"
-                    type="date"
-                    value={profile?.birthDate}
-                    onChange={handleOnchange}
-                />
-                <InputBar
-                    label="Mobile :"
+                    label="Phone"
                     name="mobile"
                     value={profile?.mobile}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="LINE ID :"
+                    label="Line ID"
                     name="lineId"
                     value={profile?.lineId}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Education: "
+                    label="Education"
                     name="education"
                     value={profile?.education}
                     onChange={handleOnchange}
                 />
                 <InputBar
-                    label="Work experience: "
+                    label="Work Experience"
                     name="workExperience"
                     value={profile?.workExperience}
                     onChange={handleOnchange}
                 />
 
-                <div className="modal-action gap-2">
+                <div className="modal-action gap-8">
                     <button
                         className="btn w-[80px] text-base"
                         style={{ textTransform: 'none' }}

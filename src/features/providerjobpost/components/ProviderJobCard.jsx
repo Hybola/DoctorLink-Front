@@ -28,19 +28,19 @@ export default function ProviderJobCard({ post, handleClick1 }) {
                         {post?.jobStatus == '0' || post?.jobStatus == '1' ? (
                             <button
                                 id={post?.id}
-                                className=" border border-primary text-center   rounded-2xl px-4 py-1 text-white bg-blue-900"
+                                className=" border border-primary text-center rounded-lg px-4 py-1 text-white bg-primary"
                                 onClick={handleClick1}
                             >
                                 Interested
                             </button>
                         ) : null}
                         {post?.jobStatus == '2' ? (
-                            <div className=" border border-primary text-center  text-neutral bg-info bg-opacity-50 px-4 py-1 ">
+                            <div className="text-center text-white bg-info px-4 py-1 rounded-lg ">
                                 Pending Confirm
                             </div>
                         ) : null}
                         {post?.jobStatus == '3' ? (
-                            <div className=" text-center  text-white   bg-green-800 px-4 py-1 ">
+                            <div className=" text-center text-white bg-emerald-500 rounded-lg px-4 py-1 ">
                                 Confirmed
                             </div>
                         ) : null}
