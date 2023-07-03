@@ -91,10 +91,11 @@ export default function ProviderChat() {
         setInput('')
     }
     const handleSelectChat = (id) => {
-        console.log('doctorList >>>', doctorList)
+        // console.log('doctorList >>>', doctorList)
         const index = doctorList.findIndex((el) => el.id == id)
-        console.log('found index >>>', index)
+        // console.log('found index >>>', index)
         setCurrentDoctor(doctorList[index])
+        console.log("new allMsg >>>",[...[chatLists[`${id}:${providerId}`]]])
         setAllMsg([...[chatLists[`${id}:${providerId}`]]])
     }
     return (

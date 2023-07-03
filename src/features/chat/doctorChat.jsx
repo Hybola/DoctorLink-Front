@@ -75,47 +75,42 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                 </div>
                 {/* ======= Chat Modal  ====== */}
                 <div className="flex flex-col w-[400px] border shadow-xl  bg-white ">
-                    {/* ======= Chat title ====== */}
+                    {/* ======= Chat header ====== */}
+                    <div className="flex items-center justify-between rounded-t-lg bg-primary px-3">
+                        <div className="relative flex items-center p-2">
+                            <img
+                                className="object-cover w-10 h-10 rounded-full"
+                                src={chatUser.providerImage}
+                                alt="username"
+                            />
 
-                    <div className="flex items-center justify-between rounded-t-lg bg-primary py-4 px-9">
-                        <h3 className="text-xl font-bold text-white">
-                            Let's chat Online
-                        </h3>
+                            <span className="block text-xl font-bold text-white mx-2">
+                                {providerName}
+                            </span>
+                            <span
+                                className={
+                                    'absolute w-3 h-3 rounded-full left-10 top-3 border-2 border-white' +
+                                    ` ${
+                                        socket.id
+                                            ? 'bg-green-600'
+                                            : 'bg-red-500'
+                                    }`
+                                }
+                            ></span>
+                        </div>
                         <button
                             onClick={handleCloseChat}
-                            className="text-white"
+                            className="text-white mx-1"
                         >
                             <CloseWindowIcon />
                         </button>
                     </div>
-                    <div className="pt-2 max-w-2xl  grid grid-cols-1 gap-3">
+                    <div className=" max-w-2xl  grid grid-cols-1 gap-3">
                         <div className="container mx-auto">
-                            {/* ======= Chat header ====== */}
-
-                            <div className="max-w-2xl border rounded">
+                            <div className="max-w-2xl">
                                 <div className="w-full">
-                                    <div className="relative flex items-center p-3 border-b border-gray-300">
-                                        <img
-                                            className="object-cover w-10 h-10 rounded-full"
-                                            src={chatUser.providerImage}
-                                            alt="username"
-                                        />
-                                        <span className="block ml-2 font-bold text-gray-600">
-                                            Provider: {providerName}
-                                        </span>
-                                        <span
-                                            className={
-                                                'absolute w-3 h-3 rounded-full left-10 top-3 border-2 border-white' +
-                                                ` ${
-                                                    socket.id
-                                                        ? 'bg-green-600'
-                                                        : 'bg-red-500'
-                                                }`
-                                            }
-                                        ></span>
-                                    </div>
                                     {/* ======  Chat Messages Body ====== */}
-                                    <div className="relative w-full p-6 overflow-y-auto h-[29rem]">
+                                    <div className="relative w-full p-6 overflow-y-auto h-[29rem] bg-secondary">
                                         <ul className="space-y-2">
                                             {allMsg.map((el, i) => (
                                                 <MsgBody
