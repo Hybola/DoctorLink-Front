@@ -26,8 +26,8 @@ export default function PartTime({ add, hdl }) {
                                         type="datetime-local"
                                         className="w-full   h-[40px] p-2 border border-primary rounded-lg "
                                         onChange={hdl}
-                                        value={add.startDateTime}
-                                        name="startDateTime"
+                                        value={add.startDate}
+                                        name="startDate"
                                     />
                                 </div>
                             </div>
@@ -38,8 +38,8 @@ export default function PartTime({ add, hdl }) {
                                         type="datetime-local"
                                         className="w-full  h-[40px] p-2 border border-primary rounded-lg "
                                         onChange={hdl}
-                                        value={add.endDateTime}
-                                        name="endDateTime"
+                                        value={add.endDate}
+                                        name="endDate"
                                     />
                                 </div>
                             </div>

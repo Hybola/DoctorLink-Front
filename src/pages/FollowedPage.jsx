@@ -1,17 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Followed from '../features/followed/components/Followed'
 import { useDispatch, useSelector } from 'react-redux'
 import { getfollowed } from '../features/followed/slice/followed-slice'
 
 export default function FollowedPage() {
-    const dispatch = useDispatch()
+    const input = useSelector((state) => state.followed?.message)
     const followedProvider = useSelector(
         (state) => state.followed.followedProvider
     )
-    console.log(followedProvider)
+    const userid = useSelector((state) => state.auth?.user.id)
+    const dispatch = useDispatch()
+    const [search, setSearch] = useState(input)
+    // console.log(followedProvider)
+    // console.log(input)
 
     useEffect(() => {
-        dispatch(getfollowed(1)).unwrap()
+        const rs = dispatch(getfollowed(userid)).unwrap()
+        console.log(search)
+        return rs
     }, [])
     return (
         <div className=" h-screen w-full  bg-base-100 flex justify-center">

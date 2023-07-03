@@ -25,7 +25,7 @@ export default function ProviderProfile() {
     }, [])
 
     return (
-        <div className="  max-w-[900px]  min-w-[600px] w-[700px] bg-base-100   my-4 shadow-lg h-fit p-[20px]">
+        <div className="  max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100 rounded-lg my-4 shadow-lg h-fit pb-[20px]">
             <ProviderHeader profile={profile} canEdit={canEdit} />
             <ProviderBody profile={profile} canEdit={canEdit} />
         </div>

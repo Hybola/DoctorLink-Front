@@ -3,6 +3,7 @@ import FullTime from '../features/addpost/component/FullTime'
 import PartTime from '../features/addpost/component/PartTime'
 import axios from '../api/thisAxios'
 import Preview from '../features/addpost/component/Preview'
+import { useNavigate } from 'react-router-dom'
 
 const initial = {
     title: '',
@@ -17,15 +18,17 @@ const initial = {
     annual: '',
     benefit: '',
     other: '',
-    startDateTime: '',
-    endDateTime: '',
+    endDate: '',
     wage: '',
 }
 export default function Addpost() {
     const [input, setInput] = useState(initial)
     const [page, setPage] = useState('FullTime')
 
+    const navigate = useNavigate()
+
     const hdlchange = (e) => {
+        console.log(e.target.value)
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const hdlsumbit = async (e) => {
@@ -38,6 +41,7 @@ export default function Addpost() {
         console.log(payload)
         try {
             await axios.post('/post/createpost', payload)
+            navigate('/provider/history/')
         } catch (error) {
             console.log(error)
         }

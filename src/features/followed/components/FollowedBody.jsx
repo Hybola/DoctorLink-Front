@@ -1,5 +1,9 @@
 import FollowedCard from './FollowedCard'
-export default function FollowedBody({ followedProvider }) {
+import { useSelector } from 'react-redux'
+
+export default function FollowedBody() {
+    const followedProvider = useSelector((state) => state?.followed?.filter)
+
     const providerList = followedProvider?.map((follow) => (
         <FollowedCard follow={follow} key={follow.id} />
     ))

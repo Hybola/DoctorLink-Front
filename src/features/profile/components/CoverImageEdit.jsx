@@ -9,6 +9,14 @@ export default function CoverImageEdit({ currentCoverImage }) {
 
     const dispatch = useDispatch()
 
+    const classUpload = file
+        ? 'btn btn-success  w-[150px] font-bold  text-white '
+        : 'btn  w-[150px] font-bold   btn-disabled'
+
+    const classSelect = loading
+        ? 'btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white  btn-disabled'
+        : 'btn w-[180px]  bg-primary  p-2 rounded-lg flex justify-center items-center hover:text-white hover:bg-success'
+
     const updateCoverImage = async (input) => {
         const formData = new FormData()
         formData.append('coverImage', input)
@@ -61,18 +69,21 @@ export default function CoverImageEdit({ currentCoverImage }) {
 
                         <div className="w-full flex justify-between items-center mt-6">
                             <div
-                                className="btn w-[180px]  bg-info p-2 rounded-lg flex justify-center items-center hover:bg-success hover:text-white"
+                                className={classSelect}
                                 onClick={() => inputEl.current.click()}
                             >
                                 Select Image
                             </div>
                             <div className="modal-action flex items-center mt-0">
                                 {loading ? (
-                                    <div> Image is uploading !!</div>
+                                    <button className="btn">
+                                        <span className="loading loading-spinner"></span>
+                                        Image is uploading
+                                    </button>
                                 ) : (
                                     <>
                                         <button
-                                            className="btn btn-primary  w-[100px] font-bold hover:bg-success text-white"
+                                            className={classUpload}
                                             onClick={(e) => {
                                                 updateCoverImage(file)
                                                 e.preventDefault()
