@@ -97,6 +97,18 @@ export const getProvince = createAsyncThunk(
     }
 )
 
+export const providerFollow = createAsyncThunk(
+    'providerFollow',
+    async (input, thunkApi) => {
+        try {
+            const rs = await profileService.follow()
+            return rs.data
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState,
@@ -133,6 +145,7 @@ const profileSlice = createSlice({
             .addCase(uploadImage.fulfilled, (state, action) => {
                 state.myProfile = { ...state.myProfile, ...action.payload }
                 state.loading = false
+                // state.auth.user = { ...state.auth, ...action.payload }
             })
 
             .addCase(uploadImage.rejected, (state, action) => {
