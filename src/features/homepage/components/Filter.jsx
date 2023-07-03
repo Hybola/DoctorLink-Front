@@ -5,7 +5,7 @@ export default function Filter() {
     return (
         <div className="flex justify-center text-success gap-4">
             <details className="dropdown">
-                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
+                <summary className="btn m-1 shadow-md" style={style}>
                     Date Posted
                 </summary>
                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -18,7 +18,7 @@ export default function Filter() {
                 </ul>
             </details>
             <details className="dropdown">
-                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
+                <summary className="btn m-1 shadow-md" style={style}>
                     Salary
                 </summary>
                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -34,7 +34,7 @@ export default function Filter() {
                 </ul>
             </details>
             <details className="dropdown">
-                <summary className="btn btn-ghost m-1 shadow-md" style={style}>
+                <summary className="btn m-1 shadow-md" style={style}>
                     Job Type
                 </summary>
                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
