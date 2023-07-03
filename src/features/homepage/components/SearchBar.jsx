@@ -44,7 +44,7 @@ export default function SearchBar() {
                         id="provinceId"
                         onChange={handdleChangeInput}
                         value={input.provinceId}
-                        className="text-md pl-2 h-[50px] w-[170px] rounded-lg border border-primary"
+                        className="text-md pl-2 h-[40px] w-[160px] rounded-lg border border-primary"
                     >
                         <option
                             className="text-gray-400"
