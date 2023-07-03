@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FullTime from '../features/addpost/component/FullTime'
 import PartTime from '../features/addpost/component/PartTime'
 import axios from '../api/thisAxios'
@@ -33,8 +33,12 @@ export default function Addpost() {
     }
     const hdlsumbit = async (e) => {
         e.preventDefault()
-        const jobType = document.getElementById('jobType').value
-        const payload = { ...input, provinceId: '1', jobType: jobType }
+        const payload = {
+            ...input,
+            provinceId: '1',
+            jobType: page,
+        }
+        console.log(payload)
         try {
             await axios.post('/post/createpost', payload)
             navigate('/provider/history/')
