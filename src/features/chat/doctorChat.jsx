@@ -61,7 +61,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             to: 'provider',
             from: 'doctor',
         }
-        const room = `${doctor.id}:${providerId}`
+        const room = `${doctorId}:${providerId}`
 
         setAllMsg([...allMsg, conversation])
         setInput('')
