@@ -1,5 +1,5 @@
 import React from 'react'
-import JobPost from './JobPost'
+import JobPost from '../../providerjobpost/components/JobPost'
 export default function PageRight({ jobPost }) {
     return (
         <div>
