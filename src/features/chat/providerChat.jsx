@@ -27,16 +27,16 @@ export default function ProviderChat() {
             // console.log('provider acceptChat:Room >>>', data.newRoom) //data={newRoom: '1:1'}
             socket.emit('providerJoinRoom', data.newRoom)
             toast.info(`incomming message`)
-            const oneDoctor = {
-                id: data.doctorId,
-                firstName: data.doctorProfile.firstName,
-                lastName: data.doctorProfile.lastName,
-                profileImage: data.doctorProfile.profileImage,
-            }
+            // const oneDoctor = {
+            //     id: data.doctorId,
+            //     firstName: data.doctorProfile.firstName,
+            //     lastName: data.doctorProfile.lastName,
+            //     profileImage: data.doctorProfile.profileImage,
+            // }
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
-            setDoctorList([...doctorList, oneDoctor]) //เก็บ Object doctor ไว้ใช้งาน
+            setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
             // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
-            setCurrentDoctor(oneDoctor)
+            setCurrentDoctor(data.doctor)
         })
         socket.on('providerGetMessage', (data) => {
             // console.log('providerGetMessage: data =', data)
@@ -169,8 +169,7 @@ export default function ProviderChat() {
                                 >
                                     <ChatCard
                                         key={el.id}
-                                        firstName={el.firstName}
-                                        lastName={el.lastName}
+                                        name={el.name}
                                         profileImage={el.profileImage}
                                     />
                                 </div>

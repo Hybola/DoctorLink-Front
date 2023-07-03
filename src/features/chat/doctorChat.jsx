@@ -10,9 +10,10 @@ import {
     SumbitChatMessageIcon,
 } from '../../icons'
 export default function DoctorChat({ chatUser, handleCloseChat }) {
+    const doctor = useSelector((state) => state.auth?.user)
     const doctorId = useSelector((state) => state.auth?.user.id)
     const doctorProfile = useSelector((state) => state.profile?.myProfile) //={id,firstName,lastName,profileImage,...}
-    // console.log(` doctor: ===>>${doctorId}`) //
+    console.log(` doctor: ===>>${doctor.id}`) //
     // console.log(` doctorProfile: ===>>${doctorProfile?.profileImage}`)
     const ref = useRef()
 
@@ -36,7 +37,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     ]
 
     useEffect(() => {
-        socket.emit('startChat', { doctorId, providerId, doctorProfile })
+        socket.emit('startChat', { doctor, providerId,})
 
         // console.log(
         //     `"startChat", doctor:${doctor}, providerId: ${providerId}`

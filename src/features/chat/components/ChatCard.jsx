@@ -2,8 +2,7 @@ import React from 'react'
 
 export default function ChatCard(props) {
     const {
-        firstName,
-        lastName,
+        name,
         profileImage = 'https://www.svgrepo.com/show/508199/user-square.svg',
         isOnline = true,
     } = props
@@ -21,9 +20,7 @@ export default function ChatCard(props) {
                     )}
                 </div>
                 <div className="flex-grow p-3">
-                    <div className="font-semibold text-gray-700">
-                        {firstName} {lastName}
-                    </div>
+                    <div className="font-semibold text-gray-700">{name}</div>
                     <div className="text-sm text-gray-500">Thank you.</div>
                 </div>
                 <div className="p-2">
