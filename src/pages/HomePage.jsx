@@ -1,4 +1,7 @@
-import { allJobPost } from '../features/homepage/slice/home-slice'
+import {
+    allJobPost,
+    getProviderPost,
+} from '../features/homepage/slice/home-slice'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,10 +12,12 @@ import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
     const isAuthenticate = useSelector((state) => state.auth?.isAuthenticated)
+    const myRole = useSelector((state) => state.auth?.role)
     const filterJobList = useSelector((state) => state.home?.filterJob)
     const [jobPost, setJobPost] = useState({
-        postId: filterJobList[0]?.id,
-        providerId: filterJobList[0]?.providerId,
+        postId: 1,
+        providerId: 1,
+        role: myRole,
     })
 
     const [pageAt, setPageAt] = useState(1)
@@ -30,7 +35,12 @@ export default function HomePage() {
         getAllJobPost()
     }, [])
 
-    console.log(jobPost)
+    useEffect(() => {
+        const providerPost = async (input) => {
+            await dispatch(getProviderPost(input)).unwrap()
+        }
+        providerPost(jobPost)
+    }, [jobPost])
 
     return (
         <div className="bg-[#F5FBFC]">
@@ -62,7 +72,7 @@ export default function HomePage() {
                     setPageAt={setPageAt}
                     setJobPost={setJobPost}
                 />
-                <PageRight jobPost={jobPost} />
+                <PageRight />
             </div>
         </div>
     )

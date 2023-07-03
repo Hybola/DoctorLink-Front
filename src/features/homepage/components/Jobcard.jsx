@@ -1,16 +1,15 @@
 import { dateTimeTH } from '../../../utils/dateTime'
+
 export default function Jobcard({ jobpost, setJobPost }) {
-    console.log(jobpost)
     return (
         <div
             className="h-[250px] w-[350px] rounded-lg border border-primary shadow-lg cursor-pointer"
-            id={jobpost.id}
-            value={jobpost.providerId}
+            id={jobpost.id + '/' + jobpost.providerId}
             onClick={(e) => {
-                console.log(e)
+                const arr = e.target.id.split('/')
                 setJobPost({
-                    postId: e.target.id,
-                    providerId: e.target.value,
+                    postId: arr[0],
+                    providerId: arr[1],
                 })
             }}
         >
@@ -39,8 +38,7 @@ export default function Jobcard({ jobpost, setJobPost }) {
                 >
                     <p>{jobpost?.jobType}</p>
                     <div
-                        id={jobpost.id}
-                        value={jobpost.providerId}
+                        id={jobpost.id + '/' + jobpost.providerId}
                         className=" absolute top-0 bottom-0 left-0 right-0"
                     ></div>
                 </div>

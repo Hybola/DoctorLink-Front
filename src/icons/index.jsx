@@ -102,24 +102,22 @@ export function MyJobIcon() {
 export function FollowerIcon() {
     return (
         <svg
-        height="2rem"
-        width="2rem"
-
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-      >
-        <g fill="#fff">
-          <path
-            fillRule="evenodd"
-            d="M6 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM4 5.5a2 2 0 114 0 2 2 0 01-4 0z"
-            clipRule="evenodd"
-          />
-          <path d="M4.25 10A3.75 3.75 0 00.5 13.75v.5a.75.75 0 001.5 0v-.5a2.25 2.25 0 012.25-2.25h3.5A2.25 2.25 0 0110 13.75v.5a.75.75 0 001.5 0v-.5A3.75 3.75 0 007.75 10h-3.5zm7 .75A.75.75 0 0112 10h.25a3.25 3.25 0 013.25 3.25v1a.75.75 0 01-1.5 0v-1a1.75 1.75 0 00-1.75-1.75H12a.75.75 0 01-.75-.75zm.023-8.51a.75.75 0 00-.546 1.396 2.001 2.001 0 010 3.728.75.75 0 00.546 1.397 3.501 3.501 0 000-6.522z" />
-        </g>
-      </svg>
-  
-      )
+            height="2rem"
+            width="2rem"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+        >
+            <g fill="#fff">
+                <path
+                    fillRule="evenodd"
+                    d="M6 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM4 5.5a2 2 0 114 0 2 2 0 01-4 0z"
+                    clipRule="evenodd"
+                />
+                <path d="M4.25 10A3.75 3.75 0 00.5 13.75v.5a.75.75 0 001.5 0v-.5a2.25 2.25 0 012.25-2.25h3.5A2.25 2.25 0 0110 13.75v.5a.75.75 0 001.5 0v-.5A3.75 3.75 0 007.75 10h-3.5zm7 .75A.75.75 0 0112 10h.25a3.25 3.25 0 013.25 3.25v1a.75.75 0 01-1.5 0v-1a1.75 1.75 0 00-1.75-1.75H12a.75.75 0 01-.75-.75zm.023-8.51a.75.75 0 00-.546 1.396 2.001 2.001 0 010 3.728.75.75 0 00.546 1.397 3.501 3.501 0 000-6.522z" />
+            </g>
+        </svg>
+    )
 }
 
 export function ChatIcon() {
@@ -801,6 +799,23 @@ export function SendImageIcon() {
                 fillRule="evenodd"
                 d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
                 clipRule="evenodd"
+            />
+        </svg>
+    )
+}
+
+export function KeptIcon() {
+    return (
+        <svg
+            width="2rem"
+            height="2rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M15.03 3.303a15.325 15.325 0 00-6.06 0C6.661 3.768 5 5.823 5 8.209v10.42c0 1.829 1.957 2.967 3.512 2.043l2.833-1.683a1.28 1.28 0 011.31 0l2.833 1.683c1.555.924 3.512-.214 3.512-2.043V8.21c0-2.387-1.662-4.44-3.97-4.906z"
+                fill="#363853"
             />
         </svg>
     )

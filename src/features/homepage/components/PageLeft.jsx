@@ -28,12 +28,7 @@ export default function PageLeft({ joblist, pageAt, setPageAt, setJobPost }) {
     const start = startPage(pageAt, capacity)
     const end = endPage(pageAt, capacity)
     const job = showAtPage.map((j) => (
-        <Jobcard
-            jobpost={j}
-            key={j.id}
-            setJobPost={setJobPost}
-            // logo={job.image}
-        />
+        <Jobcard jobpost={j} key={j.id} setJobPost={setJobPost} />
     ))
 
     return (
