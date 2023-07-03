@@ -40,7 +40,7 @@ export default function ProviderBody({ profile, canEdit }) {
                         <MapIcon />
                     </a>
                     <div>{profile?.address}</div>
-                    <div>{profile?.province}</div>
+                    <div>{profile?.Province?.name}</div>
                 </div>
             </div>
 
