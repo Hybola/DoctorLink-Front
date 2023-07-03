@@ -9,7 +9,7 @@ export default function FollowedCard({ follow }) {
     )
     const dispatch = useDispatch()
 
-    const followedProvider = useSelector((state) => state.unfollowed)
+    // const followedProvider = useSelector((state) => state.unfollowed)
     const hdldelete = async (followId) => {
         const remainFollow = currentFollow.filter((obj) => obj.id != followId)
         const input = { followId, remainFollow }
@@ -17,31 +17,31 @@ export default function FollowedCard({ follow }) {
     }
 
     return (
-        <div className="w-full flex justify-between mb-2" id={follow.id}>
+        <div className="w-full flex justify-between mb-2" id={follow?.id}>
             <div className="w-[500px] flex gap-2 min-h-[60px]">
                 <div className="w-[60px] h-[60px] bg-slate-600">
                     <img
-                        src={follow.providerImage}
+                        src={follow?.providerImage}
                         alt="profileImage"
                         className="w-[60px] h-[60px]  bg-slate-600 object-cover"
                     />
                 </div>
                 <div className="flex flex-col">
                     <div className="flex text-lg font-bold  ">
-                        {follow.providerName}
+                        {follow?.providerName}
                     </div>
                     <div className="flex  text-primary text-base font-thin">
-                        {follow.providerdes}
+                        {follow?.providerdes}
                     </div>
                     <div className="flex   pb-2 text-primary  text-[14px] font-thin">
-                        Followed: {follow.createdAt}
+                        Followed: {follow?.createdAt}
                     </div>
                 </div>
             </div>
             <div className="flex items-center">
                 <button
                     className=" border border-primary  text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50"
-                    onClick={() => hdldelete(follow.id)}
+                    onClick={() => hdldelete(follow?.id)}
                 >
                     Unfollow
                 </button>
