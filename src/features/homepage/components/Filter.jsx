@@ -9,8 +9,8 @@ export default function Filter({ handdleEdit }) {
     const dispatch = useDispatch()
 
     const [input, setInput] = useState({
-        salaryEstimate: 'SalaryEstimate',
-        employmentType: 'EmploymentType',
+        salaryEstimate: 'Salary',
+        employmentType: 'JobType',
         datePost: 'DatePost',
         wage: 'Wage',
     })
@@ -18,7 +18,7 @@ export default function Filter({ handdleEdit }) {
     useEffect(() => {
         const result = allJob.filter((job) => {
             const checkEmploymentType =
-                input.employmentType == 'EmploymentType' ||
+                input.employmentType == 'JobType' ||
                 (input.employmentType == 'Part-Time' &&
                     job.jobType == 'PartTime') ||
                 (input.employmentType == 'Full-Time' &&
@@ -28,27 +28,27 @@ export default function Filter({ handdleEdit }) {
                 input.wage == 'Wage'
                     ? true
                     : job.jobType == 'PartTime'
-                    ? (input.wage == '< 1500' && +job.PartTime.wage < 1500) ||
+                    ? (input.wage == '< 1500' && +job.PartTime?.wage < 1500) ||
                       (input.wage == '1500-5000' &&
-                          +job.PartTime.wage >= 1500 &&
-                          +job.PartTime.wage <= 5000) ||
+                          +job.PartTime?.wage >= 1500 &&
+                          +job.PartTime?.wage <= 5000) ||
                       (input.wage == '5001-10000' &&
-                          +job.PartTime.wage >= 5001 &&
-                          +job.PartTime.wage <= 10000) ||
-                      (input.wage == '> 10000' && +job.PartTime.wage > 10000)
+                          +job.PartTime?.wage >= 5001 &&
+                          +job.PartTime?.wage <= 10000) ||
+                      (input.wage == '> 10000' && +job.PartTime?.wage > 10000)
                     : false
 
             const checksalaryEstimate =
-                input.salaryEstimate == 'SalaryEstimate'
+                input.salaryEstimate == 'Salary'
                     ? true
                     : job.jobType == 'FullTime'
                     ? (input.salaryEstimate == '< 40000' &&
-                          job.FullTime.salary <= 40000) ||
+                          job.FullTime?.salary <= 40000) ||
                       (input.salaryEstimate == '40001-100000' &&
-                          job.FullTime.salary >= 40001 &&
-                          job.FullTime.salary <= 100000) ||
+                          job.FullTime?.salary >= 40001 &&
+                          job.FullTime?.salary <= 100000) ||
                       (input.salaryEstimate == '> 100000' &&
-                          job.FullTime.salary > 100000)
+                          job.FullTime?.salary > 100000)
                     : false
 
             console.log(
@@ -76,18 +76,15 @@ export default function Filter({ handdleEdit }) {
     return (
         <div className="flex justify-center text-success gap-4">
             {input.datePost == 'DatePost' ? (
-                <div className="dropdown">
-                    <label
-                        tabIndex={0}
+                <details className="dropdown">
+                    <summary
                         className="btn m-1 shadow-md"
                         style={{ textTransform: 'none' }}
                     >
-                        {input.datePost}
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                    >
+                        {/* {input.datePost} */}
+                        Date Posted
+                    </summary>
+                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
                         <li>
                             <div
                                 type="button"
@@ -117,30 +114,27 @@ export default function Filter({ handdleEdit }) {
                             </div>
                         </li>
                     </ul>
-                </div>
+                </details>
             ) : (
                 <div
-                    className="flex  gap-2 bg-slate-500 h-[48px] rounded-md text-black items-center mt-1 p-2"
+                    className="btn m-1 bg-blue-200 border-none shadow-md"
+                    style={{ textTransform: 'none' }}
                     onClick={() => setInput({ ...input, datePost: 'DatePost' })}
                 >
                     <div>{input.datePost} </div>
-                    <span>X</span>
+                    <span>✕</span>
                 </div>
             )}
 
-            {input.employmentType === 'EmploymentType' ? (
-                <div className="dropdown">
-                    <label
-                        tabIndex={0}
+            {input.employmentType === 'JobType' ? (
+                <details className="dropdown">
+                    <summary
                         className="btn m-1 shadow-md"
                         style={{ textTransform: 'none' }}
                     >
-                        Employment Type
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                    >
+                        Job Type
+                    </summary>
+                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
                         <li>
                             <div
                                 type="button"
@@ -170,40 +164,37 @@ export default function Filter({ handdleEdit }) {
                             </div>
                         </li>
                     </ul>
-                </div>
+                </details>
             ) : (
                 <div>
                     <div>
                         <div
-                            className="flex  gap-2 bg-slate-500 h-[48px] rounded-md text-black items-center mt-1 p-2"
+                            className="btn m-1 bg-blue-200 border-none shadow-md"
+                            style={{ textTransform: 'none' }}
                             onClick={() =>
                                 setInput({
                                     ...input,
-                                    employmentType: 'EmploymentType',
+                                    employmentType: 'JobType',
                                 })
                             }
                         >
                             <div>{input.employmentType} </div>
-                            <span>X</span>
+                            <span>✕</span>
                         </div>
                     </div>
                 </div>
             )}
 
             {input.employmentType ===
-            'Part-Time' ? null : input.salaryEstimate === 'SalaryEstimate' ? (
-                <div className="dropdown">
-                    <label
-                        tabIndex={0}
+            'Part-Time' ? null : input.salaryEstimate === 'Salary' ? (
+                <details className="dropdown">
+                    <summary
                         className="btn m-1 shadow-md"
                         style={{ textTransform: 'none' }}
                     >
-                        Salary Estimate
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                    >
+                        Salary
+                    </summary>
+                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
                         <li>
                             <div
                                 type="button"
@@ -250,38 +241,35 @@ export default function Filter({ handdleEdit }) {
                             </div>
                         </li>
                     </ul>
-                </div>
+                </details>
             ) : (
                 <div>
                     <div
-                        className="flex  gap-2 bg-slate-500 h-[48px] rounded-md text-black items-center mt-1 p-2"
+                        className="btn m-1 bg-blue-200 border-none shadow-md"
+                        style={{ textTransform: 'none' }}
                         onClick={() =>
                             setInput({
                                 ...input,
-                                salaryEstimate: 'SalaryEstimate',
+                                salaryEstimate: 'Salary',
                             })
                         }
                     >
                         <div>{input.salaryEstimate} </div>
-                        <span>X</span>
+                        <span>✕</span>
                     </div>
                 </div>
             )}
 
             {input.employmentType === 'Full-Time' ? null : input.wage ===
               'Wage' ? (
-                <div className="dropdown">
-                    <label
-                        tabIndex={0}
+                <details className="dropdown">
+                    <summary
                         className="btn m-1 shadow-md"
                         style={{ textTransform: 'none' }}
                     >
                         Wage
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit"
-                    >
+                    </summary>
+                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
                         <li>
                             <div
                                 type="button"
@@ -343,11 +331,12 @@ export default function Filter({ handdleEdit }) {
                             </div>
                         </li>
                     </ul>
-                </div>
+                </details>
             ) : (
                 <div>
                     <div
-                        className="flex  gap-2 bg-slate-500 h-[48px] rounded-md text-black items-center mt-1 p-2"
+                        className="btn m-1 bg-blue-200 border-none shadow-md"
+                        style={{ textTransform: 'none' }}
                         onClick={() =>
                             setInput({
                                 ...input,
@@ -356,7 +345,7 @@ export default function Filter({ handdleEdit }) {
                         }
                     >
                         <div>{input.wage} </div>
-                        <span>X</span>
+                        <span>✕</span>
                     </div>
                 </div>
             )}
