@@ -2,12 +2,10 @@ import * as postService from '../../../api/post-api'
 import { useState, useEffect } from 'react'
 import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
 import * as myjobService from '../../../api/myjob-api'
-import * as profileService from '../../../api/profile-api'
 import { useNavigate } from 'react-router-dom'
 
 export default function JopPost({ providerId, postId }) {
     const [jobPost, setJobPost] = useState([])
-    const [profileProvider, setProviderProfile] = useState({})
 
     const naviagte = useNavigate()
     const defaultCoverImage =
@@ -30,9 +28,6 @@ export default function JopPost({ providerId, postId }) {
     useEffect(() => {
         postService.getPostById(postId).then((rs) => {
             setJobPost(rs.data[0])
-        })
-        profileService.providerProfile(providerId).then((rs) => {
-            setProviderProfile(rs.data)
         })
     }, [])
 
@@ -58,9 +53,14 @@ export default function JopPost({ providerId, postId }) {
                 <div className="w-full flex flex-col gap-2 text-success">
                     <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
                         <div className="flex justify-start gap-1">
-                            <div>{profileProvider?.follower}</div>
+                            <div>0</div>
                             <div>follower</div>
                         </div>
+                    </div>
+                    <div className="w-[200px] h-[14px] ml-[200px] mt-[8px]">
+                        <button className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-lg min-h-[14px] font-normal px-[4px] ">
+                            Follow
+                        </button>
                     </div>
                 </div>
                 <div
@@ -72,7 +72,6 @@ export default function JopPost({ providerId, postId }) {
                     {jobPost?.providerName}
                 </div>
             </div>
-
             <hr />
             <ProviderJobCard post={jobPost} handleClick1={handleinterestJob} />
         </div>
