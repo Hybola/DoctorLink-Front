@@ -17,7 +17,7 @@ export default function MyJob() {
         currentDoctorJob()
     }, [])
     return (
-        <div className=" bg-[#F5FBFC] flex justify-center w-fit gap-8 mt-8">
+        <div className=" flex justify-center w-fit gap-8 mt-8">
             <NavBar myJob={myJob} setMyJob={setMyJob} />
             {myJob == 1 ? <SavedJob /> : null}
             {myJob == 2 ? <InterestedJob /> : null}

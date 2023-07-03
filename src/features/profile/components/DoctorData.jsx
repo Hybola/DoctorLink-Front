@@ -24,7 +24,7 @@ export default function DoctorDataBody({ profile, canEdit }) {
                             <EditIcon />
                         </button>
 
-                        {currrentProfile.firstName ? <DoctorDataEdit /> : null}
+                        {currrentProfile?.firstName ? <DoctorDataEdit /> : null}
                     </div>
                 ) : null}
             </div>
@@ -45,7 +45,7 @@ export default function DoctorDataBody({ profile, canEdit }) {
                         <span className="text-primary">
                             {profile?.gender == 1
                                 ? 'Male'
-                                : profile.gender == 2
+                                : profile?.gender == 2
                                 ? 'Female'
                                 : 'Other'}
                         </span>

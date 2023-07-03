@@ -76,7 +76,10 @@ export default function ProviderProfileImageEdit({ currentProfileImage }) {
                         </div>
                         <div className="modal-action gap-2 mt-0">
                             {loading ? (
-                                <button className="btn">
+                                <button
+                                    className="btn"
+                                    style={{ textTransform: 'none' }}
+                                >
                                     <span className="loading loading-spinner"></span>
                                     Image is uploading
                                 </button>
