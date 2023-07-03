@@ -1,12 +1,13 @@
 import React from 'react'
 import Preview from '../../addpost/component/Preview'
-// { 
-//     renderJob: { title: 'accounting' }, 
-//     count: '200' 
+// {
+//     renderJob: { title: 'accounting' },
+//     count: '200'
 // }
 export default function PageRight({ renderJob, count }) {
-    return <div>{/* <Preview /> */}
-    {/* <h1>{renderJob.title}</h1>
-    <p>{count}</p> */}
-    </div>
+    return (
+        <div>
+            <div className=" min-w-[740px] h-[740px] bg-success "></div>
+        </div>
+    )
 }
