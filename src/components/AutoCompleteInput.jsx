@@ -28,7 +28,7 @@ export default function AutoCompleteInput({ name, state, setState, items }) {
                 <>
                     <input
                         type="search"
-                        className=" w-[260px] border border-primary rounded-lg h-[40px] p-2 pl-3 relative"
+                        className=" w-full border border-primary rounded-lg h-[40px] p-2 pl-3 relative"
                         value={input}
                         onChange={(e) => {
                             setInput(e.target.value)
@@ -43,7 +43,7 @@ export default function AutoCompleteInput({ name, state, setState, items }) {
             ) : (
                 <input
                     type="text"
-                    className=" w-[260px] border border-primary rounded-lg h-[40px] p-2 pl-3 relative"
+                    className=" w-full border border-primary rounded-lg h-[40px] p-2 pl-3 relative"
                     value={items.find((item) => item.id == state[name])?.name}
                     onClick={() => setState({ ...state, [name]: '' })}
                 />
