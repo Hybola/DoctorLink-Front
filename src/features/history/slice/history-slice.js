@@ -85,9 +85,12 @@ export const confirmCloseJobByGetDoctor = createAsyncThunk(
         try {
             const res = await historyService.confirmCloseJob(input.id, 2)
             const editIndex = input.allList.findIndex((el) => el.id == input.id)
-            const newAllList = [...input.allList]
-            console.log(newAllList[editIndex])
-            newAllList[editIndex].stage = 5
+            let newAllList = [...input.allList]
+            console.log(newAllList)
+            let completed = { ...newAllList[editIndex], stage: 2 }
+            newAllList[editIndex] = completed
+            console.log(newAllList)
+
             return newAllList
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -101,8 +104,12 @@ export const confirmCloseJobByNoDoctor = createAsyncThunk(
         try {
             const res = await historyService.confirmCloseJob(input.id, 0)
             const editIndex = input.allList.findIndex((el) => el.id == input.id)
-            const newAllList = [...input.allList]
-            newAllList[editIndex].stage = 0
+            let newAllList = [...input.allList]
+            console.log(newAllList)
+            let completed = { ...newAllList[editIndex], stage: 0 }
+            newAllList[editIndex] = completed
+            console.log(newAllList)
+
             return newAllList
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -139,12 +146,12 @@ const historySlice = createSlice({
             })
             .addCase(getJob.fulfilled, (state, action) => {
                 state.doctorSelected = action.payload
-            })
-            .addCase(confirmCloseJobByGetDoctor.fulfilled, (state, action) => {
-                state.allLists = action.payload
-            })
-            .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
-                state.allLists = action.payload
             }),
+    // .addCase(confirmCloseJobByGetDoctor.fulfilled, (state, action) => {
+    //     state.allLists = action.payload
+    // })
+    // .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
+    //     state.allLists = action.payload
+    // }),
 })
 export default historySlice.reducer

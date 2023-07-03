@@ -44,18 +44,16 @@ export default function HistoryModalBin() {
             return ''
         }
     }
-    const filterSelectedDoctor = doctorSelected[0]?.DoctorJobs?.filter(
-        (item) => {
-            if (item.status == 3) {
-                return item
-            }
+    const filterSelectedDoctor = objPost?.DoctorJobs?.filter((item) => {
+        if (item.status == 3) {
+            return item
         }
-    )
+    })
 
-    const changeColor = (name) => {
-        const div = document.getElementById('hideme')
-        div.style.backgroundColor = 'red'
-    }
+    // const changeColor = (name) => {
+    //     const div = document.getElementById('hideme')
+    //     div.style.backgroundColor = 'red'
+    // }
     const handleConfirm = () => {
         filterSelectedDoctor?.length > 0
             ? dispatch(
