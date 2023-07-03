@@ -58,15 +58,32 @@ export default function Filter({ handdleEdit }) {
                 checksalaryEstimate
             )
 
-            // const checkDate =
-            //     input.datePost == 'DatePost' ||
-            //     (input.datePost == 'Last 3 days' &&
-            //         job.createPost == 'Last 3 days') ||
-            //     (input.datePost == 'Last 7 days' &&
-            //         job.createPost == 'Last 7 days')
+            // const firstSortDate = new Date() - a
+
+            console.log({ input })
+            console.log({ job })
+
+            let last3Days = new Date()
+
+            last3Days.setDate(last3Days.getDate() - 3)
+
+            let last7Days = new Date()
+
+            last7Days.setDate(last7Days.getDate() - 7)
+
+            let checkDate = true
+
+            if (input.datePost === 'Last 3 days') {
+                checkDate = new Date(job.createdAt) >= last3Days
+            } else if (input.datePost === 'Last 7 days') {
+                checkDate = new Date(job.createdAt) >= last7Days
+            }
+
             return (
-                checkEmploymentType && checkWage && checksalaryEstimate
-                // checkDate
+                checkEmploymentType &&
+                checkWage &&
+                checksalaryEstimate &&
+                checkDate
             )
         })
 
@@ -88,6 +105,7 @@ export default function Filter({ handdleEdit }) {
                         <li>
                             <div
                                 type="button"
+                                value={3}
                                 onClick={() => {
                                     setInput({
                                         ...input,
@@ -102,6 +120,7 @@ export default function Filter({ handdleEdit }) {
                         <li>
                             <div
                                 type="button"
+                                value={7}
                                 onClick={() => {
                                     setInput({
                                         ...input,

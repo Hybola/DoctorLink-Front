@@ -10,6 +10,10 @@ import Filter from '../features/homepage/components/Filter'
 export default function HomePage() {
     const isAuthenticate = useSelector((state) => state.auth?.isAuthenticated)
     const filterJobList = useSelector((state) => state.home?.filterJob)
+    const [jobPost, setJobPost] = useState({
+        postId: filterJobList[0]?.id,
+        providerId: filterJobList[0]?.providerId,
+    })
 
     const [pageAt, setPageAt] = useState(1)
 
@@ -26,8 +30,10 @@ export default function HomePage() {
         getAllJobPost()
     }, [])
 
+    console.log(jobPost)
+
     return (
-        <div className='bg-[#F5FBFC]'>
+        <div className="bg-[#F5FBFC]">
             {isAuthenticate ? null : (
                 <div className="flex flex-col justify-center items-center p-20">
                     <h1 className="font-semibold text-4xl text-success">
@@ -54,8 +60,9 @@ export default function HomePage() {
                     joblist={filterJobList}
                     pageAt={pageAt}
                     setPageAt={setPageAt}
+                    setJobPost={setJobPost}
                 />
-                <PageRight />
+                <PageRight jobPost={jobPost} />
             </div>
         </div>
     )
