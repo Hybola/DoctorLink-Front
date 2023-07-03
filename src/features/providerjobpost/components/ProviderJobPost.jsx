@@ -8,8 +8,6 @@ export default function ProviderJobPostPage() {
     const [jobPost, setJobPost] = useState([])
     const { providerId, postId } = useParams()
 
-    console.log(jobPost)
-
     useEffect(() => {
         if (postId == 0) {
             postService.getPostByProviderId(providerId).then((rs) => {

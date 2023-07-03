@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
 import * as myjobService from '../../../api/myjob-api'
+import * as profileService from '../../../api/profile-api'
 import { useNavigate } from 'react-router-dom'
 
-export default function JopPost({ post }) {
+export default function JopPost() {
     const [jobPost, setJobPost] = useState([])
+    const [profileProvider, setProviderProfile] = useState({})
+
     const { providerId, postId } = useParams()
     const naviagte = useNavigate()
     const defaultCoverImage =
@@ -30,7 +33,12 @@ export default function JopPost({ post }) {
         postService.getPostById(postId).then((rs) => {
             setJobPost(rs.data[0])
         })
+        profileService.providerProfile(providerId).then((rs) => {
+            setProviderProfile(rs.data)
+        })
     }, [])
+
+    console.log(profileProvider)
 
     return (
         <div className="w-[700px]">
@@ -54,7 +62,7 @@ export default function JopPost({ post }) {
                 <div className="w-full flex flex-col gap-2 text-success">
                     <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
                         <div className="flex justify-start gap-1">
-                            <div>0</div>
+                            <div>{profileProvider?.follower}</div>
                             <div>follower</div>
                         </div>
                     </div>

@@ -97,6 +97,18 @@ export const getProvince = createAsyncThunk(
     }
 )
 
+export const providerFollow = createAsyncThunk(
+    'providerFollow',
+    async (input, thunkApi) => {
+        try {
+            const rs = await profileService.follow()
+            return rs.data
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState,
