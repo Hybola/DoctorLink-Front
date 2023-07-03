@@ -24,16 +24,14 @@ export default function FollowedHeader() {
         dispatch(setfilter(rs))
     }, [search])
     return (
-        <div className=" flex flex-col max-w-[900px]  min-w-[600px] w-[700px]  bg-base-100  rounded-t-lg  shadow-sm h-fit p-[20px]">
+        <div className=" flex flex-col max-w-[900px] min-w-[600px] w-[700px]  bg-base-100  rounded-t-xl  shadow-lg h-fit p-[20px]">
             <div className="w-full flex flex-col">
                 <div className="w-full felx font-bold text-xl">
                     <span>{followedProvider?.length}</span> followed
                 </div>
                 <div className="w-full flex justify-between  mb-4 ">
-                    <div className=" flex  items-end gap-2">
-                        <label htmlFor="sortBy" className="">
-                            Sort By:
-                        </label>
+                    <div className=" flex justify-center items-center gap-2">
+                        <label htmlFor="sortBy">Sort By:</label>
                         <select
                             name="sortBy"
                             id="sortBy"

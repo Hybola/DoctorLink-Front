@@ -20,7 +20,7 @@ export default function FollowedPage() {
         return rs
     }, [])
     return (
-        <div className=" h-screen w-full  bg-base-100 flex justify-center">
+        <div className=" h-screen w-full flex justify-center bg-[#F5FBFC]" >
             <Followed followedProvider={followedProvider} />
         </div>
     )

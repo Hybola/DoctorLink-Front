@@ -159,8 +159,11 @@ export default function Addpost() {
                 </div>
             </div>
             {/* Modal */}
-            <dialog id="preview" className="modal ">
-                <form method="dialog" className="modal-box">
+            <dialog id="preview" className="modal">
+                <form
+                    method="dialog"
+                    className="modal-box min-w-[1100px] w-[1100px] max-w-[1100px] overflow-auto"
+                >
                     <Preview add={input} p={page} />
                     <div className="modal-action">
                         <button className="btn">Close</button>
