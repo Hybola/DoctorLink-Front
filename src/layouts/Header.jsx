@@ -35,7 +35,7 @@ export default function Header() {
         const Province = async () => {
             await dispatch(getProvince()).unwrap()
         }
-        Province()
+        // Province()
     }, [])
 
     return (

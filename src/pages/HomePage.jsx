@@ -1,27 +1,22 @@
+import { allJobPost } from '../features/homepage/slice/home-slice'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import PageLeft from '../features/homepage/components/PageLeft'
 import PageRight from '../features/homepage/components/PageRight'
 import SearchBar from '../features/homepage/components/SearchBar'
-import SearchFullTime from '../features/homepage/components/SearchFullTime'
-import SearchPartTime from '../features/homepage/components/SearchPartTime'
-import { allJobPost } from '../features/homepage/slice/home-slice'
-import { useState, useEffect } from 'react'
-import Toggle from '../features/homepage/components/Toggle'
-
-import { useDispatch } from 'react-redux'
-
 import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
+    const isAuthenticate = useSelector((state) => state.auth?.isAuthenticated)
+    const filterJobList = useSelector((state) => state.home?.filterJob)
+
+    const [pageAt, setPageAt] = useState(1)
+
     const dispatch = useDispatch()
 
-    const [input, setInput] = useState({
-        searchText: '',
-        isParttime: true,
-    })
-
-    const handleJobType = (e) => {
-        const isParttime = input.isParttime
-        setInput({ ...input, isParttime: !isParttime })
+    const handdleEdit = () => {
+        setPageAt(1)
     }
 
     useEffect(() => {
@@ -32,44 +27,34 @@ export default function HomePage() {
     }, [])
 
     return (
-        <div className="bg-[#F5FBFC]">
-            <div className="flex flex-col justify-center items-center p-20 ">
-                <h1 className="font-semibold text-4xl text-success">
-                    Find The
-                    <span className="text-primary"> Right Job</span>
-                    <span className="text-success"> You Deserve</span>
-                </h1>
-                <p className="pt-5 text-success">
-                    Find Jobs, Employment & Career Opportunities
-                </p>
-            </div>
-
-            <div className="flex flex-col w-full justify-center items-center">
-                <div className="pb-10">
-                    <SearchBar input={input} setInput={setInput} />
+        <div className='bg-[#F5FBFC]'>
+            {isAuthenticate ? null : (
+                <div className="flex flex-col justify-center items-center p-20">
+                    <h1 className="font-semibold text-4xl text-success">
+                        Find The
+                        <span className="text-primary"> Right Job</span>
+                        <span className="text-success"> You Deserve</span>
+                    </h1>
+                    <p className="pt-5 text-success">
+                        Find Jobs, Employment & Career Opportunities
+                    </p>
+                </div>
+            )}
+            <div className="flex flex-col pt-8 w-full">
+                <div className="pb-10 w-fit self-center">
+                    <SearchBar />
                 </div>
 
-                {/* <div className="flex justify-center items-center w-full"> */}
-                {/* เงื่อนไข useState */}
-                {/* {input.isParttime ? (
-                        <SearchPartTime
-                            handleJobType={handleJobType}
-                            isParttime={input.isParttime}
-                        />
-                    ) : (
-                        <SearchFullTime
-                            handleJobType={handleJobType}
-                            isParttime={input.isParttime}
-                        />
-                    )} */}
-                {/* </div> */}
                 <div>
-                    <Filter />
+                    <Filter handdleEdit={handdleEdit} />
                 </div>
             </div>
-
-            <div className="flex gap-2 pt-10">
-                <PageLeft />
+            <div className="flex gap-8 pt-10 justify-center ">
+                <PageLeft
+                    joblist={filterJobList}
+                    pageAt={pageAt}
+                    setPageAt={setPageAt}
+                />
                 <PageRight />
             </div>
         </div>
