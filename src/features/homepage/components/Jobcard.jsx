@@ -1,6 +1,6 @@
 export default function Jobcard({ jobpost }) {
     return (
-        <div className="h-[290px] w-[350px] rounded-lg border border-primary shadow-lg ">
+        <div className="h-[220px] w-[350px] rounded-lg border border-primary shadow-lg ">
             <div className="">
                 <div className="text-base p-2 flex items-baseline gap-3 mt-3 ml-2">
                     <div className="text-2xl font-bold">Logo</div>
