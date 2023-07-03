@@ -20,8 +20,8 @@ export const allJobPost = createAsyncThunk(
         }
     }
 )
-export const filterJob = createAsyncThunk(
-    'post/filter',
+export const searchJob = createAsyncThunk(
+    'post/search',
     async (input, thunkApi) => {
         try {
             const res = await getFilterJob(input)
@@ -29,6 +29,13 @@ export const filterJob = createAsyncThunk(
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
+    }
+)
+
+export const filterJob = createAsyncThunk(
+    'post/filter',
+    async (input, thunkApi) => {
+        return input
     }
 )
 
@@ -42,20 +49,26 @@ const homeSlice = createSlice({
             })
             .addCase(allJobPost.fulfilled, (stage, action) => {
                 stage.allJobPost = action.payload
+                stage.filterJob = action.payload
                 stage.loading = false
             })
             .addCase(allJobPost.rejected, (stage, action) => {
                 stage.loading = false
             })
-            .addCase(filterJob.pending, (stage, action) => {
+            .addCase(searchJob.pending, (stage, action) => {
                 stage.loading = true
             })
-            .addCase(filterJob.fulfilled, (stage, action) => {
+            .addCase(searchJob.fulfilled, (stage, action) => {
                 stage.allJobPost = action.payload
+                stage.filterJob = action.payload
                 stage.loading = false
             })
-            .addCase(filterJob.rejected, (stage, action) => {
+            .addCase(searchJob.rejected, (stage, action) => {
                 stage.loading = false
+            })
+
+            .addCase(filterJob.fulfilled, (stage, action) => {
+                stage.filterJob = action.payload
             }),
 })
 
