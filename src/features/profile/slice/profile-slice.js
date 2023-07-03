@@ -15,6 +15,7 @@ export const getMyProfile = createAsyncThunk(
         try {
             if (input.role == 'doctor') {
                 const res = await profileService.doctorProfile(input.id)
+                console.log("getMyProfile res:>>>" ,res)
                 return res.data
             }
             if (input.role == 'provider') {

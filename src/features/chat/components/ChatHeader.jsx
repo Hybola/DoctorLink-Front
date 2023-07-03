@@ -17,7 +17,7 @@ export default function ChatHeader(prop) {
                             alt="username"
                         />
                         <span className="block ml-2 font-bold ">
-                             {currentDoctor}
+                             {`${currentDoctor?.firstName} ${currentDoctor?.lastName}`}
                         </span>
                         <span
                             className={

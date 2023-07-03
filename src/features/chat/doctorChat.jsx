@@ -10,8 +10,10 @@ import {
     SumbitChatMessageIcon,
 } from '../../icons'
 export default function DoctorChat({ chatUser, handleCloseChat }) {
-    const doctorId = useSelector((state) => state.auth.user?.id)
-    // console.log(` doctorId: ===>>${doctorId}`)
+    const doctorId = useSelector((state) => state.auth?.user.id)
+    const doctorProfile = useSelector((state) => state.profile?.myProfile) //={id,firstName,lastName,profileImage,...}
+    // console.log(` doctor: ===>>${doctorId}`) //
+    // console.log(` doctorProfile: ===>>${doctorProfile?.profileImage}`)
     const ref = useRef()
 
     const [allMsg, setAllMsg] = useState([]) // เอา allMsg ไป render
@@ -34,9 +36,10 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     ]
 
     useEffect(() => {
-        socket.emit('startChat', { doctorId, providerId })
+        socket.emit('startChat', { doctorId, providerId, doctorProfile })
+
         // console.log(
-        //     `"startChat", doctorId:${doctorId}, providerId: ${providerId}`
+        //     `"startChat", doctor:${doctor}, providerId: ${providerId}`
         // )
         socket.on('doctorGetMessage', (data) => {
             setAllMsg((prev) => [...prev, data.conversation])
@@ -58,7 +61,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             to: 'provider',
             from: 'doctor',
         }
-        const room = `${doctorId}:${providerId}`
+        const room = `${doctor.id}:${providerId}`
 
         setAllMsg([...allMsg, conversation])
         setInput('')
@@ -66,7 +69,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     }
     return (
         <>
-            <div className='fixed right-3 bottom-3 z-10'>
+            <div className="fixed right-3 bottom-3 z-10">
                 <div className="text-sm text-purple-500 text-right mx-4">
                     My Socket Id : {socket.id}{' '}
                 </div>

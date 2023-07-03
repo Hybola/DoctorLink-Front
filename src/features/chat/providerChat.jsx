@@ -12,13 +12,14 @@ export default function ProviderChat() {
 
     const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
 
-    const [doctorIdList, setDoctorIdList] = useState([]) //เก็บรายชื่อ id ของ doctor ทุกคน
+    const [doctorList, setDoctorList] = useState([]) //เก็บรายชื่อ id ของ doctor ทุกคน
     const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({
-        id: 1,
-        name: 'หมอไอดี 1',
-    }) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= doctorId
+        firstName: 'fistName',
+        lastName: 'lastName',
+        profileImage: '',
+    }) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
 
     useEffect(() => {
         socket.on('acceptChat', (data) => {
@@ -26,7 +27,9 @@ export default function ProviderChat() {
             socket.emit('providerJoinRoom', data.newRoom)
             toast.info(`incomming message`)
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
-            setDoctorIdList([...doctorIdList, data.doctorId]) //เก็บ id ของ doctor ไว้ใช้งาน
+            setDoctorList([...doctorList, data.doctorId]) //เก็บ Object doctor ไว้ใช้งาน
+            console.log('acceptChat doctorr >>>', data.doctorProfile)
+            setCurrentDoctor(data.doctorProfile)
         })
         socket.on('providerGetMessage', (data) => {
             // console.log('providerGetMessage: data =', data)
@@ -53,7 +56,7 @@ export default function ProviderChat() {
 
     useEffect(() => {
         if (Object.keys(chatLists)?.length !== 0)
-            setAllMsg([...[chatLists[`${currentDoctor.id}:${providerId}`]]]) // เอา allMsg ไป render
+            setAllMsg([...[chatLists[`${currentDoctor?.id}:${providerId}`]]]) // เอา allMsg ไป render
     }, [currentDoctor])
 
     useEffect(() => {
@@ -89,7 +92,7 @@ export default function ProviderChat() {
                             {/* === Header ===  */}
 
                             <ChatHeader
-                                currentDoctor={currentDoctor.name}
+                                currentDoctor={currentDoctor}
                                 socketId={socket.id}
                             />
                         </div>
@@ -115,7 +118,6 @@ export default function ProviderChat() {
                             onSubmit={handleSendMessage}
                             className="bg-info flex items-center justify-between w-full p-1 border-t border-gray-300 rounded-lg"
                         >
-                            
                             <div className="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700 w-full p-3">
                                 <button
                                     type="button"
