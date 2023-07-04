@@ -77,11 +77,11 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
                 </span>
                 <span>{post?.jobType}</span>
             </div>
-            <div className="flex  w-full  h-[30px]  gap-2 my-2 items-end">
-                <span>
+            <div className="flex  w-full  gap-2 my-2 items-end">
+                <span  className='self-start'>
                     <DescriptionIcon />
                 </span>
-                <span> {post?.jobDes}</span>
+                <p> {post?.jobDes}</p>
             </div>
             {post?.jobType == 'PartTime' ? (
                 <>
