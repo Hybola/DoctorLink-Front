@@ -7,6 +7,7 @@ import store from './store'
 import { Provider } from 'react-redux'
 import { getToken } from './utils/localStorage.js'
 import { docFetchMe, provFetchMe } from './features/auth/slice/auth-slice.js'
+import { getProvince } from './features/profile/slice/profile-slice.js'
 import jwt_decode from 'jwt-decode'
 
 if (getToken()) {
@@ -19,6 +20,7 @@ if (getToken()) {
         store.dispatch(provFetchMe())
     }
 }
+store.dispatch(getProvince())
 ReactDOM.createRoot(document.getElementById('root')).render(
     // <React.StrictMode>
     <Provider store={store}>
