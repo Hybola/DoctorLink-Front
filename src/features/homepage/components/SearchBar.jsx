@@ -46,25 +46,18 @@ export default function SearchBar() {
                         value={input.provinceId}
                         className="text-md pl-2 h-[50px] w-[160px] rounded-lg border border-primary"
                     >
-                        <option
-                            className="text-gray-400"
-                            value=""
-                            disabled
-                            selected
-                        >
-                            Select location
-                        </option>
-                        <option value="1">Bangkok</option>
-                        <option value="2">Pathumtani</option>
-                        <option value="3">Chiangmai</option>
-                        <option value="4">Chonburi</option>
-                        <option value="5">Phuket</option>
-                        <option value="6">Rayong</option>
-                        <option value="7">Khonkaen</option>
-                        <option value="8">Chachoengsao</option>
-                        <option value="9">Samutsakhon</option>
-                        <option value="10">Ayutthaya</option>
-                        <option value="11">Nonthaburi</option>
+                        <option value="1">Select Location</option>
+                        <option value="2">Bangkok</option>
+                        <option value="3">Pathumtani</option>
+                        <option value="4">Chiangmai</option>
+                        <option value="5">Chonburi</option>
+                        <option value="6">Phuket</option>
+                        <option value="7">Rayong</option>
+                        <option value="8">Khonkaen</option>
+                        <option value="9">Chachoengsao</option>
+                        <option value="10">Samutsakhon</option>
+                        <option value="11">Ayutthaya</option>
+                        <option value="12">Nonthaburi</option>
                     </select>
                 </div>
 

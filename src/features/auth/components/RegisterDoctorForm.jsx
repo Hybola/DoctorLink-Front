@@ -66,6 +66,7 @@ export default function RegisterDoctorForm({ onSuccess }) {
                         value={input.password}
                         onChange={handleChangeInput}
                         isInvalid={error.password}
+                        type="password"
                     />
                     <InputErrorMessage message={error.password} />
                 </div>
@@ -77,6 +78,7 @@ export default function RegisterDoctorForm({ onSuccess }) {
                         value={input.confirmPassword}
                         onChange={handleChangeInput}
                         isInvalid={error.confirmPassword}
+                        type="password"
                     />
                     <InputErrorMessage message={error.confirmPassword} />
                 </div>
