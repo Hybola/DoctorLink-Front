@@ -3,12 +3,11 @@ import ProviderJobPostBody from './ProviderJobPostBody'
 import * as postService from '../../../api/post-api'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProviderJobPostPage() {
     const [jobPost, setJobPost] = useState([])
     const { providerId, postId } = useParams()
-
-    console.log(jobPost)
 
     useEffect(() => {
         if (postId == 0) {
@@ -25,12 +24,12 @@ export default function ProviderJobPostPage() {
     return (
         <>
             <div className=" max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100 rounded-lg my-4 shadow-lg  ">
-                {postId == 0 ? (
+                {/* {postId == 0 ? (
                     <>
                         <ProviderJobPostHeader />
                         <hr />
                     </>
-                ) : null}
+                ) : null} */}
                 <ProviderJobPostBody
                     jobPost={jobPost}
                     setJobPost={setJobPost}

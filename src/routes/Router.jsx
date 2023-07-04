@@ -17,7 +17,7 @@ import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
 
 import JobPost from '../pages/JobPostPage'
-import ChatConsole from '../features/chat/ChatConsole'
+import ProviderChat from '../features/chat/providerChat'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -118,7 +118,7 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/provider/chat/',
-                                element:<ChatConsole/>,
+                                element:<ProviderChat/>
                             },
                         ],
                     },

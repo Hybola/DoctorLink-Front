@@ -1,4 +1,7 @@
-import { allJobPost } from '../features/homepage/slice/home-slice'
+import {
+    allJobPost,
+    getProviderPost,
+} from '../features/homepage/slice/home-slice'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,7 +12,13 @@ import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
     const isAuthenticate = useSelector((state) => state.auth?.isAuthenticated)
+    const myRole = useSelector((state) => state.auth?.role)
     const filterJobList = useSelector((state) => state.home?.filterJob)
+    const [jobPost, setJobPost] = useState({
+        postId: 1,
+        providerId: 1,
+        role: myRole,
+    })
 
     const [pageAt, setPageAt] = useState(1)
 
@@ -26,8 +35,15 @@ export default function HomePage() {
         getAllJobPost()
     }, [])
 
+    useEffect(() => {
+        const providerPost = async (input) => {
+            await dispatch(getProviderPost(input)).unwrap()
+        }
+        providerPost(jobPost)
+    }, [jobPost])
+
     return (
-        <div className='bg-[#F5FBFC]'>
+        <div className="bg-[#F5FBFC]">
             {isAuthenticate ? null : (
                 <div className="flex flex-col justify-center items-center p-20">
                     <h1 className="font-semibold text-4xl text-success">
@@ -54,6 +70,7 @@ export default function HomePage() {
                     joblist={filterJobList}
                     pageAt={pageAt}
                     setPageAt={setPageAt}
+                    setJobPost={setJobPost}
                 />
                 <PageRight />
             </div>

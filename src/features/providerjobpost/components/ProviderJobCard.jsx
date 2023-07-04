@@ -9,19 +9,32 @@ import {
     LineLIcon,
     WorkingDate,
     WageIcon,
+    KeptIcon,
 } from '../../../icons'
 import { useSelector } from 'react-redux'
 
-export default function ProviderJobCard({ post, handleClick1 }) {
+export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
     const role = useSelector((state) => state.auth.role)
     return (
-        <div className="w-full flex flex-col rounded-lg p-4 max-h-[400px] overflow-auto">
+        <div className="w-full flex flex-col rounded-lg p-4 mb-6">
             <div className=" flex  w-full  font-semibold text-3xl justify-between ">
-                <div>{post?.title}</div>
+                <div className="flex gap-4 items-center">
+                    <div>{post?.title}</div>
+                    {role == 'doctor' && +post?.jobStatus > 0 ? (
+                        <span>
+                            <KeptIcon />
+                        </span>
+                    ) : null}
+                </div>
+
                 {role == 'doctor' ? (
                     <div className="flex items-center text-lg gap-2">
                         {post?.jobStatus == '0' ? (
-                            <button className=" border border-primary  text-center text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50">
+                            <button
+                                className=" border border-primary  text-center text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50"
+                                id={post?.id}
+                                onClick={handleClick2}
+                            >
                                 Saved
                             </button>
                         ) : null}
@@ -52,65 +65,64 @@ export default function ProviderJobCard({ post, handleClick1 }) {
                 <div>{dateTimeTH(post?.createdAt).split(' ')[0]}</div>
             </div>
 
-            <div className=" flex w-full  h-[30px]  gap-2 my-2 items-end">
+            <div className=" flex w-full  h-[30px]  gap-2 my-2 items-center">
                 <a href={post?.map} className=" m-0 p-0">
                     <MapIcon />
                 </a>
                 <span>{post?.location}</span>
             </div>
-            <div className="flex w-full  h-[30px]  gap-2 my-2 items-end">
+            <div className="flex w-full  h-[30px]  gap-2 my-2 items-center">
                 <span>
                     <BagIcon />
                 </span>
                 <span>{post?.jobType}</span>
             </div>
-            <div className="flex  w-full  h-[30px]  gap-2 my-2 items-end">
-                <span>
+            <div className="flex  w-full  gap-2 my-2 items-center">
+                <span className="self-start">
                     <DescriptionIcon />
                 </span>
-                <span> {post?.jobDes}</span>
+                <p> {post?.jobDes}</p>
             </div>
             {post?.jobType == 'PartTime' ? (
                 <>
-                    <div className="flex w-full  h-[30px]  gap-2 my-2 items-end ">
+                    <div className="flex w-full  h-[30px]  gap-2 my-2 items-center ">
                         <span>
-                            {' '}
-                            <WorkingDate />
+                            <StartDateIcon />
                         </span>
                         <span>{dateTimeTH(post?.startDate)}</span>
                         <span>to</span>
                         <span> {dateTimeTH(post?.endDate)}</span>
                     </div>
-                    <div className="flex w-full  h-[30px]  gap-2 my-2  items-end">
+                    <div className="flex w-full  h-[30px]  gap-2 my-2  items-center">
                         <span>
-                            <WageIcon />
+                            <SalaryIcon />
                         </span>
                         <span>{post?.wage}</span>
                     </div>
                 </>
             ) : post?.jobType == 'FullTime' ? (
                 <>
-                    <div className="flex w-full  h-[30px]  gap-2 my-2  items-end">
+                    <div className="flex w-full  h-[30px]  gap-2 my-2 items-center">
                         <span>
                             <StartDateIcon />
                         </span>
                         <span>{dateTimeTH(post?.startDate).split(' ')[0]}</span>
                     </div>
-                    <div className="flex  w-full  h-[24px]  gap-2 my-2  items-end">
+                    <div className="flex  w-full  h-[24px]  gap-2 my-2 items-center">
                         <span>
-                            <SalaryIcon />{' '}
-                        </span>{' '}
+                            <SalaryIcon />
+                        </span>
                         <span>{post?.salary}</span>
                     </div>
                 </>
             ) : null}
-            <div className="flex  w-full  h-[24px]  gap-2 my-2 items-end ">
+            <div className="flex  w-full  h-[24px]  gap-2 my-2 items-center ">
                 <span>
                     <Phone />
                 </span>
                 <span> {post?.phone}</span>
             </div>
-            <div className="flex  w-full  h-[24px]  mt-2  gap-2 items-end">
+            <div className="flex  w-full  h-[24px]  mt-2  gap-2 items-center">
                 <span>
                     <LineLIcon />
                 </span>

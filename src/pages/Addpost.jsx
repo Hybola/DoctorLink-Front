@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import FullTime from '../features/addpost/component/FullTime'
 import PartTime from '../features/addpost/component/PartTime'
 import axios from '../api/thisAxios'
-import Preview from '../features/addpost/component/Preview'
 import { useNavigate } from 'react-router-dom'
+import Preview2 from '../features/addpost/component/Preview2'
+import InputErrorMessage from '../components/InputErrorMessage'
+import { toast } from 'react-toastify'
+// import validatecreatepost from '../validator/validatorAddpost'
 
 const initial = {
     title: '',
@@ -20,27 +23,37 @@ const initial = {
     other: '',
     endDate: '',
     wage: '',
+    provinceId: '',
 }
 export default function Addpost() {
     const [input, setInput] = useState(initial)
     const [page, setPage] = useState('FullTime')
+    // const [error, setError] = useState({})
 
     const navigate = useNavigate()
 
+    const hdlnavigate = () => {
+        navigate('/provider/history/')
+    }
+
     const hdlchange = (e) => {
-        console.log(e.target.value)
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const hdlsumbit = async (e) => {
         e.preventDefault()
         const payload = {
             ...input,
-            provinceId: '1',
             jobType: page,
         }
-        console.log(payload)
+        // const result = validate(input)
+        // if (result) {
+        //     return setError(result)
+        // }
+        // setError({})
+
         try {
             await axios.post('/post/createpost', payload)
+            toast.success('CreatePost Success')
             navigate('/provider/history/')
         } catch (error) {
             console.log(error)
@@ -55,12 +68,9 @@ export default function Addpost() {
             <div className="w-[90%] bg-success h-[40px] rounded-lg flex justify-center items-center text-2xl font-semibold text-white">
                 Create Job Post
             </div>
-            <div className="w-[90%] flex gap-6 justify-center text-success font-semibold">
+            <div className="w-[90%] h-[600px] flex gap-6 justify-center text-success font-semibold">
                 {/* Left */}
-                <div className="w-[90%] max-w-[400px] min-w-[400px] bg-base-100 rounded-lg shadow-lg p-8 flex flex-col gap-2 ">
-                    {/* <div className="w-full flex items-center text-xl font-bold mb-2">
-                        Post a job now
-                    </div> */}
+                <div className="w-[90%] max-w-[400px] min-w-[400px]  bg-base-100 rounded-lg shadow-lg p-8 flex flex-col gap-2 ">
                     <div className="flex flex-col gap-1">
                         <div>Job Title</div>
                         <div className="w-full">
@@ -70,7 +80,9 @@ export default function Addpost() {
                                 value={input.title}
                                 onChange={hdlchange}
                                 name="title"
+                                // isInvalid={error.title}
                             />
+                            {/* <InputErrorMessage message={error.title} /> */}
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">
@@ -83,6 +95,42 @@ export default function Addpost() {
                                 onChange={hdlchange}
                                 name="location"
                             />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <div>Province</div>
+                        <div className="w-full  ">
+                            <div>
+                                <select
+                                    name="provinceId"
+                                    id="provinceId"
+                                    onChange={hdlchange}
+                                    value={input.provinceId}
+                                    className="text-md pl-2 h-[50px] w-full rounded-lg border border-primary"
+                                >
+                                    <option
+                                        className="text-gray-400"
+                                        value=""
+                                        disabled
+                                        selected
+                                    >
+                                        Select location
+                                    </option>
+
+                                    <option value="1">other</option>
+                                    <option value="2">Bangkok</option>
+                                    <option value="3">Pathumtani</option>
+                                    <option value="4">Chiangmai</option>
+                                    <option value="5">Chonburi</option>
+                                    <option value="6">Phuket</option>
+                                    <option value="7">Rayong</option>
+                                    <option value="8">Khonkaen</option>
+                                    <option value="9">Chachoengsao</option>
+                                    <option value="10">Samutsakhon</option>
+                                    <option value="11">Ayutthaya</option>
+                                    <option value="12">Nonthaburi</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">
@@ -154,6 +202,7 @@ export default function Addpost() {
                     <button
                         className="btn w-[120px] text-base"
                         style={{ textTransform: 'none' }}
+                        onClick={hdlnavigate}
                     >
                         Back
                     </button>
@@ -171,13 +220,12 @@ export default function Addpost() {
             <dialog id="preview" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[800px] p-12 text-base font-semibold text-success"
+                    className="modal-box max-w-[800px] h-[850px] p-12 text-base font-semibold text-success"
                 >
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-4">
                         ✕
                     </button>
-
-                    <Preview add={input} p={page} />
+                    <Preview2 post={input} p={page} />
                     <div className="modal-action">
                         <button
                             className="btn w-[120px] text-base"
