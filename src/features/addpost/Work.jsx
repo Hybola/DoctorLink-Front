@@ -11,7 +11,10 @@ import {
     WorkingDate,
     WageIcon,
 } from '../../icons'
+import { useSelector } from 'react-redux'
 export default function Work({ post, p }) {
+    const province = useSelector((state) => state.profile?.province)
+    const provinceName = province.find((el) => el.id == post?.provinceId)?.name
     return (
         <div className="w-full flex flex-col rounded-lg p-4  mb-6">
             <div className=" flex  w-full  font-semibold text-3xl justify-between ">
@@ -35,6 +38,10 @@ export default function Work({ post, p }) {
                     <BagIcon />
                 </span>
                 <span>{p}</span>
+            </div>
+            <div className="flex  w-full  h-[30px]  gap-2 my-2 items-end">
+                <span>Province :</span>
+                <span> {provinceName}</span>
             </div>
             <div className="flex  w-full  h-[30px]  gap-2 my-2 items-end">
                 <span>

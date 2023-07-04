@@ -31,7 +31,7 @@ export default function FollowedCard({ follow }) {
                         id={follow?.providerId + '/post/0'}
                         src={follow?.providerImage}
                         alt="profileImage"
-                        className="w-[60px] h-[60px]  bg-slate-600 object-cover"
+                        className="w-[60px] h-[60px]  bg-slate-600 object-cover cursor-pointer"
                     />
                 </div>
                 <div className="flex flex-col">
