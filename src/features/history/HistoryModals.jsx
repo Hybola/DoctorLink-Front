@@ -7,8 +7,8 @@ export default function HistoryModals() {
         <>
             <HistoryModalPreview />
             <HistoryModalEdit />
-            <HistoryModalBin />
             <HistoryModalGroup />
+            <HistoryModalBin />
         </>
     )
 }
