@@ -67,6 +67,7 @@ export default function LoginProviderForm() {
                         value={input.password}
                         onChange={handleChangeInput}
                         isInvalid={error.password}
+                        type="password"
                     />
                     <InputErrorMessage message={error.password} />
                 </div>
