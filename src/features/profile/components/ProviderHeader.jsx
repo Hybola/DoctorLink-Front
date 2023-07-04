@@ -72,7 +72,7 @@ export default function ProviderHeader({
                         id={profile?.id}
                     >
                         <button
-                            className="btn-primary text-white hover:bg-success hover:text-white max-h-[24px]  rounded-2xl w-[65px]  text-lg min-h-[14px] font-normal px-[4px]  flex items-center justify-center"
+                            className=" border border-primary  text-sm text-white rounded-xl   px-4 py-1 hover:bg-info bg-primary h-[28px] w-[50px] flex items-center justify-center"
                             id={profile?.id}
                             onClick={handdleFollow}
                         >
