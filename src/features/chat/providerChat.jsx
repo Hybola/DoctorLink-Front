@@ -17,8 +17,8 @@ export default function ProviderChat() {
     const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({
-        firstName: 'firstName',
-        lastName: 'lastName',
+        id: 0,
+        name: '',
         profileImage: '',
     }) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
 
@@ -27,28 +27,23 @@ export default function ProviderChat() {
             // console.log('provider acceptChat:Room >>>', data.newRoom) //data={newRoom: '1:1'}
             socket.emit('providerJoinRoom', data.newRoom)
             toast.info(`incomming message`)
-            // const oneDoctor = {
-            //     id: data.doctorId,
-            //     firstName: data.doctorProfile.firstName,
-            //     lastName: data.doctorProfile.lastName,
-            //     profileImage: data.doctorProfile.profileImage,
-            // }
             setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
             setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
             // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
             setCurrentDoctor(data.doctor)
         })
         socket.on('providerGetMessage', (data) => {
-            // console.log('providerGetMessage: data =', data)
             if (Object.keys(chatLists)?.length !== 0) {
-                setChatLists({
-                    ...chatLists,
-                    [data.room]: [...chatLists[data.room], data.conversation],
+                // console.log(chatLists)
+                setChatLists((prev) => {
+                    prev[data.room].push(data.conversation)
+                    return prev
                 })
             }
             //เอา chatList อันเดิมมา spreed แล้ว update เฉพาะ room ที่ส่งมา ให้มีค่าเท่ากับ ===> ข้อความเดิมที่มีอยู่ มาบวกเพิ่มข้อความใหม่ที่ส่งเข้ามา
 
             setAllMsg((prev) => [...prev, data.conversation])
+
             /// ***** อะไรที่อยากจะทำ หลังจาก render ui ได้แล้ว ให้เอาไปใส่ใน useEffct ### *****
             // setAllMsg([...allMsg, data.conversation])  // code บรรทัด นี้ทำงานผิดเพี๊ยน เพราะอยุ่ใน useEffect
             //ตามหลักการเรื่อง closure แล้ว การ set state ใหม่ภายใน useEffect นั้น ค่าเริ่มต้นของ allMsg จะอ้างอิงมาจากค่าที่เคยเก็บไว้ก่อนรัน useEffect
@@ -64,7 +59,6 @@ export default function ProviderChat() {
     useEffect(() => {
         if (Object.keys(chatLists)?.length !== 0)
             setAllMsg([...[chatLists[`${currentDoctor?.id}:${providerId}`]]]) // เอา allMsg ไป render
-            // setAllMsg((prev)=>[...prev[`${currentDoctor?.id}:${providerId}`]])
     }, [currentDoctor])
 
     useEffect(() => {
@@ -73,6 +67,8 @@ export default function ProviderChat() {
 
     const handleSendMessage = (e) => {
         e.preventDefault()
+        console.log('providerSendMessage >> chatLists >>>>', chatLists)
+
         if (!input.trim()) return setInput('')
 
         const conversation = {
@@ -87,23 +83,18 @@ export default function ProviderChat() {
             room,
         }) //อยู่ใน send box
 
-        // console.log("conversation from Provider:==>>",conversation)
+        setChatLists((prev) => {
+            prev[room].push(conversation)
+            return prev
+        })
+
         setAllMsg([...allMsg, conversation])
         setInput('')
     }
     const handleSelectChat = (id) => {
-        // socket.emit('requestOldConversation',{room:`${id}:${providerId}`})
-        // socket.on("getOldConversation",data=>{
-        //     setAllMsg(data.arrayConversatoin)
-
-        // })
-        // console.log('doctorList >>>', doctorList)
         const index = doctorList.findIndex((el) => el.id == id)
-        // console.log('found index >>>', index)
         setCurrentDoctor(doctorList[index])
-        // console.log('new allMsg >>>', [...[chatLists[`${id}:${providerId}`]]])
         setAllMsg([...[chatLists[`${id}:${providerId}`]]])
-        // setAllMsg((prev)=>[...[prev[`${id}:${providerId}`]]])
     }
     return (
         <>
@@ -199,7 +190,9 @@ export default function ProviderChat() {
                                 {/* ======= Conversation Body ======  */}
                                 <div className="relative w-full p-6 overflow-y-auto h-[41.5rem] bg-secondary">
                                     <ul className="space-y-2 ">
-                                        {allMsg.map((el, i) => (
+                                        {chatLists[
+                                            `${currentDoctor.id}:${providerId}`
+                                        ]?.map((el, i) => (
                                             <MsgBody
                                                 key={`${i}-${el?.message}`}
                                                 conversation={el}
