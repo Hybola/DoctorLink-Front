@@ -52,6 +52,11 @@ export default function JopPost({ providerId, postId }) {
                             src={currentProfileImage}
                             alt="profileImage"
                             className="w-[150px] h-[150px] object-cover border-4 border-white"
+                            onClick={() =>
+                                naviagte(
+                                    `/doctor/provider/${providerId}/post/0`
+                                )
+                            }
                         />
                     </div>
                 </div>
@@ -64,7 +69,7 @@ export default function JopPost({ providerId, postId }) {
                     </div>
                 </div>
                 <div
-                    className=" text-2xl font-bold"
+                    className=" text-2xl font-bold mt-8"
                     onClick={() =>
                         naviagte(`/doctor/provider/${providerId}/post/0`)
                     }
