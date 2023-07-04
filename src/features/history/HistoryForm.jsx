@@ -5,14 +5,18 @@ import HistoryRowMenu from './HistoryRowMenu'
 import HistoryModals from './HistoryModals'
 import HistoryStage from './HistoryStage'
 import { getLists, getJob } from './slice/history-slice'
+
 import { all } from 'axios'
 import { array } from 'joi'
 import MyLoad from '../../components/Loading'
 
 export default function HistoryForm(props) {
-    const input = { id: 1 }
+    // console.log(user)
     const loading = useSelector((state) => state.history?.loading)
     const allLists = useSelector((state) => state.history?.allLists)
+    const user = useSelector((state) => state.auth?.user)
+    const input = { id: user?.id }
+    // console.log('user', user)
     const [follower, setFollower] = useState(0)
     const dispatch = useDispatch()
 
@@ -427,7 +431,7 @@ export default function HistoryForm(props) {
                                     <HistoryRowMenu
                                         follower={follow}
                                         title={item.title}
-                                        objUser={item}
+                                        objPost={item}
                                     />
                                 </div>
                             </div>

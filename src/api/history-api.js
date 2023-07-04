@@ -6,3 +6,6 @@ export const updateSelectedDoctor = (input) =>
     thisAxios.post('/history/update-selected-doctor', input)
 export const confirmCloseJob = (id, stage) =>
     thisAxios.get(`/history/closejob?id=${id}&stage=${stage}`)
+
+export const editJobPost = (input) =>
+    thisAxios.patch(`/history/editjobpost/${input.id}`, input)

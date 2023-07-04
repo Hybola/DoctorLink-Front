@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import {
+    getDoctorSelectedResult,
     getLists,
     updateSelectedDoctor,
     getObjSelected,
@@ -13,6 +14,7 @@ import MyLoad from '../../components/Loading'
 export default function HistoryModalGroup() {
     const dispatch = useDispatch()
     // const allLists = useSelector((state) => state.history.allLists)
+    const getJobResult = useSelector((state) => state.history.getJobResult)
     const objPost = useSelector((state) => state.history.objSelected)
     const loading = useSelector((state) => state.history?.loading)
     const [arrChecked, setArrChecked] = React.useState([])
@@ -20,7 +22,9 @@ export default function HistoryModalGroup() {
     // const [checked, setChecked] = React.useState()
     // let myArray = []
 
-    const newObjPost = { ...objPost }
+    // console.log('getJobResult', getJobResult)
+
+    const newObjPost = { ...getJobResult[0] }
 
     let newDate = new Date()
     let day =
@@ -45,22 +49,31 @@ export default function HistoryModalGroup() {
 
         return diffDays
     }
-    const handleCheckbox = (e) => {
+    const handleCheckbox = async (e) => {
+        dispatch(getJob({ id: newObjPost.id })).unwrap()
         const value = JSON.parse(e.target.value)
         // console.log(value)
 
         value.status = e.target.checked ? 3 : 1
-        console.log(newObjPost)
-        console.log(value)
-        const myIndex = objPost.DoctorJobs.findIndex(
+        // console.log(newObjPost)
+        // console.log(value)
+        const myIndex = newObjPost.DoctorJobs.findIndex(
             (item) => item.id == value.id
         )
-        console.log(myIndex)
+        // console.log(myIndex)
 
         const newDoctorJobs = [...newObjPost.DoctorJobs]
         newDoctorJobs.splice(myIndex, 1, value)
         newObjPost.DoctorJobs = newDoctorJobs
-        console.log(newObjPost)
+        // console.log(newObjPost)
+
+        await dispatch(getObjSelected(newObjPost)).unwrap()
+        await dispatch(getDoctorSelectedResult(newObjPost)).unwrap()
+        await dispatch(
+            updateSelectedDoctor({ id: value.id, status: value.status })
+        ).unwrap()
+
+        await dispatch(getJob({ id: newObjPost.id })).unwrap()
 
         // const newerObjPost = {...newObjPost, DoctorJobs : newDoctorJobs}
 
@@ -101,6 +114,7 @@ export default function HistoryModalGroup() {
 
     useEffect(() => {
         // console.log('useEffect-checked')
+
         if (count == 0) {
             newObjPost.DoctorJobs?.map((item) => {
                 // console.log(item)

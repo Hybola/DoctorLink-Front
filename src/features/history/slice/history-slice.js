@@ -8,8 +8,9 @@ const initialState = {
     titleSelected: '',
     objSelected: {},
     updateMessage: '',
-    doctorSelected: {},
+    getDoctorSelectedResult: {},
     reloadStatus: 0,
+    getJobResult: {},
 }
 
 // Doctor
@@ -36,6 +37,27 @@ export const getTitleSelected = createAsyncThunk(
 )
 export const getObjSelected = createAsyncThunk(
     'history/getObjSelected',
+    async (input, thunkApi) => {
+        try {
+            return input
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+export const getDoctorSelectedResult = createAsyncThunk(
+    'history/getDoctorSelectedResult',
+    async (input, thunkApi) => {
+        try {
+            return input
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const updateAllList = createAsyncThunk(
+    'history/updateAllList',
     async (input, thunkApi) => {
         try {
             return input
@@ -117,9 +139,27 @@ export const confirmCloseJobByNoDoctor = createAsyncThunk(
     }
 )
 
+export const editJobPost = createAsyncThunk(
+    'history/editPostJob',
+    async (input, thunkApi) => {
+        try {
+            console.log(input)
+            const res = await historyService.editJobPost(input)
+            return res.data
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
 const historySlice = createSlice({
     name: 'history',
     initialState,
+    // reducers: {
+    //     updateAllList: (state, action) => {
+    //         state.allLists = action.payload
+    //     },
+    // },
     extraReducers: (builder) =>
         builder
             .addCase(getLists.pending, (state) => {
@@ -145,13 +185,27 @@ const historySlice = createSlice({
                 state.loading = false
             })
             .addCase(getJob.fulfilled, (state, action) => {
-                state.doctorSelected = action.payload
+                state.getJobResult = action.payload
+            })
+            .addCase(getDoctorSelectedResult.fulfilled, (state, action) => {
+                state.getDoctorSelectedResult = action.payload
+            })
+            .addCase(editJobPost.pending, (state, action) => {
+                state.loading = false
+            })
+            .addCase(editJobPost.fulfilled, (state, action) => {
+                state.loading = false
+            })
+            .addCase(updateAllList.fulfilled, (state, action) => {
+                state.allLists = action.payload
+            })
+
+            .addCase(confirmCloseJobByGetDoctor.fulfilled, (state, action) => {
+                state.allLists = action.payload
+            })
+            .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
+                state.allLists = action.payload
             }),
-    // .addCase(confirmCloseJobByGetDoctor.fulfilled, (state, action) => {
-    //     state.allLists = action.payload
-    // })
-    // .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
-    //     state.allLists = action.payload
-    // }),
 })
 export default historySlice.reducer
+// export const { updateAllList } = historySlice.actions

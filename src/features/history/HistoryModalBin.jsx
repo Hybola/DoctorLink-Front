@@ -9,11 +9,12 @@ import { useEffect, useState } from 'react'
 import { createGlobalStyle } from 'styled-components'
 export default function HistoryModalBin() {
     // const title = useSelector((state) => state.history.titleSelected)
-    const doctorSelected = useSelector((state) => state.history.doctorSelected)
+    const getJobResult = useSelector((state) => state.history.getJobResult)
     const objPost = useSelector((state) => state.history.objSelected)
     const allLists = useSelector((state) => state.history.allLists)
     const [arrSelected, setArrSelected] = useState([])
     const dispatch = useDispatch()
+    console.log('objPost', objPost)
     // dispatch(getJob(1)).unwrap()
     // useEffect(() => {
     //     console.log('useEffect')
@@ -44,7 +45,7 @@ export default function HistoryModalBin() {
             return ''
         }
     }
-    const filterSelectedDoctor = objPost?.DoctorJobs?.filter((item) => {
+    const filterSelectedDoctor = getJobResult[0]?.DoctorJobs?.filter((item) => {
         if (item.status == 3) {
             return item
         }
@@ -54,17 +55,17 @@ export default function HistoryModalBin() {
     //     const div = document.getElementById('hideme')
     //     div.style.backgroundColor = 'red'
     // }
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         filterSelectedDoctor?.length > 0
-            ? dispatch(
+            ? await dispatch(
                   confirmCloseJobByGetDoctor({
-                      id: objPost.id,
+                      id: getJobResult[0].id,
                       allList: allLists,
                   })
               ).unwrap()
-            : dispatch(
+            : await dispatch(
                   confirmCloseJobByNoDoctor({
-                      id: objPost.id,
+                      id: getJobResult[0].id,
                       allList: allLists,
                   })
               ).unwrap()
@@ -81,9 +82,9 @@ export default function HistoryModalBin() {
                     <div>
                         <h3 className="font-semibold text-xl p-3">
                             Case{': '}
-                            {objPost.title?.length > 40
-                                ? objPost.title.slice(0, 40) + '...'
-                                : objPost.title}
+                            {getJobResult[0]?.title?.length > 40
+                                ? getJobResult[0]?.title.slice(0, 40) + '...'
+                                : getJobResult[0]?.title}
                         </h3>
                     </div>
                     <div className="flex flex-col gap-5 mt-5">
@@ -137,10 +138,9 @@ export default function HistoryModalBin() {
                     <div className=" flex flex-row justify-end mt-4">
                         <div>
                             <button
-                                type="button"
-                                onClick={handleConfirm}
                                 className="btn w-[120px] bg-success text-white hover:bg-primary text-base"
-                                style={{ textTransform: 'none' }}
+                                type="submit"
+                                onClick={handleConfirm}
                             >
                                 Confirm
                             </button>
