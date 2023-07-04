@@ -13,3 +13,10 @@ export const editProviderProfile = (payload) =>
     thisAxios.patch(`/profile/provider/myprofile`, payload)
 
 export const getProvince = () => thisAxios.get('/profile/province')
+
+export const doctorfollow = (providerId) =>
+    thisAxios.get(`/profile/doctorfollow/${providerId}`)
+
+export const follow = (id) => thisAxios.post(`/profile/follow/${id}`)
+
+export const unFollow = (id) => thisAxios.post(`/profile/unfollow/${id}`)

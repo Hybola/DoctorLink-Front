@@ -1,4 +1,5 @@
-import { dateTimeTH } from '../../../utils/dateTime'
+import React from 'react'
+import { dateTimeTH } from '../../utils/dateTime'
 import {
     MapIcon,
     BagIcon,
@@ -9,60 +10,18 @@ import {
     LineLIcon,
     WorkingDate,
     WageIcon,
-    KeptIcon,
-} from '../../../icons'
-import { useSelector } from 'react-redux'
-
-export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
-    const role = useSelector((state) => state.auth.role)
+} from '../../icons'
+export default function Work({ post, p }) {
     return (
         <div className="w-full flex flex-col rounded-lg p-4  mb-6">
             <div className=" flex  w-full  font-semibold text-3xl justify-between ">
                 <div className="flex gap-4 items-center">
                     <div>{post?.title}</div>
-                    {role == 'doctor' && +post?.jobStatus > 0 ? (
-                        <span>
-                            <KeptIcon />
-                        </span>
-                    ) : null}
                 </div>
-
-                {role == 'doctor' ? (
-                    <div className="flex items-center text-lg gap-2">
-                        {post?.jobStatus == '0' ? (
-                            <button
-                                className=" border border-primary  text-center text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50"
-                                id={post?.id}
-                                onClick={handleClick2}
-                            >
-                                Saved
-                            </button>
-                        ) : null}
-                        {post?.jobStatus == '0' || post?.jobStatus == '1' ? (
-                            <button
-                                id={post?.id}
-                                className=" border border-primary text-center rounded-lg px-4 py-1 text-white bg-primary"
-                                onClick={handleClick1}
-                            >
-                                Interested
-                            </button>
-                        ) : null}
-                        {post?.jobStatus == '2' ? (
-                            <div className="text-center text-white bg-info px-4 py-1 rounded-lg ">
-                                Pending Confirm
-                            </div>
-                        ) : null}
-                        {post?.jobStatus == '3' ? (
-                            <div className=" text-center text-white bg-emerald-500 rounded-lg px-4 py-1 ">
-                                Confirmed
-                            </div>
-                        ) : null}
-                    </div>
-                ) : null}
             </div>
             <div className="flex font-thin text-sm gap-1 mb-4">
                 <div> post date: </div>
-                <div>{dateTimeTH(post?.createdAt).split(' ')[0]}</div>
+                <div>{dateTimeTH(Date.now())}</div>
             </div>
 
             <div className=" flex w-full  h-[30px]  gap-2 my-2 items-end">
@@ -75,7 +34,7 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
                 <span>
                     <BagIcon />
                 </span>
-                <span>{post?.jobType}</span>
+                <span>{p}</span>
             </div>
             <div className="flex  w-full  h-[30px]  gap-2 my-2 items-end">
                 <span>
@@ -83,7 +42,7 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
                 </span>
                 <span> {post?.jobDes}</span>
             </div>
-            {post?.jobType == 'PartTime' ? (
+            {p == 'PartTime' ? (
                 <>
                     <div className="flex w-full  h-[30px]  gap-2 my-2 items-end ">
                         <span>
@@ -101,7 +60,7 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
                         <span>{post?.wage}</span>
                     </div>
                 </>
-            ) : post?.jobType == 'FullTime' ? (
+            ) : p == 'FullTime' ? (
                 <>
                     <div className="flex w-full  h-[30px]  gap-2 my-2  items-end">
                         <span>

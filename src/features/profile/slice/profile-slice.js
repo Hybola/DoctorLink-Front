@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as profileService from '../../../api/profile-api'
 
+
 const initialState = {
     myProfile: {},
     otherProfile: {},
@@ -97,17 +98,17 @@ export const getProvince = createAsyncThunk(
     }
 )
 
-export const providerFollow = createAsyncThunk(
-    'providerFollow',
-    async (input, thunkApi) => {
-        try {
-            const rs = await profileService.follow()
-            return rs.data
-        } catch (err) {
-            return thunkApi.rejectWithValue(err.response.data.message)
-        }
-    }
-)
+// export const providerFollow = createAsyncThunk(
+//     'providerFollow',
+//     async (input, thunkApi) => {
+//         try {
+//             const rs = await profileService.follow(input)
+//             return rs.data
+//         } catch (err) {
+//             return thunkApi.rejectWithValue(err.response.data.message)
+//         }
+//     }
+// )
 
 const profileSlice = createSlice({
     name: 'profile',

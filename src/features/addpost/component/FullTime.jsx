@@ -85,7 +85,7 @@ export default function FullTime({ add, hdl }) {
                         <div className="w-full  ">
                             <input
                                 type="text"
-                                className="w-full h-[40px] p-2 pl-3 border border-primary rounded-lg font-normal "
+                                className="w-full h-[115px] p-2 pl-3 border border-primary rounded-lg font-normal "
                                 onChange={hdl}
                                 value={add.other}
                                 name="other"
