@@ -1,13 +1,13 @@
-import * as postService from '../../../api/post-api'
-import { useState, useEffect } from 'react'
 import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
 import * as myjobService from '../../../api/myjob-api'
-import * as profileService from '../../../api/profile-api'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { editPost } from '../slice/home-slice'
 
-export default function JopPost({ providerId, postId }) {
-    const [jobPost, setJobPost] = useState([])
-    const [profileProvider, setProviderProfile] = useState({})
+export default function JopPost() {
+    const jobPost = useSelector((state) => state.home?.post?.job)
+    const profileProvider = useSelector((state) => state.home?.post?.provider)
+    const dispatch = useDispatch()
 
     const naviagte = useNavigate()
     const defaultCoverImage =
@@ -17,24 +17,17 @@ export default function JopPost({ providerId, postId }) {
     const currentCoverImage = jobPost?.providerCoverImage || defaultCoverImage
     const currentProfileImage =
         jobPost?.providerProfileImage || defaultProfileImage
-    const handleinterestJob = (e) => {
-        myjobService.uptoInterestJob(e.target.id).then((rs) => {
-            if (rs.data[0] > 0) {
-                const cloneJobPost = { ...jobPost }
-                cloneJobPost.jobStatus = 2
-                setJobPost(cloneJobPost)
-            }
-        })
-    }
 
-    useEffect(() => {
-        postService.getPostById(postId).then((rs) => {
-            setJobPost(rs.data[0])
-        })
-        profileService.providerProfile(providerId).then((rs) => {
-            setProviderProfile(rs.data)
-        })
-    }, [])
+    const handdleSaveJob = (e) => {
+        const cloneJob = { ...jobPost, jobStatus: 1 }
+        const payload = { job: cloneJob, provider: profileProvider }
+        dispatch(editPost({ result: payload, id: e.target.id }))
+    }
+    const handleinterestJob = (e) => {
+        const cloneJob = { ...jobPost, jobStatus: 2 }
+        const payload = { job: cloneJob, provider: profileProvider }
+        dispatch(editPost({ result: payload, id: e.target.id }))
+    }
 
     return (
         <div className="w-[700px]">
@@ -51,10 +44,10 @@ export default function JopPost({ providerId, postId }) {
                         <img
                             src={currentProfileImage}
                             alt="profileImage"
-                            className="w-[150px] h-[150px] object-cover border-4 border-white"
+                            className="w-[150px] h-[150px] object-cover border-4 border-white cursor-pointer"
                             onClick={() =>
                                 naviagte(
-                                    `/doctor/provider/${providerId}/post/0`
+                                    `/doctor/provider/${profileProvider?.id}/post/0`
                                 )
                             }
                         />
@@ -68,10 +61,13 @@ export default function JopPost({ providerId, postId }) {
                         </div>
                     </div>
                 </div>
+
                 <div
-                    className=" text-2xl font-bold mt-8"
+                    className=" text-2xl font-bold mt-8 ml-4 cursor-pointer"
                     onClick={() =>
-                        naviagte(`/doctor/provider/${providerId}/post/0`)
+                        naviagte(
+                            `/doctor/provider/${profileProvider?.id}/post/0`
+                        )
                     }
                 >
                     {jobPost?.providerName}
@@ -79,7 +75,11 @@ export default function JopPost({ providerId, postId }) {
             </div>
 
             <hr />
-            <ProviderJobCard post={jobPost} handleClick1={handleinterestJob} />
+            <ProviderJobCard
+                post={jobPost}
+                handleClick1={handleinterestJob}
+                handleClick2={handdleSaveJob}
+            />
         </div>
     )
 }

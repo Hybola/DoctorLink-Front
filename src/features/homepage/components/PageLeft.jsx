@@ -1,13 +1,8 @@
 import React from 'react'
 import Jobcard from './Jobcard'
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { allJobPost } from '../slice/home-slice'
 
-export default function PageLeft({ joblist, pageAt, setPageAt }) {
+export default function PageLeft({ joblist, pageAt, setPageAt, setJobPost }) {
     const capacity = 2
-    // const [pageAt, setPageAt] = useState(1)
 
     const clickPageBack = () => {
         if (pageAt > 1) {
@@ -32,7 +27,9 @@ export default function PageLeft({ joblist, pageAt, setPageAt }) {
     const showAtPage = pagination(pageAt, capacity, joblist)
     const start = startPage(pageAt, capacity)
     const end = endPage(pageAt, capacity)
-    const job = showAtPage.map((j) => <Jobcard jobpost={j} key={j.id} />)
+    const job = showAtPage.map((j) => (
+        <Jobcard jobpost={j} key={j.id} setJobPost={setJobPost} />
+    ))
 
     return (
         <div className="h-[800px] w-[430px] flex justify-center border rounded-xl shadow-xl pt-4 ml-5 bg-base-100">
