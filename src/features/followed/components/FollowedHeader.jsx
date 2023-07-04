@@ -31,8 +31,8 @@ export default function FollowedHeader() {
                 </div>
                 <div className="w-full flex justify-between  mb-4 ">
                     <div className=" flex justify-center items-center gap-2">
-                        <label htmlFor="sortBy">Sort By:</label>
-                        <select
+                        <label htmlFor="sortBy"></label>
+                        {/* <select
                             name="sortBy"
                             id="sortBy"
                             className=" font-bold"
@@ -40,8 +40,8 @@ export default function FollowedHeader() {
                             <option value="Recently Followed">
                                 Recently Followed
                             </option>
-                            <option value="Job Post Amount">Name</option>
-                        </select>
+                            <option value="Job Post Amount"></option>
+                        </select> */}
                     </div>
                     <div>
                         <input

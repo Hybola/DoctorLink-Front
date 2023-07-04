@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { unfollowed } from '../slice/followed-slice'
 import { useNavigate } from 'react-router-dom'
+import { dateTimeTH } from '../../../utils/dateTime'
 
 export default function FollowedCard({ follow }) {
     const currentFollow = useSelector(
@@ -41,7 +42,7 @@ export default function FollowedCard({ follow }) {
                         {follow?.providerdes}
                     </div>
                     <div className="flex   pb-2 text-primary  text-[14px] font-thin">
-                        Followed: {follow?.createdAt}
+                        Followed: {dateTimeTH(follow?.createdAt)}
                     </div>
                 </div>
             </div>

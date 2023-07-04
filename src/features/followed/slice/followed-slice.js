@@ -15,7 +15,7 @@ export const getfollowed = createAsyncThunk(
         try {
             const getfollowed2 = await followedService.followedProvider(input)
 
-            console.log(getfollowed2.data)
+            // console.log(getfollowed2.data)
             return getfollowed2.data
         } catch (error) {
             console.log(error)
@@ -40,7 +40,7 @@ export const setfilter = createAsyncThunk(
     'setfilter',
     async (input, thunkApi) => {
         try {
-            console.log(input)
+            // console.log(input)
             return input
         } catch (error) {
             console.log(error)

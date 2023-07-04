@@ -46,7 +46,7 @@ export default function PartTime({ add, hdl }) {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                        <div>Salary</div>
+                        <div>Wage</div>
                         <div className="w-full  ">
                             <input
                                 type="text"
@@ -63,7 +63,7 @@ export default function PartTime({ add, hdl }) {
                         <div className="w-full  ">
                             <input
                                 type="text"
-                                className="w-full h-[40px] p-2 pl-3 border border-primary rounded-lg font-normal "
+                                className="w-full h-[200px] p-2 pl-3 border border-primary rounded-lg font-normal "
                                 onChange={hdl}
                                 value={add.other}
                                 name="other"
