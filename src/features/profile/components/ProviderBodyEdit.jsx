@@ -22,7 +22,7 @@ export default function ProviderEdit() {
 
         const payload = {
             ...profile,
-            provinceId: provinceObj?.id || '0',
+            provinceId: provinceObj?.id || '1',
             Province: { name: provinceObj?.name },
         }
 
@@ -66,10 +66,7 @@ export default function ProviderEdit() {
                     onChange={handleOnchange}
                 />
                 <div className="flex flex-col gap-2 rounded-lg font-normal text-lg mb-4">
-                    <label
-                        htmlFor="province"
-                        className="w-fit font-semibold"
-                    >
+                    <label htmlFor="province" className="w-fit font-semibold">
                         Province
                     </label>
 
