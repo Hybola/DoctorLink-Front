@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 export default function HistoryStage(props) {
-    // console.log(stage == 1)
-    // const [stageValue, setStageValue] = useState(stage)
     const { stage } = props
     return (
         <div className="dropdown dropdown-end">
@@ -23,4 +21,3 @@ export default function HistoryStage(props) {
         </div>
     )
 }
-// react how to change color div from id

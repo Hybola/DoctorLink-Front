@@ -19,10 +19,6 @@ export default function HistoryModalGroup() {
     const loading = useSelector((state) => state.history?.loading)
     const [arrChecked, setArrChecked] = React.useState([])
     const [count, setCount] = React.useState(0)
-    // const [checked, setChecked] = React.useState()
-    // let myArray = []
-
-    // console.log('getJobResult', getJobResult)
 
     const newObjPost = { ...getJobResult[0] }
 
@@ -52,20 +48,16 @@ export default function HistoryModalGroup() {
     const handleCheckbox = async (e) => {
         dispatch(getJob({ id: newObjPost.id })).unwrap()
         const value = JSON.parse(e.target.value)
-        // console.log(value)
 
         value.status = e.target.checked ? 3 : 1
-        // console.log(newObjPost)
-        // console.log(value)
+
         const myIndex = newObjPost.DoctorJobs.findIndex(
             (item) => item.id == value.id
         )
-        // console.log(myIndex)
 
         const newDoctorJobs = [...newObjPost.DoctorJobs]
         newDoctorJobs.splice(myIndex, 1, value)
         newObjPost.DoctorJobs = newDoctorJobs
-        // console.log(newObjPost)
 
         await dispatch(getObjSelected(newObjPost)).unwrap()
         await dispatch(getDoctorSelectedResult(newObjPost)).unwrap()
@@ -74,64 +66,13 @@ export default function HistoryModalGroup() {
         ).unwrap()
 
         await dispatch(getJob({ id: newObjPost.id })).unwrap()
-
-        // const newerObjPost = {...newObjPost, DoctorJobs : newDoctorJobs}
-
-        // const newFilter = newObjPost.DoctorJobs.filter(
-        //     (el) => el.id != value.id
-        // )
-        // console.log(newFilter)
-        // const complete2 = [...newObjPost.DoctorJobs, complete]
-        // console.log(complete2)
-
-        // dispatch(getObjSelected(value)).unwrap()
-        // setCount(count + 1)
-        // if (e.target.checked) {
-        // console.log('checked')
-        // setChecked('')
-        // myArray = arrChecked
-        // myArray[value.index] = 3
-        // console.log(myArray)
-        // setArrChecked(myArray)
-        // console.log({ id: id, status: 3 })
-        // dispatch(updateSelectedDoctor({ id: id, status: 3 })).unwrap()
-        // setChecked(arrChecked)
-        // } else {
-        // console.log('uncheck')
-        // setChecked('checked')
-        // myArray = arrChecked
-        // myArray[value.index] = 1
-        // console.log(myArray)
-        // setArrChecked(myArray)
-        // console.log({ id: id, status: 1 })
-        // dispatch(updateSelectedDoctor({ id: id, status: 1 })).unwrap()
-        // setChecked(arrChecked)
-        // }
-
-        // console.log('index', value.index)
-        // console.log('event', checked)
     }
 
     useEffect(() => {
-        // console.log('useEffect-checked')
-
         if (count == 0) {
-            newObjPost.DoctorJobs?.map((item) => {
-                // console.log(item)
-                // console.log(item.status)
-                // myArray.push(item.status)
-            })
-            // setArrChecked(myArray)
-        } else {
-            // myArray = arrChecked
+            newObjPost.DoctorJobs?.map((item) => {})
         }
-        // console.log('myArray', myArray)
-        // console.log(index)
     }, [newObjPost, count])
-
-    // console.log('myArray', myArray)
-    // console.log('arrChecked', arrChecked)
-    // console.log('objUser', objUser)
 
     if (loading) {
         return <MyLoad />
@@ -151,7 +92,7 @@ export default function HistoryModalGroup() {
                         <div className="w-fit text-xl self-center font-bold mb-4">
                             Group Job
                         </div>
-                        {/* <div className="overflow-x-auto"> */}
+
                         <div className="overflow-x-auto  h-[650px]">
                             <table className="table text-base">
                                 {/* head */}
@@ -253,7 +194,6 @@ export default function HistoryModalGroup() {
                                                                         ? true
                                                                         : false
                                                                 }
-                                                                // my
                                                                 value={JSON.stringify(
                                                                     item
                                                                 )}

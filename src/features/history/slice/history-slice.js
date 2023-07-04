@@ -155,11 +155,7 @@ export const editJobPost = createAsyncThunk(
 const historySlice = createSlice({
     name: 'history',
     initialState,
-    // reducers: {
-    //     updateAllList: (state, action) => {
-    //         state.allLists = action.payload
-    //     },
-    // },
+
     extraReducers: (builder) =>
         builder
             .addCase(getLists.pending, (state) => {
@@ -208,4 +204,3 @@ const historySlice = createSlice({
             }),
 })
 export default historySlice.reducer
-// export const { updateAllList } = historySlice.actions

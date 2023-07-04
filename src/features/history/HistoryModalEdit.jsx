@@ -34,7 +34,6 @@ export default function HistoryModalEdit() {
         },
     }
     const [input, setInput] = useState(initialState)
-    // console.log('objJobResult', objJobResult)
 
     const convertDate = (date) => {
         try {
@@ -154,8 +153,6 @@ export default function HistoryModalEdit() {
         }
     }
     const handleUpdate = async () => {
-        // dispatch(updateAllList(input))
-
         console.log('handleUpdate', input)
         console.log('allLists', allLists)
         console.log(
@@ -172,7 +169,6 @@ export default function HistoryModalEdit() {
         await dispatch(editJobPost(input)).unwrap()
     }
 
-    // console.log('setInput', input)
     return (
         <>
             <dialog id="EditJob" className="modal">
@@ -193,8 +189,6 @@ export default function HistoryModalEdit() {
                                 <input
                                     type="text"
                                     className="w-full font-normal h-[40px] p-2 pl-3 border border-primary rounded-lg "
-                                    // onClick={handelOnClick}
-
                                     onChange={handleOnchange}
                                     value={input.title}
                                     name="title"
@@ -249,18 +243,6 @@ export default function HistoryModalEdit() {
                                 />
                             </div>
                         </div>
-                        {/* <div className="flex flex-col gap-1">
-                            <div>Job Type</div>
-                            <select
-                                name="JobType"
-                                className=" h-[40px] font-normal border border-primary rounded-lg p-2 pl-3"
-                                // onChange={hdlfull}
-                                id="jobType"
-                            >
-                                <option value={'FullTime'}>Full-time</option>
-                                <option value={'PartTime'}>Part-time</option>
-                            </select>
-                        </div> */}
 
                         {/* JOB DETAILS */}
                         {input?.jobType === 'PartTime' ? (

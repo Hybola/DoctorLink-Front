@@ -8,29 +8,12 @@ import {
 import { useEffect, useState } from 'react'
 import { createGlobalStyle } from 'styled-components'
 export default function HistoryModalBin() {
-    // const title = useSelector((state) => state.history.titleSelected)
     const getJobResult = useSelector((state) => state.history.getJobResult)
     const objPost = useSelector((state) => state.history.objSelected)
     const allLists = useSelector((state) => state.history.allLists)
     const [arrSelected, setArrSelected] = useState([])
     const dispatch = useDispatch()
     console.log('objPost', objPost)
-    // dispatch(getJob(1)).unwrap()
-    // useEffect(() => {
-    //     console.log('useEffect')
-    //     dispatch(getJob({ id: 1 })).unwrap()
-    //     console.log(objPost)
-    // }, [])
-    // const myArray = dispatch(getJob({ id: objPost.id })).unwrap()
-    // console.log(objPost)
-    // console.log(objPost.id)
-
-    // useEffect(() => {
-    // dispatch(getJob({ id: objPost.id })).unwrap()
-    // }, [])
-    // dispatch(getJob({ id: 1 })).unwrap()
-    // console.log(doctorSelected)
-    // console.log(doctorSelected[0]?.id)
 
     const mobileFormat = (mobile) => {
         if (mobile) {
@@ -51,10 +34,6 @@ export default function HistoryModalBin() {
         }
     })
 
-    // const changeColor = (name) => {
-    //     const div = document.getElementById('hideme')
-    //     div.style.backgroundColor = 'red'
-    // }
     const handleConfirm = async () => {
         filterSelectedDoctor?.length > 0
             ? await dispatch(

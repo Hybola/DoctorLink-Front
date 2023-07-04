@@ -4,46 +4,28 @@ import { getObjSelected, getTitleSelected, getJob } from './slice/history-slice'
 import { useEffect } from 'react'
 
 export default function RowMenu({ follower, title, objPost }) {
-    // console.log(title)
     const dispatch = useDispatch()
-    // console.log(objUser)
-    // useEffect(() => {
-    //     dispatch(getObjSelected(objUser)).unwrap()
-    // }, [])
+
     const objPostSelected = useSelector((state) => state.history.objSelected)
-    // console.log('objPost', objPost)
 
     const handleBinJob = async (e) => {
-        // console.log(e.target.attributes.value.value)
-        // dispatch(getTitleSelected(e.target.attributes.value.value)).unwrap()
-        // dispatch(getObjSelected(objPost)).unwrap()
         await dispatch(getJob({ id: objPost?.id })).unwrap()
         window.BinJob.showModal()
     }
     const handleGroupJob = async (e) => {
-        // console.log(e.target.attributes.value.value)
-        // dispatch(getTitleSelected(e.target.attributes.value.value)).unwrap()
         await dispatch(getJob({ id: objPost?.id })).unwrap()
-        // dispatch(getObjSelected(objPost)).unwrap()
 
-        // console.log('777788889999', objPost)
         window.GroupJob.showModal()
     }
 
     const handleEditJob = async (e) => {
-        // console.log(e.target.attributes.value.value)
-        // dispatch(getTitleSelected(e.target.attributes.value.value)).unwrap()
         await dispatch(getJob({ id: objPost?.id })).unwrap()
-        // dispatch(getObjSelected(objPost)).unwrap()
 
-        // console.log('777788889999', objPost)
         window.EditJob.showModal()
     }
 
     return (
         <>
-            {/* <HistoryModals /> */}
-
             <div
                 className="cursor-pointer"
                 onClick={() => window.PreviewJob.showModal()}
@@ -65,8 +47,6 @@ export default function RowMenu({ follower, title, objPost }) {
             </div>
             {follower > 0 ? (
                 <div className="cursor-pointer " onClick={handleGroupJob}>
-                    {/* <GroupJob height="1.5rem" width="1.5rem" /> */}
-
                     <div className="indicator hover:scale-125 duration-200 flex items-center justify-center">
                         <GroupJob height="1.5rem" width="1.5rem" />
 
@@ -84,8 +64,6 @@ export default function RowMenu({ follower, title, objPost }) {
                 </div>
             ) : (
                 <div className="cursor-pointer disabled">
-                    {/* <GroupJob height="1.5rem" width="1.5rem" /> */}
-
                     <div className="indicator hover:scale-125 duration-200 flex items-center justify-center">
                         <GroupJob height="1.5rem" width="1.5rem" />
                     </div>

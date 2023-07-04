@@ -10,24 +10,18 @@ import { all } from 'axios'
 import { array } from 'joi'
 import MyLoad from '../../components/Loading'
 
-export default function HistoryForm(props) {
-    // console.log(user)
+export default function HistoryForm() {
     const loading = useSelector((state) => state.history?.loading)
     const allLists = useSelector((state) => state.history?.allLists)
     const user = useSelector((state) => state.auth?.user)
     const input = { id: user?.id }
-    // console.log('user', user)
+
     const [follower, setFollower] = useState(0)
     const dispatch = useDispatch()
-
-    // const [allLists, setAllLists] = useState([])
 
     useEffect(() => {
         dispatch(getLists(input)).unwrap()
     }, [])
-
-    // console.log(loading)
-    // console.log(allLists)
 
     let newDate = new Date()
     let day =
@@ -63,7 +57,6 @@ export default function HistoryForm(props) {
         const firstDate = new Date(arrCreate[2], arrCreate[1], arrCreate[0])
         const secondDate = new Date(arrToday[2], arrToday[1], arrToday[0])
         const diffDays = Math.round((secondDate - firstDate) / oneDay)
-        // console.log(diffDays)
 
         return diffDays
     }
@@ -77,11 +70,9 @@ export default function HistoryForm(props) {
     }
 
     const hdlActiveOnChange = () => {
-        // console.log('hdlActiveOnChange')
         activeChk == 'checked' ? setActiveChk('') : setActiveChk('checked')
     }
     const hdlSortPostDateOnChange = () => {
-        // console.log('hdlSortPostDateOnChange')
         setSortBy('create_at')
         sortPostChk == 'checked'
             ? setsortPostChk('')
@@ -89,7 +80,6 @@ export default function HistoryForm(props) {
     }
 
     const hdlSortJobDateOnChange = () => {
-        // console.log('hdlSortJobDateOnChange')
         setSortBy('startDate')
         sortJobChk == 'checked' ? setsortJobChk('') : setsortJobChk('checked')
     }
@@ -104,32 +94,26 @@ export default function HistoryForm(props) {
     }
 
     const hdlTextFtEnter = () => {
-        // console.log('hdlMouseEnter')
         const cn = 'text-primary'
         setClassTextFullTime(cn)
     }
     const hdlMouseLeaveFt = () => {
-        // console.log('hdlMouseLeave')
         const cn = ''
         setClassTextFullTime(cn)
     }
     const hdlMouseEnterPt = () => {
-        // console.log('hdlMouseEnter')
         const cn = 'text-primary'
         setClassTextPartTime(cn)
     }
     const hdlTextPtEnter = () => {
-        // console.log('hdlMouseLeave')
         const cn = ''
         setClassTextPartTime(cn)
     }
 
     const filter = (objFilter) => {
-        // console.log(objFilter)
         const arrayFP = allLists.filter((item) => {
             if (objFilter.actionPage == 'FullTime') {
                 if (item.jobType == 'FullTime') {
-                    // console.log(item)
                     return item
                 }
             }
@@ -167,7 +151,6 @@ export default function HistoryForm(props) {
                                 .join('-'),
                             today
                         ),
-                        // diffDay(job.create_at.split(' ')[0], today),
                     ])
                 }
                 sortable.sort(function (a, b) {
@@ -196,9 +179,8 @@ export default function HistoryForm(props) {
                 sortable.sort(function (a, b) {
                     return b[1] - a[1]
                 })
-                // console.log(sortable)
+
                 sortable.map((item) => {
-                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -207,17 +189,12 @@ export default function HistoryForm(props) {
 
         if (objFilter.sortBy == 'startDate') {
             if (objFilter.sortJobChk == 'checked') {
-                // console.log('hello')
                 let sortable = []
                 let x = []
                 for (let job of arrayActive) {
-                    // console.log(job)
-
                     sortable.push([
                         job,
-                        // job.jobType == 'FullTime'
-                        //     ? job.FullTime?.startDate + 'full'
-                        //     : job.PartTime?.startDate + 'part',
+
                         diffDay(
                             job.jobType == 'FullTime'
                                 ? job.FullTime?.startDate
@@ -237,9 +214,8 @@ export default function HistoryForm(props) {
                 sortable.sort(function (a, b) {
                     return b[1] - a[1]
                 })
-                // console.log(sortable)
+
                 sortable.map((item) => {
-                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -268,9 +244,8 @@ export default function HistoryForm(props) {
                 sortable.sort(function (a, b) {
                     return a[1] - b[1]
                 })
-                // console.log(sortable)
+
                 sortable.map((item) => {
-                    // // console.log(item[0])
                     x.push(item[0])
                 })
                 setShowHistory(x)
@@ -279,14 +254,7 @@ export default function HistoryForm(props) {
     }
 
     useEffect(() => {
-        // const arr = []
-        // allLists.map((item) => {
-        //     arr.push(item)
-        // })
-        // setShowHistory(arr)
         filter(objFilter)
-
-        // // console.log(objFilter)
     }, [activeChk, sortPostChk, actionPage, sortJobChk, sortBy, allLists])
 
     if (loading) {
