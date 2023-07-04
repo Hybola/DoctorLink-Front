@@ -22,9 +22,7 @@ export default function ProviderBody({ profile, canEdit }) {
                         >
                             Edit
                         </button>
-                        {currrentProfile?.providerName ? (
-                            <ProviderBodyEdit />
-                        ) : null}
+                        <ProviderBodyEdit />
                     </div>
                 ) : null}
             </div>
