@@ -7,6 +7,7 @@ import store from './store'
 import { Provider } from 'react-redux'
 import { getToken } from './utils/localStorage.js'
 import { docFetchMe, provFetchMe } from './features/auth/slice/auth-slice.js'
+import { getProvince } from './features/profile/slice/profile-slice.js'
 import jwt_decode from 'jwt-decode'
 import { getProvince } from './features/profile/slice/profile-slice.js'
 

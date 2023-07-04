@@ -65,10 +65,10 @@ export default function ProviderEdit() {
                     value={profile?.address}
                     onChange={handleOnchange}
                 />
-                <div className="flex items-center gap-2 rounded-lg font-normal text-lg mb-4">
+                <div className="flex flex-col gap-2 rounded-lg font-normal text-lg mb-4">
                     <label
                         htmlFor="province"
-                        className="w-[142px] font-semibold"
+                        className="w-fit font-semibold"
                     >
                         Province
                     </label>

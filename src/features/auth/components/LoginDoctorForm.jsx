@@ -68,6 +68,7 @@ export default function LoginDoctorForm() {
                         value={input.password}
                         onChange={handleChangeInput}
                         isInvalid={error.password}
+                        type="password"
                     />
                     <InputErrorMessage message={error.password} />
                 </div>
