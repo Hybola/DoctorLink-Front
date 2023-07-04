@@ -2,7 +2,7 @@ import React from 'react'
 import Jobcard from './Jobcard'
 
 export default function PageLeft({ joblist, pageAt, setPageAt, setJobPost }) {
-    const capacity = 2
+    const capacity = 5
 
     const clickPageBack = () => {
         if (pageAt > 1) {
