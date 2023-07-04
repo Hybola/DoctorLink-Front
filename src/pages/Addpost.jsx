@@ -114,17 +114,19 @@ export default function Addpost() {
                                     >
                                         Select location
                                     </option>
-                                    <option value="1">Bangkok</option>
-                                    <option value="2">Pathumtani</option>
-                                    <option value="3">Chiangmai</option>
-                                    <option value="4">Chonburi</option>
-                                    <option value="5">Phuket</option>
-                                    <option value="6">Rayong</option>
-                                    <option value="7">Khonkaen</option>
-                                    <option value="8">Chachoengsao</option>
-                                    <option value="9">Samutsakhon</option>
-                                    <option value="10">Ayutthaya</option>
-                                    <option value="11">Nonthaburi</option>
+
+                                    <option value="1">other</option>
+                                    <option value="2">Bangkok</option>
+                                    <option value="3">Pathumtani</option>
+                                    <option value="4">Chiangmai</option>
+                                    <option value="5">Chonburi</option>
+                                    <option value="6">Phuket</option>
+                                    <option value="7">Rayong</option>
+                                    <option value="8">Khonkaen</option>
+                                    <option value="9">Chachoengsao</option>
+                                    <option value="10">Samutsakhon</option>
+                                    <option value="11">Ayutthaya</option>
+                                    <option value="12">Nonthaburi</option>
                                 </select>
                             </div>
                         </div>
@@ -216,7 +218,7 @@ export default function Addpost() {
             <dialog id="preview" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box max-w-5xl h-[800px] p-12 text-base font-semibold text-success"
+                    className="modal-box max-w-[800px] h-[850px] p-12 text-base font-semibold text-success"
                 >
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-4">
                         ✕
