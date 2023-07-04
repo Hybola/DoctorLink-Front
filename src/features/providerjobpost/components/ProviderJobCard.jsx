@@ -20,7 +20,7 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
             <div className=" flex  w-full  font-semibold text-3xl justify-between ">
                 <div className="flex gap-4 items-center">
                     <div>{post?.title}</div>
-                    {role == 'doctor' && post?.jobStatus !== '0' ? (
+                    {role == 'doctor' && +post?.jobStatus > 0 ? (
                         <span>
                             <KeptIcon />
                         </span>

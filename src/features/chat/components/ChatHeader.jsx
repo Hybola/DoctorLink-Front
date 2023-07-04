@@ -6,18 +6,19 @@ export default function ChatHeader(prop) {
     return (
         <>
             {/* ==== Header ====== */}
-            <div className="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center border-b border-gray-300">
-          
+            <div className="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center border-b border-gray-300 ">
                 <div className="flex items-center">
-
                     <div className="relative flex items-center p-2">
                         <img
                             className="object-cover w-10 h-10 rounded-full"
-                            src="https://www.svgrepo.com/show/508199/user-square.svg"
+                            src={
+                                currentDoctor.profileImage ||
+                                'https://www.svgrepo.com/show/508199/user-square.svg'
+                            }
                             alt="username"
                         />
                         <span className="block ml-2 font-bold ">
-                             {currentDoctor}
+                            {currentDoctor.name}
                         </span>
                         <span
                             className={

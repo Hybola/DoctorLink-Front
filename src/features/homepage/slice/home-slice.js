@@ -62,8 +62,22 @@ export const getProviderPost = createAsyncThunk(
     }
 )
 
-export const editPost = createAsyncThunk(
-    'editPost',
+export const savedPost = createAsyncThunk(
+    'savedPost',
+    async (input, thunkApi) => {
+        try {
+            const res = myjobService.savedJob(input.id)
+            console.log(res.data)
+
+            return input.result
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const interestedPost = createAsyncThunk(
+    'interedPost',
     async (input, thunkApi) => {
         try {
             const res = myjobService.interestedJob(input.id)
@@ -112,7 +126,11 @@ const homeSlice = createSlice({
                 stage.post = action.payload
             })
 
-            .addCase(editPost.fulfilled, (stage, action) => {
+            .addCase(savedPost.fulfilled, (stage, action) => {
+                stage.post = action.payload
+            })
+
+            .addCase(interestedPost.fulfilled, (stage, action) => {
                 stage.post = action.payload
             }),
 })

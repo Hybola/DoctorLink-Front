@@ -24,12 +24,12 @@ export default function ProviderJobPostPage() {
     return (
         <>
             <div className=" max-w-[1000px]  min-w-[600px] w-[700px] bg-base-100 rounded-lg my-4 shadow-lg  ">
-                {postId == 0 ? (
+                {/* {postId == 0 ? (
                     <>
                         <ProviderJobPostHeader />
                         <hr />
                     </>
-                ) : null}
+                ) : null} */}
                 <ProviderJobPostBody
                     jobPost={jobPost}
                     setJobPost={setJobPost}

@@ -1,8 +1,7 @@
 import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
-import * as myjobService from '../../../api/myjob-api'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { editPost } from '../slice/home-slice'
+import { savedPost, interestedPost } from '../slice/home-slice'
 
 export default function JopPost() {
     const jobPost = useSelector((state) => state.home?.post?.job)
@@ -21,12 +20,12 @@ export default function JopPost() {
     const handdleSaveJob = (e) => {
         const cloneJob = { ...jobPost, jobStatus: 1 }
         const payload = { job: cloneJob, provider: profileProvider }
-        dispatch(editPost({ result: payload, id: e.target.id }))
+        dispatch(savedPost({ result: payload, id: e.target.id }))
     }
     const handleinterestJob = (e) => {
         const cloneJob = { ...jobPost, jobStatus: 2 }
         const payload = { job: cloneJob, provider: profileProvider }
-        dispatch(editPost({ result: payload, id: e.target.id }))
+        dispatch(interestedPost({ result: payload, id: e.target.id }))
     }
 
     return (
