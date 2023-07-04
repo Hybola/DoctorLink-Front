@@ -5,6 +5,7 @@ import axios from '../api/thisAxios'
 import { useNavigate } from 'react-router-dom'
 import Preview2 from '../features/addpost/component/Preview2'
 import InputErrorMessage from '../components/InputErrorMessage'
+import { toast } from 'react-toastify'
 // import validatecreatepost from '../validator/validatorAddpost'
 
 const initial = {
@@ -52,6 +53,7 @@ export default function Addpost() {
 
         try {
             await axios.post('/post/createpost', payload)
+            toast.success('CreatePost Success')
             navigate('/provider/history/')
         } catch (error) {
             console.log(error)
