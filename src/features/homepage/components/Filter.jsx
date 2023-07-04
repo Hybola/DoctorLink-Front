@@ -54,17 +54,7 @@ export default function Filter({ handdleEdit }) {
                           job.FullTime?.salary > 200000)
                     : false
 
-            console.log(
-                job,
-                checkEmploymentType,
-                checkWage,
-                checksalaryEstimate
-            )
-
             // const firstSortDate = new Date() - a
-
-            console.log({ input })
-            console.log({ job })
 
             let last3Days = new Date()
 
@@ -244,7 +234,7 @@ export default function Filter({ handdleEdit }) {
                                     handdleEdit()
                                 }}
                             >
-                                80,000-150,000
+                                80,001-150,000
                             </div>
                         </li>
                         <li>
@@ -259,7 +249,7 @@ export default function Filter({ handdleEdit }) {
                                     handdleEdit()
                                 }}
                             >
-                                150,000-200,000
+                                150,001-200,000
                             </div>
                         </li>
                         <li>
@@ -343,13 +333,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        wage: '5000-10000',
+                                        wage: '5001-10000',
                                         employmentType: 'Part-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                <p>5,000-10,000</p>
+                                <p>5,001-10,000</p>
                             </div>
                         </li>
                         <li>
