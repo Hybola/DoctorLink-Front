@@ -16,7 +16,7 @@ export default function FollowedPage() {
 
     useEffect(() => {
         const rs = dispatch(getfollowed(userid)).unwrap()
-        console.log(search)
+        // console.log(search)
     }, [])
     return (
         <div className=" h-screen w-full flex justify-center bg-[#F5FBFC]">

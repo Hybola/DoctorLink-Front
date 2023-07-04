@@ -46,7 +46,7 @@ export default function PartTime({ add, hdl }) {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                        <div>Salary</div>
+                        <div>Wage</div>
                         <div className="w-full  ">
                             <input
                                 type="text"

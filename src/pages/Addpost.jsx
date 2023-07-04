@@ -27,6 +27,10 @@ export default function Addpost() {
 
     const navigate = useNavigate()
 
+    const hdlnavigate = () => {
+        navigate('/provider/history/')
+    }
+
     const hdlchange = (e) => {
         console.log(e.target.value)
         setInput({ ...input, [e.target.name]: e.target.value })
@@ -154,6 +158,7 @@ export default function Addpost() {
                     <button
                         className="btn w-[120px] text-base"
                         style={{ textTransform: 'none' }}
+                        onClick={hdlnavigate}
                     >
                         Back
                     </button>
