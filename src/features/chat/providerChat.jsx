@@ -14,7 +14,7 @@ export default function ProviderChat() {
     const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
 
     const [doctorList, setDoctorList] = useState([]) //เก็บ profile ของ doctor ทุกคน
-    const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
+    // const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({
         id: 0,
@@ -33,16 +33,14 @@ export default function ProviderChat() {
             setCurrentDoctor(data.doctor)
         })
         socket.on('providerGetMessage', (data) => {
+            console.log(chatLists)
             if (Object.keys(chatLists)?.length !== 0) {
-                // console.log(chatLists)
                 setChatLists((prev) => {
-                    prev[data.room].push(data.conversation)
-                    return prev
+                    const clonePrev = structuredClone(prev)
+                    clonePrev[data.room].push(data.conversation)
+                    return clonePrev
                 })
             }
-            //เอา chatList อันเดิมมา spreed แล้ว update เฉพาะ room ที่ส่งมา ให้มีค่าเท่ากับ ===> ข้อความเดิมที่มีอยู่ มาบวกเพิ่มข้อความใหม่ที่ส่งเข้ามา
-
-            setAllMsg((prev) => [...prev, data.conversation])
 
             /// ***** อะไรที่อยากจะทำ หลังจาก render ui ได้แล้ว ให้เอาไปใส่ใน useEffct ### *****
             // setAllMsg([...allMsg, data.conversation])  // code บรรทัด นี้ทำงานผิดเพี๊ยน เพราะอยุ่ใน useEffect
@@ -54,16 +52,11 @@ export default function ProviderChat() {
             socket.off('acceptChat')
             socket.off('providerGetMessage')
         }
-    }, [doctorList])
-
-    useEffect(() => {
-        if (Object.keys(chatLists)?.length !== 0)
-            setAllMsg([...[chatLists[`${currentDoctor?.id}:${providerId}`]]]) // เอา allMsg ไป render
-    }, [currentDoctor])
+    }, [doctorList, chatLists])
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }, [allMsg.length])
+    }, [chatLists[`${currentDoctor.id}:${providerId}`]?.length])
 
     const handleSendMessage = (e) => {
         e.preventDefault()
@@ -88,13 +81,13 @@ export default function ProviderChat() {
             return prev
         })
 
-        setAllMsg([...allMsg, conversation])
+        // setAllMsg([...allMsg, conversation])
         setInput('')
     }
     const handleSelectChat = (id) => {
         const index = doctorList.findIndex((el) => el.id == id)
         setCurrentDoctor(doctorList[index])
-        setAllMsg([...[chatLists[`${id}:${providerId}`]]])
+        // setAllMsg([...[chatLists[`${id}:${providerId}`]]])
     }
     return (
         <>
@@ -161,12 +154,12 @@ export default function ProviderChat() {
                         <div className="bg-grey-lighter flex-1 overflow-auto p-2 ">
                             {doctorList.map((el) => (
                                 <div
+                                    key={el.id}
                                     onClick={() => {
                                         handleSelectChat(el.id)
                                     }}
                                 >
                                     <ChatCard
-                                        key={el.id}
                                         name={el.name}
                                         profileImage={el.profileImage}
                                     />
