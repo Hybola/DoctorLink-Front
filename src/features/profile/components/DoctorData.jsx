@@ -38,7 +38,9 @@ export default function DoctorDataBody({ profile, canEdit }) {
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Last Name :</span>
-                        <span className="text-primary">{profile?.lastName}</span>
+                        <span className="text-primary">
+                            {profile?.lastName}
+                        </span>
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Gender :</span>
@@ -52,7 +54,9 @@ export default function DoctorDataBody({ profile, canEdit }) {
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Birthdate :</span>
-                        <span className="text-primary">{dateReverse(profile?.birthDate)}</span>
+                        <span className="text-primary">
+                            {dateReverse(profile?.birthDate)}
+                        </span>
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Telephone :</span>
@@ -64,11 +68,15 @@ export default function DoctorDataBody({ profile, canEdit }) {
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Education :</span>
-                        <span className="text-primary">{profile?.education}</span>
+                        <span className="text-primary">
+                            {profile?.education}
+                        </span>
                     </div>
                     <div className="flex gap-3 text-lg">
                         <span className="font-semibold">Work Experience :</span>
-                        <span className="text-primary">{profile?.workExperience}</span>
+                        <span className="text-primary">
+                            {profile?.workExperience}
+                        </span>
                     </div>
                 </div>
             </div>

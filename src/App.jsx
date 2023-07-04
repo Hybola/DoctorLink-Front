@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Router from './routes/Router'
 import { ToastContainer } from 'react-toastify'
 import socket from './config/socket-config'
 import { useEffect } from 'react'
 import Loading from './components/Loading'
+import {
+    getMyProfile,
+    getProvince,
+} from './features/profile/slice/profile-slice'
+import { useState } from 'react'
 
 function App() {
-    const initialLoading = useSelector((state) => state.auth.initialLoading)
-    const user = useSelector((state) => state.auth.user)
-    const role = useSelector((state) => state.auth.role)
+    const initialLoading = useSelector((state) => state.auth?.initialLoading)
+    const user = useSelector((state) => state.auth?.user)
+    const role = useSelector((state) => state.auth?.role)
+
     // const [isConnected, setIsConnected] = useState(socket.connected)
     // const [socketId, setSocketId] = useState(0)
 

@@ -1,13 +1,11 @@
 import React from 'react'
-import Preview from '../../addpost/component/Preview'
-// {
-//     renderJob: { title: 'accounting' },
-//     count: '200'
-// }
-export default function PageRight({ renderJob, count }) {
+import JobPost from '../components/JobPost'
+export default function PageRight() {
     return (
         <div>
-            <div className=" min-w-[740px] h-[740px] bg-base-100 "></div>
+            <div className=" min-w-[740px] h-[740px] bg-base-100 ">
+                <JobPost />
+            </div>
         </div>
     )
 }

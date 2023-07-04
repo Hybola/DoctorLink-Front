@@ -14,3 +14,6 @@ export const unInterestJob = (doctorJobId) =>
     thisAxios.patch(`/myjob/uninterestedjob/${doctorJobId}`)
 
 export const getConfirmedJob = () => thisAxios.get(`/myjob/comfirmedjob`)
+
+export const interestedJob = (jobpostId) =>
+    thisAxios.put(`/myjob/interestedjob/${jobpostId}`)

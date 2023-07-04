@@ -3,40 +3,19 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { logout } from '../features/auth/slice/auth-slice'
 import Logo from '../asset/Logo8.png'
-import {
-    getMyProfile,
-    getProvince,
-} from '../features/profile/slice/profile-slice'
-import { useEffect } from 'react'
 
 export default function Header() {
-    const role = useSelector((state) => state.auth.role)
+    const role = useSelector((state) => state.auth?.role)
     const id = useSelector((state) => state.auth.user?.id)
-    const providerName = useSelector(
-        (state) => state.profile?.myProfile?.providerName
-    )
-    const doctorName = useSelector(
-        (state) => state.profile?.myProfile?.profileName
-    )
-    const doctorProfile = useSelector(
-        (state) => state.profile?.myProfile?.profileImage
-    )
+
+    const providerName = useSelector((state) => state.auth.user?.name)
+    const doctorName = useSelector((state) => state.auth.user?.name)
+    const doctorProfile = useSelector((state) => state.auth.user?.profileImage)
     const providerProfile = useSelector(
-        (state) => state.profile?.myProfile?.profileImage
+        (state) => state.auth.user?.profileImage
     )
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        const myProfile = async (input) => {
-            await dispatch(getMyProfile(input)).unwrap()
-        }
-        myProfile(id)
-        const Province = async () => {
-            await dispatch(getProvince()).unwrap()
-        }
-        // Province()
-    }, [])
 
     return (
         <div className="flex justify-between px-8 bg-success shadow-lg sticky top-0 z-10 h-[80px] text-white">

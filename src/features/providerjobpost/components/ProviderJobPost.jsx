@@ -3,12 +3,11 @@ import ProviderJobPostBody from './ProviderJobPostBody'
 import * as postService from '../../../api/post-api'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProviderJobPostPage() {
     const [jobPost, setJobPost] = useState([])
     const { providerId, postId } = useParams()
-
-    console.log(jobPost)
 
     useEffect(() => {
         if (postId == 0) {
