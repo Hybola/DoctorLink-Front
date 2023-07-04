@@ -42,13 +42,16 @@ export default function Filter({ handdleEdit }) {
                 input.salaryEstimate == 'Salary'
                     ? true
                     : job.jobType == 'FullTime'
-                    ? (input.salaryEstimate == '< 40000' &&
-                          job.FullTime?.salary <= 40000) ||
-                      (input.salaryEstimate == '40001-100000' &&
-                          job.FullTime?.salary >= 40001 &&
-                          job.FullTime?.salary <= 100000) ||
-                      (input.salaryEstimate == '> 100000' &&
-                          job.FullTime?.salary > 100000)
+                    ? (input.salaryEstimate == '< 80000' &&
+                          job.FullTime?.salary <= 80000) ||
+                      (input.salaryEstimate == '80001-150000' &&
+                          job.FullTime?.salary >= 80001 &&
+                          job.FullTime?.salary <= 150000) ||
+                      (input.salaryEstimate == '150001-200000' &&
+                          job.FullTime?.salary >= 150001 &&
+                          job.FullTime?.salary <= 200000) ||
+                      (input.salaryEstimate == '> 200000' &&
+                          job.FullTime?.salary > 200000)
                     : false
 
             console.log(
@@ -220,13 +223,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '< 40000',
+                                        salaryEstimate: '< 80000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                {`< 40000`}
+                                {`< 80,000`}
                             </div>
                         </li>
                         <li>
@@ -235,13 +238,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '40000-100000',
+                                        salaryEstimate: '80001-150000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                40,000-100,000
+                                80,000-150,000
                             </div>
                         </li>
                         <li>
@@ -250,13 +253,28 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '> 100000',
+                                        salaryEstimate: '150001-200000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                {`> 100,000`}
+                                150,000-200,000
+                            </div>
+                        </li>
+                        <li>
+                            <div
+                                type="button"
+                                onClick={() => {
+                                    setInput({
+                                        ...input,
+                                        salaryEstimate: '> 200000',
+                                        employmentType: 'Full-Time',
+                                    })
+                                    handdleEdit()
+                                }}
+                            >
+                                {`> 200,000`}
                             </div>
                         </li>
                     </ul>
@@ -301,7 +319,7 @@ export default function Filter({ handdleEdit }) {
                                     handdleEdit()
                                 }}
                             >
-                                <p>{`< 1500`}</p>
+                                <p>{`< 1,500`}</p>
                             </div>
                         </li>
                         <li>
