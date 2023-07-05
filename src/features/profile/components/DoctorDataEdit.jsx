@@ -40,7 +40,7 @@ export default function DoctorDataEdit() {
                     onChange={handleOnchange}
                 />
                 <div className="flex justify-between gap-6">
-                    <div className='w-full'>
+                    <div className="w-full">
                         <InputBar
                             label="Birthdate"
                             name="birthDate"
@@ -50,10 +50,7 @@ export default function DoctorDataEdit() {
                         />
                     </div>
                     <div className="w-full flex flex-col gap-1 rounded-lg font-normal text-lg mb-4">
-                        <label
-                            htmlFor="gender"
-                            className=" font-semibold "
-                        >
+                        <label htmlFor="gender" className=" font-semibold ">
                             Gender
                         </label>
                         <div className="h-[48px] border border-primary rounded-lg">
