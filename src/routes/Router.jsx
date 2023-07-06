@@ -113,12 +113,12 @@ const router = createBrowserRouter([
                                 element: <Addpost />,
                             },
                             {
-                                path: '/provider/history/',
+                                path: '/provider/history/:jobType',
                                 element: <History />,
                             },
                             {
                                 path: '/provider/chat/',
-                                element:<ProviderChat/>
+                                element: <ProviderChat />,
                             },
                         ],
                     },

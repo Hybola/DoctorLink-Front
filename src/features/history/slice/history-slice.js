@@ -11,6 +11,7 @@ const initialState = {
     getDoctorSelectedResult: {},
     reloadStatus: 0,
     getJobResult: {},
+    myProfile: {},
 }
 
 // Doctor
@@ -152,6 +153,19 @@ export const editJobPost = createAsyncThunk(
     }
 )
 
+export const getProviderProfile = createAsyncThunk(
+    'history/getProviderProfile',
+    async (input, thunkApi) => {
+        try {
+            console.log(input)
+            const res = await historyService.getProviderProfile(input.id)
+            return res.data
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
 const historySlice = createSlice({
     name: 'history',
     initialState,
@@ -200,7 +214,10 @@ const historySlice = createSlice({
                 state.allLists = action.payload
             })
             .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
-                state.allLists = action.payload
+                confirmCloseJobByNoDoctor.allLists = action.payload
+            })
+            .addCase(getProviderProfile.fulfilled, (state, action) => {
+                state.myProfile = action.payload
             }),
 })
 export default historySlice.reducer
