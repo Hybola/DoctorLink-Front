@@ -8,4 +8,6 @@ export const confirmCloseJob = (id, stage) =>
     thisAxios.get(`/history/closejob?id=${id}&stage=${stage}`)
 
 export const editJobPost = (input) =>
-    thisAxios.patch(`/history/editjobpost/${input.id}`, input)
+    thisAxios.patch(`/history/edit-job-post/${input.id}`, input)
+export const getProviderProfile = (id) =>
+    thisAxios.get(`/history/get-provider-profile?id=${id}`)
