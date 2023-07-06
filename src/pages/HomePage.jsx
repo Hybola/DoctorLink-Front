@@ -40,6 +40,7 @@ export default function HomePage() {
             await dispatch(getProviderPost(input)).unwrap()
         }
         providerPost(jobPost)
+        
     }, [jobPost])
 
     return (

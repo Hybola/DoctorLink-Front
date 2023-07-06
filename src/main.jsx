@@ -19,6 +19,9 @@ if (getToken()) {
     if (decoded.role == 'provider') {
         store.dispatch(provFetchMe())
     }
+    store.dispatch(getProvince())
+
+
 }
 store.dispatch(getProvince())
 ReactDOM.createRoot(document.getElementById('root')).render(

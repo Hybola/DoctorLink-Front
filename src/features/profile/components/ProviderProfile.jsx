@@ -47,10 +47,12 @@ export default function ProviderProfile() {
         } else {
             otherProfile(input)
         }
-        profileService.doctorfollow(providerId).then((rs) => {
-            if (rs.data.length == 1) setFollow(false)
-        })
+        if (myRole == 'doctor')
+            profileService.doctorfollow(providerId).then((rs) => {
+                if (rs.data.length == 1) setFollow(false)
+            })
     }, [])
+    console.log(myProfile)
 
     return (
         <div className="  max-w-[1000px] min-w-[600px] w-[700px] bg-base-100 rounded-lg mt-8 shadow-lg h-fit pb-[20px]">

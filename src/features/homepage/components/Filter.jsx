@@ -42,26 +42,19 @@ export default function Filter({ handdleEdit }) {
                 input.salaryEstimate == 'Salary'
                     ? true
                     : job.jobType == 'FullTime'
-                    ? (input.salaryEstimate == '< 40000' &&
-                          job.FullTime?.salary <= 40000) ||
-                      (input.salaryEstimate == '40001-100000' &&
-                          job.FullTime?.salary >= 40001 &&
-                          job.FullTime?.salary <= 100000) ||
-                      (input.salaryEstimate == '> 100000' &&
-                          job.FullTime?.salary > 100000)
+                    ? (input.salaryEstimate == '< 80000' &&
+                          job.FullTime?.salary <= 80000) ||
+                      (input.salaryEstimate == '80001-150000' &&
+                          job.FullTime?.salary >= 80001 &&
+                          job.FullTime?.salary <= 150000) ||
+                      (input.salaryEstimate == '150001-200000' &&
+                          job.FullTime?.salary >= 150001 &&
+                          job.FullTime?.salary <= 200000) ||
+                      (input.salaryEstimate == '> 200000' &&
+                          job.FullTime?.salary > 200000)
                     : false
 
-            console.log(
-                job,
-                checkEmploymentType,
-                checkWage,
-                checksalaryEstimate
-            )
-
             // const firstSortDate = new Date() - a
-
-            console.log({ input })
-            console.log({ job })
 
             let last3Days = new Date()
 
@@ -220,13 +213,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '< 40000',
+                                        salaryEstimate: '< 80000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                {`< 40000`}
+                                {`< 80,000`}
                             </div>
                         </li>
                         <li>
@@ -235,13 +228,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '40000-100000',
+                                        salaryEstimate: '80001-150000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                40,000-100,000
+                                80,001-150,000
                             </div>
                         </li>
                         <li>
@@ -250,13 +243,28 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        salaryEstimate: '> 100000',
+                                        salaryEstimate: '150001-200000',
                                         employmentType: 'Full-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                {`> 100,000`}
+                                150,001-200,000
+                            </div>
+                        </li>
+                        <li>
+                            <div
+                                type="button"
+                                onClick={() => {
+                                    setInput({
+                                        ...input,
+                                        salaryEstimate: '> 200000',
+                                        employmentType: 'Full-Time',
+                                    })
+                                    handdleEdit()
+                                }}
+                            >
+                                {`> 200,000`}
                             </div>
                         </li>
                     </ul>
@@ -301,7 +309,7 @@ export default function Filter({ handdleEdit }) {
                                     handdleEdit()
                                 }}
                             >
-                                <p>{`< 1500`}</p>
+                                <p>{`< 1,500`}</p>
                             </div>
                         </li>
                         <li>
@@ -325,13 +333,13 @@ export default function Filter({ handdleEdit }) {
                                 onClick={() => {
                                     setInput({
                                         ...input,
-                                        wage: '5000-10000',
+                                        wage: '5001-10000',
                                         employmentType: 'Part-Time',
                                     })
                                     handdleEdit()
                                 }}
                             >
-                                <p>5,000-10,000</p>
+                                <p>5,001-10,000</p>
                             </div>
                         </li>
                         <li>
