@@ -17,6 +17,8 @@ export default function JopPost() {
     const currentProfileImage =
         jobPost?.providerProfileImage || defaultProfileImage
 
+    // const currentCardNew
+
     const handdleSaveJob = (e) => {
         const cloneJob = { ...jobPost, jobStatus: 1 }
         const payload = { job: cloneJob, provider: profileProvider }
@@ -32,11 +34,11 @@ export default function JopPost() {
         <div className="w-[700px]">
             <div className=" h-[220px] mb-[60px]">
                 <div className="w-full h-[200px] bg-base-300 rounded-t-lg">
-                    <img
+                    {/* <img
                         src={currentCoverImage}
                         alt="coverImage"
                         className="w-full h-[200px] rounded-t-lg object-cover"
-                    />
+                    /> */}
                 </div>
                 <div>
                     <div className="w-[150px] h-[150px] bg-info -my-[114px] ml-[28px] shadow-lg flex justify-center items-center ">
