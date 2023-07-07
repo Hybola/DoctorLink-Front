@@ -1,6 +1,6 @@
 import DoctorDataEdit from './DoctorDataEdit'
-import { PenIcon, EditIcon } from '../../../icons'
-import { dateTimeTH, dateReverse } from '../../../utils/dateTime'
+import { EditIcon } from '../../../icons'
+import { dateReverse } from '../../../utils/dateTime'
 import { useSelector } from 'react-redux'
 
 export default function DoctorDataBody({ profile, canEdit }) {
@@ -23,8 +23,9 @@ export default function DoctorDataBody({ profile, canEdit }) {
                         >
                             <EditIcon />
                         </button>
-
-                        {currrentProfile?.firstName ? <DoctorDataEdit /> : null}
+                        {currrentProfile?.firstName == undefined ? null : (
+                            <DoctorDataEdit />
+                        )}
                     </div>
                 ) : null}
             </div>
@@ -49,7 +50,9 @@ export default function DoctorDataBody({ profile, canEdit }) {
                                 ? 'Male'
                                 : profile?.gender == 2
                                 ? 'Female'
-                                : 'Other'}
+                                : profile?.gender == 3
+                                ? 'Other'
+                                : ''}
                         </span>
                     </div>
                     <div className="flex gap-3 text-lg">

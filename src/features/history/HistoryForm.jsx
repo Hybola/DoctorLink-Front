@@ -9,6 +9,7 @@ import { getLists, getJob } from './slice/history-slice'
 import { all } from 'axios'
 import { array } from 'joi'
 import MyLoad from '../../components/Loading'
+import { useParams } from 'react-router-dom'
 
 export default function HistoryForm() {
     const loading = useSelector((state) => state.history?.loading)

@@ -52,7 +52,6 @@ export default function ProviderProfile() {
                 if (rs.data.length == 1) setFollow(false)
             })
     }, [])
-    console.log(myProfile)
 
     return (
         <div className="  max-w-[1000px] min-w-[600px] w-[700px] bg-base-100 rounded-lg mt-8 shadow-lg h-fit pb-[20px]">
@@ -63,8 +62,9 @@ export default function ProviderProfile() {
                 handdleFollow={handdleFollow}
                 handdleUnFollow={handdleUnFollow}
             />
-
-            <ProviderBody profile={profile} canEdit={isHost} />
+            {profile?.providerName == undefined ? null : (
+                <ProviderBody profile={profile} canEdit={isHost} />
+            )}
         </div>
     )
 }

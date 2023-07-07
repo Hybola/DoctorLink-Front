@@ -3,7 +3,6 @@ import { MapIcon } from '../../../icons'
 import { useSelector } from 'react-redux'
 
 export default function ProviderBody({ profile, canEdit }) {
-    const currrentProfile = useSelector((state) => state.profile?.myProfile)
     const handleEdit = () => {
         window.ProviderBodyEdit.showModal()
     }
