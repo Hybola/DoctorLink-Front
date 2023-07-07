@@ -3,7 +3,7 @@ import { searchJob, allJobPost } from '../slice/home-slice'
 import { FilterIcon, SearchIcon } from '../../../icons'
 import { useState } from 'react'
 
-export default function SearchBar() {
+export default function SearchBar({ setPageAt }) {
     const [input, setInput] = useState({
         searchText: '',
         provinceId: '',
@@ -21,6 +21,7 @@ export default function SearchBar() {
             searchText: input.searchText,
             provinceId: input.provinceId,
         }
+        setPageAt(1)
 
         dispatch(searchJob(payload)).unwrap()
     }

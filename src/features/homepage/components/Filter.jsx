@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filterJob } from '../../homepage/slice/home-slice'
 import { useEffect } from 'react'
 
-export default function Filter({ handdleEdit }) {
+export default function Filter({ handdleEdit, setPageAt }) {
     const allJob = useSelector((state) => state.home?.allJobPost)
 
     const dispatch = useDispatch()
@@ -81,6 +81,7 @@ export default function Filter({ handdleEdit }) {
         })
 
         dispatch(filterJob(result))
+        setPageAt(1)
     }, [input])
 
     return (

@@ -42,11 +42,11 @@ export default function HomePage() {
             )}
             <div className="flex flex-col pt-8 w-full">
                 <div className="pb-10 w-fit self-center">
-                    <SearchBar />
+                    <SearchBar setPageAt={setPageAt} />
                 </div>
 
                 <div>
-                    <Filter handdleEdit={handdleEdit} />
+                    <Filter handdleEdit={handdleEdit} setPageAt={setPageAt} />
                 </div>
             </div>
             <div className="flex gap-8 pt-10 justify-center ">
