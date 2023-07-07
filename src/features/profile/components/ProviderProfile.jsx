@@ -47,9 +47,10 @@ export default function ProviderProfile() {
         } else {
             otherProfile(input)
         }
-        profileService.doctorfollow(providerId).then((rs) => {
-            if (rs.data.length == 1) setFollow(false)
-        })
+        if (myRole == 'doctor')
+            profileService.doctorfollow(providerId).then((rs) => {
+                if (rs.data.length == 1) setFollow(false)
+            })
     }, [])
 
     return (
@@ -61,8 +62,9 @@ export default function ProviderProfile() {
                 handdleFollow={handdleFollow}
                 handdleUnFollow={handdleUnFollow}
             />
-
-            <ProviderBody profile={profile} canEdit={isHost} />
+            {profile?.providerName == undefined ? null : (
+                <ProviderBody profile={profile} canEdit={isHost} />
+            )}
         </div>
     )
 }

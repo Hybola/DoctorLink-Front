@@ -11,8 +11,6 @@ import {
     ChatIcon,
 } from '../icons'
 
-
-
 export default function Navbar() {
     const role = useSelector((state) => state.auth.role)
     return (
@@ -43,7 +41,7 @@ export default function Navbar() {
                             <AddPostIcon />
                         </Link>
 
-                        <Link to="/provider/history/">
+                        <Link to="/provider/history/PartTime">
                             <HistoryIcon />
                         </Link>
                         <Link to="/provider/chat">

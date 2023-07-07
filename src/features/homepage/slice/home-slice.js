@@ -46,15 +46,12 @@ export const getProviderPost = createAsyncThunk(
     'getProviderPost',
     async (input, thunkApi) => {
         try {
-            const provider = await profileService.providerProfile(
-                input.providerId
-            )
             if (input.role != 'doctor') {
                 const post = await postService.getPostByIdForGuest(input.postId)
-                return { job: post.data[0], provider: provider.data }
+                return post.data[0]
             } else {
                 const post = await postService.getPostById(input.postId)
-                return { job: post.data[0], provider: provider.data }
+                return post.data[0]
             }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -62,28 +59,50 @@ export const getProviderPost = createAsyncThunk(
     }
 )
 
-export const savedPost = createAsyncThunk(
-    'savedPost',
+export const setDefaultJobRightPage = createAsyncThunk(
+    'setDefaultJobRightPage',
     async (input, thunkApi) => {
         try {
-            const res = myjobService.savedJob(input.id)
-            console.log(res.data)
-
-            return input.result
+            if (input.role == 'doctor') {
+                const result = await postService.getPostById(input.id)
+                return result.data
+            } else {
+                const result = await postService.getPostByIdForGuest(input.id)
+                return result.data
+            }
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
     }
 )
 
-export const interestedPost = createAsyncThunk(
-    'interedPost',
+export const setJobRightPage = createAsyncThunk(
+    'setJobRightPage',
     async (input, thunkApi) => {
         try {
-            const res = myjobService.interestedJob(input.id)
-            console.log(res.data)
+            return input
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
 
-            return input.result
+export const savedPostHome = createAsyncThunk(
+    'savedPostHome',
+    async (input, thunkApi) => {
+        try {
+            const res = await myjobService.savedJob(input.id)
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const interestedPostHome = createAsyncThunk(
+    'interedPostHome',
+    async (input, thunkApi) => {
+        try {
+            const res = await myjobService.interestedJob(input.id)
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -129,11 +148,20 @@ const homeSlice = createSlice({
             .addCase(getProviderPost.fulfilled, (stage, action) => {
                 stage.post = action.payload
             })
-            .addCase(savedPost.fulfilled, (stage, action) => {
+
+            .addCase(savedPostHome.fulfilled, (stage, action) => {
+                stage.post.jobStatus = 1
+            })
+
+            .addCase(interestedPostHome.fulfilled, (stage, action) => {
+                stage.post.jobStatus = 2
+            })
+
+            .addCase(setJobRightPage.fulfilled, (stage, action) => {
                 stage.post = action.payload
             })
 
-            .addCase(interestedPost.fulfilled, (stage, action) => {
+            .addCase(setDefaultJobRightPage.fulfilled, (stage, action) => {
                 stage.post = action.payload
             }),
 })

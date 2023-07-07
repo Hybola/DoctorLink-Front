@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as profileService from '../../../api/profile-api'
 
-
 const initialState = {
     myProfile: {},
     otherProfile: {},
@@ -74,6 +73,8 @@ export const editProfile = createAsyncThunk(
             if (input.role == 'provider') {
                 const payload = { ...input.payload }
                 delete payload.Province
+                delete payload.coverImage
+                delete payload.profileImage
                 const res = await profileService.editProviderProfile(payload)
                 if (res.data[0] > 0) {
                     return input.payload

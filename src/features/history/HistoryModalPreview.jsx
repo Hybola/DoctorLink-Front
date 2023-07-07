@@ -1,5 +1,79 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { getLists, getJob, getProviderProfile } from './slice/history-slice'
+import { useEffect } from 'react'
+import Work from '../addpost/Work'
+import { dateTimeTH } from '../../utils/dateTime'
+import {
+    MapIcon,
+    BagIcon,
+    DescriptionIcon,
+    StartDateIcon,
+    SalaryIcon,
+    Phone,
+    LineLIcon,
+    WorkingDate,
+    WageIcon,
+} from '../../icons'
+
 export default function HistoryModalPreview() {
-    const detail = {}
+    const dispatch = useDispatch()
+    const user = useSelector((state) => state.auth.user)
+    const myPro = useSelector((state) => state.history.myProfile)
+    const jobSelected = useSelector((state) => state.history.getJobResult)
+    const convertDate = (inputDate, jobType) => {
+        if (jobType == 'FullTime') {
+            const day = inputDate.split('T')[0]
+
+            return day.split('-').reverse().join('/')
+        } else {
+            const day = inputDate.split('T')[0]
+            const arrTime = inputDate.split('T')[1].split(':')
+            return (
+                day.split('-').reverse().join('/') +
+                ' ' +
+                arrTime[0] +
+                ':' +
+                arrTime[1]
+            )
+        }
+    }
+    // console.log('getJobResult', jobSelected)
+    const p = jobSelected[0]?.jobType
+    useEffect(() => {
+        dispatch(getProviderProfile({ id: user.id })).unwrap()
+    }, [])
+
+    const newObject = {
+        ...jobSelected,
+    }
+
+    let myObj = {
+        ...newObject[0],
+        jobDes:
+            newObject[0]?.FullTime?.jobDes || newObject[0]?.PartTime?.jobDes,
+    }
+    myObj = {
+        ...myObj,
+        startDate:
+            Date.now(myObj?.FullTime?.startDate) ||
+            Date.now(myObj?.PartTime?.startDate),
+    }
+    myObj = {
+        ...myObj,
+        endDate: Date.now(myObj?.PartTime?.startDate),
+    }
+
+    myObj =
+        p == 'FullTime'
+            ? { ...myObj, salary: myObj?.FullTime?.salary }
+            : { ...myObj, wage: myObj?.PartTime?.wage }
+
+    myObj =
+        p == 'FullTime'
+            ? { ...myObj, other: myObj?.FullTime?.other }
+            : { ...myObj, other: myObj?.PartTime?.other }
+
+    console.log(myObj)
 
     return (
         <>
@@ -11,32 +85,8 @@ export default function HistoryModalPreview() {
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-4">
                         ✕
                     </button>
-                    <div>
-                        <div className="bg-success h-20 "></div>
-                        <div className="flex">
-                            <div className="h-28 w-28 bg-cyan-300 mt-[-50px] ml-4 rounded-full"></div>
-                            <div className="ml-4 mt-2">22/4/2023</div>
-                        </div>
-                        <div className="flex gap-8 mt-2">
-                            <div>โรงพยาบาลพญาไท</div>
-                            <div>กรุงเทพมหานคร</div>
-                        </div>
-                        <hr className="mt-2 border-black"></hr>
-                        <div className="flex flex-col gap-3 mt-2">
-                            <div>Job Title : {detail.title}</div>
-                            <div>Location : {detail.location}</div>
-                            <div>Phone : {detail.phone}</div>
-                            <div>Line ID : {detail.line}</div>
-                            <div>Job Type : {detail.jobType}</div>
-                            <div>Job Description : {detail.jobDes}</div>
-                            <div>Working Day : {detail.workingDay}</div>
-                            <div>Start Date : {detail.startDate}</div>
-                            <div>Salary : {detail.salary}</div>
-                            <div>Annual holiday : {detail.annual}</div>
-                            <div>Benefit : {detail.benefit}</div>
-                            <div>Other : {detail.other}</div>
-                        </div>
-                    </div>
+                    <Work post={myObj} p={myObj?.jobType} />
+
                     <div className="modal-action mr-4">
                         <button
                             className="btn w-[120px] text-base"

@@ -1,23 +1,23 @@
-import ProviderJobPostHeader from './ProviderJobPostHeader'
+// import ProviderJobPostHeader from './ProviderJobPostHeader'
 import ProviderJobPostBody from './ProviderJobPostBody'
-import * as postService from '../../../api/post-api'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import {
+    getPostByProviderId,
+    getPostById,
+} from '../slice/providerjobpost-slice'
 
 export default function ProviderJobPostPage() {
-    const [jobPost, setJobPost] = useState([])
     const { providerId, postId } = useParams()
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (postId == 0) {
-            postService.getPostByProviderId(providerId).then((rs) => {
-                setJobPost(rs.data)
-            })
+            dispatch(getPostByProviderId(providerId)).unwrap()
         } else {
-            postService.getPostById(postId).then((rs) => {
-                setJobPost(rs.data)
-            })
+            dispatch(getPostById(postId)).unwrap()
         }
     }, [])
 
@@ -30,10 +30,7 @@ export default function ProviderJobPostPage() {
                         <hr />
                     </>
                 ) : null} */}
-                <ProviderJobPostBody
-                    jobPost={jobPost}
-                    setJobPost={setJobPost}
-                />
+                <ProviderJobPostBody />
             </div>
         </>
     )

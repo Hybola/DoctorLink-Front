@@ -8,6 +8,10 @@ export default function RowMenu({ follower, title, objPost }) {
 
     const objPostSelected = useSelector((state) => state.history.objSelected)
 
+    const handlePreviewJob = async (e) => {
+        await dispatch(getJob({ id: objPost?.id })).unwrap()
+        window.PreviewJob.showModal()
+    }
     const handleBinJob = async (e) => {
         await dispatch(getJob({ id: objPost?.id })).unwrap()
         window.BinJob.showModal()
@@ -26,10 +30,7 @@ export default function RowMenu({ follower, title, objPost }) {
 
     return (
         <>
-            <div
-                className="cursor-pointer"
-                onClick={() => window.PreviewJob.showModal()}
-            >
+            <div className="cursor-pointer" onClick={handlePreviewJob}>
                 <PreviewJob
                     height="1.5rem"
                     width="1.5rem"

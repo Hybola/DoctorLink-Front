@@ -1,7 +1,4 @@
-import {
-    allJobPost,
-    getProviderPost,
-} from '../features/homepage/slice/home-slice'
+import { allJobPost } from '../features/homepage/slice/home-slice'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -12,13 +9,7 @@ import Filter from '../features/homepage/components/Filter'
 
 export default function HomePage() {
     const isAuthenticate = useSelector((state) => state.auth?.isAuthenticated)
-    const myRole = useSelector((state) => state.auth?.role)
     const filterJobList = useSelector((state) => state.home?.filterJob)
-    const [jobPost, setJobPost] = useState({
-        postId: 1,
-        providerId: 1,
-        role: myRole,
-    })
 
     const [pageAt, setPageAt] = useState(1)
 
@@ -34,13 +25,6 @@ export default function HomePage() {
         }
         getAllJobPost()
     }, [])
-
-    useEffect(() => {
-        const providerPost = async (input) => {
-            await dispatch(getProviderPost(input)).unwrap()
-        }
-        providerPost(jobPost)
-    }, [jobPost])
 
     return (
         <div className="bg-[#F5FBFC]">
@@ -58,11 +42,11 @@ export default function HomePage() {
             )}
             <div className="flex flex-col pt-8 w-full">
                 <div className="pb-10 w-fit self-center">
-                    <SearchBar />
+                    <SearchBar setPageAt={setPageAt} />
                 </div>
 
                 <div>
-                    <Filter handdleEdit={handdleEdit} />
+                    <Filter handdleEdit={handdleEdit} setPageAt={setPageAt} />
                 </div>
             </div>
             <div className="flex gap-8 pt-10 justify-center ">
@@ -70,7 +54,6 @@ export default function HomePage() {
                     joblist={filterJobList}
                     pageAt={pageAt}
                     setPageAt={setPageAt}
-                    setJobPost={setJobPost}
                 />
                 <PageRight />
             </div>
