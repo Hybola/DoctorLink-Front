@@ -5,6 +5,7 @@ import HistoryRowMenu from './HistoryRowMenu'
 import HistoryModals from './HistoryModals'
 import HistoryStage from './HistoryStage'
 import { getLists, getJob } from './slice/history-slice'
+import { useParams } from 'react-router-dom'
 
 import { all } from 'axios'
 import { array } from 'joi'
@@ -16,6 +17,7 @@ export default function HistoryForm() {
     const allLists = useSelector((state) => state.history?.allLists)
     const user = useSelector((state) => state.auth?.user)
     const input = { id: user?.id }
+    const { jobType } = useParams()
 
     const [follower, setFollower] = useState(0)
     const dispatch = useDispatch()
@@ -42,7 +44,7 @@ export default function HistoryForm() {
     const [showHistory, setShowHistory] = useState([])
     const [classTextFullTime, setClassTextFullTime] = useState('')
     const [classTextPartTime, setClassTextPartTime] = useState('')
-    const [actionPage, setActionPage] = useState('PartTime')
+    const [actionPage, setActionPage] = useState(jobType)
     const [sortBy, setSortBy] = useState('create_at')
 
     const changeDateFormat = (date, joinBy) => {

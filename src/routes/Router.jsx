@@ -113,7 +113,7 @@ const router = createBrowserRouter([
                                 element: <Addpost />,
                             },
                             {
-                                path: '/provider/history/:jobtype',
+                                path: '/provider/history/:jobType',
                                 element: <History />,
                             },
                             {

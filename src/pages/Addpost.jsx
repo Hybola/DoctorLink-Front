@@ -54,7 +54,7 @@ export default function Addpost() {
         try {
             await axios.post('/post/createpost', payload)
             toast.success('CreatePost Success')
-            navigate('/provider/history/')
+            navigate(`/provider/history/${page}`)
         } catch (error) {
             console.log(error)
         }
