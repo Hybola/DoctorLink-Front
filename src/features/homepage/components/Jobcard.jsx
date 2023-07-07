@@ -1,16 +1,25 @@
 import { dateTimeTH } from '../../../utils/dateTime'
+import { useDispatch, useSelector } from 'react-redux'
+import { setJobRightPage } from '../slice/home-slice'
+import * as postService from '../../../api/post-api'
+export default function Jobcard({ jobpost }) {
+    const role = useSelector((state) => state.auth?.role)
+    const dispatch = useDispatch()
 
-export default function Jobcard({ jobpost, setJobPost }) {
     return (
         <div
             className="h-[250px] w-[350px] rounded-lg border border-primary shadow-lg cursor-pointer"
-            id={jobpost.id + '/' + jobpost.providerId}
-            onClick={(e) => {
-                const arr = e.target.id.split('/')
-                setJobPost({
-                    postId: arr[0],
-                    providerId: arr[1],
-                })
+            id={jobpost.id}
+            onClick={async (e) => {
+                if (role == 'doctor') {
+                    const result = await postService.getPostById(e.target.id)
+                    dispatch(setJobRightPage(result.data)).unwrap()
+                } else {
+                    const result = await postService.getPostByIdForGuest(
+                        e.target.id
+                    )
+                    dispatch(setJobRightPage(result.data)).unwrap()
+                }
             }}
         >
              
@@ -38,7 +47,7 @@ export default function Jobcard({ jobpost, setJobPost }) {
                 >
                     <p>{jobpost?.jobType}</p>
                     <div
-                        id={jobpost.id + '/' + jobpost.providerId}
+                        id={jobpost.id}
                         className=" absolute top-0 bottom-0 left-0 right-0"
                     ></div>
                 </div>

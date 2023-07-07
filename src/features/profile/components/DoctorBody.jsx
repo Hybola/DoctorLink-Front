@@ -3,17 +3,16 @@ import { useState } from 'react'
 import { PenIcon } from '../../../icons'
 
 export default function DoctorBody({ profile, canEdit }) {
-    const [editMode, setEditMode] = useState(false)
-
     const handleBodyEdit = () => {
-        setEditMode(true)
         window.DoctorBodyEdit.showModal()
     }
 
     return (
         <div className="flex flex-col p-[20px] mx-[16px] gap-4">
             <div className="w-full h-[30px] flex gap-4">
-                <div className="font-bold text-2xl">{profile?.profileName}</div>
+                <div className="font-bold text-2xl">
+                    {profile?.profileName || 'Edit your Profile Name'}
+                </div>
                 {canEdit ? (
                     <div className=" mr-[20px]">
                         <button
@@ -23,7 +22,7 @@ export default function DoctorBody({ profile, canEdit }) {
                             <PenIcon />
                         </button>
 
-                      <DoctorBodyEdit /> 
+                        <DoctorBodyEdit />
                     </div>
                 ) : null}
             </div>

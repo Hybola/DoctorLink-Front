@@ -1,11 +1,15 @@
-import ProviderJobCard from '../../providerjobpost/components/ProviderJobCard'
+import ProviderJobCard from './ProviderJobCard'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { savedPost, interestedPost } from '../slice/home-slice'
+import {
+    setDefaultJobRightPage,
+    savedPostHome,
+    interestedPostHome,
+} from '../slice/home-slice'
 
 export default function JopPost() {
-    const jobPost = useSelector((state) => state.home?.post?.job)
-    const profileProvider = useSelector((state) => state.home?.post?.provider)
+    const jobPost = useSelector((state) => state.home?.post[0])
+    const filterJob = useSelector((state) => state.home?.filterJob[0])
     const dispatch = useDispatch()
 
     const naviagte = useNavigate()
@@ -18,14 +22,18 @@ export default function JopPost() {
         jobPost?.providerProfileImage || defaultProfileImage
 
     const handdleSaveJob = (e) => {
-        const cloneJob = { ...jobPost, jobStatus: 1 }
-        const payload = { job: cloneJob, provider: profileProvider }
-        dispatch(savedPost({ result: payload, id: e.target.id }))
+        dispatch(
+            savedPostHome({
+                id: e.target.id,
+            })
+        ).unwrap()
     }
-    const handleinterestJob = (e) => {
-        const cloneJob = { ...jobPost, jobStatus: 2 }
-        const payload = { job: cloneJob, provider: profileProvider }
-        dispatch(interestedPost({ result: payload, id: e.target.id }))
+    const handdleinterestJob = (e) => {
+        dispatch(
+            interestedPostHome({
+                id: e.target.id,
+            })
+        )
     }
 
     return (
@@ -46,26 +54,17 @@ export default function JopPost() {
                             className="w-[150px] h-[150px] object-cover border-4 border-white cursor-pointer"
                             onClick={() =>
                                 naviagte(
-                                    `/doctor/provider/${profileProvider?.id}/post/0`
+                                    `/doctor/provider/${jobPost?.providerId}/post/0`
                                 )
                             }
                         />
                     </div>
                 </div>
-                <div className="w-full flex flex-col gap-2 text-success">
-                    <div className="w-[200px] h-[10px] ml-[200px] mt-[80px] flex justify-start gap-2">
-                        <div className="flex justify-start gap-1">
-                            <div>{profileProvider?.follower}</div>
-                            <div>follower</div>
-                        </div>
-                    </div>
-                </div>
-
                 <div
-                    className=" text-2xl font-bold mt-8 ml-4 cursor-pointer"
+                    className=" text-2xl font-bold mt-[120px] ml-4 cursor-pointer"
                     onClick={() =>
                         naviagte(
-                            `/doctor/provider/${profileProvider?.id}/post/0`
+                            `/doctor/provider/${jobPost?.providerId}/post/0`
                         )
                     }
                 >
@@ -76,7 +75,7 @@ export default function JopPost() {
             <hr />
             <ProviderJobCard
                 post={jobPost}
-                handleClick1={handleinterestJob}
+                handleClick1={handdleinterestJob}
                 handleClick2={handdleSaveJob}
             />
         </div>

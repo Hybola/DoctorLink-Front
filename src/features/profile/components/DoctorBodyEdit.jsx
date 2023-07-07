@@ -6,8 +6,10 @@ import InputBar from './InputBar'
 
 export default function DoctorBodyEdit() {
     const myRole = useSelector((state) => state.auth?.role)
-    const currrentProfile = useSelector((state) => state.profile?.myProfile)
-    const [profile, setProfile] = useState({ ...currrentProfile })
+    const { profileName, description } = useSelector(
+        (state) => state.profile?.myProfile
+    )
+    const [profile, setProfile] = useState({ profileName, description })
 
     const dispatch = useDispatch()
 
@@ -19,7 +21,7 @@ export default function DoctorBodyEdit() {
         const input = { role: myRole, payload: profile }
         dispatch(editProfile(input)).unwrap()
     }
-
+    console.log(profile)
     return (
         <dialog id="DoctorBodyEdit" className="modal">
             <form method="dialog" className="modal-box bg-base-100">

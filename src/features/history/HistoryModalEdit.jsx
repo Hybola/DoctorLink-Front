@@ -37,6 +37,9 @@ export default function HistoryModalEdit() {
 
     const convertDate = (date) => {
         try {
+            if (!date) {
+                return ''
+            }
             const day = date.split('T')[0]
             const time = date.split('T')[1].split('.')[0]
             return `${day} ${time}`

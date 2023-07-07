@@ -62,8 +62,6 @@ export const editProfile = createAsyncThunk(
     async (input, thunkApi) => {
         try {
             if (input.role == 'doctor') {
-                delete payload.coverImage
-                delete payload.profileImage
                 const res = await profileService.editDoctorProfile(
                     input.payload
                 )
