@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import * as authService from '../../../api/auth-api'
 import { removeToken, setToken } from '../../../utils/localStorage'
+import jwt_decode from 'jwt-decode'
 
 const initialState = {
     isAuthenticated: false,
@@ -10,6 +11,8 @@ const initialState = {
     user: null,
     initialLoading: false,
     role: '',
+    profileImage: '',
+    name: '',
 }
 
 // Doctor
@@ -34,19 +37,75 @@ export const docLogin = createAsyncThunk(
             const res = await authService.doctorLogin(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
-            return resFetchMe.data.user
+            const test = { ...resFetchMe.data, role: 'doctor' }
+            return test
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
     }
 )
 
+// GoogleLogin
+export const doctorLoginGoogle = createAsyncThunk(
+    'auth/doctor/googlelogin',
+    async (input, thunkApi) => {
+        try {
+            const payload = {
+                email: input.email,
+                firstName: input.given_name,
+                lastName: input.family_name,
+                ProfileName: input.picture,
+                password: input.sub,
+            }
+            const res = await authService.doctorLoginGoogle(payload)
+            setToken(res.data.accessToken)
+
+            const decoded = jwt_decode(res.data.accessToken)
+            if (decoded.role == 'doctor') {
+                const resFetchMe = await authService.doctorFetchMe()
+                const test = { ...resFetchMe.data, role: 'doctor' }
+                return test
+            }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+export const providerLoginGoogle = createAsyncThunk(
+    'auth/provider/googlelogin',
+    async (input, thunkApi) => {
+        try {
+            const payload = {
+                email: input.email,
+                profileImage: input.picture,
+                password: input.sub,
+            }
+
+            const res = await authService.providerLoginGoogle(payload)
+            // console.log(res)
+            setToken(res.data.accessToken)
+
+            const decoded = jwt_decode(res.data.accessToken)
+            if (decoded.role == 'provider') {
+                const resFetchMe = await authService.providerFetchMe()
+                const test = { ...resFetchMe.data, role: 'provider' }
+                // console.log('test provGGLogin----->',test)
+                return test
+            }
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.response.data.message)
+        }
+    }
+)
+
+// FetchMe
 export const docFetchMe = createAsyncThunk(
     'auth/docfetchMe',
     async (_, thunkApi) => {
         try {
             const res = await authService.doctorFetchMe()
-            return res.data.user
+            return res.data
         } catch (err) {
             console.log('err----->', err)
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -58,7 +117,7 @@ export const provFetchMe = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const res = await authService.providerFetchMe()
-            return res.data.user
+            return res.data
         } catch (err) {
             console.log('err----->', err)
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -69,7 +128,7 @@ export const provFetchMe = createAsyncThunk(
 // Logout
 export const logout = createAsyncThunk('auth/logout', async () => {
     removeToken()
-    toast.success('Logged out successfull!')
+    toast.success('Log out successfull!')
 })
 
 //Provider
@@ -94,7 +153,11 @@ export const provLogin = createAsyncThunk(
             const res = await authService.providerLogin(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.providerFetchMe()
-            return resFetchMe.data.user
+            const test = { ...resFetchMe.data, role: 'provider' }
+            // console.log('test provLogin----->',test)
+            return test
+
+            // return resFetchMe.data.user
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -174,11 +237,22 @@ const authSlice = createSlice({
                 state.loading = false
                 state.role = 'provider'
             })
-
             .addCase(provLogin.fulfilled, (state, action) => {
                 state.isAuthenticated = true
                 state.user = action.payload
                 state.role = 'provider'
+            })
+
+            .addCase(providerLoginGoogle.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.user = action.payload
+                state.role = action.payload.role
+            })
+
+            .addCase(doctorLoginGoogle.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.user = action.payload
+                state.role = action.payload.role
             }),
 })
 export default authSlice.reducer

@@ -1,74 +1,76 @@
-import React from "react";
+import { useDispatch } from 'react-redux'
+import { searchJob, allJobPost } from '../slice/home-slice'
+import { FilterIcon, SearchIcon } from '../../../icons'
+import { useState } from 'react'
 
-export default function SearchBar({ input, setInput }) {
-  const hdlChangeInput = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-  const handleSearch = (e) => {
-    console.log(input);
-  };
-  return (
-    <div className=" ">
-      {/* inputrow1#แถวการค้นหา */}
-      <div className="flex pl-10 py-10 gap-7 border shadow-lg  bg-secondary">
-        <div className="flex justify-center">
-          <input
-            className="bg-base-100 rounded-lg text-xl p-2 h-[50px] w-[320px] text-center border border-primary shadow-lg "
-            placeholder="Find a Job"
-            name="searchText"
-            value={input.searchText}
-            onChange={hdlChangeInput}
-          />
-        </div>
+export default function SearchBar({ setPageAt }) {
+    const [input, setInput] = useState({
+        searchText: '',
+        provinceId: '',
+    })
+    const dispatch = useDispatch()
+    const handdleChangeInput = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+    const handdleSearch = (e) => {
+        if (input.searchText.trim() == '' && input.provinceId == '') {
+            dispatch(allJobPost()).unwrap()
+            return
+        }
+        const payload = {
+            searchText: input.searchText,
+            provinceId: input.provinceId,
+        }
+        setPageAt(1)
 
-        <div>
-          <input
-            className="bg-base-100 rounded-lg text-xl p-2 h-[50px] w-[200px] text-center border border-primary shadow-lg"
-            placeholder="Location"
-            name="location"
-            value={input.location}
-            onChange={hdlChangeInput}
-          />
-        </div>
-        {/* radio */}
-        <div className="flex w-[300px] justify-between items-center min-w-[300px]">
-          <div
-            className="form-control "
-            onClick={(e) => {
-              const isParttime = input.isParttime;
-              setInput({ ...input, isParttime: !isParttime });
-            }}
-          >
-            <label className="label cursor-pointer gap-2">
-              <span className="label-text">Part-Time</span>
+        dispatch(searchJob(payload)).unwrap()
+    }
 
-              <input
-                type="radio"
-                name="radio-4"
-                className="radio radio-primary"
-                checked={input.isParttime}
-              />
-              <input
-                type="radio"
-                name="radio-4"
-                className="radio radio-primary"
-                checked={!input.isParttime}
-              />
+    return (
+        <div className="flex justify-center text-success bg-white">
+            {/* inputrow1#แถวการค้นหา */}
+            <div className=" flex justify-center items-center w-fit gap-6 shadow-lg p-5 rounded-xl">
+                <div className="flex justify-center items-center">
+                    <input
+                        className="text-md pl-4 h-[50px] w-[260px] rounded-lg border border-primary"
+                        placeholder="Keyword"
+                        name="searchText"
+                        value={input.searchText}
+                        onChange={handdleChangeInput}
+                    />
+                </div>
+                <div>
+                    <select
+                        name="provinceId"
+                        id="provinceId"
+                        onChange={handdleChangeInput}
+                        value={input.provinceId}
+                        className="text-md pl-2 h-[50px] w-[160px] rounded-lg border border-primary"
+                    >
+                        <option value="1">Select Location</option>
+                        <option value="2">Bangkok</option>
+                        <option value="3">Pathumtani</option>
+                        <option value="4">Chiangmai</option>
+                        <option value="5">Chonburi</option>
+                        <option value="6">Phuket</option>
+                        <option value="7">Rayong</option>
+                        <option value="8">Khonkaen</option>
+                        <option value="9">Chachoengsao</option>
+                        <option value="10">Samutsakhon</option>
+                        <option value="11">Ayutthaya</option>
+                        <option value="12">Nonthaburi</option>
+                    </select>
+                </div>
 
-              <span className="label-text">Full-Time</span>
-            </label>
-          </div>
+                <div className="flex justify-end w-[160px] items-center ">
+                    <button
+                        onClick={handdleSearch}
+                        className="flex transition ease-out duration-500 justify-center items-center gap-1 bg-success hover:bg-primary text-base-100 text-md py-1 px-4 rounded-lg w-[130px] h-[50px]"
+                    >
+                        <SearchIcon /> Search
+                    </button>
+                </div>
+            </div>
         </div>
-        {/* จบก้อน swap */}
-        <div className="flex justify-end w-[300px]">
-          <button
-            onClick={handleSearch}
-            class="bg-primary hover:bg-success text-base-100 text-xl py-2 px-4  border-neutral rounded-lg shadow-lg w-[150px]"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    )
 }

@@ -6,12 +6,18 @@ import RegisterProviderPage from '../pages/RegisterProviderPage'
 import LoginProviderPage from '../pages/LoginProviderPage'
 import LoginDoctorPage from '../pages/LoginDoctorPage'
 import HomePage from '../pages/HomePage'
+import FollowedPage from '../pages/FollowedPage'
+import MyJobPage from '../pages/MyJobPage'
 import { Outlet } from 'react-router-dom'
-import Profile from '../pages/ProfilePage'
+import DoctorProfile from '../pages/DoctorProfilePage'
+import ProviderProfile from '../pages/ProviderProfilePage'
 import RedirectProvider from '../features/auth/components/RedirectProvider'
 import RedirectDoctor from '../features/auth/components/RedirectDoctor'
 import Addpost from '../pages/Addpost'
 import History from '../pages/HistoryPage'
+
+import JobPost from '../pages/JobPostPage'
+import ProviderChat from '../features/chat/providerChat'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -50,8 +56,20 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/doctor/profile/',
-                                element: <Profile />,
+                                path: '/doctor/:doctorId/profile/',
+                                element: <DoctorProfile />,
+                            },
+                            {
+                                path: '/doctor/followed/',
+                                element: <FollowedPage />,
+                            },
+                            {
+                                path: '/doctor/myjob/',
+                                element: <MyJobPage />,
+                            },
+                            {
+                                path: '/doctor/provider/:providerId/post/:postId',
+                                element: <JobPost />,
                             },
                         ],
                     },
@@ -87,16 +105,20 @@ const router = createBrowserRouter([
                         ),
                         children: [
                             {
-                                path: '/provider/profile/',
-                                element: <Profile />,
+                                path: '/provider/:providerId/profile/',
+                                element: <ProviderProfile />,
                             },
                             {
                                 path: '/provider/addpost/',
                                 element: <Addpost />,
                             },
                             {
-                                path: '/provider/history/',
+                                path: '/provider/history/:jobType',
                                 element: <History />,
+                            },
+                            {
+                                path: '/provider/chat/',
+                                element: <ProviderChat />,
                             },
                         ],
                     },
