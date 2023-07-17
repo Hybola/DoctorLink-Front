@@ -9,7 +9,7 @@ const initialState = {
     allJobPost: [],
     filterJob: [],
     loading: false,
-    post: { job: {}, provider: {} },
+    post: [],
 }
 
 export const allJobPost = createAsyncThunk(
@@ -146,11 +146,11 @@ const homeSlice = createSlice({
             })
 
             .addCase(savedPostHome.fulfilled, (stage, action) => {
-                stage.post.jobStatus = 1
+                stage.post[0].jobStatus = 1
             })
 
             .addCase(interestedPostHome.fulfilled, (stage, action) => {
-                stage.post.jobStatus = 2
+                stage.post[0].jobStatus = 2
             })
 
             .addCase(setJobRightPage.fulfilled, (stage, action) => {
