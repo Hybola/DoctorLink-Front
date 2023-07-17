@@ -26,11 +26,14 @@ export default function ProviderChat() {
             socket.emit('providerJoinRoom', data.newRoom)
             toast.info(`incomming message`)
 
-            // setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
-            dispatch(setChatLists({ ...chatLists, [data.newRoom]: [] }))
-            // if ()
-            //setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
-            dispatch(setDoctorList([...doctorList, data.doctor]))
+            // if a doctor doesn't exit in doctor list, then add the doctor to the state
+            const isExistingChat = (element) => element.id === data.doctor.id
+            if (!doctorList.some(isExistingChat)) {
+                // setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
+                dispatch(setChatLists({ ...chatLists, [data.newRoom]: [] }))
+                //setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
+                dispatch(setDoctorList([...doctorList, data.doctor]))
+            }
             // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
             setCurrentDoctor(data.doctor)
         })
@@ -47,7 +50,6 @@ export default function ProviderChat() {
                 clonePrev[data.room].push(data.conversation)
                 dispatch(setChatLists(clonePrev))
             }
-
             /// ***** อะไรที่อยากจะทำ หลังจาก render ui ได้แล้ว ให้เอาไปใส่ใน useEffct ### *****
             // setAllMsg([...allMsg, data.conversation])  // code บรรทัด นี้ทำงานผิดเพี๊ยน เพราะอยุ่ใน useEffect
             //ตามหลักการเรื่อง closure แล้ว การ set state ใหม่ภายใน useEffect นั้น ค่าเริ่มต้นของ allMsg จะอ้างอิงมาจากค่าที่เคยเก็บไว้ก่อนรัน useEffect
@@ -66,40 +68,33 @@ export default function ProviderChat() {
 
     const handleSendMessage = (e) => {
         e.preventDefault()
-        console.log('providerSendMessage >> chatLists >>>>', chatLists)
-
         if (!input.trim()) return setInput('')
-
         const conversation = {
             message: input,
             to: 'doctor',
             from: 'provider',
         }
         const room = `${currentDoctor.id}:${providerId}`
-
         socket.emit('providerSendMessage', {
             conversation,
             room,
         }) //อยู่ใน send box
 
-        ////==== below code by useState 
+        ////==== below code by useState
         // setChatLists((prev) => {
         //     prev[room].push(conversation)
         //     return prev
         // })
-        ////==== above code by useState 
+        ////==== above code by useState
 
         const clonePrev = structuredClone(chatLists)
         clonePrev[room].push(conversation)
         dispatch(setChatLists(clonePrev))
-
-        // setAllMsg([...allMsg, conversation])
         setInput('')
     }
     const handleSelectChat = (id) => {
         const index = doctorList.findIndex((el) => el.id == id)
         setCurrentDoctor(doctorList[index])
-        // setAllMsg([...[chatLists[`${id}:${providerId}`]]])
     }
     return (
         <>
