@@ -29,7 +29,7 @@ export default function HomePage() {
     return (
         <div className="bg-[#F5FBFC]">
             {isAuthenticate ? null : (
-                <div className="flex flex-col justify-center items-center p-10">
+                <div className="flex flex-col justify-center items-center p-10 pb-0">
                     <h1 className="font-semibold text-4xl text-success">
                         Find The
                         <span className="text-primary"> Right Job</span>
@@ -41,7 +41,7 @@ export default function HomePage() {
                 </div>
             )}
             <div className="flex flex-col  w-full">
-                <div className="pb-10 w-fit self-center">
+                <div className="pb-10 w-fit pt-10 self-center">
                     <SearchBar setPageAt={setPageAt} />
                 </div>
 
