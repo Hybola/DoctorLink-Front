@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom';
+
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
 import { toast } from 'react-toastify'
@@ -10,6 +12,8 @@ import { setChatLists, setDoctorList } from './slice/chat-slice'
 
 export default function ProviderChat() {
     const ref = useRef()
+    let location = useLocation();
+    console.log("location.state >>>",location.state)
     const providerId = useSelector((state) => state.auth.user.id)
     // const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
     const chatLists = useSelector((state) => state.chat.chatLists)
