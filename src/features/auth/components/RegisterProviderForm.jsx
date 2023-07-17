@@ -64,9 +64,11 @@ export default function RegisterProviderForm() {
                     <LoginInput
                         placeholder="Password (6 or more characters)"
                         name="password"
+                        type="password"
                         value={input.password}
                         onChange={handleChangeInput}
                         isInvalid={error.password}
+                        type="password"
                     />
                     <InputErrorMessage message={error.password} />
                 </div>
@@ -74,10 +76,13 @@ export default function RegisterProviderForm() {
                     <p>Confirm password</p>
                     <LoginInput
                         placeholder="Confirm password"
+                        type="password"
                         name="confirmPassword"
                         value={input.confirmPassword}
                         onChange={handleChangeInput}
                         isInvalid={error.confirmPassword}
+                        type="password"
+
                     />
                     <InputErrorMessage message={error.confirmPassword} />
                 </div>
