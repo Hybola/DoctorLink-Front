@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
@@ -12,17 +12,31 @@ import { setChatLists, setDoctorList } from './slice/chat-slice'
 
 export default function ProviderChat() {
     const ref = useRef()
-    let location = useLocation();
-    console.log("location.state >>>",location.state)
+
     const providerId = useSelector((state) => state.auth.user.id)
+    const provider = useSelector((state) => state.auth.user)
+
     // const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
     const chatLists = useSelector((state) => state.chat.chatLists)
     //const [doctorList, setDoctorList] = useState([]) //เก็บ profile ของ doctor ทุกคน
     const doctorList = useSelector((state) => state.chat.doctorList)
 
     const dispatch = useDispatch()
+    let location = useLocation()
+    console.log('location.state >>>', location.state) //{id: name: profileImage:}
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({}) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
+    ////==== below coding isn't done
+
+    useEffect(() => {
+        socket.emit('providerStartChat', {
+            doctorId: location.state.id,
+            provider,
+        })
+        socket.on('')
+        setCurrentDoctor()
+    })
+    ///===== above code isn't done
 
     useEffect(() => {
         socket.on('acceptChat', (data) => {
@@ -41,6 +55,7 @@ export default function ProviderChat() {
             // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
             setCurrentDoctor(data.doctor)
         })
+
         socket.on('providerGetMessage', (data) => {
             // if (Object.keys(chatLists)?.length !== 0) {
             //     setChatLists((prev) => {
@@ -229,6 +244,7 @@ export default function ProviderChat() {
                                         </button>
                                         <input
                                             type="text"
+                                            autocomplete="off"
                                             className="block mx-4 p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Your message..."
                                             name="message"
