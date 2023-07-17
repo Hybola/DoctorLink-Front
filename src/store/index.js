@@ -6,6 +6,7 @@ import followedReducer from '../features/followed/slice/followed-slice'
 import myjobReducer from '../features/myjob/slice/myjob-slice'
 import historyReducer from '../features/history/slice/history-slice'
 import providerjobpostReducer from '../features/providerjobpost/slice/providerjobpost-slice'
+import chatReducer from '../features/chat/slice/chat-slice'
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         home: homeReducer,
         history: historyReducer,
         providerjobpost: providerjobpostReducer,
+        chat: chatReducer,
     },
 })
 export default store
