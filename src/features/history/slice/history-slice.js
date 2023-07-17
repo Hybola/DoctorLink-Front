@@ -214,7 +214,7 @@ const historySlice = createSlice({
                 state.allLists = action.payload
             })
             .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
-                confirmCloseJobByNoDoctor.allLists = action.payload
+                state.allLists = action.payload
             })
             .addCase(getProviderProfile.fulfilled, (state, action) => {
                 state.myProfile = action.payload
