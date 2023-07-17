@@ -23,7 +23,7 @@ export const docRegister = createAsyncThunk(
             const res = await authService.doctorRegister(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.doctorFetchMe()
-            return resFetchMe.data.user
+            return resFetchMe.data
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
@@ -139,7 +139,7 @@ export const provRegister = createAsyncThunk(
             const res = await authService.providerRegister(input)
             setToken(res.data.accessToken)
             const resFetchMe = await authService.providerFetchMe()
-            return resFetchMe.data.user
+            return resFetchMe.data
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
         }
