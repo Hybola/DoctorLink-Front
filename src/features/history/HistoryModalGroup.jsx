@@ -189,10 +189,16 @@ export default function HistoryModalGroup() {
                                                                         '/provider/chat',
                                                                         {
                                                                             state: {
-                                                                                id: 10,
-                                                                                name: 'Chee',
+                                                                                id: item
+                                                                                    .Doctor
+                                                                                    ?.id,
+                                                                                name: item
+                                                                                    .Doctor
+                                                                                    ?.firstName,
                                                                                 profileImage:
-                                                                                    '',
+                                                                                    item
+                                                                                        .Doctor
+                                                                                        ?.profileImage,
                                                                             },
                                                                         }
                                                                     )
