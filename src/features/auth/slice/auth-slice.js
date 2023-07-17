@@ -54,7 +54,8 @@ export const doctorLoginGoogle = createAsyncThunk(
                 email: input.email,
                 firstName: input.given_name,
                 lastName: input.family_name,
-                ProfileName: input.picture,
+                profileImage: input.picture,
+                profileName: input.given_name,
                 password: input.sub,
             }
             const res = await authService.doctorLoginGoogle(payload)
@@ -80,6 +81,7 @@ export const providerLoginGoogle = createAsyncThunk(
                 email: input.email,
                 profileImage: input.picture,
                 password: input.sub,
+                providerName: input.given_name,
             }
 
             const res = await authService.providerLoginGoogle(payload)
