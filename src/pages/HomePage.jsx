@@ -40,7 +40,7 @@ export default function HomePage() {
                     </p>
                 </div>
             )}
-            <div className="flex flex-col pt-0 w-full">
+            <div className="flex flex-col  w-full">
                 <div className="pb-10 w-fit self-center">
                     <SearchBar setPageAt={setPageAt} />
                 </div>
