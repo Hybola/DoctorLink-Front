@@ -67,6 +67,7 @@ export default function RegisterProviderForm() {
                         value={input.password}
                         onChange={handleChangeInput}
                         isInvalid={error.password}
+                        type="password"
                     />
                     <InputErrorMessage message={error.password} />
                 </div>
@@ -78,6 +79,8 @@ export default function RegisterProviderForm() {
                         value={input.confirmPassword}
                         onChange={handleChangeInput}
                         isInvalid={error.confirmPassword}
+                        type="password"
+
                     />
                     <InputErrorMessage message={error.confirmPassword} />
                 </div>

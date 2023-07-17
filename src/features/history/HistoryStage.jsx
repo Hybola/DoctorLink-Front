@@ -5,15 +5,15 @@ export default function HistoryStage(props) {
         <div className="dropdown dropdown-end">
             <div className="m-1">
                 {stage == 0 ? (
-                    <span className="badge badge-outline badge-error w-[120px] ">
-                        ยกเลิก
+                    <span className="border border-red-300 text-center text-red-500 rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50">
+                    ยกเลิก
                     </span>
                 ) : stage == 1 ? (
-                    <span className="badge badge-outline badge-warning w-[120px]">
+                    <span className="border border-primary text-center text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50">
                         รออนุมัติ
                     </span>
                 ) : (
-                    <span className="badge badge-outline badge-success w-[120px]">
+                    <span className="border border-green-400 text-center text-green-600 rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50">
                         อนุมัติ
                     </span>
                 )}
