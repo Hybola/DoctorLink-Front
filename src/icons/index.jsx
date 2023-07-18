@@ -578,7 +578,7 @@ export function SalaryIcon() {
             height="2rem"
             width="2rem"
             viewBox="0 0 24 24"
-            fill="none"
+            fill="#05264E"
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
@@ -638,7 +638,7 @@ export function WorkingDate() {
         <svg
             height="28px"
             width="28px"
-            fill="#706161"
+            fill="#05264e"
             viewBox="0 0 24 24"
             data-name="Flat Line"
             xmlns="http://www.w3.org/2000/svg"
@@ -649,7 +649,7 @@ export function WorkingDate() {
                 <path
                     d="M7.54 19H4a1 1 0 01-1-1V5a1 1 0 011-1h16a1 1 0 011 1v13a1 1 0 01-1 1h-3.54"
                     fill="none"
-                    stroke="#888686"
+                    stroke="#05264e"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -657,14 +657,14 @@ export function WorkingDate() {
                     data-name="primary"
                     d="M12 9a6 6 0 106 6 6 6 0 00-6-6zM3 9h18m-5-6v3M8 3v3m4 11v-4"
                     fill="none"
-                    stroke="#888686"
+                    stroke="#05264e"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
                 <path
                     data-name="primary"
                     fill="none"
-                    stroke="#888686"
+                    stroke="#05264e"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M10 15L12 17 14 15"
@@ -677,7 +677,7 @@ export function WorkingDate() {
 export function WageIcon() {
     return (
         <svg
-            fill="#646262"
+            fill="#05264e"
             height="28px"
             width="28px"
             viewBox="0 0 32 32"
