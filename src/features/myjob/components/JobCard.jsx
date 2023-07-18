@@ -86,7 +86,7 @@ export default function JobCard({
                             </div>
                             <div id={job.doctorJobId} onClick={handleClick1}>
                                 {type == 1
-                                    ? 'Unsaved'
+                                    ? 'Unsave'
                                     : type == 2
                                     ? 'UnInterested'
                                     : null}
@@ -108,7 +108,7 @@ export default function JobCard({
                                     id={job.doctorJobId}
                                     onClick={handleClick2}
                                 >
-                                    Interested
+                                    Interest
                                 </div>
                             </div>
                         </li>
