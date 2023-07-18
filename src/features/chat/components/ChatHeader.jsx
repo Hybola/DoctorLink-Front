@@ -12,13 +12,13 @@ export default function ChatHeader(prop) {
                         <img
                             className="object-cover w-10 h-10 rounded-full"
                             src={
-                                currentDoctor.profileImage ||
+                                currentDoctor?.profileImage ||
                                 'https://www.svgrepo.com/show/508199/user-square.svg'
                             }
                             alt="username"
                         />
                         <span className="block ml-2 font-bold ">
-                            {currentDoctor.name}
+                            {currentDoctor?.name}
                         </span>
                         <span
                             className={

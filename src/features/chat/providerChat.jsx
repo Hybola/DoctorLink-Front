@@ -22,15 +22,15 @@ export default function ProviderChat() {
     const doctorList = useSelector((state) => state.chat.doctorList)
 
     const dispatch = useDispatch()
-    let location = useLocation()
-    console.log('location.state >>>', location.state) //{id: name: profileImage:}
+    let location = useLocation() //จะได้ value ที่ส่งมาจากตอน click chat button
+    // console.log('location.state >>>', location.state) //{id, name, profileImage}
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({}) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
-    ////==== below coding isn't done
-
+    
+    ////==== below code isn't done
     useEffect(() => {
         socket.emit('providerStartChat', {
-            doctorId: location.state.id,
+            doctorId: location?.state?.id,
             provider,
         })
         socket.on('')
@@ -83,7 +83,7 @@ export default function ProviderChat() {
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }, [chatLists[`${currentDoctor.id}:${providerId}`]?.length])
+    }, [chatLists[`${currentDoctor?.id}:${providerId}`]?.length])
 
     const handleSendMessage = (e) => {
         e.preventDefault()
@@ -187,7 +187,7 @@ export default function ProviderChat() {
                                 >
                                     <ChatCard
                                         name={el.name}
-                                        profileImage={el.profileImage}
+                                        profileImage={el?.profileImage}
                                     />
                                 </div>
                             ))}
@@ -210,7 +210,7 @@ export default function ProviderChat() {
                                 <div className="relative w-full p-6 overflow-y-auto h-[41.5rem] bg-secondary">
                                     <ul className="space-y-2 ">
                                         {chatLists[
-                                            `${currentDoctor.id}:${providerId}`
+                                            `${currentDoctor?.id}:${providerId}`
                                         ]?.map((el, i) => (
                                             <MsgBody
                                                 key={`${i}-${el?.message}`}

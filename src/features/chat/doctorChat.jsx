@@ -62,12 +62,12 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             setProviderName(data.provider.name)
             setProviderImage(data.provider.profileImage)
         })
-        ////==== below coding isn't done
+        ////==== code below isn't done
 
         socket.on('doctorGetMessage', (data) => {
             setAllMsg(data)
         })
-        ///===== above code isn't done
+        ///===== code above isn't done
 
         return () => {
             socket.off('doctorAcceptChat')
