@@ -21,10 +21,11 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
                 <div className="flex gap-4 items-center">
                     <div className="w-[400px]">{post?.title}</div>
                     {role == 'doctor' && +post?.jobStatus > 0 ? (
-                        <span>
-                            <KeptIcon />
-                        </span>
-                    ) : null}
+                        <span className=" text-lg text-center text-gray-400 rounded-2xl px-4 py-1 bg-white  ">
+                        {/* <KeptIcon /> */}
+                        Saved
+                    </span>
+                ) : null}
                 </div>
 
                 {role == 'doctor' ? (

@@ -73,7 +73,7 @@ export default function HistoryModalPreview() {
             ? { ...myObj, other: myObj?.FullTime?.other }
             : { ...myObj, other: myObj?.PartTime?.other }
 
-    console.log(myObj)
+    //console.log(myObj)
 
     return (
         <>

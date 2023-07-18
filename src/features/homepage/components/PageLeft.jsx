@@ -64,7 +64,7 @@ export default function PageLeft({ joblist, pageAt, setPageAt }) {
                         <div>
                             <button
                                 onClick={clickPageBack}
-                                className="bg-primary rounded-lg w-[30px] h-[20px] text-base-100 flex justify-center items-center"
+                                className="bg-primary rounded-lg w-[30px] h-[30px] text-base-100 flex justify-center items-center"
                             >
                                 &lt;
                             </button>
@@ -72,7 +72,7 @@ export default function PageLeft({ joblist, pageAt, setPageAt }) {
                         <div>
                             <button
                                 onClick={clickNextPage}
-                                className="bg-primary rounded-lg w-[30px] h-[20px]  text-base-100 flex justify-center items-center"
+                                className="bg-primary rounded-lg w-[30px] h-[30px]  text-base-100 flex justify-center items-center"
                             >
                                 &gt;
                             </button>

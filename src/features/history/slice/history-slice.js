@@ -109,10 +109,10 @@ export const confirmCloseJobByGetDoctor = createAsyncThunk(
             const res = await historyService.confirmCloseJob(input.id, 2)
             const editIndex = input.allList.findIndex((el) => el.id == input.id)
             let newAllList = [...input.allList]
-            console.log(newAllList)
+            //console.log(newAllList)
             let completed = { ...newAllList[editIndex], stage: 2 }
             newAllList[editIndex] = completed
-            console.log(newAllList)
+            //console.log(newAllList)
 
             return newAllList
         } catch (err) {
@@ -128,10 +128,10 @@ export const confirmCloseJobByNoDoctor = createAsyncThunk(
             const res = await historyService.confirmCloseJob(input.id, 0)
             const editIndex = input.allList.findIndex((el) => el.id == input.id)
             let newAllList = [...input.allList]
-            console.log(newAllList)
+           // console.log(newAllList)
             let completed = { ...newAllList[editIndex], stage: 0 }
             newAllList[editIndex] = completed
-            console.log(newAllList)
+           // console.log(newAllList)
 
             return newAllList
         } catch (err) {
@@ -144,7 +144,7 @@ export const editJobPost = createAsyncThunk(
     'history/editPostJob',
     async (input, thunkApi) => {
         try {
-            console.log(input)
+           // console.log(input)
             const res = await historyService.editJobPost(input)
             return res.data
         } catch (err) {
@@ -157,7 +157,7 @@ export const getProviderProfile = createAsyncThunk(
     'history/getProviderProfile',
     async (input, thunkApi) => {
         try {
-            console.log(input)
+           // console.log(input)
             const res = await historyService.getProviderProfile(input.id)
             return res.data
         } catch (err) {
@@ -214,7 +214,7 @@ const historySlice = createSlice({
                 state.allLists = action.payload
             })
             .addCase(confirmCloseJobByNoDoctor.fulfilled, (state, action) => {
-                confirmCloseJobByNoDoctor.allLists = action.payload
+                state.allLists = action.payload
             })
             .addCase(getProviderProfile.fulfilled, (state, action) => {
                 state.myProfile = action.payload

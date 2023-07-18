@@ -9,7 +9,7 @@ const initialState = {
     allJobPost: [],
     filterJob: [],
     loading: false,
-    post: { job: {}, provider: {} },
+    post: [],
 }
 
 export const allJobPost = createAsyncThunk(
@@ -102,6 +102,7 @@ export const interestedPostHome = createAsyncThunk(
     'interedPostHome',
     async (input, thunkApi) => {
         try {
+            
             const res = await myjobService.interestedJob(input.id)
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)
@@ -126,6 +127,7 @@ const homeSlice = createSlice({
                 stage.loading = false
             })
             .addCase(searchJob.pending, (stage, action) => {
+                stage.post = { job: {}, provider: {} }
                 stage.loading = true
             })
             .addCase(searchJob.fulfilled, (stage, action) => {
@@ -141,16 +143,19 @@ const homeSlice = createSlice({
                 stage.filterJob = action.payload
             })
 
+            .addCase(getProviderPost.pending, (stage, action) => {
+                stage.post = { job: {}, provider: {} }
+            })
             .addCase(getProviderPost.fulfilled, (stage, action) => {
                 stage.post = action.payload
             })
 
             .addCase(savedPostHome.fulfilled, (stage, action) => {
-                stage.post.jobStatus = 1
+                stage.post[0].jobStatus = 1
             })
 
             .addCase(interestedPostHome.fulfilled, (stage, action) => {
-                stage.post.jobStatus = 2
+                stage.post[0].jobStatus = 2
             })
 
             .addCase(setJobRightPage.fulfilled, (stage, action) => {

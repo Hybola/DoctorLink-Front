@@ -11,7 +11,9 @@ import {
 import { useEffect } from 'react'
 import { all } from 'axios'
 import MyLoad from '../../components/Loading'
+import { useNavigate } from 'react-router-dom'
 export default function HistoryModalGroup() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     // const allLists = useSelector((state) => state.history.allLists)
     const getJobResult = useSelector((state) => state.history.getJobResult)
@@ -180,7 +182,28 @@ export default function HistoryModalGroup() {
                                                     </td>
                                                     <th>
                                                         <div className="flex flex-row justify-center items-center gap-5">
-                                                            <button className="btn btn-primary btn-xs text-white h-[40px]">
+                                                            <button
+                                                                className="btn btn-primary btn-xs text-white h-[40px]"
+                                                                onClick={() => {
+                                                                    navigate(
+                                                                        '/provider/chat',
+                                                                        {
+                                                                            state: {
+                                                                                id: item
+                                                                                    .Doctor
+                                                                                    ?.id,
+                                                                                name: item
+                                                                                    .Doctor
+                                                                                    ?.firstName,
+                                                                                profileImage:
+                                                                                    item
+                                                                                        .Doctor
+                                                                                        ?.profileImage,
+                                                                            },
+                                                                        }
+                                                                    )
+                                                                }}
+                                                            >
                                                                 Chat
                                                             </button>
 

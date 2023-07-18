@@ -1,47 +1,62 @@
 import { useState, useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+
 import socket from '../../config/socket-config'
 import MsgBody from './components/MsgBody'
 import { toast } from 'react-toastify'
 import ChatHeader from './components/ChatHeader'
 import { EmojiIcon, SendImageIcon, SumbitChatMessageIcon } from '../../icons'
 import ChatCard from './components/ChatCard'
+import { setChatLists, setDoctorList } from './slice/chat-slice'
 
 export default function ProviderChat() {
     const ref = useRef()
+
     const providerId = useSelector((state) => state.auth.user.id)
+    const provider = useSelector((state) => state.auth.user)
 
-    const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
+    // const [chatLists, setChatLists] = useState({}) //รายชื่อคนที่คุยด้วย
+    const chatLists = useSelector((state) => state.chat.chatLists)
+    //const [doctorList, setDoctorList] = useState([]) //เก็บ profile ของ doctor ทุกคน
+    const doctorList = useSelector((state) => state.chat.doctorList)
 
-    const [doctorList, setDoctorList] = useState([]) //เก็บ profile ของ doctor ทุกคน
-    // const [allMsg, setAllMsg] = useState([]) //ข้อความปัจจุบันที่กำลังแสดงใน chat body
+    const dispatch = useDispatch()
+    let location = useLocation() //จะได้ value ที่ส่งมาจากตอน click chat button
+    // console.log('location.state >>>', location.state) //{id, name, profileImage}
     const [input, setInput] = useState('') // เอาไป binding onChange
-    const [currentDoctor, setCurrentDoctor] = useState({
-        id: 0,
-        name: '',
-        profileImage: '',
-    }) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
+    const [currentDoctor, setCurrentDoctor] = useState({}) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
 
     useEffect(() => {
         socket.on('acceptChat', (data) => {
             // console.log('provider acceptChat:Room >>>', data.newRoom) //data={newRoom: '1:1'}
             socket.emit('providerJoinRoom', data.newRoom)
             toast.info(`incomming message`)
-            setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
-            setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
-            // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
+
+            // if a doctor doesn't exit in doctor list, then add the doctor to the state
+            const isExistingChat = (element) => element.id === data.doctor.id
+            if (!doctorList.some(isExistingChat)) {
+                // setChatLists({ ...chatLists, [data.newRoom]: [] }) //เพิ่มอีกหนึ่งชื่อเข้า chatlist , [] คือ allMes หนึ่งตัว
+                dispatch(setChatLists({ ...chatLists, [data.newRoom]: [] }))
+                //setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
+                dispatch(setDoctorList([...doctorList, data.doctor]))
+            }
             setCurrentDoctor(data.doctor)
         })
-        socket.on('providerGetMessage', (data) => {
-            console.log(chatLists)
-            if (Object.keys(chatLists)?.length !== 0) {
-                setChatLists((prev) => {
-                    const clonePrev = structuredClone(prev)
-                    clonePrev[data.room].push(data.conversation)
-                    return clonePrev
-                })
-            }
 
+        socket.on('providerGetMessage', (data) => {
+            // if (Object.keys(chatLists)?.length !== 0) {
+            //     setChatLists((prev) => {
+            //         const clonePrev = structuredClone(prev)
+            //         clonePrev[data.room].push(data.conversation)
+            //         return clonePrev
+            //     })
+            // }
+            if (Object.keys(chatLists)?.length !== 0) {
+                const clonePrev = structuredClone(chatLists)
+                clonePrev[data.room].push(data.conversation)
+                dispatch(setChatLists(clonePrev))
+            }
             /// ***** อะไรที่อยากจะทำ หลังจาก render ui ได้แล้ว ให้เอาไปใส่ใน useEffct ### *****
             // setAllMsg([...allMsg, data.conversation])  // code บรรทัด นี้ทำงานผิดเพี๊ยน เพราะอยุ่ใน useEffect
             //ตามหลักการเรื่อง closure แล้ว การ set state ใหม่ภายใน useEffect นั้น ค่าเริ่มต้นของ allMsg จะอ้างอิงมาจากค่าที่เคยเก็บไว้ก่อนรัน useEffect
@@ -53,41 +68,63 @@ export default function ProviderChat() {
             socket.off('providerGetMessage')
         }
     }, [doctorList, chatLists])
+    ////==== When a provider click chat button
+    useEffect(() => {
+        socket.emit('providerStartChat', {
+            doctorId: location?.state?.id,
+            provider,
+        })
+        socket.on('providerGetMessage', (data) => {
+            if (Object.keys(chatLists)?.length !== 0) {
+                const clonePrev = structuredClone(chatLists)
+                clonePrev[data.room].push(data.conversation)
+                dispatch(setChatLists(clonePrev))
+            }
+        })
+        setCurrentDoctor({
+            id: location?.state?.id,
+            name: location?.state?.name,
+            profileImage: location?.state?.profileImage,
+        })
+        return () => {
+            socket.off('providerGetMessage')
+        }
+    }, [])
+    ///=========================
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }, [chatLists[`${currentDoctor.id}:${providerId}`]?.length])
+    }, [chatLists[`${currentDoctor?.id}:${providerId}`]?.length])
 
     const handleSendMessage = (e) => {
         e.preventDefault()
-        console.log('providerSendMessage >> chatLists >>>>', chatLists)
-
         if (!input.trim()) return setInput('')
-
         const conversation = {
             message: input,
             to: 'doctor',
             from: 'provider',
         }
-        const room = `${currentDoctor.id}:${providerId}`
-
+        const room = `${currentDoctor?.id}:${providerId}`
         socket.emit('providerSendMessage', {
             conversation,
             room,
         }) //อยู่ใน send box
 
-        setChatLists((prev) => {
-            prev[room].push(conversation)
-            return prev
-        })
+        ////==== below code by useState
+        // setChatLists((prev) => {
+        //     prev[room].push(conversation)
+        //     return prev
+        // })
+        ////==== above code by useState
 
-        // setAllMsg([...allMsg, conversation])
+        const clonePrev = structuredClone(chatLists)
+        clonePrev[room].push(conversation)
+        dispatch(setChatLists(clonePrev))
         setInput('')
     }
     const handleSelectChat = (id) => {
         const index = doctorList.findIndex((el) => el.id == id)
         setCurrentDoctor(doctorList[index])
-        // setAllMsg([...[chatLists[`${id}:${providerId}`]]])
     }
     return (
         <>
@@ -152,7 +189,7 @@ export default function ProviderChat() {
                         />
                         {/* ===== Online Chat Contacts ===== */}
                         <div className="bg-grey-lighter flex-1 overflow-auto p-2 ">
-                            {doctorList.map((el) => (
+                            {doctorList?.map((el) => (
                                 <div
                                     key={el.id}
                                     onClick={() => {
@@ -161,7 +198,7 @@ export default function ProviderChat() {
                                 >
                                     <ChatCard
                                         name={el.name}
-                                        profileImage={el.profileImage}
+                                        profileImage={el?.profileImage}
                                     />
                                 </div>
                             ))}
@@ -184,7 +221,7 @@ export default function ProviderChat() {
                                 <div className="relative w-full p-6 overflow-y-auto h-[41.5rem] bg-secondary">
                                     <ul className="space-y-2 ">
                                         {chatLists[
-                                            `${currentDoctor.id}:${providerId}`
+                                            `${currentDoctor?.id}:${providerId}`
                                         ]?.map((el, i) => (
                                             <MsgBody
                                                 key={`${i}-${el?.message}`}
@@ -194,9 +231,9 @@ export default function ProviderChat() {
                                         ))}
                                         <li ref={ref}></li>
                                     </ul>
-                                    <div className="text-sm text-purple-500 text-right absolute bottom-1 right-1">
+                                    {/* <div className="text-sm text-purple-500 text-right absolute bottom-1 right-1">
                                         My Socket Id : {socket.id}{' '}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 {/* ======  Send Message Box ====== */}
                                 <form
@@ -218,6 +255,7 @@ export default function ProviderChat() {
                                         </button>
                                         <input
                                             type="text"
+                                            autocomplete="off"
                                             className="block mx-4 p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Your message..."
                                             name="message"
