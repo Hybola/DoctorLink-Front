@@ -54,6 +54,7 @@ export default function PartTime({ add, hdl }) {
                                 onChange={hdl}
                                 value={add.wage}
                                 name="wage"
+                                placeholder="#จำนวนเงินต่องาน"
                             />
                         </div>
                     </div>
