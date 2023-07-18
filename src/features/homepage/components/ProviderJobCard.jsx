@@ -18,37 +18,38 @@ export default function ProviderJobCard({ post, handleClick1, handleClick2 }) {
     return (
         <div className="w-full flex flex-col rounded-lg p-4  mb-4 shadow-lg ">
             <div className=" flex  w-full  font-semibold text-3xl justify-between ">
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center">
                     <div className="w-[400px]">{post?.title}</div>
                     {role == 'doctor' && +post?.jobStatus > 0 ? (
-                        <span>
-                            <KeptIcon />
+                        <span className="ml-10 text-lg text-center text-gray-400 rounded-2xl px-4 py-1 bg-white  ">
+                            {/* <KeptIcon /> */}
+                            Saved
                         </span>
                     ) : null}
                 </div>
 
                 {role == 'doctor' ? (
-                    <div className="flex items-center text-lg gap-2">
+                    <div className="flex items-center text-lg gap-4">
                         {post?.jobStatus == '0' ? (
                             <button
-                                className=" border border-primary  text-center text-neutral rounded-2xl px-4 py-1 hover:bg-info hover:bg-opacity-50"
+                                className=" text-center text-white rounded-2xl px-4 py-1 hover:bg-info bg-primary"
                                 id={post?.id}
                                 onClick={handleClick2}
                             >
-                                Saved
+                                Save
                             </button>
                         ) : null}
                         {post?.jobStatus == '0' || post?.jobStatus == '1' ? (
                             <button
                                 id={post?.id}
-                                className=" border border-primary  text-center text-white rounded-2xl px-4 py-1 hover:bg-info bg-primary"
+                                className=" text-center text-white rounded-2xl px-4 py-1 hover:bg-info bg-primary"
                                 onClick={handleClick1}
                             >
                                 Apply Work
                             </button>
                         ) : null}
                         {post?.jobStatus == '2' ? (
-                            <div className="text-center text-white bg-info px-4 py-1 rounded-lg ">
+                            <div className="text-center text-info rounded-lg ">
                                 Pending Confirm
                             </div>
                         ) : null}
