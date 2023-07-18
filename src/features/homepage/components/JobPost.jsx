@@ -16,6 +16,8 @@ export default function JopPost() {
     const currentProfileImage =
         post?.providerProfileImage || defaultProfileImage
 
+    // const currentCardNew
+
     const handdleSaveJob = (e) => {
         dispatch(
             savedPostHome({

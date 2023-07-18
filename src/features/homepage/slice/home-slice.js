@@ -126,6 +126,7 @@ const homeSlice = createSlice({
                 stage.loading = false
             })
             .addCase(searchJob.pending, (stage, action) => {
+                stage.post = { job: {}, provider: {} }
                 stage.loading = true
             })
             .addCase(searchJob.fulfilled, (stage, action) => {
@@ -141,6 +142,9 @@ const homeSlice = createSlice({
                 stage.filterJob = action.payload
             })
 
+            .addCase(getProviderPost.pending, (stage, action) => {
+                stage.post = { job: {}, provider: {} }
+            })
             .addCase(getProviderPost.fulfilled, (stage, action) => {
                 stage.post = action.payload
             })
