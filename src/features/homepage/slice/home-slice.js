@@ -102,6 +102,7 @@ export const interestedPostHome = createAsyncThunk(
     'interedPostHome',
     async (input, thunkApi) => {
         try {
+            
             const res = await myjobService.interestedJob(input.id)
         } catch (err) {
             return thunkApi.rejectWithValue(err.response.data.message)

@@ -21,6 +21,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     const [input, setInput] = useState('') // เอา setMessage ไป binding onChange
     const [providerId, setProviderId] = useState(chatUser?.id) // onChange
     const [providerName, setProviderName] = useState(chatUser?.name)
+    const [providerImage, setProviderImage] = useState(chatUser?.providerImage)
 
     ////Mock data test allMsg.map()
     const converationArray = [
@@ -50,6 +51,24 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
             socket.off('doctorGetMessage')
         }
     }, [chatUser.id])
+
+    ////==== Doctor accepts chat, after a provider click chat button
+    useEffect(() => {
+        socket.on('doctorAcceptChat', (data) => {
+            socket.emit('doctorJoinRoom', data.newRoom)
+            // toast.info('incomming message')
+            setProviderId(data.provider.id)
+            setProviderName(data.provider.name)
+            setProviderImage(data.provider.profileImage)
+            setAllMsg([])
+        })
+        return () => {
+            socket.off('doctorAcceptChat')
+            socket.off('doctorGetMessage')
+        }
+    }, [providerId, providerImage, providerImage])
+    /////================================
+
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }, [allMsg.length])
@@ -71,9 +90,9 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     return (
         <>
             <div className="fixed right-3 bottom-3 z-10">
-                <div className="text-sm text-purple-500 text-right mx-4">
+                {/* <div className="text-sm text-purple-500 text-right mx-4">
                     My Socket Id : {socket.id}{' '}
-                </div>
+                </div> */}
                 {/* ======= Chat Modal  ====== */}
                 <div className="flex flex-col w-[400px] border shadow-xl  bg-white ">
                     {/* ======= Chat header ====== */}
@@ -81,7 +100,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                         <div className="relative flex items-center p-2">
                             <img
                                 className="object-cover w-10 h-10 rounded-full"
-                                src={chatUser.providerImage}
+                                src={providerImage}
                                 alt="username"
                             />
 
@@ -143,6 +162,7 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
                                             </button>
                                             <input
                                                 type="text"
+                                                autocomplete="off"
                                                 className="block mx-1 p-3 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Your message..."
                                                 name="message"

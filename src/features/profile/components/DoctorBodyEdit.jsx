@@ -21,7 +21,7 @@ export default function DoctorBodyEdit() {
         const input = { role: myRole, payload: profile }
         dispatch(editProfile(input)).unwrap()
     }
-    console.log(profile)
+    //console.log(profile)
     return (
         <dialog id="DoctorBodyEdit" className="modal">
             <form method="dialog" className="modal-box bg-base-100">
