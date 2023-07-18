@@ -13,7 +13,7 @@ export default function HistoryModalBin() {
     const allLists = useSelector((state) => state.history.allLists)
     const [arrSelected, setArrSelected] = useState([])
     const dispatch = useDispatch()
-    console.log('objPost', objPost)
+    //console.log('objPost', objPost)
 
     const mobileFormat = (mobile) => {
         if (mobile) {

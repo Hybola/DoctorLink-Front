@@ -49,12 +49,12 @@ export default function HistoryModalEdit() {
     }
 
     useEffect(() => {
-        console.log('useffect')
+        //console.log('useffect')
         setInput({ ...getJobResult[0] })
     }, [getJobResult])
 
     const handleOnchange = (e) => {
-        console.log(e.target.name)
+        //console.log(e.target.name)
         if (input.jobType == 'PartTime') {
             if (
                 e.target.name == 'PartTimeJobDes' ||
@@ -62,7 +62,7 @@ export default function HistoryModalEdit() {
                 e.target.name == 'PartTimeWage' ||
                 e.target.name == 'PartTimeOther'
             ) {
-                console.log(e.target.name, e.target.value)
+                //console.log(e.target.name, e.target.value)
 
                 if (e.target.name == 'PartTimeJobDes') {
                     setInput({
@@ -70,7 +70,7 @@ export default function HistoryModalEdit() {
                         PartTime: { ...input.PartTime, jobDes: e.target.value },
                     })
                 } else if (e.target.name == 'PartTimeStartDate') {
-                    console.log('PartTimeStartDate', e.target.value)
+                    //console.log('PartTimeStartDate', e.target.value)
                     setInput({
                         ...input,
                         PartTime: {
@@ -99,7 +99,7 @@ export default function HistoryModalEdit() {
                 e.target.name == 'FullTimeStartDate' ||
                 e.target.name == 'FullTimeSalary'
             ) {
-                console.log(e.target.name, e.target.value)
+                //console.log(e.target.name, e.target.value)
 
                 if (e.target.name == 'FullTimeJobDes') {
                     setInput({
@@ -107,7 +107,7 @@ export default function HistoryModalEdit() {
                         FullTime: { ...input.FullTime, jobDes: e.target.value },
                     })
                 } else if (e.target.name == 'FullTimeWorkingDay') {
-                    console.log('FullTimeWorkingDay', e.target.value)
+                    // console.log('FullTimeWorkingDay', e.target.value)
                     setInput({
                         ...input,
                         FullTime: {
@@ -156,17 +156,17 @@ export default function HistoryModalEdit() {
         }
     }
     const handleUpdate = async () => {
-        console.log('handleUpdate', input)
-        console.log('allLists', allLists)
-        console.log(
-            'findIndex',
-            allLists.findIndex((e) => e.id == input.id)
-        )
+        // console.log('handleUpdate', input)
+        //console.log('allLists', allLists)
+        // console.log(
+        //     'findIndex',
+        //     allLists.findIndex((e) => e.id == input.id)
+        // )
         const myIndex = allLists.findIndex((e) => e.id == input.id)
         const myAllLinst = [...allLists]
 
         myAllLinst.splice(myIndex, 1, input)
-        console.log('myAllLinst', myAllLinst)
+        //console.log('myAllLinst', myAllLinst)
         dispatch(updateAllList(myAllLinst))
 
         await dispatch(editJobPost(input)).unwrap()

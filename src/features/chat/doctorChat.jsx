@@ -56,25 +56,18 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     useEffect(() => {
         socket.on('doctorAcceptChat', (data) => {
             socket.emit('doctorJoinRoom', data.newRoom)
-            toast.info('incomming message')
-            setAllMsg([])
+            // toast.info('incomming message')
             setProviderId(data.provider.id)
             setProviderName(data.provider.name)
             setProviderImage(data.provider.profileImage)
+            setAllMsg([])
         })
-        ////==== code below isn't done
-
-        socket.on('doctorGetMessage', (data) => {
-            setAllMsg(data)
-        })
-        ///===== code above isn't done
-
         return () => {
             socket.off('doctorAcceptChat')
             socket.off('doctorGetMessage')
         }
     }, [providerId, providerImage, providerImage])
-    /////============================
+    /////================================
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
@@ -97,9 +90,9 @@ export default function DoctorChat({ chatUser, handleCloseChat }) {
     return (
         <>
             <div className="fixed right-3 bottom-3 z-10">
-                <div className="text-sm text-purple-500 text-right mx-4">
+                {/* <div className="text-sm text-purple-500 text-right mx-4">
                     My Socket Id : {socket.id}{' '}
-                </div>
+                </div> */}
                 {/* ======= Chat Modal  ====== */}
                 <div className="flex flex-col w-[400px] border shadow-xl  bg-white ">
                     {/* ======= Chat header ====== */}

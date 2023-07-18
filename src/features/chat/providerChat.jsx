@@ -26,17 +26,6 @@ export default function ProviderChat() {
     // console.log('location.state >>>', location.state) //{id, name, profileImage}
     const [input, setInput] = useState('') // เอาไป binding onChange
     const [currentDoctor, setCurrentDoctor] = useState({}) // หมอคนปัจจุบันที่กำลัง chat คุยอยู่ มีค่า= {id,firstName,lastName,profileImage,...}
-    
-    ////==== below code isn't done
-    useEffect(() => {
-        socket.emit('providerStartChat', {
-            doctorId: location?.state?.id,
-            provider,
-        })
-        socket.on('')
-        setCurrentDoctor()
-    })
-    ///===== above code isn't done
 
     useEffect(() => {
         socket.on('acceptChat', (data) => {
@@ -52,7 +41,6 @@ export default function ProviderChat() {
                 //setDoctorList([...doctorList, data.doctor]) //เก็บ Object doctor ไว้ใช้งาน
                 dispatch(setDoctorList([...doctorList, data.doctor]))
             }
-            // console.log('acceptChat doctorr >>>', data.doctorProfile) //={id,firstName,lastName,profileImage,...}
             setCurrentDoctor(data.doctor)
         })
 
@@ -80,6 +68,29 @@ export default function ProviderChat() {
             socket.off('providerGetMessage')
         }
     }, [doctorList, chatLists])
+    ////==== When a provider click chat button
+    useEffect(() => {
+        socket.emit('providerStartChat', {
+            doctorId: location?.state?.id,
+            provider,
+        })
+        socket.on('providerGetMessage', (data) => {
+            if (Object.keys(chatLists)?.length !== 0) {
+                const clonePrev = structuredClone(chatLists)
+                clonePrev[data.room].push(data.conversation)
+                dispatch(setChatLists(clonePrev))
+            }
+        })
+        setCurrentDoctor({
+            id: location?.state?.id,
+            name: location?.state?.name,
+            profileImage: location?.state?.profileImage,
+        })
+        return () => {
+            socket.off('providerGetMessage')
+        }
+    }, [])
+    ///=========================
 
     useEffect(() => {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
@@ -93,7 +104,7 @@ export default function ProviderChat() {
             to: 'doctor',
             from: 'provider',
         }
-        const room = `${currentDoctor.id}:${providerId}`
+        const room = `${currentDoctor?.id}:${providerId}`
         socket.emit('providerSendMessage', {
             conversation,
             room,
@@ -220,9 +231,9 @@ export default function ProviderChat() {
                                         ))}
                                         <li ref={ref}></li>
                                     </ul>
-                                    <div className="text-sm text-purple-500 text-right absolute bottom-1 right-1">
+                                    {/* <div className="text-sm text-purple-500 text-right absolute bottom-1 right-1">
                                         My Socket Id : {socket.id}{' '}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 {/* ======  Send Message Box ====== */}
                                 <form
