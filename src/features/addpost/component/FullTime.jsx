@@ -25,6 +25,7 @@ export default function FullTime({ add, hdl }) {
                                 onChange={hdl}
                                 value={add.workingDay}
                                 name="workingDay"
+                                placeholder="Monday-Sunday"
                             />
                         </div>
                     </div>
@@ -50,6 +51,7 @@ export default function FullTime({ add, hdl }) {
                                     onChange={hdl}
                                     value={add.salary}
                                     name="salary"
+                                    placeholder="#จำนวนเงินต่อเดือน"
                                 />
                             </div>
                         </div>
@@ -64,6 +66,7 @@ export default function FullTime({ add, hdl }) {
                                     onChange={hdl}
                                     value={add.annual}
                                     name="annual"
+                                    placeholder="#จำนวนวันหยุด"
                                 />
                             </div>
                         </div>
@@ -76,6 +79,7 @@ export default function FullTime({ add, hdl }) {
                                     onChange={hdl}
                                     value={add.benefit}
                                     name="benefit"
+                                    placeholder="#ค่าที่พัก #ค่าเดินทาง"
                                 />
                             </div>
                         </div>
